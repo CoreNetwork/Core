@@ -27,5 +27,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="X:/Games Files/Minecraft/Serveri/MCNSAVillager/plugins/GriefPrevention.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

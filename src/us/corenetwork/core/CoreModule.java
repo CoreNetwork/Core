@@ -11,6 +11,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import us.corenetwork.core.checkpoints.CheckpointsModule;
+import us.corenetwork.core.respawn.RespawnModule;
 
 public abstract class CoreModule implements CommandExecutor {
 	private String moduleName;
@@ -136,6 +137,14 @@ public abstract class CoreModule implements CommandExecutor {
 
 		//Checkpoints
 		module = new CheckpointsModule();
+		if (module.loadModuleInternal())
+		{
+			module.active = true;
+			modules.add(module);
+		}
+		
+		//Respawn
+		module = new RespawnModule();
 		if (module.loadModuleInternal())
 		{
 			module.active = true;

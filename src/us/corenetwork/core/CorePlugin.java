@@ -1,6 +1,7 @@
 package us.corenetwork.core;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -11,12 +12,15 @@ import us.corenetwork.core.corecommands.CoreHelpCommand;
 import us.corenetwork.core.corecommands.ReloadCommand;
 public class CorePlugin extends JavaPlugin {
 	public static CorePlugin instance;
-
+	
+	public static Random random;
+	
 	public static HashMap<String, BaseCoreCommand> coreCommands = new HashMap<String, BaseCoreCommand>();
 	
 	@Override
 	public void onEnable() {
 		instance = this;
+		random = new Random();
 		
 		coreCommands.put("help", new CoreHelpCommand());
 		coreCommands.put("reload", new ReloadCommand());

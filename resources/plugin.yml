@@ -1,10 +1,18 @@
 name: Core
 main: us.corenetwork.core.CorePlugin
 version: 1.0.0
+depend: [GriefPrevention]
 author: matejdro
 commands:
     core:
         description: Main command
     chp:
     checkpoint:
+    rspawn:
+        description: Spawn randomly in the world
+    togglespawn:
+        description: Disable spawning closer to biggest claim
+    unprotect:
+        description: Disable invincibility upon spawn
+    
     
