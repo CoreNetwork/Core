@@ -24,100 +24,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 public class Util {
-
-	public static void placeSign(Block block, String message)
-	{
-		Block belowBlock = block.getRelative(BlockFace.DOWN);
-		if (belowBlock != null && belowBlock.getType().isSolid())
-		{
-			block.setType(Material.SIGN_POST);
-		}
-		else
-		{
-			block.setType(Material.WALL_SIGN);
-
-		}
-
-		Sign sign = (Sign) block.getState();
-		if (block.getType() == Material.WALL_SIGN)
-		{
-			//Rotate sign so it will be on wall
-			org.bukkit.material.Sign data = (org.bukkit.material.Sign) sign.getData();
-			for (BlockFace face : new BlockFace[] {BlockFace.NORTH, BlockFace.EAST, BlockFace.WEST, BlockFace.SOUTH})
-			{
-				Block nextBlock = block.getRelative(face);
-				if (nextBlock != null && nextBlock.getType().isSolid())
-				{
-					data.setFacingDirection(face.getOppositeFace());
-					sign.setData(data);
-
-					break;
-				}
-			}
-		}
-
-		populateSign(message, sign);
-
-
-		sign.update();
-	}
-
-	public static void populateSign(String message, Sign sign)
-	{
-		message = message.replaceAll("\\&([0-9abcdef])", ChatColor.COLOR_CHAR + "$1");
-		String[] lines = message.split("\\[NEWLINE\\]");
-
-		int max = Math.min(4, lines.length);
-		for (int i = 0; i < max; i++)
-		{
-			sign.setLine(i, lines[i]);
-		}
-	}
-
-	public static Block findBestSignLocation(ArrayList<Block> blocks)
-	{
-		for (Block b : blocks)
-		{
-			if (!b.isEmpty())
-				continue;
-
-			Block upperBlock = b.getRelative(BlockFace.UP);
-
-			if (upperBlock != null && upperBlock.isEmpty())
-				return b;
-		}
-
-		for (Block b : blocks)
-		{
-			if (!b.isEmpty())
-				continue;
-
-			Block upperBlock = b.getRelative(BlockFace.UP);
-
-			if (upperBlock != null && upperBlock.isEmpty())
-				return b;
-		}
-
-		for (Block b : blocks)
-		{
-			if (!b.isEmpty())
-				continue;
-
-			Block lowerBlock = b.getRelative(BlockFace.DOWN);
-
-			if (lowerBlock != null && lowerBlock.getType().isSolid())
-				return b;
-		}
-
-		for (Block b : blocks)
-		{
-			if (b.isEmpty())
-				return b;			
-		}
-
-		return blocks.get(0);
-	}
-
 	public static void Message(String message, CommandSender sender)
 	{
 		message = message.replaceAll("\\&([0-9abcdefklmnor])", ChatColor.COLOR_CHAR + "$1");
@@ -146,44 +52,6 @@ public class Util {
 
 	}
 
-	public static void Broadcast(String message, String exclusion)
-	{
-		for (Player p : Bukkit.getOnlinePlayers())
-		{
-			if (!p.getName().equals(exclusion))
-				Util.Message(message, p);
-		}
-
-	}
-
-	public static void MessagePermissions(String message, String permission)
-	{
-		for (Player p : Bukkit.getOnlinePlayers())
-		{
-			if (Util.hasPermission(p,permission))
-				Util.Message(message, p);
-		}
-	}
-
-	public static void showFirework(Location location, FireworkEffect effect)
-	{
-		Firework firework = location.getWorld().spawn(location, Firework.class);
-
-		FireworkMeta meta = firework.getFireworkMeta();
-		meta.clearEffects();
-		meta.addEffect(effect);
-		meta.setPower(0);
-		firework.setFireworkMeta(meta);
-
-		net.minecraft.server.v1_6_R2.EntityFireworks nmsFirework = ((CraftFirework) firework).getHandle();
-		net.minecraft.server.v1_6_R2.World world = ((CraftWorld) location.getWorld()).getHandle();
-
-		world.broadcastEntityEffect(nmsFirework, (byte) 17);
-
-		firework.remove();
-	}
-
-
 	public static Boolean isInteger(String text) {
 		try {
 			Integer.parseInt(text);
@@ -202,41 +70,6 @@ public class Util {
 		}
 	}
 
-
-	public static boolean isNetherFortress(Location location)
-	{
-		World world = location.getWorld();
-
-		if (world.getEnvironment() != Environment.NETHER)
-			return false;
-
-		NormalChunkGenerator generator = (NormalChunkGenerator) ((CraftWorld) world).getHandle().chunkProviderServer.chunkProvider;
-
-		Field f;
-		try {
-			f = generator.getClass().getSuperclass().getDeclaredField("provider");
-			f.setAccessible(true);
-			ChunkProviderHell provider = (ChunkProviderHell) f.get(generator);
-
-			return provider.c.a(location.getBlockX(), location.getBlockY(), location.getBlockZ());
-
-		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return false;
-
-	}
 
 	public static void safeTeleport(final Player player, final Location location)
 	{
@@ -301,30 +134,5 @@ public class Util {
 
 			permission = permission.substring(0, lastIndex).concat(".*");  
 		}
-	}
-
-	public static boolean isInventoryContainer(int id)
-	{
-		return id == Material.CHEST.getId() || id == Material.TRAPPED_CHEST.getId() || id == Material.DISPENSER.getId() || id == Material.FURNACE.getId() || id == Material.DROPPER.getId() || id == Material.BREWING_STAND.getId() || id == Material.HOPPER.getId();
-	}
-
-	// Material name snippet by TechGuard
-	public static String getMaterialName(Material material) {
-		String name = material.toString();
-		name = name.replaceAll("_", " ");
-		if (name.contains(" ")) {
-			String[] split = name.split(" ");
-			for (int i = 0; i < split.length; i++) {
-				split[i] = split[i].substring(0, 1).toUpperCase() + split[i].substring(1).toLowerCase();
-			}
-			name = "";
-			for (String s : split) {
-				name += " " + s;
-			}
-			name = name.substring(1);
-		} else {
-			name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-		}
-		return name;
 	}
 }
