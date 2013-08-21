@@ -1,0 +1,10 @@
+name: Core
+main: us.corenetwork.core.CorePlugin
+version: 1.0.0
+author: matejdro
+commands:
+    core:
+        description: Main command
+    chp:
+    checkpoint:
+    
