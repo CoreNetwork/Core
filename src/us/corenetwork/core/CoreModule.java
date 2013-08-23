@@ -12,6 +12,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import us.corenetwork.core.checkpoints.CheckpointsModule;
 import us.corenetwork.core.respawn.RespawnModule;
+import us.corenetwork.core.scoreboard.ScoreboardModule;
 
 public abstract class CoreModule implements CommandExecutor {
 	private String moduleName;
@@ -142,9 +143,17 @@ public abstract class CoreModule implements CommandExecutor {
 			module.active = true;
 			modules.add(module);
 		}
-		
+
 		//Respawn
 		module = new RespawnModule();
+		if (module.loadModuleInternal())
+		{
+			module.active = true;
+			modules.add(module);
+		}
+
+		//Scoreboard
+		module = new ScoreboardModule();
 		if (module.loadModuleInternal())
 		{
 			module.active = true;
