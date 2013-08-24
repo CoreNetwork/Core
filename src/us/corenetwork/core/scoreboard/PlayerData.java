@@ -8,6 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 public class PlayerData {
@@ -29,13 +30,18 @@ public class PlayerData {
 		if (value == null)
 			playerStatsScoreboard.resetScores(player);
 		else
-			playerStatsObjective.getScore(Bukkit.getOfflinePlayer(name)).setScore(value);
+		{
+			Score score = playerStatsObjective.getScore(Bukkit.getOfflinePlayer(name));
+			if (value == 0)
+				score.setScore(1);
+			score.setScore(value);
+		}
 	}	
 	
 	protected void init(Player player)
 	{
 		playerStatsScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-		playerStatsObjective = playerStatsScoreboard.registerNewObjective("Your Stats", "dummy");
+		playerStatsObjective = playerStatsScoreboard.registerNewObjective(ScoreboardSettings.STATS_PANEL_HEADER.string(), "dummy");
 		playerStatsObjective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		
 		registerScoreboard(player, 0, playerStatsScoreboard);

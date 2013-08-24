@@ -21,6 +21,14 @@ public class ScoreboardModule extends CoreModule {
 				
 		Bukkit.getServer().getPluginManager().registerEvents(new ScoreboardListener(), CorePlugin.instance);
 		
+		for (ScoreboardSettings setting : ScoreboardSettings.values())
+		{
+			if (config.get(setting.string) == null)
+				config.set(setting.string, setting.def);
+		}
+		saveConfig();
+
+		
 		return true;
 	}
 	
