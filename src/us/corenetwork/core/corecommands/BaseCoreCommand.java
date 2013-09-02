@@ -31,7 +31,7 @@ public abstract class BaseCoreCommand {
 		Util.Message("Sorry, but you need to execute this command as player.", sender);
 			return true;
 		}
-		if (sender instanceof Player && !Util.hasPermission(sender, "core." + permission)) 
+		if (sender instanceof Player && !Util.hasPermission(sender, "core.command." + permission)) 
 		{
 			Util.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 			return true;

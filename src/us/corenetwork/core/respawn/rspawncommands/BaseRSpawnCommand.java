@@ -30,7 +30,7 @@ public abstract class BaseRSpawnCommand {
 		Util.Message("Sorry, but you need to execute this command as player.", sender);
 			return false;
 		}
-		if (sender instanceof Player && !Util.hasPermission(sender, "core.respawn." + permission)) 
+		if (sender instanceof Player && !Util.hasPermission(sender, "core.respawn.command." + permission)) 
 		{
 			Util.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 			return false;
