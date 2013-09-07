@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import us.corenetwork.core.corecommands.BaseCoreCommand;
 import us.corenetwork.core.corecommands.CoreHelpCommand;
 import us.corenetwork.core.corecommands.ReloadCommand;
+import us.corenetwork.core.corecommands.SudoCommand;
 public class CorePlugin extends JavaPlugin {
 	public static CorePlugin instance;
 	
@@ -24,6 +25,7 @@ public class CorePlugin extends JavaPlugin {
 		
 		coreCommands.put("help", new CoreHelpCommand());
 		coreCommands.put("reload", new ReloadCommand());
+		coreCommands.put("sudo", new SudoCommand());
 
 		IO.LoadSettings();
 		CoreModule.loadModules();

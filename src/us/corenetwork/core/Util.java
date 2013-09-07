@@ -1,27 +1,11 @@
 package us.corenetwork.core;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-
-import net.minecraft.server.v1_6_R2.ChunkProviderHell;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
-import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.World.Environment;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.Sign;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_6_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_6_R2.entity.CraftFirework;
-import org.bukkit.craftbukkit.v1_6_R2.generator.NormalChunkGenerator;
-import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.meta.FireworkMeta;
 
 public class Util {
 	public static void Message(String message, CommandSender sender)
@@ -43,7 +27,6 @@ public class Util {
 
 			char lastColor = lines[i - 1].charAt(lastColorChar + 1);
 			lines[i] = Character.toString(ChatColor.COLOR_CHAR).concat(Character.toString(lastColor)).concat(lines[i]);	
-			System.out.println(lines[i]);
 		}		
 
 		for (int i = 0; i < lines.length; i++)
