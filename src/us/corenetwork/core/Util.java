@@ -31,8 +31,15 @@ public class Util {
 
 		for (int i = 0; i < lines.length; i++)
 			sender.sendMessage(lines[i]);
-
-
+	}
+	
+	public static void MessagePermissions(String message, String permission)
+	{
+		for (Player p : Bukkit.getOnlinePlayers())
+		{
+			if (Util.hasPermission(p,permission))
+				Util.Message(message, p);
+		}
 	}
 
 	public static Boolean isInteger(String text) {

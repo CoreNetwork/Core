@@ -1,17 +1,20 @@
 package us.corenetwork.core.corecommands;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
 
 import us.corenetwork.core.CLog;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.CorePlugin;
 
 public class SudoCommand extends BaseCoreCommand {
+	private static List<String> sudoPlayers = new ArrayList<String>();
+	
 	public SudoCommand()
 	{
 		desc = "Run any command as op";
@@ -27,8 +30,8 @@ public class SudoCommand extends BaseCoreCommand {
 			return;
 		}
 
-		if (!args[1].startsWith("/"))
-			args[1] = "/" + args[1];
+		if (args[1].startsWith("/"))
+			args[1] = args[1].substring(1);
 
 		String playerName = args[0];
 
@@ -43,22 +46,32 @@ public class SudoCommand extends BaseCoreCommand {
 		if (player == null)
 			return;
 
+		playerName = player.getName();
+				
 		boolean isOp = player.isOp();
 		try
 		{
+			sudoPlayers.add(playerName);
+			
 			if (!isOp)
 				player.setOp(true);
 
-			player.chat(commandLine);
+			Bukkit.getServer().dispatchCommand(player, commandLine);
 
 		}
 		finally
-		{
+		{			
 			if (!isOp)
 				player.setOp(false);
 
+			sudoPlayers.remove(playerName);
 		}
 
 	}	
+	
+	public static boolean isUnderSudo(String player)
+	{
+		return sudoPlayers.contains(player);
+	}
 
 }

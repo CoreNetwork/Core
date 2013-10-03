@@ -14,5 +14,7 @@ commands:
         description: Disable spawning closer to biggest claim
     unprotect:
         description: Disable invincibility upon spawn
+    warp:
+        description: Warps
     
     

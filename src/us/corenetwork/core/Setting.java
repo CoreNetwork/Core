@@ -7,7 +7,7 @@ public enum Setting {
 	
 	MESSAGE_NO_PERMISSION("Messages.NoPermission", "No permission!"),
 	MESSAGE_CONFIGURATION_RELOADED("Messages.ConfigurationReloaded", "Configuration reloaded successfully!");
-	
+
 	private String name;
 	private Object def;
 	
