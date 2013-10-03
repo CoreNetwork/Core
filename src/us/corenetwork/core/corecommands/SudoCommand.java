@@ -21,36 +21,44 @@ public class SudoCommand extends BaseCoreCommand {
 
 
 	public void run(final CommandSender sender, String[] args) {
-		
+
 		if (args.length < 2)
 		{
 			return;
 		}
-		
+
 		if (!args[1].startsWith("/"))
 			args[1] = "/" + args[1];
-		
+
 		String playerName = args[0];
-		
+
 		String commandLine = "";
 		for (int i = 1; i < args.length; i++)
 			commandLine = commandLine.concat(args[i]).concat(" ");
-		
+
 		commandLine = commandLine.substring(0, commandLine.length() - 1);
 
-		
+
 		Player player = Bukkit.getPlayer(playerName);
 		if (player == null)
 			return;
-		
+
 		boolean isOp = player.isOp();
-		if (!isOp)
-			player.setOp(true);
-		
-		player.chat(commandLine);
-		
-		if (!isOp)
-			player.setOp(false);
+		try
+		{
+			if (!isOp)
+				player.setOp(true);
+
+			player.chat(commandLine);
+
+		}
+		finally
+		{
+			if (!isOp)
+				player.setOp(false);
+
+		}
+
 	}	
 
 }
