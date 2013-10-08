@@ -49,6 +49,17 @@ public class RespawnListener implements Listener {
 				}
 
 			}
+			//Prevent any damage from mobs
+			else if (newEvent.getEntity() instanceof Player)
+			{
+				Player victim = (Player) newEvent.getEntity();
+
+				if (ProtectTimer.protectedPlayers.containsKey(victim.getName()))
+				{
+					event.setCancelled(true);
+					return;
+				}
+			}
 		}
 
 	}
