@@ -108,9 +108,6 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 			int smallestDist = getSmallestDistance(claims, location);	
 			if (smallestDist < range)
 				continue;
-
-			CLog.info("dist " + smallestDist);
-
 			
 			Util.safeTeleport(player, location);
 			break;
