@@ -42,16 +42,16 @@ public class CorePlugin extends JavaPlugin {
 		
 		if (command.getName().equals("sudo"))
 		{
-			return coreCommands.get("sudo").execute(sender, args);
+			return coreCommands.get("sudo").execute(sender, args, false);
 		}
 		
 		if (args.length < 1 || Util.isInteger(args[0]))
-			return coreCommands.get("help").execute(sender, args);
+			return coreCommands.get("help").execute(sender, args, true);
 
 		BaseCoreCommand cmd = coreCommands.get(args[0]);
 		if (cmd != null)
-			return cmd.execute(sender, args);
+			return cmd.execute(sender, args, true);
 		else
-			return coreCommands.get("help").execute(sender, args);
+			return coreCommands.get("help").execute(sender, args, true);
 	}
 }

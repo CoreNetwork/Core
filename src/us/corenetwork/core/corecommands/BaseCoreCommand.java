@@ -14,9 +14,9 @@ public abstract class BaseCoreCommand {
 	
 	public abstract void run(CommandSender sender, String[] args);
 	
-	public boolean execute(CommandSender sender, String[] args)
+	public boolean execute(CommandSender sender, String[] args, boolean stripArgs)
 	{
-		if (args.length > 0 && !Util.isInteger(args[0]))
+		if (stripArgs && args.length > 0 && !Util.isInteger(args[0]))
 		{
 			String[] newargs = new String[args.length - 1];
 			for (int i = 1; i < args.length; i++)
