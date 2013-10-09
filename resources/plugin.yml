@@ -17,6 +17,6 @@ commands:
     warp:
         description: Warps
     sudo:
-    	
+        description: sudo	
     
     
