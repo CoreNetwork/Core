@@ -3,7 +3,6 @@ package us.corenetwork.core.warps;
 
 public enum WarpsSettings {
 	ENABLED("Enabled", true),
-	TELEPORT_DELAY("TeleportDelay", 5),
 	
 	MESSAGE_WARP_SET("Messages.WarpSet", "Warp <Name> set!"),
 	MESSAGE_UNKNOWN_WARP("Messages.UnknownWarp", "Unknown warp <Name>! Please contact administrator."),
