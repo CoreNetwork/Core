@@ -40,6 +40,11 @@ public class CorePlugin extends JavaPlugin {
 	public boolean onCommand(CommandSender sender, Command command,
 			String label, String[] args) {
 		
+		if (command.getName().equals("sudo"))
+		{
+			return coreCommands.get("sudo").execute(sender, args);
+		}
+		
 		if (args.length < 1 || Util.isInteger(args[0]))
 			return coreCommands.get("help").execute(sender, args);
 

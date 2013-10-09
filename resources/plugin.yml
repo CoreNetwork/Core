@@ -16,5 +16,7 @@ commands:
         description: Disable invincibility upon spawn
     warp:
         description: Warps
+    sudo:
+    	
     
     
