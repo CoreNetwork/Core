@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.checkpoints.CheckpointsModule;
 import us.corenetwork.core.checkpoints.CheckpointsSettings;
@@ -21,7 +22,7 @@ public class MoveCommand extends BaseCheckpointCommand {
 	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 2 || !Util.isInteger(args[1]))
 		{
-			Util.Message("Usage: /chp move <list name> <checkpoint position>", sender);
+			PlayerUtils.Message("Usage: /chp move <list name> <checkpoint position>", sender);
 			return;
 		}
 		
@@ -36,7 +37,7 @@ public class MoveCommand extends BaseCheckpointCommand {
 			String message = CheckpointsSettings.MESSAGE_LIST_NOT_EXIST.string();
 			message = message.replace("<List>", checkpointList);
 			
-			Util.Message(message, sender);
+			PlayerUtils.Message(message, sender);
 			return;
 
 		}
@@ -47,7 +48,7 @@ public class MoveCommand extends BaseCheckpointCommand {
 			message = message.replace("<Position>", Integer.toString(position));
 			message = message.replace("<List>", checkpointList);
 			
-			Util.Message(message, sender);
+			PlayerUtils.Message(message, sender);
 			return;
 		}
 		
@@ -64,7 +65,7 @@ public class MoveCommand extends BaseCheckpointCommand {
 		
 		CheckpointsModule.instance.saveConfig();
 		
-		Util.Message(message, sender);
+		PlayerUtils.Message(message, sender);
 		return;
 	}	
 }

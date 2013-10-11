@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.checkpoints.CheckpointsModule;
 import us.corenetwork.core.checkpoints.CheckpointsSettings;
@@ -22,7 +23,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 3 || !Util.isInteger(args[2]))
 		{
-			Util.Message("Usage: /chp save <player name> <list name> <checkpoint position>", sender);
+			PlayerUtils.Message("Usage: /chp save <player name> <list name> <checkpoint position>", sender);
 			return;
 		}
 		
@@ -44,7 +45,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 			String message = CheckpointsSettings.MESSAGE_LIST_NOT_EXIST.string();
 			message = message.replace("<List>", checkpointList);
 			
-			Util.Message(message, player);
+			PlayerUtils.Message(message, player);
 			return;
 
 		}
@@ -55,7 +56,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 			message = message.replace("<Position>", Integer.toString(position));
 			message = message.replace("<List>", checkpointList);
 			
-			Util.Message(message, player);
+			PlayerUtils.Message(message, player);
 			return;
 		}
 
@@ -68,7 +69,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 			message = message.replace("<Position>", Integer.toString(position));
 			message = message.replace("<List>", checkpointList);
 			
-			Util.Message(message, player);
+			PlayerUtils.Message(message, player);
 			return;
 		}
 		
@@ -85,7 +86,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 		message = message.replace("<Position>", Integer.toString(position));
 		message = message.replace("<List>", checkpointList);
 		
-		Util.Message(message, player);
+		PlayerUtils.Message(message, player);
 		
 		return;
 	}	

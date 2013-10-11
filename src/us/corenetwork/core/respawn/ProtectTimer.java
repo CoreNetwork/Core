@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.GriefPreventionHandler;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.PlayerUtils;
 
 public class ProtectTimer implements Runnable
 {
@@ -24,7 +24,7 @@ public class ProtectTimer implements Runnable
 		else
 			message = RespawnSettings.MESSAGE_SPAWN_PROTECTION_END_NO_CLAIMS.string();
 	
-		Util.Message(message, player);
+		PlayerUtils.Message(message, player);
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class ProtectTimer implements Runnable
 					{
 						String message = RespawnSettings.MESSAGE_SPAWN_PROTECTION_NOTIFICATION.string();
 						message = message.replace("<Time>", Integer.toString(timeLeft));
-						Util.Message(message, player);
+						PlayerUtils.Message(message, player);
 
 						break;
 					}

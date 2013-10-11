@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.checkpoints.CheckpointsModule;
 import us.corenetwork.core.checkpoints.CheckpointsSettings;
 import us.corenetwork.core.checkpoints.SavedCheckpoint;
@@ -27,7 +27,7 @@ public class TeleCommand extends BaseCheckpointUserCommand {
 			String message = CheckpointsSettings.MESSAGE_NOTHING_SAVED.string();
 			message = message.replace("<Player>", player.getName());
 			
-			Util.Message(message, sender);
+			PlayerUtils.Message(message, sender);
 			return;
 		}
 		
@@ -36,7 +36,7 @@ public class TeleCommand extends BaseCheckpointUserCommand {
 		String message = CheckpointsSettings.MESSAGE_TELEPORT_SCHEDULED.string();
 		message = message.replace("<Player>", player.getName());
 		
-		Util.Message(message, sender);
+		PlayerUtils.Message(message, sender);
 
 		final ScheduledTeleport schedule = new ScheduledTeleport();
 		schedule.player = player;

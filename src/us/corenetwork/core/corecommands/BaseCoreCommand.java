@@ -3,6 +3,7 @@ package us.corenetwork.core.corecommands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Setting;
 import us.corenetwork.core.Settings;
 import us.corenetwork.core.Util;
@@ -28,12 +29,12 @@ public abstract class BaseCoreCommand {
 
 		if (!(sender instanceof Player) && needPlayer) 
 		{
-		Util.Message("Sorry, but you need to execute this command as player.", sender);
+		PlayerUtils.Message("Sorry, but you need to execute this command as player.", sender);
 			return true;
 		}
 		if (sender instanceof Player && !Util.hasPermission(sender, "core.command." + permission)) 
 		{
-			Util.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
+			PlayerUtils.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 			return true;
 		}
 		

@@ -9,6 +9,7 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.respawn.ProtectTimer;
 import us.corenetwork.core.respawn.RespawnSettings;
@@ -61,7 +62,7 @@ public class ProtectCommand extends BaseRSpawnCommand {
 			//Announcing to player
 			String message = RespawnSettings.MESSAGE_SPAWN_PROTECTION_START.string();
 			message = message.replace("<Time>", Integer.toString(startTime));
-			Util.Message(message, player);
+			PlayerUtils.Message(message, player);
 		}
 		
 		return true;

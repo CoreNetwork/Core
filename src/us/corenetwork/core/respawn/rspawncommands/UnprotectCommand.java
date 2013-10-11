@@ -3,7 +3,7 @@ package us.corenetwork.core.respawn.rspawncommands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.Util;
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.respawn.ProtectTimer;
 import us.corenetwork.core.respawn.RespawnSettings;
 
@@ -23,7 +23,7 @@ public class UnprotectCommand extends BaseRSpawnCommand {
 		boolean hasProtection = ProtectTimer.protectedPlayers.containsKey(player.getName());
 		if (!hasProtection)
 		{
-			if (!silent) Util.Message(RespawnSettings.MESSAGE_SPAWN_UNPROTECT_NOT_PROTECTED.string(), sender);
+			if (!silent) PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_UNPROTECT_NOT_PROTECTED.string(), sender);
 			return true;
 		}
 		

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.Util;
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.respawn.RespawnSettings;
 
 public class ToggleCommand extends BaseRSpawnCommand {	
@@ -23,12 +23,12 @@ public class ToggleCommand extends BaseRSpawnCommand {
 		if (ignoredPlayers.contains(playerName))
 		{
 			ignoredPlayers.remove(playerName);
-			Util.Message(RespawnSettings.MESSAGE_SPAWN_UNIGNORED.string(), sender);
+			PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_UNIGNORED.string(), sender);
 		}
 		else
 		{
 			ignoredPlayers.add(playerName);
-			Util.Message(RespawnSettings.MESSAGE_SPAWN_IGNORED.string(), sender);
+			PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_IGNORED.string(), sender);
 		}
 		
 		return true;

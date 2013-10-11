@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.teleport.WarpsModule;
 import us.corenetwork.core.teleport.WarpsSettings;
@@ -20,7 +21,7 @@ public class SetCommand extends BaseWarpCommand {
 	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 1)
 		{
-			Util.Message("Usage: /warp set <name>", sender);
+			PlayerUtils.Message("Usage: /warp set <name>", sender);
 			return;
 		}
 		
@@ -36,7 +37,7 @@ public class SetCommand extends BaseWarpCommand {
 		
 		WarpsModule.instance.saveConfig();
 		
-		Util.Message(message, sender);
+		PlayerUtils.Message(message, sender);
 		return;
 	}	
 }

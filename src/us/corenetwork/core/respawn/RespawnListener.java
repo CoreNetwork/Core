@@ -9,7 +9,7 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
-import us.corenetwork.core.Util;
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.respawn.rspawncommands.NoDropCommand;
 
 public class RespawnListener implements Listener {
@@ -43,7 +43,7 @@ public class RespawnListener implements Listener {
 				{
 					event.setCancelled(true);
 
-					Util.Message(RespawnSettings.MESSAGE_SPAWN_PROTECTION_DONT_ABUSE.string(), damager);
+					PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_PROTECTION_DONT_ABUSE.string(), damager);
 
 					return;
 				}

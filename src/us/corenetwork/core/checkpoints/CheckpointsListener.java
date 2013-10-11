@@ -7,7 +7,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import us.corenetwork.core.Util;
+import us.corenetwork.core.PlayerUtils;
 
 public class CheckpointsListener implements Listener {
 
@@ -50,7 +50,7 @@ public class CheckpointsListener implements Listener {
 		String message = CheckpointsSettings.MESSAGE_TELEPORT_CANCELLED.string();
 		message = message.replace("<Player>", player.getName());
 
-		Util.Message(message, player);
+		PlayerUtils.Message(message, player);
 	}
 
 }

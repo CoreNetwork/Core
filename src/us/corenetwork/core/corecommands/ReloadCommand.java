@@ -4,9 +4,9 @@ import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.IO;
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Setting;
 import us.corenetwork.core.Settings;
-import us.corenetwork.core.Util;
 
 public class ReloadCommand extends BaseCoreCommand {	
 	public ReloadCommand()
@@ -20,6 +20,6 @@ public class ReloadCommand extends BaseCoreCommand {
 	public void run(final CommandSender sender, String[] args) {
 		IO.LoadSettings();
 		CoreModule.reloadConfigs();
-		Util.Message(Settings.getString(Setting.MESSAGE_CONFIGURATION_RELOADED), sender);
+		PlayerUtils.Message(Settings.getString(Setting.MESSAGE_CONFIGURATION_RELOADED), sender);
 	}	
 }

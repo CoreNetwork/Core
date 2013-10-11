@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
-import us.corenetwork.core.Util;
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.checkpoints.CheckpointsModule;
 import us.corenetwork.core.checkpoints.CheckpointsSettings;
 
@@ -20,7 +20,7 @@ public class DeleteListCommand extends BaseCheckpointCommand {
 	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 1)
 		{
-			Util.Message("Usage: /chp deleteList <list name>", sender);
+			PlayerUtils.Message("Usage: /chp deleteList <list name>", sender);
 			return;
 		}
 		
@@ -33,7 +33,7 @@ public class DeleteListCommand extends BaseCheckpointCommand {
 			String message = CheckpointsSettings.MESSAGE_LIST_NOT_EXIST.string();
 			message = message.replace("<List>", checkpointList);
 			
-			Util.Message(message, sender);
+			PlayerUtils.Message(message, sender);
 			return;
 		}
 		
@@ -44,7 +44,7 @@ public class DeleteListCommand extends BaseCheckpointCommand {
 		
 		CheckpointsModule.instance.saveConfig();
 		
-		Util.Message(message, sender);
+		PlayerUtils.Message(message, sender);
 		return;
 	}	
 }

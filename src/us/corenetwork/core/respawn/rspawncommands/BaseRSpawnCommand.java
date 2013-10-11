@@ -3,6 +3,7 @@ package us.corenetwork.core.respawn.rspawncommands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Setting;
 import us.corenetwork.core.Settings;
 import us.corenetwork.core.Util;
@@ -27,12 +28,12 @@ public abstract class BaseRSpawnCommand {
 
 		if (!(sender instanceof Player) && needPlayer) 
 		{
-		Util.Message("Sorry, but you need to execute this command as player.", sender);
+		PlayerUtils.Message("Sorry, but you need to execute this command as player.", sender);
 			return false;
 		}
 		if (sender instanceof Player && !Util.hasPermission(sender, "core.respawn.command." + permission)) 
 		{
-			Util.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
+			PlayerUtils.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 			return false;
 		}
 		

@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Settings;
 import us.corenetwork.core.Util;
 
@@ -39,13 +40,13 @@ public class CoreHelpCommand extends BaseCoreCommand {
 		if (page > maxpage)
 			page = maxpage;
 		
-		Util.Message("List of all commands:", sender);
-		Util.Message("&8Page " + String.valueOf(page) + " of " + String.valueOf(maxpage), sender);
+		PlayerUtils.Message("List of all commands:", sender);
+		PlayerUtils.Message("&8Page " + String.valueOf(page) + " of " + String.valueOf(maxpage), sender);
 
 		for (int i = (page - 1) * 15; i < page * 15; i++)
 		{
 			if (komande.length < i + 1 || i < 0) break;	
-			Util.Message(komande[i], sender);
+			PlayerUtils.Message(komande[i], sender);
 		}   		
 	}
 	

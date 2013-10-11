@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.checkpoints.CheckpointsModule;
 import us.corenetwork.core.checkpoints.CheckpointsSettings;
@@ -22,7 +23,7 @@ public class CreateCommand extends BaseCheckpointCommand {
 	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 1)
 		{
-			Util.Message("Usage: /chp create <list name>", sender);
+			PlayerUtils.Message("Usage: /chp create <list name>", sender);
 			return;
 		}
 		
@@ -46,7 +47,7 @@ public class CreateCommand extends BaseCheckpointCommand {
 		
 		CheckpointsModule.instance.saveConfig();
 		
-		Util.Message(message, sender);
+		PlayerUtils.Message(message, sender);
 		return;
 	}	
 }
