@@ -1,4 +1,4 @@
-package us.corenetwork.core.warps;
+package us.corenetwork.core.teleport;
 
 import java.util.HashMap;
 
@@ -8,11 +8,11 @@ import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.warps.commands.BaseWarpCommand;
-import us.corenetwork.core.warps.commands.DeleteCommand;
-import us.corenetwork.core.warps.commands.SetCommand;
-import us.corenetwork.core.warps.commands.TpCommand;
-import us.corenetwork.core.warps.commands.WarpsHelpCommand;
+import us.corenetwork.core.teleport.commands.BaseWarpCommand;
+import us.corenetwork.core.teleport.commands.DeleteCommand;
+import us.corenetwork.core.teleport.commands.SetCommand;
+import us.corenetwork.core.teleport.commands.WarpCommand;
+import us.corenetwork.core.teleport.commands.WarpsHelpCommand;
 
 public class WarpsModule extends CoreModule {
 	public static WarpsModule instance;
@@ -20,7 +20,7 @@ public class WarpsModule extends CoreModule {
 	public static HashMap<String, BaseWarpCommand> commands;
 
 	public WarpsModule() {
-		super("Warps", new String[] {"warp"}, "warps");
+		super("Teleport", new String[] {"warp"}, "warps");
 		
 		instance = this;
 	}
@@ -36,7 +36,7 @@ public class WarpsModule extends CoreModule {
 		if (baseCommand != null)
 			return baseCommand.execute(sender, args, true);
 
-		commands.get("tp").execute(sender, args, false);
+		commands.get("warp").execute(sender, args, false);
 
 		return true;
 	}
@@ -57,7 +57,7 @@ public class WarpsModule extends CoreModule {
 		
 		commands.put("help", new WarpsHelpCommand());
 		commands.put("set", new SetCommand());
-		commands.put("tp", new TpCommand());
+		commands.put("tp", new WarpCommand());
 		commands.put("delete", new DeleteCommand());
 
 		Bukkit.getServer().getPluginManager().registerEvents(new WarpsListener(), CorePlugin.instance);

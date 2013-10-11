@@ -13,7 +13,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import us.corenetwork.core.checkpoints.CheckpointsModule;
 import us.corenetwork.core.respawn.RespawnModule;
 import us.corenetwork.core.scoreboard.ScoreboardModule;
-import us.corenetwork.core.warps.WarpsModule;
+import us.corenetwork.core.teleport.WarpsModule;
 
 public abstract class CoreModule implements CommandExecutor {
 	private String moduleName;

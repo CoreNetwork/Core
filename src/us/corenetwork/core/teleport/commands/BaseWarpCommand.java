@@ -1,4 +1,4 @@
-package us.corenetwork.core.warps.commands;
+package us.corenetwork.core.teleport.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -34,7 +34,7 @@ public abstract class BaseWarpCommand {
 		Util.Message("Sorry, but you need to execute this command as player.", sender);
 			return true;
 		}
-		if (sender instanceof Player && !Util.hasPermission(sender, "core.warps.commands." + permission)) 
+		if (sender instanceof Player && !Util.hasPermission(sender, "core.teleport.commands." + permission)) 
 		{
 			Util.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 			return true;

@@ -1,4 +1,4 @@
-package us.corenetwork.core.warps;
+package us.corenetwork.core.teleport;
 
 
 public enum WarpsSettings {

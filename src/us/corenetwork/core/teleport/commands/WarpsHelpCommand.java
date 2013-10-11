@@ -1,4 +1,4 @@
-package us.corenetwork.core.warps.commands;
+package us.corenetwork.core.teleport.commands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,8 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.Util;
-import us.corenetwork.core.warps.WarpsModule;
-import us.corenetwork.core.warps.WarpsSettings;
+import us.corenetwork.core.teleport.WarpsModule;
+import us.corenetwork.core.teleport.WarpsSettings;
 
 public class WarpsHelpCommand extends BaseWarpCommand {
 	

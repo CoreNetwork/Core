@@ -1,4 +1,4 @@
-package us.corenetwork.core.warps.commands;
+package us.corenetwork.core.teleport.commands;
 
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -7,14 +7,14 @@ import org.bukkit.entity.Player;
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.corecommands.SudoCommand;
-import us.corenetwork.core.warps.WarpsModule;
-import us.corenetwork.core.warps.WarpsSettings;
+import us.corenetwork.core.teleport.WarpsModule;
+import us.corenetwork.core.teleport.WarpsSettings;
 
-public class TpCommand extends BaseWarpCommand {	
-	public TpCommand()
+public class WarpCommand extends BaseWarpCommand {	
+	public WarpCommand()
 	{
 		desc = "Teleport";
-		permission = "tp";
+		permission = "warp";
 		needPlayer = true;
 	}
 
@@ -22,7 +22,7 @@ public class TpCommand extends BaseWarpCommand {
 	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 1)
 		{
-			Util.Message("Usage: /warp tp <name>", sender);
+			Util.Message("Usage: /warp warp <name>", sender);
 			return;
 		}
 		
