@@ -13,13 +13,7 @@ import us.corenetwork.core.CLog;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 
-public class TeleportUtil {
-	public static void freezePlayer(String name)
-	{
-		long freezeEnd = System.currentTimeMillis() + TeleportSettings.PLAYER_FREEZE_DURATION.integer();
-		TeleportListener.frozenPlayers.put(name, freezeEnd);
-	}
-	
+public class TeleportUtil {	
 	public static Location getSenderLocation(CommandSender sender)
 	{
 		if (sender instanceof Player)

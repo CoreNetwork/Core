@@ -201,7 +201,6 @@ public class TpCommand extends BaseWarpCommand {
 
 		TeleportUtil.notifyModerators(sender, notice, player);
 		
-		TeleportUtil.freezePlayer(player.getName());
 		PlayerUtils.safeTeleport(player, new Location(world, xNumber, yNumber, zNumber));
 	}
 	
@@ -252,7 +251,6 @@ public class TpCommand extends BaseWarpCommand {
 		notice = notice.replace("<To>", playerTo.getName());
 		TeleportUtil.notifyModerators(sender, notice, playerTo);
 		
-		TeleportUtil.freezePlayer(playerFrom.getName());
 		PlayerUtils.safeTeleport(playerFrom, playerTo.getLocation());
 	}
 }
