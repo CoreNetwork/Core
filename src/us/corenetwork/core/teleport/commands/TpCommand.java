@@ -194,6 +194,7 @@ public class TpCommand extends BaseWarpCommand {
 		}
 		
 		String notice = TeleportSettings.MESSAGE_PLAYER_TELEPORTED_TO_COORDINATES.string();
+		notice = notice.replace("<World>", player.getName());
 		notice = notice.replace("<World>", world.getName());
 		notice = notice.replace("<X>", Double.toString(xNumber));
 		notice = notice.replace("<Y>", Double.toString(yNumber));
