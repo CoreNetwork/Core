@@ -10,8 +10,8 @@ import org.bukkit.entity.Player;
 
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.teleport.WarpsModule;
-import us.corenetwork.core.teleport.WarpsSettings;
+import us.corenetwork.core.teleport.TeleportModule;
+import us.corenetwork.core.teleport.TeleportSettings;
 
 public class WarpsHelpCommand extends BaseWarpCommand {
 	
@@ -28,9 +28,9 @@ public class WarpsHelpCommand extends BaseWarpCommand {
 		if (args.length > 0 && Util.isInteger(args[0])) page = Integer.parseInt(args[0]);
 		List<String> komandes = new ArrayList<String>();
 
-		for (Entry<String, BaseWarpCommand> e : WarpsModule.commands.entrySet())
+		for (Entry<String, BaseWarpCommand> e : TeleportModule.commands.entrySet())
 		{
-			komandes.add(WarpsSettings.getCommandDescription(e.getKey(),  e.getValue().desc));
+			komandes.add(TeleportSettings.getCommandDescription(e.getKey(),  e.getValue().desc));
 		}  		
 		String[] komande = komandes.toArray(new String[0]);
 		Arrays.sort(komande);

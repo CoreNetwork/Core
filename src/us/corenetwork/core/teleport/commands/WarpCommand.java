@@ -8,13 +8,13 @@ import us.corenetwork.core.CLog;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.corecommands.SudoCommand;
-import us.corenetwork.core.teleport.WarpsModule;
-import us.corenetwork.core.teleport.WarpsSettings;
+import us.corenetwork.core.teleport.TeleportModule;
+import us.corenetwork.core.teleport.TeleportSettings;
 
 public class WarpCommand extends BaseWarpCommand {	
 	public WarpCommand()
 	{
-		desc = "Teleport";
+		desc = "Teleport to warp";
 		permission = "warp";
 		needPlayer = true;
 	}
@@ -31,11 +31,11 @@ public class WarpCommand extends BaseWarpCommand {
 		
 		String name = args[0].toLowerCase();
 		
-		String locationString = (String) WarpsModule.instance.config.get("Warps." + name);
+		String locationString = (String) TeleportModule.instance.config.get("Warps." + name);
 		
 		if (locationString == null)
 		{
-			String message = WarpsSettings.MESSAGE_UNKNOWN_WARP.string();
+			String message = TeleportSettings.MESSAGE_UNKNOWN_WARP.string();
 			message = message.replace("<Name>", name);
 			PlayerUtils.Message(message, sender);
 			
@@ -48,7 +48,7 @@ public class WarpCommand extends BaseWarpCommand {
 		
 		if (!SudoCommand.isUnderSudo(player.getName()))
 		{
-			String message = WarpsSettings.MESSAGE_TP_NOTICE.string();
+			String message = TeleportSettings.MESSAGE_TP_NOTICE.string();
 			message = message.replace("<Player>", player.getName());
 			message = message.replace("<Warp>", name);
 			

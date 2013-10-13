@@ -6,11 +6,6 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
-
-import us.corenetwork.core.CLog;
-import us.corenetwork.core.CorePlugin;
 
 public class SudoCommand extends BaseCoreCommand {
 	private static List<String> sudoPlayers = new ArrayList<String>();

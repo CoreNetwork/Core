@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.teleport.WarpsModule;
-import us.corenetwork.core.teleport.WarpsSettings;
+import us.corenetwork.core.teleport.TeleportModule;
+import us.corenetwork.core.teleport.TeleportSettings;
 
 public class SetCommand extends BaseWarpCommand {	
 	public SetCommand()
@@ -30,12 +30,12 @@ public class SetCommand extends BaseWarpCommand {
 		Location location = ((Player) sender).getLocation();
 		String locationString = Util.serializeLocation(location);
 				
-		WarpsModule.instance.config.set("Warps." + name, locationString);
+		TeleportModule.instance.config.set("Warps." + name, locationString);
 		
-		String message = WarpsSettings.MESSAGE_WARP_SET.string();
+		String message = TeleportSettings.MESSAGE_WARP_SET.string();
 		message = message.replace("<Name>", name);
 		
-		WarpsModule.instance.saveConfig();
+		TeleportModule.instance.saveConfig();
 		
 		PlayerUtils.Message(message, sender);
 		return;
