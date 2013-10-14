@@ -56,6 +56,7 @@ public class TpCommand extends BaseCoreCommand {
 			else if (subCommands.containsKey(args[0]))
 			{
 				subCommands.get(args[0]).execute(sender, args, true);
+				return;
 			}
 
 		}
@@ -218,9 +219,9 @@ public class TpCommand extends BaseCoreCommand {
 			{
 				String message = TeleportSettings.MESSAGE_YOU_TELEPORTED_TO_COORDINATES.string();
 				message = message.replace("<Player>", player.getName());
-				message = message.replace("<X>", Double.toString(xNumber));
-				message = message.replace("<Y>", Double.toString(yNumber));
-				message = message.replace("<Z>", Double.toString(zNumber));
+				message = message.replace("<X>", Integer.toString((int) xNumber));
+				message = message.replace("<Y>", Integer.toString((int) yNumber));
+				message = message.replace("<Z>", Integer.toString((int) zNumber));
 
 				PlayerUtils.Message(message, onlinePlayer);
 			}
@@ -228,9 +229,9 @@ public class TpCommand extends BaseCoreCommand {
 			String notice = TeleportSettings.MESSAGE_PLAYER_TELEPORTED_TO_COORDINATES.string();
 			notice = notice.replace("<Player>", player.getName());
 			notice = notice.replace("<World>", world.getName());
-			notice = notice.replace("<X>", Double.toString(xNumber));
-			notice = notice.replace("<Y>", Double.toString(yNumber));
-			notice = notice.replace("<Z>", Double.toString(zNumber));
+			notice = notice.replace("<X>", Integer.toString((int) xNumber));
+			notice = notice.replace("<Y>", Integer.toString((int) yNumber));
+			notice = notice.replace("<Z>", Integer.toString((int) zNumber));
 
 			TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 

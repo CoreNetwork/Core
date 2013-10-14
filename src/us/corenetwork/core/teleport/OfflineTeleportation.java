@@ -54,18 +54,18 @@ public class OfflineTeleportation {
 			
 			String message = TeleportSettings.MESSAGE_YOU_TELEPORTED_TO_COORDINATES.string();
 			message = message.replace("<Player>", player.getName());
-			message = message.replace("<X>", Double.toString(location.getX()));
-			message = message.replace("<Y>", Double.toString(location.getY()));
-			message = message.replace("<Z>", Double.toString(location.getZ()));
+			message = message.replace("<X>", Integer.toString((int) location.getX()));
+			message = message.replace("<Y>", Integer.toString((int) location.getY()));
+			message = message.replace("<Z>", Integer.toString((int) location.getZ()));
 
 			PlayerUtils.Message(message, player);
 			
 			String notice = TeleportSettings.MESSAGE_PLAYER_TELEPORTED_TO_COORDINATES.string();
 			notice = notice.replace("<Player>", player.getName());
 			notice = notice.replace("<World>", location.getWorld().getName());
-			notice = notice.replace("<X>", Double.toString(location.getX()));
-			notice = notice.replace("<Y>", Double.toString(location.getY()));
-			notice = notice.replace("<Z>", Double.toString(location.getZ()));
+			notice = notice.replace("<X>", Integer.toString((int) location.getX()));
+			notice = notice.replace("<Y>", Integer.toString((int) location.getY()));
+			notice = notice.replace("<Z>", Integer.toString((int) location.getZ()));
 
 			TeleportUtil.notifyModerators(null, notice, player);
 			
