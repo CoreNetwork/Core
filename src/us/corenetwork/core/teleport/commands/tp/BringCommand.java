@@ -30,14 +30,14 @@ public class BringCommand extends BaseCoreCommand {
 		
 		if (argsSize == 1)
 		{
-			// "/tp confirm"
+			// "/bring confirm"
 			if (args[0].equals("confirm"))
 			{
 				OfflineTeleportation.confirmTeleport(sender);
 				return;
 			}
 			
-			// "/tp name"
+			// "/bring name"
 			TpCommand.teleportTo("bring", sender, args[0], sender, silent);
 			return;
 		}

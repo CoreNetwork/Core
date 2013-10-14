@@ -8,23 +8,32 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.PlayerUtils.PickPlayerResult.PickPlayerResultState;
+
 public class PlayerUtils {
-	public static Player pickPlayer(String partialName)
+	public static PickPlayerResult pickPlayer(String partialName)
 	{
-		return (Player) pickPlayer(partialName, false);
+		return pickPlayer(partialName, false);
 	}
 	
-	public static OfflinePlayer pickPlayer(String partialName, boolean includeOffline)
+	public static PickPlayerResult pickPlayer(String partialName, boolean includeOffline)
 	{
 		partialName = partialName.toLowerCase();
 		
 		Player pickedPlayer = null;
+		
+		pickedPlayer = Bukkit.getPlayerExact(partialName);
+		if (pickedPlayer != null)
+		{
+			return new PickPlayerResult(pickedPlayer);
+		}
+		
 		for (Player player : Bukkit.getOnlinePlayers())
 		{
 			if (player.getName().toLowerCase().startsWith(partialName))
 			{
 				if (pickedPlayer != null)
-					return null; //Ambiguity detected
+					return new PickPlayerResult(PickPlayerResultState.AMBIGUOUS);
 				
 				pickedPlayer = player;
 			}
@@ -36,14 +45,38 @@ public class PlayerUtils {
 			{
 				if (player.getName().equalsIgnoreCase(partialName))
 				{
-					return player;
+					return new PickPlayerResult(player);
 				}
 			}
 		}
 		
-		return pickedPlayer;
+		return new PickPlayerResult(pickedPlayer);
 	}
 
+	public static class PickPlayerResult
+	{
+		public PickPlayerResult(PickPlayerResultState result)
+		{
+			this.result = result;
+		}
+		
+		public PickPlayerResult(OfflinePlayer player)
+		{
+			this.player = player;
+			this.result = player == null ? PickPlayerResultState.NOT_FOUND : PickPlayerResultState.OK;
+		}
+		
+		public OfflinePlayer player;
+		public PickPlayerResultState result;
+		
+		public static enum PickPlayerResultState
+		{
+			OK,
+			NOT_FOUND,
+			AMBIGUOUS;
+		}
+	}
+	
 	public static void safeTeleport(final Player player, final Location location)
 	{
 		Chunk c = location.getChunk();

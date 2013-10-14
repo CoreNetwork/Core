@@ -23,7 +23,7 @@ public class TeleportModule extends CoreModule {
 	public static HashMap<String, BaseWarpCommand> commands;
 
 	public TeleportModule() {
-		super("Teleport", new String[] {"warp", "tp", "bring"}, "warps");
+		super("Teleport", new String[] {"warp", "tp", "bring", "swap"}, "warps");
 		
 		instance = this;
 	}
@@ -45,7 +45,11 @@ public class TeleportModule extends CoreModule {
 		{
 			return TpCommand.subCommands.get("bring").execute(sender, args, false);
 		}
-
+		else if (command.getName().equals("swap"))
+		{
+			return TpCommand.subCommands.get("swap").execute(sender, args, false);
+		}
+		
 		BaseWarpCommand baseCommand = null;
 		if (args.length > 0) 
 			baseCommand = commands.get(args[0]);

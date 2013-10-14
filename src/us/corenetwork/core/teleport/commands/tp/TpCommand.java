@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.PlayerUtils.PickPlayerResult;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.corecommands.BaseCoreCommand;
 import us.corenetwork.core.teleport.Coordinate;
@@ -23,6 +24,8 @@ public class TpCommand extends BaseCoreCommand {
 	static
 	{
 		subCommands.put("bring", new BringCommand());
+		subCommands.put("swap", new SwapCommand());
+
 	}
 
 
@@ -139,19 +142,30 @@ public class TpCommand extends BaseCoreCommand {
 	public static void teleportTo(CommandSender sender, Object teleported, String worldName, Coordinate x, Coordinate y, Coordinate z, boolean silent)
 	{
 
-		OfflinePlayer player;
+		OfflinePlayer player = null;
 
 		if (teleported instanceof String)
 		{
-			player = PlayerUtils.pickPlayer((String) teleported, true);
-			if (player == null)
+			PickPlayerResult searchResult = PlayerUtils.pickPlayer((String) teleported, true);
+
+			switch (searchResult.result)
 			{
+			case OK:
+				player = searchResult.player;
+				break;
+			case NOT_FOUND:
 				String message = TeleportSettings.MESSAGE_UNKNOWN_PLAYER.string();
 				message = message.replace("<Name>", (String) teleported);
 
 				PlayerUtils.Message(message, sender);
 				return;
-			}
+			case AMBIGUOUS:
+				message = TeleportSettings.MESSAGE_AMBIGUOUS_MATCH.string();
+				message = message.replace("<Name>", (String) teleported);
+
+				PlayerUtils.Message(message, sender);
+				return;
+			}			
 		}
 		else if (!(teleported instanceof Player))
 		{
@@ -215,6 +229,10 @@ public class TpCommand extends BaseCoreCommand {
 		if (player.isOnline())
 		{
 			Player onlinePlayer = (Player) player;
+			
+			tpLoc.setPitch(onlinePlayer.getLocation().getPitch());
+			tpLoc.setYaw(onlinePlayer.getLocation().getYaw());
+			
 			if (!silent)
 			{
 				String message = TeleportSettings.MESSAGE_YOU_TELEPORTED_TO_COORDINATES.string();
@@ -224,16 +242,16 @@ public class TpCommand extends BaseCoreCommand {
 				message = message.replace("<Z>", Integer.toString((int) zNumber));
 
 				PlayerUtils.Message(message, onlinePlayer);
+				
+				String notice = TeleportSettings.MESSAGE_PLAYER_TELEPORTED_TO_COORDINATES.string();
+				notice = notice.replace("<Player>", player.getName());
+				notice = notice.replace("<World>", world.getName());
+				notice = notice.replace("<X>", Integer.toString((int) xNumber));
+				notice = notice.replace("<Y>", Integer.toString((int) yNumber));
+				notice = notice.replace("<Z>", Integer.toString((int) zNumber));
+				
+				TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 			}
-
-			String notice = TeleportSettings.MESSAGE_PLAYER_TELEPORTED_TO_COORDINATES.string();
-			notice = notice.replace("<Player>", player.getName());
-			notice = notice.replace("<World>", world.getName());
-			notice = notice.replace("<X>", Integer.toString((int) xNumber));
-			notice = notice.replace("<Y>", Integer.toString((int) yNumber));
-			notice = notice.replace("<Z>", Integer.toString((int) zNumber));
-
-			TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 
 			PlayerUtils.safeTeleport(onlinePlayer, tpLoc);
 		}
@@ -249,10 +267,20 @@ public class TpCommand extends BaseCoreCommand {
 
 		if (from instanceof String)
 		{
-			playerFrom = PlayerUtils.pickPlayer((String) from, true);
-			if (playerFrom == null)
+			PickPlayerResult searchResult = PlayerUtils.pickPlayer((String) from, true);
+			switch (searchResult.result)
 			{
+			case OK:
+				playerFrom = searchResult.player;
+				break;
+			case NOT_FOUND:
 				String message = TeleportSettings.MESSAGE_UNKNOWN_PLAYER.string();
+				message = message.replace("<Name>", (String) from);
+
+				PlayerUtils.Message(message, sender);
+				return;
+			case AMBIGUOUS:
+				message = TeleportSettings.MESSAGE_AMBIGUOUS_MATCH.string();
 				message = message.replace("<Name>", (String) from);
 
 				PlayerUtils.Message(message, sender);
@@ -267,14 +295,24 @@ public class TpCommand extends BaseCoreCommand {
 		else
 			playerFrom = (Player) from;
 
-		Player playerTo;
+		Player playerTo = null;
 
 		if (to instanceof String)
 		{
-			playerTo = PlayerUtils.pickPlayer((String) to);
-			if (playerTo == null)
+			PickPlayerResult searchResult = PlayerUtils.pickPlayer((String) to);
+			switch (searchResult.result)
 			{
+			case OK:
+				playerTo = (Player) searchResult.player;
+				break;
+			case NOT_FOUND:
 				String message = TeleportSettings.MESSAGE_UNKNOWN_PLAYER.string();
+				message = message.replace("<Name>", (String) to);
+
+				PlayerUtils.Message(message, sender);
+				return;
+			case AMBIGUOUS:
+				message = TeleportSettings.MESSAGE_AMBIGUOUS_MATCH.string();
 				message = message.replace("<Name>", (String) to);
 
 				PlayerUtils.Message(message, sender);
@@ -293,18 +331,18 @@ public class TpCommand extends BaseCoreCommand {
 		if (playerFrom.isOnline())
 		{
 			Player onlinePlayer = (Player) playerFrom;
-
+			
 			if (!silent)
 			{
 				String message = TeleportSettings.MESSAGE_YOU_TELEPORTED_TO_PLAYER.string();
 				message = message.replace("<Player>", playerTo.getName());
 				PlayerUtils.Message(message, onlinePlayer);
+				
+				String notice = TeleportSettings.MESSAGE_PLAYER_TELEPORTED_TO_PLAYER.string();
+				notice = notice.replace("<From>", playerFrom.getName());
+				notice = notice.replace("<To>", playerTo.getName());
+				TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 			}
-
-			String notice = TeleportSettings.MESSAGE_PLAYER_TELEPORTED_TO_PLAYER.string();
-			notice = notice.replace("<From>", playerFrom.getName());
-			notice = notice.replace("<To>", playerTo.getName());
-			TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 
 			PlayerUtils.safeTeleport(onlinePlayer, playerTo.getLocation());
 		}

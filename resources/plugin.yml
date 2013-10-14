@@ -22,5 +22,7 @@ commands:
         description: tp
     bring:
         description: bring    
+    swap:
+        dscription: swap
         
     

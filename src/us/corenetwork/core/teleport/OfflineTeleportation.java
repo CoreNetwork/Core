@@ -51,6 +51,8 @@ public class OfflineTeleportation {
 			if (location.getWorld() == null)
 				location.setWorld(player.getWorld());
 			
+			location.setPitch(player.getLocation().getPitch());
+			location.setYaw(player.getLocation().getYaw());
 			
 			String message = TeleportSettings.MESSAGE_YOU_TELEPORTED_TO_COORDINATES.string();
 			message = message.replace("<Player>", player.getName());
