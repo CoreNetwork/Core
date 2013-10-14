@@ -1,4 +1,4 @@
-package us.corenetwork.core.teleport.commands;
+package us.corenetwork.core.teleport.commands.warp;
 
 import org.bukkit.command.CommandSender;
 

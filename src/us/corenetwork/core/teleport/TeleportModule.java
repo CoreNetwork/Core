@@ -9,12 +9,13 @@ import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.teleport.commands.BaseWarpCommand;
-import us.corenetwork.core.teleport.commands.DeleteCommand;
-import us.corenetwork.core.teleport.commands.SetCommand;
-import us.corenetwork.core.teleport.commands.TpCommand;
-import us.corenetwork.core.teleport.commands.WarpCommand;
-import us.corenetwork.core.teleport.commands.WarpsHelpCommand;
+import us.corenetwork.core.teleport.commands.tp.BringCommand;
+import us.corenetwork.core.teleport.commands.tp.TpCommand;
+import us.corenetwork.core.teleport.commands.warp.BaseWarpCommand;
+import us.corenetwork.core.teleport.commands.warp.DeleteCommand;
+import us.corenetwork.core.teleport.commands.warp.SetCommand;
+import us.corenetwork.core.teleport.commands.warp.WarpCommand;
+import us.corenetwork.core.teleport.commands.warp.WarpsHelpCommand;
 
 public class TeleportModule extends CoreModule {
 	public static TeleportModule instance;
@@ -22,7 +23,7 @@ public class TeleportModule extends CoreModule {
 	public static HashMap<String, BaseWarpCommand> commands;
 
 	public TeleportModule() {
-		super("Teleport", new String[] {"warp", "tp"}, "warps");
+		super("Teleport", new String[] {"warp", "tp", "bring"}, "warps");
 		
 		instance = this;
 	}
@@ -37,8 +38,12 @@ public class TeleportModule extends CoreModule {
 			}
 			else
 			{
-				return commands.get("tp").execute(sender, args, false);
+				return CorePlugin.coreCommands.get("tp").execute(sender, args, false);
 			}
+		}
+		else if (command.getName().equals("bring"))
+		{
+			return TpCommand.subCommands.get("bring").execute(sender, args, false);
 		}
 
 		BaseWarpCommand baseCommand = null;
@@ -71,7 +76,8 @@ public class TeleportModule extends CoreModule {
 		commands.put("set", new SetCommand());
 		commands.put("warp", new WarpCommand());
 		commands.put("delete", new DeleteCommand());
-		commands.put("tp", new TpCommand());
+		
+		CorePlugin.coreCommands.put("tp", new TpCommand());
 
 		Bukkit.getServer().getPluginManager().registerEvents(new TeleportListener(), CorePlugin.instance);
 

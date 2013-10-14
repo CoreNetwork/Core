@@ -42,7 +42,7 @@ public class TeleportUtil {
 				PlayerUtils.Message(message, player);
 		}
 		
-		if (!alreadySent && sender instanceof Player)
+		if (!alreadySent && sender != null && sender instanceof Player)
 			PlayerUtils.Message(message, sender);
 
 			CLog.info(message);

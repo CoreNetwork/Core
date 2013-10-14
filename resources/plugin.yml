@@ -20,5 +20,7 @@ commands:
         description: sudo
     tp:
         description: tp
+    bring:
+        description: bring    
         
     

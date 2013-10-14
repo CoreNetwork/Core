@@ -7,6 +7,7 @@ public enum TeleportSettings {
 	
 	PLAYER_FREEZE_DURATION("PlayerFreezeDurationMS", 2000),
 	NETHER_SURFACE_Y("NetherSurfaceY", 64),
+	OFFLINE_TELEPORT_CONFIRM_TIMEOUT_SECONDS("OfflineTeleportConfirmTimeoutSeconds", 10),
 	
 	MESSAGE_WARP_SET("Messages.WarpSet", "Warp <Name> set!"),
 	MESSAGE_UNKNOWN_WARP("Messages.UnknownWarp", "Unknown warp <Name>! Please contact administrator."),
@@ -19,7 +20,10 @@ public enum TeleportSettings {
 	MESSAGE_YOU_TELEPORTED_TO_COORDINATES("Messages.YouTeleportedToCoordinates", "You were teleported to <X> <Y> <Z>"),
 	MESSAGE_PLAYER_TELEPORTED_TO_PLAYER("Messages.PlayerTeleportedToPlayer", "<From> was teleported to <To>!"),
 	MESSAGE_PLAYER_TELEPORTED_TO_COORDINATES("Messages.PlayerTeleportedToCoordinates", "<Player> was teleported to <World> <X> <Y> <Z>!"),
-	MESSAGE_UNKNOWN_WORLD("Messages.UnknownWorld", "Unknown world <World>!");
+	MESSAGE_UNKNOWN_WORLD("Messages.UnknownWorld", "Unknown world <World>!"),
+	MESSAGE_CONFIRM_OFFLINE_TELEPORT("Messages.ConfirmOfflineTeleport", "Player <Player> will be teleported after he logs in. Confirm your decision with &a/<Command> confirm&7"),
+	MESSAGE_OFFLINE_TELEPORT_CONFIRMED("Messages.OfflineTeleportConfirmed", "Offline teleport confirmed."),
+	MESSAGE_NO_OFFLINE_TELEPORTS("Messages.NoOfflineTeleports", "You have no pending teleports to confirm.");
 	
 	protected String string;
 	protected Object def;
