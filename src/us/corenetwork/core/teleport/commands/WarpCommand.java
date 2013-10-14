@@ -10,6 +10,7 @@ import us.corenetwork.core.Util;
 import us.corenetwork.core.corecommands.SudoCommand;
 import us.corenetwork.core.teleport.TeleportModule;
 import us.corenetwork.core.teleport.TeleportSettings;
+import us.corenetwork.core.teleport.TeleportUtil;
 
 public class WarpCommand extends BaseWarpCommand {	
 	public WarpCommand()
@@ -52,8 +53,7 @@ public class WarpCommand extends BaseWarpCommand {
 			message = message.replace("<Player>", player.getName());
 			message = message.replace("<Warp>", name);
 			
-			PlayerUtils.MessagePermissions(message, "core.warps.notification");
-			CLog.info(message);
+			TeleportUtil.notifyModerators(sender, message);
 		}
 	}	
 }

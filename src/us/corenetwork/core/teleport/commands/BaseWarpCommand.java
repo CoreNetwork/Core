@@ -35,7 +35,7 @@ public abstract class BaseWarpCommand {
 		PlayerUtils.Message("Sorry, but you need to execute this command as player.", sender);
 			return true;
 		}
-		if (sender instanceof Player && !Util.hasPermission(sender, "core.teleport.commands." + permission)) 
+		if (sender instanceof Player && !Util.hasPermission(sender, "core.teleport.command." + permission)) 
 		{
 			PlayerUtils.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 			return true;
