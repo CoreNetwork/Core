@@ -9,6 +9,12 @@ public enum TeleportSettings {
 	NETHER_SURFACE_Y("NetherSurfaceY", 64),
 	OFFLINE_TELEPORT_CONFIRM_TIMEOUT_SECONDS("OfflineTeleportConfirmTimeoutSeconds", 10),
 	
+	MAX_X("Limits.Other.MaxX", 8000),
+	MAX_Z("Limits.Other.MaxZ", 8000),
+	MIN_X("Limits.Other.MinX", -8000),
+	MIN_Z("Limits.Other.MinZ", -8000),
+
+	
 	MESSAGE_WARP_SET("Messages.WarpSet", "Warp <Name> set!"),
 	MESSAGE_UNKNOWN_WARP("Messages.UnknownWarp", "Unknown warp <Name>! Please contact administrator."),
 	MESSAGE_TP_NOTICE("Messages.TpNotice", "&7<Player> was just teleported to <Warp>!"),
@@ -26,7 +32,8 @@ public enum TeleportSettings {
 	MESSAGE_UNKNOWN_WORLD("Messages.UnknownWorld", "Unknown world <World>!"),
 	MESSAGE_CONFIRM_OFFLINE_TELEPORT("Messages.ConfirmOfflineTeleport", "Player <Player> will be teleported after he logs in. Confirm your decision with &a/<Command> confirm&7"),
 	MESSAGE_OFFLINE_TELEPORT_CONFIRMED("Messages.OfflineTeleportConfirmed", "Offline teleport confirmed."),
-	MESSAGE_NO_OFFLINE_TELEPORTS("Messages.NoOfflineTeleports", "You have no pending teleports to confirm.");
+	MESSAGE_NO_OFFLINE_TELEPORTS("Messages.NoOfflineTeleports", "You have no pending teleports to confirm."),
+	MESSAGE_OUT_OF_BOUNDS("Message.OutOfBounds", "You can't teleport outside world!");
 	
 	protected String string;
 	protected Object def;

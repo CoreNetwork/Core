@@ -49,7 +49,14 @@ public class OfflineTeleportation {
 		if (location != null)
 		{
 			if (location.getWorld() == null)
+			{
 				location.setWorld(player.getWorld());
+
+				if (!TeleportUtil.isInBounds(player, location.getBlockX(), location.getBlockZ(), location.getWorld().getName()))
+				{
+					return;
+				}
+			}
 			
 			location.setPitch(player.getLocation().getPitch());
 			location.setYaw(player.getLocation().getYaw());

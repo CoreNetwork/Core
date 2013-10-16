@@ -47,4 +47,36 @@ public class TeleportUtil {
 
 			CLog.info(message);
 	}
+	
+	public static boolean isInBounds(CommandSender sender, int x, int z, String world)
+	{
+		if (x > getLimit(world, "MaxX"))
+		{
+			return false;
+		}
+		if (x < getLimit(world, "MinX"))
+		{
+			return false;
+		}
+		
+		if (z > getLimit(world, "MaxZ"))
+		{
+			return false;
+		}
+		if (z < getLimit(world, "MinZ"))
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public static int getLimit(String world_name, String limitType)
+	{
+		Integer limit = (Integer) TeleportModule.instance.config.get("Limits." + world_name + "." + limitType);
+		if (limit == null)
+			limit = (Integer) TeleportModule.instance.config.get("Limits.Other." + limitType);
+		
+		return limit;
+	}
 }

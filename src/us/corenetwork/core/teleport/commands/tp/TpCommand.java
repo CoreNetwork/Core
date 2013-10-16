@@ -226,6 +226,12 @@ public class TpCommand extends BaseCoreCommand {
 
 		Location tpLoc = new Location(world, xNumber, yNumber, zNumber);
 
+		if (world != null && !TeleportUtil.isInBounds(sender, (int) xNumber, (int) zNumber, world.getName()))
+		{
+			PlayerUtils.Message(TeleportSettings.MESSAGE_OUT_OF_BOUNDS.string(), sender);
+			return;
+		}
+		
 		if (player.isOnline())
 		{
 			Player onlinePlayer = (Player) player;
@@ -326,7 +332,6 @@ public class TpCommand extends BaseCoreCommand {
 		}
 		else
 			playerTo = (Player) to;
-
 
 		if (playerFrom.isOnline())
 		{
