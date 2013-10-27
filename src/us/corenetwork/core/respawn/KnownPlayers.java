@@ -15,6 +15,9 @@ public class KnownPlayers {
 		List<String> savedPlayers = RespawnModule.instance.storageConfig.getStringList("knownPlayers");
 		if (savedPlayers == null)
 			return;
+		
+		for (String player : savedPlayers)
+			playerList.add(player);
 	}
 	
 	public static void save()
