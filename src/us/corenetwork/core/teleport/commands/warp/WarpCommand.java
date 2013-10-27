@@ -4,7 +4,6 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.CLog;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.corecommands.SudoCommand;
@@ -32,9 +31,9 @@ public class WarpCommand extends BaseWarpCommand {
 		
 		String name = args[0].toLowerCase();
 		
-		String locationString = (String) TeleportModule.instance.config.get("Warps." + name);
+		Location location = getWarpLocation(args[0]);
 		
-		if (locationString == null)
+		if (location == null)
 		{
 			String message = TeleportSettings.MESSAGE_UNKNOWN_WARP.string();
 			message = message.replace("<Name>", name);
@@ -42,9 +41,7 @@ public class WarpCommand extends BaseWarpCommand {
 			
 			return;
 		}
-				
-		Location location = Util.unserializeLocation(locationString);
-		
+						
 		PlayerUtils.safeTeleport(player, location);
 		
 		if (!SudoCommand.isUnderSudo(player.getName()))
@@ -56,4 +53,13 @@ public class WarpCommand extends BaseWarpCommand {
 			TeleportUtil.notifyModerators(sender, message);
 		}
 	}	
+	
+	public static Location getWarpLocation(String name)
+	{
+		String locationString = (String) TeleportModule.instance.config.get("Warps." + name);
+		if (locationString == null)
+			return null;
+		
+		return Util.unserializeLocation(locationString);
+	}
 }

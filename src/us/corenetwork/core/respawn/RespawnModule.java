@@ -47,10 +47,13 @@ public class RespawnModule extends CoreModule {
 
 		Bukkit.getServer().getScheduler().runTaskTimer(CorePlugin.instance, new ProtectTimer(), 20, 20);
 		
+		KnownPlayers.load();
+		
 		return true;
 	}
 	@Override
 	protected void unloadModule() {
+		KnownPlayers.save();
 	}
 	
 	@Override

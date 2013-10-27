@@ -24,6 +24,7 @@ public abstract class CoreModule implements CommandExecutor {
 	public boolean active = false;
 
 	public YamlConfiguration config;
+	public YamlConfiguration storageConfig;
 
 	protected CoreModule(String name, String[] commands, String configName)
 	{
@@ -117,6 +118,58 @@ public abstract class CoreModule implements CommandExecutor {
 			e.printStackTrace();
 		}
 	}
+	
+	public void loadStorageYaml()
+	{
+		File storageFolder = new File(CorePlugin.instance.getDataFolder(), "storage");
+		if (!storageFolder.exists())
+			storageFolder.mkdir();
+		
+		File configFile = new File(storageFolder, configName.concat(".yml"));
+
+		storageConfig = new YamlConfiguration();
+
+		if (configFile.exists())
+		{
+			try {
+				storageConfig.load(configFile);
+			} catch (FileNotFoundException e) {
+				CLog.severe("Error while loading storage for module " + moduleName + ".");
+
+				e.printStackTrace();
+				return;
+			} catch (IOException e) {
+				CLog.severe("Error while loading storage for module " + moduleName + ".");
+
+				e.printStackTrace();
+				return;
+			} catch (InvalidConfigurationException e) {
+				CLog.severe("Error while loading storage for module " + moduleName + ".");
+
+				e.printStackTrace();
+				return;
+			}
+		}
+	}
+
+	public void saveStorageYaml()
+	{
+		if (storageConfig == null)
+			return;
+
+		try
+		{
+			File storageFolder = new File(CorePlugin.instance.getDataFolder(), "storage");			
+			File configFile = new File(storageFolder, configName.concat(".yml"));
+
+			storageConfig.save(configFile);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
 
 
 	//Module manager

@@ -5,15 +5,18 @@ import java.util.List;
 
 
 public enum RespawnSettings {
-	TELEPORT_Y("Respawn.TeleportY", 14),
-	RESPAWN_MIN_X("Respawn.MinX", -10000),
-	RESPAWN_MIN_Z("Respawn.MinZ", -10000),
-	RESPAWN_MAX_X("Respawn.MaxX", 10000),
-	RESPAWN_MAX_Z("Respawn.MaxZ", 10000),
-	SPAWN_PROTECTION_LENGTH("Respawn.SpawnProtectionLength", 120),
-	SPAWN_PROTECTION_NOTIFICATIONS("Respawn.SpawnProtectionNotifications", Arrays.asList(new Integer[] {90, 60, 30, 10})),
-	MOB_REMOVAL_RADIUS_SQUARED("Respawn.MobRemovalRadiusSquared", 625),
+	TELEPORT_Y("TeleportY", 14),
+	RESPAWN_MIN_X("MinX", -10000),
+	RESPAWN_MIN_Z("MinZ", -10000),
+	RESPAWN_MAX_X("MaxX", 10000),
+	RESPAWN_MAX_Z("MaxZ", 10000),
+	SPAWN_PROTECTION_LENGTH("SpawnProtectionLength", 120),
+	SPAWN_PROTECTION_NOTIFICATIONS("SpawnProtectionNotifications", Arrays.asList(new Integer[] {90, 60, 30, 10})),
+	MOB_REMOVAL_RADIUS_SQUARED("MobRemovalRadiusSquared", 625),
 
+	NEW_PLAYER_SPAWN_WARP_NAME("SpawnWarps.NewPlayer", "endguide"),
+	EXISTING_PLAYER_SPAWN_WARP_NAME("SpawnWarps.ExistingPlayer", "limbocrystal"),
+	
 	MESSAGE_SPAWN_IGNORED("Messages.SpawnIgnored", "Your home is now ignored when spawning"),
 	MESSAGE_SPAWN_UNIGNORED("Messages.SpawnUnignored", "Your home is now unignored when spawning"),
 	MESSAGE_SPAWN_PROTECTION_START("Messages.SpawnProtectionStart", "You are invincible for <Time> seconds!"),

@@ -1,16 +1,22 @@
 package us.corenetwork.core.respawn;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
+import us.corenetwork.core.CLog;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.respawn.rspawncommands.NoDropCommand;
+import us.corenetwork.core.teleport.commands.warp.WarpCommand;
 
 public class RespawnListener implements Listener {
 		
@@ -84,4 +90,43 @@ public class RespawnListener implements Listener {
 		if (NoDropCommand.blockedPlayers.contains(event.getPlayer().getName()))
 			event.setCancelled(true);
 	}
+	
+	@EventHandler(ignoreCancelled = true)
+	public void onPLayerJoin(PlayerJoinEvent event)
+	{
+		if (!KnownPlayers.isKnownPlayer(event.getPlayer().getName()))
+		{
+			KnownPlayers.savePlayer(event.getPlayer().getName());
+			
+			String warpName = RespawnSettings.NEW_PLAYER_SPAWN_WARP_NAME.string();
+			Location loc = WarpCommand.getWarpLocation(warpName);
+			
+			if (loc == null)
+			{
+				CLog.severe("Respawn warp for new players does not exist!");
+				return;
+			}
+			
+			PlayerUtils.safeTeleport(event.getPlayer(), loc);
+			
+		}
+	}
+	
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST
+			)
+	public void onPlayerReSpawn(PlayerRespawnEvent event)
+	{
+		
+		String warpName = RespawnSettings.EXISTING_PLAYER_SPAWN_WARP_NAME.string();
+		Location loc = WarpCommand.getWarpLocation(warpName);
+		
+		if (loc == null)
+		{
+			CLog.severe("Respawn warp for existing players does not exist!");
+			return;
+		}
+		
+		event.setRespawnLocation(loc);
+	}
+
 }
