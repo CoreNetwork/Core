@@ -5,14 +5,14 @@ package us.corenetwork.core.teleport;
 public enum TeleportSettings {
 	ENABLED("Enabled", true),
 	
-	PLAYER_FREEZE_DURATION("PlayerFreezeDurationMS", 2000),
-	NETHER_SURFACE_Y("NetherSurfaceY", 64),
-	OFFLINE_TELEPORT_CONFIRM_TIMEOUT_SECONDS("OfflineTeleportConfirmTimeoutSeconds", 10),
+	PLAYER_FREEZE_DURATION("Teleport.PlayerFreezeDurationMS", 2000),
+	NETHER_SURFACE_Y("Teleport.NetherSurfaceY", 64),
+	OFFLINE_TELEPORT_CONFIRM_TIMEOUT_SECONDS("Teleport.OfflineTeleportConfirmTimeoutSeconds", 10),
 	
-	MAX_X("Limits.Other.MaxX", 8000),
-	MAX_Z("Limits.Other.MaxZ", 8000),
-	MIN_X("Limits.Other.MinX", -8000),
-	MIN_Z("Limits.Other.MinZ", -8000),
+	MAX_X("Teleport.Limits.Other.MaxX", 8000),
+	MAX_Z("Teleport.Limits.Other.MaxZ", 8000),
+	MIN_X("Teleport.Limits.Other.MinX", -8000),
+	MIN_Z("Teleport.Limits.Other.MinZ", -8000),
 
 	
 	MESSAGE_WARP_SET("Messages.WarpSet", "Warp <Name> set!"),

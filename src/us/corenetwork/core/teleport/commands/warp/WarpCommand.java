@@ -56,7 +56,7 @@ public class WarpCommand extends BaseWarpCommand {
 	
 	public static Location getWarpLocation(String name)
 	{
-		String locationString = (String) TeleportModule.instance.config.get("Warps." + name);
+		String locationString = (String) TeleportModule.instance.storageConfig.get("Warps." + name);
 		if (locationString == null)
 			return null;
 		

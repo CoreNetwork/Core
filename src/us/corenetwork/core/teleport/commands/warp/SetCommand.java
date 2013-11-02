@@ -30,12 +30,12 @@ public class SetCommand extends BaseWarpCommand {
 		Location location = ((Player) sender).getLocation();
 		String locationString = Util.serializeLocation(location);
 				
-		TeleportModule.instance.config.set("Warps." + name, locationString);
+		TeleportModule.instance.storageConfig.set("Warps." + name, locationString);
 		
 		String message = TeleportSettings.MESSAGE_WARP_SET.string();
 		message = message.replace("<Name>", name);
 		
-		TeleportModule.instance.saveConfig();
+		TeleportModule.instance.saveStorageYaml();
 		
 		PlayerUtils.Message(message, sender);
 		return;

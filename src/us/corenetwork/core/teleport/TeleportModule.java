@@ -22,7 +22,7 @@ public class TeleportModule extends CoreModule {
 	public static HashMap<String, BaseWarpCommand> commands;
 
 	public TeleportModule() {
-		super("Teleport", new String[] {"warp", "tp", "bring", "swap"}, "warps");
+		super("Teleportation", new String[] {"warp", "tp", "bring", "swap"}, "teleportation");
 		
 		instance = this;
 	}
@@ -84,6 +84,8 @@ public class TeleportModule extends CoreModule {
 
 		Bukkit.getServer().getPluginManager().registerEvents(new TeleportListener(), CorePlugin.instance);
 
+		loadStorageYaml();
+		
 		return true;
 	}
 
