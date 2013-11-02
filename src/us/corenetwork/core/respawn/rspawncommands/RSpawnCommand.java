@@ -30,10 +30,10 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 
 		Player player = (Player) sender;
 
-		int minX = RespawnSettings.RESPAWN_MIN_X.integer();
-		int minZ = RespawnSettings.RESPAWN_MIN_Z.integer();
-		int maxX = RespawnSettings.RESPAWN_MAX_X.integer();
-		int maxZ = RespawnSettings.RESPAWN_MAX_Z.integer();
+		int minX = RespawnSettings.RESPAWN_NO_BASE_MIN_X.integer();
+		int minZ = RespawnSettings.RESPAWN_NO_BASE_MIN_Z.integer();
+		int maxX = RespawnSettings.RESPAWN_NO_BASE_MAX_X.integer();
+		int maxZ = RespawnSettings.RESPAWN_NO_BASE_MAX_Z.integer();
 
 		Location biggestClaim = null;
 		if (!ToggleCommand.ignoredPlayers.contains(player.getName()) && throwDice(player))
@@ -43,10 +43,10 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 
 		if (biggestClaim != null)
 		{
-			minX = Math.max(minX, biggestClaim.getBlockX() - 2500);
-			maxX = Math.min(maxX, biggestClaim.getBlockX() + 2500);
-			minZ = Math.max(minZ, biggestClaim.getBlockZ() - 2500);
-			maxZ = Math.min(maxZ, biggestClaim.getBlockZ() + 2500);
+			minX = Math.max(RespawnSettings.RESPAWN_BASE_MIN_X.integer(), biggestClaim.getBlockX() - 2500);
+			maxX = Math.min(RespawnSettings.RESPAWN_BASE_MAX_X.integer(), biggestClaim.getBlockX() + 2500);
+			minZ = Math.max(RespawnSettings.RESPAWN_BASE_MIN_Z.integer(), biggestClaim.getBlockZ() - 2500);
+			maxZ = Math.min(RespawnSettings.RESPAWN_BASE_MAX_X.integer(), biggestClaim.getBlockZ() + 2500);
 		}
 
 		teleport((Player) sender, minX, maxX, minZ, maxZ);		

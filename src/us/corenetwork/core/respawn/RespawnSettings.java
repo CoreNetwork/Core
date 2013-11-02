@@ -6,10 +6,14 @@ import java.util.List;
 
 public enum RespawnSettings {
 	TELEPORT_Y("TeleportY", 14),
-	RESPAWN_MIN_X("MinX", -10000),
-	RESPAWN_MIN_Z("MinZ", -10000),
-	RESPAWN_MAX_X("MaxX", 10000),
-	RESPAWN_MAX_Z("MaxZ", 10000),
+	RESPAWN_NO_BASE_MIN_X("Border.NoBase.MinX", -10000),
+	RESPAWN_NO_BASE_MIN_Z("Border.NoBase.MinZ", -10000),
+	RESPAWN_NO_BASE_MAX_X("Border.NoBase.MaxX", 10000),
+	RESPAWN_NO_BASE_MAX_Z("Border.NoBase.MaxZ", 10000),
+	RESPAWN_BASE_MIN_X("Border.Base.MinX", -16000),
+	RESPAWN_BASE_MIN_Z("Border.Base.MinZ", -16000),
+	RESPAWN_BASE_MAX_X("Border.Base.MaxX", 16000),
+	RESPAWN_BASE_MAX_Z("Border.Base.MaxZ", 16000),
 	SPAWN_PROTECTION_LENGTH("SpawnProtectionLength", 120),
 	SPAWN_PROTECTION_NOTIFICATIONS("SpawnProtectionNotifications", Arrays.asList(new Integer[] {90, 60, 30, 10})),
 	MOB_REMOVAL_RADIUS_SQUARED("MobRemovalRadiusSquared", 625),
