@@ -47,7 +47,7 @@ public abstract class CoreModule implements CommandExecutor {
 			Boolean enabled = (Boolean) config.get("enabled");
 			if (enabled == null)
 			{
-				config.set("enabled", true);
+				config.set("Enabled", true);
 				saveConfig();
 
 				enabled = true;

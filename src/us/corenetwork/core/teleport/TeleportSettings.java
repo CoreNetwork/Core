@@ -33,7 +33,7 @@ public enum TeleportSettings {
 	MESSAGE_CONFIRM_OFFLINE_TELEPORT("Messages.ConfirmOfflineTeleport", "Player <Player> will be teleported after he logs in. Confirm your decision with &a/<Command> confirm&7"),
 	MESSAGE_OFFLINE_TELEPORT_CONFIRMED("Messages.OfflineTeleportConfirmed", "Offline teleport confirmed."),
 	MESSAGE_NO_OFFLINE_TELEPORTS("Messages.NoOfflineTeleports", "You have no pending teleports to confirm."),
-	MESSAGE_OUT_OF_BOUNDS("Message.OutOfBounds", "You can't teleport outside world!");
+	MESSAGE_OUT_OF_BOUNDS("Messages.OutOfBounds", "You can't teleport outside world!");
 	
 	protected String string;
 	protected Object def;
