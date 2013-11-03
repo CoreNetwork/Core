@@ -14,6 +14,7 @@ import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.PlayerUtils.PickPlayerResult;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.corecommands.BaseCoreCommand;
+import us.corenetwork.core.corecommands.SudoCommand;
 import us.corenetwork.core.teleport.Coordinate;
 import us.corenetwork.core.teleport.OfflineTeleportation;
 import us.corenetwork.core.teleport.TeleportSettings;
@@ -239,7 +240,7 @@ public class TpCommand extends BaseCoreCommand {
 			tpLoc.setPitch(onlinePlayer.getLocation().getPitch());
 			tpLoc.setYaw(onlinePlayer.getLocation().getYaw());
 			
-			if (!silent)
+			if (!silent  && !(sender instanceof Player && SudoCommand.isUnderSudo(sender.getName())))
 			{
 				String message = TeleportSettings.MESSAGE_YOU_TELEPORTED_TO_COORDINATES.string();
 				message = message.replace("<Player>", player.getName());
@@ -337,7 +338,7 @@ public class TpCommand extends BaseCoreCommand {
 		{
 			Player onlinePlayer = (Player) playerFrom;
 			
-			if (!silent)
+			if (!silent && !(sender instanceof Player && SudoCommand.isUnderSudo(sender.getName())))
 			{
 				String message = TeleportSettings.MESSAGE_YOU_TELEPORTED_TO_PLAYER.string();
 				message = message.replace("<Player>", playerTo.getName());

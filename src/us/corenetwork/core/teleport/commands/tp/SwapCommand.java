@@ -91,7 +91,7 @@ public class SwapCommand extends BaseCoreCommand {
 		Location destinationPlayer1 = player2.getLocation();
 		Location destinationPlayer2 = player1.getLocation();
 		
-		if (!silent)
+		if (!silent && )
 		{
 			String message = TeleportSettings.MESSAGE_SWAPPED_WITH_PLAYER.string();
 			message = message.replace("<Player>", player2.getName());

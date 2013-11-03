@@ -19,7 +19,6 @@ public class SudoCommand extends BaseCoreCommand {
 
 
 	public void run(final CommandSender sender, String[] args) {
-
 		if (args.length < 2)
 		{
 			return;
