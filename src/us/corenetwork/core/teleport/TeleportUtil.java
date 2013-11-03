@@ -73,9 +73,9 @@ public class TeleportUtil {
 	
 	public static int getLimit(String world_name, String limitType)
 	{
-		Integer limit = (Integer) TeleportModule.instance.config.get("Limits." + world_name + "." + limitType);
+		Integer limit = (Integer) TeleportModule.instance.config.get("Teleport.Limits." + world_name + "." + limitType);
 		if (limit == null)
-			limit = (Integer) TeleportModule.instance.config.get("Limits.Other." + limitType);
+			limit = (Integer) TeleportModule.instance.config.get("Teleport.Limits.Other." + limitType);
 		
 		return limit;
 	}
