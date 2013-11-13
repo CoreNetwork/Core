@@ -29,7 +29,7 @@ public abstract class BaseCoreCommand {
 
 		if (!(sender instanceof Player) && needPlayer) 
 		{
-		PlayerUtils.Message("Sorry, but you need to execute this command as player.", sender);
+			PlayerUtils.Message("Sorry, but you need to execute this command as player.", sender);
 			return true;
 		}
 		if (sender instanceof Player && !Util.hasPermission(sender, "core.command." + permission)) 

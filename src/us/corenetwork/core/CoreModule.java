@@ -10,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import us.corenetwork.core.calculator.CalculatorModule;
 import us.corenetwork.core.checkpoints.CheckpointsModule;
 import us.corenetwork.core.respawn.RespawnModule;
 import us.corenetwork.core.scoreboard.ScoreboardModule;
@@ -44,7 +45,7 @@ public abstract class CoreModule implements CommandExecutor {
 		{
 			loadConfig();
 
-			Boolean enabled = (Boolean) config.get("enabled");
+			Boolean enabled = (Boolean) config.get("Enabled");
 			if (enabled == null)
 			{
 				config.set("Enabled", true);
@@ -222,6 +223,13 @@ public abstract class CoreModule implements CommandExecutor {
 			modules.add(module);
 		}
 
+		//Calculator
+		module = new CalculatorModule();
+		if (module.loadModuleInternal())
+		{
+			module.active = true;
+			modules.add(module);
+		}
 	}
 
 	public static void reloadConfigs()

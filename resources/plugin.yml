@@ -24,5 +24,6 @@ commands:
         description: bring    
     swap:
         dscription: swap
-        
+    calc:
+        description: Calculator
     
