@@ -1,7 +1,7 @@
 package us.corenetwork.core.calculator;
 // Created by Lawrence PC Dol.  Released into the public domain.
 //
-// Contributions by Carlos Gómez of Asturias, Spain, in the area of unary operators
+// Contributions by Carlos Gomez of Asturias, Spain, in the area of unary operators
 // and right-to-left evaluations proved invaluable to implementing these features.
 // Thanks Carlos!
 //
