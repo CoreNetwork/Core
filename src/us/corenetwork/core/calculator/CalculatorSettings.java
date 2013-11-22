@@ -1,7 +1,5 @@
 package us.corenetwork.core.calculator;
 
-import us.corenetwork.core.scoreboard.ScoreboardModule;
-
 public enum CalculatorSettings {
 
 	ENABLED("Enabled", true),
@@ -19,12 +17,12 @@ public enum CalculatorSettings {
 
 	public Integer integer()
 	{
-		return (Integer) ScoreboardModule.instance.config.get(string, def);
+		return (Integer) CalculatorModule.instance.config.get(string, def);
 	}
 	
 	public String string()
 	{
-		return (String) ScoreboardModule.instance.config.get(string, def);
+		return (String) CalculatorModule.instance.config.get(string, def);
 	}
 	
 	public static String getCommandDescription(String cmd, String def)
