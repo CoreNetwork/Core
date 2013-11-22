@@ -46,7 +46,7 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 			minX = Math.max(RespawnSettings.RESPAWN_BASE_MIN_X.integer(), biggestClaim.getBlockX() - 2500);
 			maxX = Math.min(RespawnSettings.RESPAWN_BASE_MAX_X.integer(), biggestClaim.getBlockX() + 2500);
 			minZ = Math.max(RespawnSettings.RESPAWN_BASE_MIN_Z.integer(), biggestClaim.getBlockZ() - 2500);
-			maxZ = Math.min(RespawnSettings.RESPAWN_BASE_MAX_X.integer(), biggestClaim.getBlockZ() + 2500);
+			maxZ = Math.min(RespawnSettings.RESPAWN_BASE_MAX_Z.integer(), biggestClaim.getBlockZ() + 2500);
 		}
 
 		teleport((Player) sender, minX, maxX, minZ, maxZ);		
