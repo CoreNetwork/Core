@@ -93,19 +93,23 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 			int x = CorePlugin.random.nextInt(xDiff) + minX;
 			int z = CorePlugin.random.nextInt(zDiff) + minZ;
 
-			Location location = new Location(overworld, x, y, z);
+			Location location = new Location(overworld, x + 0.5, y, z + 0.5);
 			Block block = location.getBlock();
 
 			if (!block.getChunk().isLoaded())
 				block.getChunk().load();
 			
+			if (!isEmpty(block))
+				continue;
+			
 			Block belowBlock = block.getRelative(BlockFace.DOWN);
 			if (belowBlock == null || belowBlock.getType() != Material.GRASS)
 				continue;
 			
-			if (!isEmpty(block))
+			Block aboveBlock = block.getRelative(BlockFace.DOWN);
+			if (aboveBlock == null || !aboveBlock.isEmpty())
 				continue;
-
+			
 			int smallestDist = getSmallestDistance(claims, location);	
 			if (smallestDist < range)
 				continue;
