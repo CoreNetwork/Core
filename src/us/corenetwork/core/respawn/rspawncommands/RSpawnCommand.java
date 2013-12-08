@@ -106,7 +106,7 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 			if (belowBlock == null || belowBlock.getType() != Material.GRASS)
 				continue;
 			
-			Block aboveBlock = block.getRelative(BlockFace.DOWN);
+			Block aboveBlock = block.getRelative(BlockFace.UP);
 			if (aboveBlock == null || !aboveBlock.isEmpty())
 				continue;
 			
