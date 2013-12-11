@@ -46,6 +46,8 @@ public class OfflineTeleportation {
 	public static void playerLoggedIn(Player player)
 	{
 		Location location = waitingLogon.get(player.getName());
+		waitingLogon.remove(player.getName());
+		
 		if (location != null)
 		{
 			if (location.getWorld() == null)
