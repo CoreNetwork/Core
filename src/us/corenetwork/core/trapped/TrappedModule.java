@@ -1,32 +1,35 @@
-package us.corenetwork.core.calculator;
+package us.corenetwork.core.trapped;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CoreModule;
-import us.corenetwork.core.calculator.commands.CalcCommand;
+import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.corecommands.BaseCoreCommand;
+import us.corenetwork.core.trapped.commands.TrappedCommand;
 
-public class CalculatorModule extends CoreModule {
+public class TrappedModule extends CoreModule {
 
-	public static CalculatorModule instance;
+	public static TrappedModule instance;
 	
 	public static HashMap<String, BaseCoreCommand> commands;
 	
-	public CalculatorModule()
+	public TrappedModule()
 	{
-		super("Calculator", new String[] {"calc"}, "calculator");
+		super("Trapped", new String[] {"trapped"}, "trapped");
 		
 		instance = this;
 	}
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args)
 	{
-		if (command.getName().equals("calc"))
+		if (command.getName().equals("trapped"))
 		{
-			return commands.get("calc").execute(sender, args, false);
+			return commands.get("trapped").execute(sender, args, false);
 		}
 		else
 		{
@@ -37,10 +40,11 @@ public class CalculatorModule extends CoreModule {
 				return false;
 		}
 	}
+	
 	@Override
 	protected boolean loadModule()
 	{
-		for (CalculatorSettings setting : CalculatorSettings.values())
+		for (TrappedSettings setting : TrappedSettings.values())
 		{
 			if (config.get(setting.string) == null)
 				config.set(setting.string, setting.def);
@@ -49,10 +53,13 @@ public class CalculatorModule extends CoreModule {
 		
 		commands = new HashMap<String, BaseCoreCommand>();
 		
-		commands.put("calc", new CalcCommand());
+		commands.put("trapped", new TrappedCommand());
+		
+		Bukkit.getServer().getPluginManager().registerEvents(new TrappedListener(), CorePlugin.instance);
 		
 		return true;
 	}
+	
 	@Override
 	protected void unloadModule()
 	{

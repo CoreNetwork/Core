@@ -88,11 +88,10 @@ public class PlayerUtils {
 			@Override
 			public void run() {
 				player.teleport(location);
-	
 			}
 		}, 10);
 	}
-
+	
 	public static void Message(String message, CommandSender sender)
 	{
 		message = message.replaceAll("\\&([0-9abcdefklmnor])", ChatColor.COLOR_CHAR + "$1");

@@ -34,7 +34,7 @@ public class ProtectCommand extends BaseRSpawnCommand {
 		if (player != null)
 		{
 			//Resetting player
-			player.setHealth(20);
+			player.setHealth(20.0);
 			player.setFoodLevel(20);
 			player.setSaturation(20);
 			player.setExp(0);

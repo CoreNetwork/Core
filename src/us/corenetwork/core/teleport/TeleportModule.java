@@ -6,12 +6,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
-import us.corenetwork.core.CLog;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.corecommands.SudoCommand;
 import us.corenetwork.core.teleport.commands.tp.TpCommand;
 import us.corenetwork.core.teleport.commands.warp.BaseWarpCommand;
 import us.corenetwork.core.teleport.commands.warp.DeleteCommand;
@@ -86,7 +83,7 @@ public class TeleportModule extends CoreModule {
 		CorePlugin.coreCommands.put("tp", new TpCommand());
 
 		Bukkit.getServer().getPluginManager().registerEvents(new TeleportListener(), CorePlugin.instance);
-
+		
 		loadStorageYaml();
 		
 		return true;

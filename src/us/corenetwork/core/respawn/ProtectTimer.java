@@ -49,6 +49,7 @@ public class ProtectTimer implements Runnable
 			{
 				e.setValue(timeLeft);
 				
+				@SuppressWarnings("unchecked")
 				List<Integer> notifications = (List<Integer>) RespawnSettings.SPAWN_PROTECTION_NOTIFICATIONS.list();
 				for (Integer nTime : notifications)
 				{

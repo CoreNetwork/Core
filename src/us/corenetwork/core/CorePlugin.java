@@ -26,7 +26,7 @@ public class CorePlugin extends JavaPlugin {
 		coreCommands.put("help", new CoreHelpCommand());
 		coreCommands.put("reload", new ReloadCommand());
 		coreCommands.put("sudo", new SudoCommand());
-
+		
 		IO.LoadSettings();
 		CoreModule.loadModules();
 	}

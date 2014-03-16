@@ -26,4 +26,6 @@ commands:
         dscription: swap
     calc:
         description: Calculator
+    trapped:
+        description: Rescue from trap
     

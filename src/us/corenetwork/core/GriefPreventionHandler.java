@@ -6,8 +6,10 @@ import java.util.Deque;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.ClaimArray;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
+import net.minecraft.server.v1_7_R1.Tuple;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 
 public class GriefPreventionHandler {	
@@ -18,7 +20,7 @@ public class GriefPreventionHandler {
 		for (int i = 0; i < ca.size(); i++)
 		{
 			Claim claim = ca.get(i);
-
+			
 			int claimMinX = Math.min(claim.getLesserBoundaryCorner().getBlockX(), claim.getGreaterBoundaryCorner().getBlockX());
 			int claimMinZ = Math.min(claim.getLesserBoundaryCorner().getBlockZ(), claim.getGreaterBoundaryCorner().getBlockZ());
 			int claimSizeX = Math.abs(claim.getLesserBoundaryCorner().getBlockX() - claim.getGreaterBoundaryCorner().getBlockX());
@@ -84,5 +86,25 @@ public class GriefPreventionHandler {
 		Location center = new Location(biggest.getLesserBoundaryCorner().getWorld(), claimCenterX, 0, claimCenterZ);
 		
 		return center;
+	}
+
+	public static Tuple getExactClaimAt(Location location)
+	{
+		Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, false);
+		if(claim == null)
+			return null;
+		else
+		{
+			Location locLow = claim.getLesserBoundaryCorner();
+			Location locGr = claim.getGreaterBoundaryCorner();
+			return new Tuple(locLow, locGr);
+		}
+		
+	}
+	
+	public static boolean canBuildAt(Player player, Location location)
+	{
+		Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, false);
+		return claim == null || claim.allowBuild(player) == null; 
 	}
 }
