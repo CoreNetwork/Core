@@ -1,11 +1,13 @@
 package us.corenetwork.core.respawn;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
 public enum RespawnSettings {
 	TELEPORT_Y("TeleportY", 14),
+	RESPAWN_WORLD("World", "world"),
 	RESPAWN_NO_BASE_MIN_X("Border.NoBase.MinX", -10000),
 	RESPAWN_NO_BASE_MIN_Z("Border.NoBase.MinZ", -10000),
 	RESPAWN_NO_BASE_MAX_X("Border.NoBase.MaxX", 10000),
@@ -18,6 +20,14 @@ public enum RespawnSettings {
 	SPAWN_PROTECTION_NOTIFICATIONS("SpawnProtectionNotifications", Arrays.asList(new Integer[] {90, 60, 30, 10})),
 	MOB_REMOVAL_RADIUS_SQUARED("MobRemovalRadiusSquared", 625),
 
+	LUCKY100("Lucky100", new ArrayList<String>(){{
+		add("SubUniv");
+		add("SubSky");
+	}}),
+	LUCKY66("Lucky66", new ArrayList<String>(){{
+		add("SubGrass");
+	}}),
+	
 	NEW_PLAYER_SPAWN_WARP_NAME("SpawnWarps.NewPlayer", "endguide"),
 	EXISTING_PLAYER_SPAWN_WARP_NAME("SpawnWarps.ExistingPlayer", "limbocrystal"),
 	

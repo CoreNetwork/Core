@@ -1,5 +1,6 @@
 package us.corenetwork.core.respawn.rspawncommands;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Iterator;
 
@@ -28,6 +29,7 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 
 	public Boolean run(final CommandSender sender, String[] args) {
 
+		Location location = null;
 		Player player = (Player) sender;
 
 		int minX = RespawnSettings.RESPAWN_NO_BASE_MIN_X.integer();
@@ -37,10 +39,11 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 
 		Location biggestClaim = null;
 		if (!ToggleCommand.ignoredPlayers.contains(player.getName()) && throwDice(player))
-			biggestClaim = GriefPreventionHandler.findBiggestClaim(player.getName());
-
+		{
+			biggestClaim = GriefPreventionHandler.findBiggestClaimInWorld(player.getName(), RespawnSettings.RESPAWN_WORLD.string());
+		}
 		ToggleCommand.ignoredPlayers.remove(player.getName());
-
+		
 		if (biggestClaim != null)
 		{
 			minX = Math.max(RespawnSettings.RESPAWN_BASE_MIN_X.integer(), biggestClaim.getBlockX() - 2500);
@@ -49,25 +52,32 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 			maxZ = Math.min(RespawnSettings.RESPAWN_BASE_MAX_Z.integer(), biggestClaim.getBlockZ() + 2500);
 		}
 
-		teleport((Player) sender, minX, maxX, minZ, maxZ);		
+		location = getLocation((Player) sender, minX, maxX, minZ, maxZ);
+		
+		PlayerUtils.safeTeleport((Player) sender, location);
 		return true;
 	}	
 
 	public boolean throwDice(Player player)
 	{
-		if (Util.hasPermission(player,"core.respawn.donorsky"))
-			return true;
-		else if (Util.hasPermission(player,"core.respawn.donorgrass"))
-			return CorePlugin.random.nextInt(100) < 66;
-		else
-			return CorePlugin.random.nextInt(100) < 33;
+		ArrayList<String> groupList = (ArrayList<String>) RespawnSettings.LUCKY100.list();
+		for(String permGroup : groupList)
+			if (CorePlugin.permission.playerInGroup(player, permGroup))
+				return true;
+		
+		groupList = (ArrayList<String>) RespawnSettings.LUCKY66.list();
+		for(String permGroup : groupList)
+			if (CorePlugin.permission.playerInGroup(player, permGroup))
+				return CorePlugin.random.nextInt(100) < 66;
+		
+		return CorePlugin.random.nextInt(100) < 33;
 	}
 
-	public void teleport(Player player, int minX, int maxX, int minZ, int maxZ)
+	public Location getLocation(Player player, int minX, int maxX, int minZ, int maxZ)
 	{
 		World overworld = Bukkit.getWorlds().get(0);
 
-		Deque<Location> claims = GriefPreventionHandler.getAllClaims();	
+		Deque<Location> claims = GriefPreventionHandler.getAllClaimsInWorld(RespawnSettings.RESPAWN_WORLD.string());	
 		
 		int counter = 0;
 		int range = 40000;
@@ -114,8 +124,7 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 			if (smallestDist < range)
 				continue;
 			
-			PlayerUtils.safeTeleport(player, location);
-			break;
+			return location;
 		}
 	}
 

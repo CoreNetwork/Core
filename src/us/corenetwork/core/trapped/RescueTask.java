@@ -1,5 +1,6 @@
 package us.corenetwork.core.trapped;
 
+import java.util.Collection;
 import java.util.List;
 
 import net.minecraft.server.v1_7_R1.Tuple;
@@ -12,6 +13,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
@@ -20,6 +22,7 @@ import us.corenetwork.core.CLog;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.GriefPreventionHandler;
 import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.Util;
 
 public class RescueTask implements Runnable {
 
@@ -226,15 +229,19 @@ public class RescueTask implements Runnable {
 	
 	private void clearTargetLocation(Location location)
 	{
-		int radius = TrappedSettings.CLEAR_RADIUS.integer();
-		List<Entity> entities = player.getNearbyEntities(radius*2, radius*2, radius*2);
-		
-		for(Entity e : entities)
+		int radiusSquared = TrappedSettings.CLEAR_RADIUS.integer()*TrappedSettings.CLEAR_RADIUS.integer();
+	
+		Collection<LivingEntity> monsters = player.getWorld().getEntitiesByClass(LivingEntity.class);
+		for (LivingEntity entity : monsters)
 		{
-			if(e instanceof Monster || e instanceof Slime)
+			if (entity instanceof Monster || entity instanceof Slime)
 			{
-				e.remove();
-			}
+				int distance = Util.flatDistance(player.getLocation(), entity.getLocation());
+				if (distance < radiusSquared)
+				{
+					entity.remove();
+				}
+			}	
 		}
 	}
 	

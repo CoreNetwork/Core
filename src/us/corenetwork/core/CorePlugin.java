@@ -3,8 +3,11 @@ package us.corenetwork.core;
 import java.util.HashMap;
 import java.util.Random;
 
+import net.milkbowl.vault.permission.Permission;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import us.corenetwork.core.corecommands.BaseCoreCommand;
@@ -13,6 +16,8 @@ import us.corenetwork.core.corecommands.ReloadCommand;
 import us.corenetwork.core.corecommands.SudoCommand;
 public class CorePlugin extends JavaPlugin {
 	public static CorePlugin instance;
+	
+	public static Permission permission;
 	
 	public static Random random;
 	
@@ -28,9 +33,23 @@ public class CorePlugin extends JavaPlugin {
 		coreCommands.put("sudo", new SudoCommand());
 		
 		IO.LoadSettings();
+		
+		if (!setupPermissions())
+		{
+			getLogger().warning("could not load Vault permissions - did you forget to install Vault?");
+		}
+		
 		CoreModule.loadModules();
 	}
 
+	private boolean setupPermissions() {
+		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(Permission.class);
+		if (permissionProvider != null) {
+			permission = permissionProvider.getProvider();
+		}
+		return (permission != null);
+	}
+	
 	@Override
 	public void onDisable() {
 		CoreModule.unloadAll();

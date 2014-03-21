@@ -9,17 +9,21 @@ import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import net.minecraft.server.v1_7_R1.Tuple;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 
 public class GriefPreventionHandler {	
-	public static Deque<Location> getAllClaims()
+	public static Deque<Location> getAllClaimsInWorld(String worldName)
 	{
 		ArrayDeque<Location> list = new ArrayDeque<Location>();
 		ClaimArray ca = GriefPrevention.instance.dataStore.getClaimArray();
 		for (int i = 0; i < ca.size(); i++)
 		{
 			Claim claim = ca.get(i);
+			
+			if(claim.getClaimWorldName() != worldName)
+				continue;
 			
 			int claimMinX = Math.min(claim.getLesserBoundaryCorner().getBlockX(), claim.getGreaterBoundaryCorner().getBlockX());
 			int claimMinZ = Math.min(claim.getLesserBoundaryCorner().getBlockZ(), claim.getGreaterBoundaryCorner().getBlockZ());
@@ -51,7 +55,7 @@ public class GriefPreventionHandler {
 		return false;
 	}
 	
-	public static Location findBiggestClaim(String player)
+	public static Location findBiggestClaimInWorld(String player, String worldName)
 	{
 		ClaimArray ca = GriefPrevention.instance.dataStore.getClaimArray();
 		
@@ -62,14 +66,16 @@ public class GriefPreventionHandler {
 			Claim claim = ca.get(i);
 			
 			if (!claim.getOwnerName().equals(player))
-					continue;
+				continue;
+			
+			if (claim.getClaimWorldName() != worldName)
+				continue;
 			
 			if (biggestSize >= claim.getArea())
 				continue;
 			
 			biggest = claim;
 			biggestSize = claim.getArea();
-			
 		}
 				
 		if (biggest == null)

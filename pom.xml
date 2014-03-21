@@ -35,6 +35,10 @@
       <id>bukkit-repo</id>
       <url>http://repo.bukkit.org/content/groups/public</url>
     </repository>
+    <repository>
+      <id>Milkbowl-repo</id>
+      <url>http://ci.herocraftonline.com/plugin/repository/everything/</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -54,6 +58,11 @@
       <systemPath>${basedir}/lib/GriefPrevention-7.8-SNAPSHOT.jar</systemPath>
     </dependency>
     
+    <dependency>
+      <groupId>net.milkbowl.vault</groupId>
+      <artifactId>Vault</artifactId>
+      <version>1.2.27</version>
+    </dependency>
   </dependencies>
 
 </project>

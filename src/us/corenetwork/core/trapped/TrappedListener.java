@@ -12,13 +12,10 @@ public class TrappedListener implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent  event)
 	{
-		
-		CLog.debug(event.getMessage());
 		if (event.getMessage().equals("/trapped"))
 		{
 			event.setCancelled(true);
 			TrappedModule.commands.get("trapped").execute((CommandSender) event.getPlayer(), new String[0], false);
 		}
-		
 	}
 }
