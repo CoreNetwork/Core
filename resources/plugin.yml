@@ -28,4 +28,6 @@ commands:
         description: Calculator
     trapped:
         description: Rescue from trap
+    clear:
+        description: Clear player inventory
     

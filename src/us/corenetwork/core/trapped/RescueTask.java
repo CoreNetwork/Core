@@ -68,30 +68,23 @@ public class RescueTask implements Runnable {
 	
 	private void commenceRescue()
 	{
-		CLog.debug("[RescueTask] Commencing Rescue!");
-		getSafeMaterial(player.getWorld());	
-		CLog.debug("[RescueTask] getSafeNaterial complete");
-		getWorldBounds(player.getWorld().getName());
-		CLog.debug("[RescueTask] getWorldBounds complete");
-		normalizeClaimCorners();
-		CLog.debug("[RescueTask] normalizingClaimCorners complete");		
+		safeMaterial = getSafeMaterial(player.getWorld());	
+		initializeWorldBounds(player.getWorld().getName());
+		normalizeClaimCorners();	
 		Location targetLocation = getRandomSafeLocation();
-		CLog.debug("[RescueTask] getRandomSafeLocation complete");
 		clearTargetLocation(targetLocation);
-		CLog.debug("[RescueTask] clearingTargetLocation complete");
 		teleportTo(targetLocation);
-		CLog.debug("[RescueTask] teleportTo complete");
 	}
 	
 
-	private void getSafeMaterial(World world)
+	private Material getSafeMaterial(World world)
 	{
 		if (world.getEnvironment() == Environment.NETHER)
-			safeMaterial = Material.NETHERRACK;
+			return Material.NETHERRACK;
 		else 
-			safeMaterial = Material.GRASS;
+			return Material.GRASS;
 	}
-	private void getWorldBounds(String worldName)
+	private void initializeWorldBounds(String worldName)
 	{
 		maxX = getLimit(worldName, "MaxX");
 		minX = getLimit(worldName, "MinX");
