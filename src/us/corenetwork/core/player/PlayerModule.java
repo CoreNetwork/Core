@@ -10,7 +10,6 @@ import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.corecommands.BaseCoreCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
-import us.corenetwork.core.trapped.TrappedListener;
 
 public class PlayerModule extends CoreModule {
 
@@ -56,7 +55,7 @@ public class PlayerModule extends CoreModule {
 		
 		commands.put("clear", new ClearCommand());
 
-		Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), CorePlugin.instance);
+		Bukkit.getServer().getPluginManager().registerEvents(new VoidListener(), CorePlugin.instance);
 		return true;
 	}
 	

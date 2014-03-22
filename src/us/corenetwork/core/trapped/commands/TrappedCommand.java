@@ -34,6 +34,12 @@ public class TrappedCommand extends BaseCoreCommand {
 				return;
 			}
 			
+			if (TrappedSettings.ENABLED_WORLDS.list().contains(player.getWorld().getName()) == false)
+			{
+				PlayerUtils.Message(TrappedSettings.MESSAGE_NOT_ENABLED_IN.string(), sender);
+				return;
+			}
+			
 			if (GriefPreventionHandler.canBuildAt(player, player.getLocation()))
 			{
 				PlayerUtils.Message(TrappedSettings.MESSAGE_CAN_BUILD.string(), sender);

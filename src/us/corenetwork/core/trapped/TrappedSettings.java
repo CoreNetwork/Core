@@ -1,9 +1,19 @@
 package us.corenetwork.core.trapped;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import us.corenetwork.core.respawn.RespawnModule;
+
 public enum TrappedSettings {
 
 	ENABLED("Enabled", true),
 
+	ENABLED_WORLDS("EnabledWorlds", new ArrayList<String>(){{
+		add("world");
+		add("world_nether");
+	}}),
+	
 	CLEAR_RADIUS("Trapped.ClearRadius", 7),
 	NETHER_SURFACE_Y("Trapped.Surface.world_nether", 64),
 	OVERWORLD_SURFACE_Y("Trapped.Surface.world", 4),
@@ -23,6 +33,7 @@ public enum TrappedSettings {
 	MIN_X("Trapped.Limits.Other.MinX", -8000),
 	MIN_Z("Trapped.Limits.Other.MinZ", -8000),
 	
+	MESSAGE_NOT_ENABLED_IN("Messages.NotEnabledIn", "&4You cannot use /trapped in this world."),
 	MESSAGE_CAN_BUILD("Messages.CanBuild", "&4You can build here. Save yourelf."),
 	MESSAGE_RESCUE_IN_PROGRESS("Messages.RescueInProgress", "Please wait still for 5 seconds."),
 	MESSAGE_RESCUE_PLAYER_MOVED("Messages.RescurePlayerMoved", "Rescue cancelled, you moved!");
@@ -44,6 +55,11 @@ public enum TrappedSettings {
 	public String string()
 	{
 		return (String) TrappedModule.instance.config.get(string, def);
+	}
+	
+	public List<?> list()
+	{
+		return (List<?>) RespawnModule.instance.config.get(string, def);
 	}
 	
 	public static String getCommandDescription(String cmd, String def)
