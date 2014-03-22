@@ -31,7 +31,7 @@ public class PlayerListener implements Listener {
 				Location tpLoc = new Location(world, x, y, z);
 				tpLoc.setPitch(player.getLocation().getPitch());
 				tpLoc.setYaw(player.getLocation().getYaw());
-				player.setFallDistance(0);
+				
 				PlayerUtils.safeTeleport(player, tpLoc);
 				event.setCancelled(true);
 			}

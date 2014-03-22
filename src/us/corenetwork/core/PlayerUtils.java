@@ -82,6 +82,7 @@ public class PlayerUtils {
 		Chunk c = location.getChunk();
 		if (!c.isLoaded())
 			location.getChunk().load();
+		player.setFallDistance(0);
 		player.teleport(location);
 	
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(CorePlugin.instance, new Runnable() {
