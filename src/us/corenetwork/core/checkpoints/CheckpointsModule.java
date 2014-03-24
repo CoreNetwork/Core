@@ -45,9 +45,9 @@ public class CheckpointsModule extends CoreModule {
 				baseCommand = usercommands.get(args[0]);
 			
 			if (baseCommand != null)
-				return baseCommand.execute(sender, args);
+				return baseCommand.execute(sender, args, true);
 			
-			usercommands.get("tele").execute(sender, args);
+			usercommands.get("tele").execute(sender, args, true);
 		}
 		else
 		{
@@ -57,9 +57,9 @@ public class CheckpointsModule extends CoreModule {
 				baseCommand = admincommands.get(args[0]);
 			
 			if (baseCommand != null)
-				return baseCommand.execute(sender, args);
+				return baseCommand.execute(sender, args, true);
 			
-			admincommands.get("help").execute(sender, args);
+			admincommands.get("help").execute(sender, args, true);
 		}
 		
 		return false;

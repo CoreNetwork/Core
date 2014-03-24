@@ -23,7 +23,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 3 || !Util.isInteger(args[2]))
 		{
-			PlayerUtils.Message("Usage: /chp save <player name> <list name> <checkpoint position>", sender);
+			PlayerUtils.Message("Usage: /checkpoint save <player name> <list name> <checkpoint position>", sender);
 			return;
 		}
 		

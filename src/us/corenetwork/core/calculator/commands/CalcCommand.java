@@ -5,9 +5,8 @@ import org.bukkit.command.CommandSender;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.calculator.CalculatorSettings;
 import us.corenetwork.core.calculator.MathEval;
-import us.corenetwork.core.corecommands.BaseCoreCommand;
 
-public class CalcCommand extends BaseCoreCommand {
+public class CalcCommand extends BaseCalcCommand {
 
 	public CalcCommand()
 	{

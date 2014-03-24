@@ -9,7 +9,6 @@ import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import net.minecraft.server.v1_7_R1.Tuple;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 

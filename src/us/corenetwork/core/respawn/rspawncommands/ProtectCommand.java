@@ -22,9 +22,9 @@ public class ProtectCommand extends BaseRSpawnCommand {
 		permission = "protect";
 	}
 
-	public Boolean run(final CommandSender sender, String[] args) {
+	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 1)
-			return true;
+			return;
 		
 		int startTime = RespawnSettings.SPAWN_PROTECTION_LENGTH.integer();
 		String playerName = args[0];
@@ -65,7 +65,7 @@ public class ProtectCommand extends BaseRSpawnCommand {
 			PlayerUtils.Message(message, player);
 		}
 		
-		return true;
+		return;
 	}	
 	
 	

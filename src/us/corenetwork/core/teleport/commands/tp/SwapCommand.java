@@ -7,12 +7,11 @@ import org.bukkit.entity.Player;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.PlayerUtils.PickPlayerResult;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.corecommands.BaseCoreCommand;
 import us.corenetwork.core.corecommands.SudoCommand;
 import us.corenetwork.core.teleport.TeleportSettings;
 import us.corenetwork.core.teleport.TeleportUtil;
 
-public class SwapCommand extends BaseCoreCommand {		
+public class SwapCommand extends BaseTpCommand {		
 	public SwapCommand()
 	{
 		desc = "Swap two players";

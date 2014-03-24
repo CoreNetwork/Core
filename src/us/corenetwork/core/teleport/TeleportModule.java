@@ -7,10 +7,10 @@ import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.teleport.commands.tp.TpCommand;
-import us.corenetwork.core.teleport.commands.warp.BaseWarpCommand;
 import us.corenetwork.core.teleport.commands.warp.DeleteCommand;
 import us.corenetwork.core.teleport.commands.warp.SetCommand;
 import us.corenetwork.core.teleport.commands.warp.WarpCommand;
@@ -19,7 +19,7 @@ import us.corenetwork.core.teleport.commands.warp.WarpsHelpCommand;
 public class TeleportModule extends CoreModule {
 	public static TeleportModule instance;
 
-	public static HashMap<String, BaseWarpCommand> commands;
+	public static HashMap<String, AbstractCoreCommand> commands;
 
 	public TeleportModule() {
 		super("Teleportation", new String[] {"warp", "tp", "bring", "swap"}, "teleportation");
@@ -49,7 +49,7 @@ public class TeleportModule extends CoreModule {
 			return TpCommand.subCommands.get("swap").execute(sender, args, false);
 		}
 		
-		BaseWarpCommand baseCommand = null;
+		AbstractCoreCommand baseCommand = null;
 		if (args.length > 0) 
 			baseCommand = commands.get(args[0]);
 
@@ -73,7 +73,7 @@ public class TeleportModule extends CoreModule {
 		}
 		saveConfig();
 
-		commands = new HashMap<String, BaseWarpCommand>();
+		commands = new HashMap<String, AbstractCoreCommand>();
 		
 		commands.put("help", new WarpsHelpCommand());
 		commands.put("set", new SetCommand());

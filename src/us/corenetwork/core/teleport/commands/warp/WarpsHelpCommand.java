@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.teleport.TeleportModule;
@@ -28,7 +29,7 @@ public class WarpsHelpCommand extends BaseWarpCommand {
 		if (args.length > 0 && Util.isInteger(args[0])) page = Integer.parseInt(args[0]);
 		List<String> komandes = new ArrayList<String>();
 
-		for (Entry<String, BaseWarpCommand> e : TeleportModule.commands.entrySet())
+		for (Entry<String, AbstractCoreCommand> e : TeleportModule.commands.entrySet())
 		{
 			komandes.add(TeleportSettings.getCommandDescription(e.getKey(),  e.getValue().desc));
 		}  		

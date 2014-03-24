@@ -17,9 +17,9 @@ public class NoDropCommand extends BaseRSpawnCommand {
 		permission = "nodrop";
 	}
 
-	public Boolean run(final CommandSender sender, String[] args) {
+	public void run(final CommandSender sender, String[] args) {
 		if (args.length < 2 || !Util.isInteger(args[1]))
-			return true;
+			return;
 
 		final String playerName = args[0];
 		int protectionLength = Integer.parseInt(args[1]);
@@ -35,7 +35,7 @@ public class NoDropCommand extends BaseRSpawnCommand {
 
 		}, protectionLength);
 
-		return true;
+		return;
 	}	
 
 }

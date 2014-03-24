@@ -9,14 +9,13 @@ import org.bukkit.inventory.ItemStack;
 
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.corecommands.BaseCoreCommand;
 import us.corenetwork.core.player.PlayerSettings;
 
-public class ClearCommand extends BaseCoreCommand {
+public class ClearCommand extends BasePlayerCommand {
 	
 	public ClearCommand()
 	{
-		desc = "Clear player inventory.";
+		desc = "Clear player inventory."; 
 		permission = "clear";
 		needPlayer = false;
 	}

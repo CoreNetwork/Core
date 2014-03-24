@@ -15,7 +15,7 @@ public class UnprotectCommand extends BaseRSpawnCommand {
 		permission = "unprotect";
 	}
 
-	public Boolean run(final CommandSender sender, String[] args) {
+	public void run(final CommandSender sender, String[] args) {
 		Player player = (Player) sender;
 		
 		boolean silent = args.length > 0 && args[0].equals("silent");
@@ -24,12 +24,12 @@ public class UnprotectCommand extends BaseRSpawnCommand {
 		if (!hasProtection)
 		{
 			if (!silent) PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_UNPROTECT_NOT_PROTECTED.string(), sender);
-			return true;
+			return;
 		}
 		
 		ProtectTimer.protectedPlayers.remove(player.getName());
 		if (!silent) ProtectTimer.endProtectionMessage(player);
-		return true;
+		return;
 	}	
 	
 }

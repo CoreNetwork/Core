@@ -8,14 +8,14 @@ import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.corecommands.BaseCoreCommand;
+import us.corenetwork.core.trapped.commands.BaseTrappedCommand;
 import us.corenetwork.core.trapped.commands.TrappedCommand;
 
 public class TrappedModule extends CoreModule {
 
 	public static TrappedModule instance;
 	
-	public static HashMap<String, BaseCoreCommand> commands;
+	public static HashMap<String, BaseTrappedCommand> commands;
 	
 	public TrappedModule()
 	{
@@ -33,7 +33,7 @@ public class TrappedModule extends CoreModule {
 		}
 		else
 		{
-			BaseCoreCommand cmd = commands.get(args[0]);
+			BaseTrappedCommand cmd = commands.get(args[0]);
 			if (cmd != null)
 				return cmd.execute(sender, args, false);
 			else
@@ -51,7 +51,7 @@ public class TrappedModule extends CoreModule {
 		}
 		saveConfig();
 		
-		commands = new HashMap<String, BaseCoreCommand>();
+		commands = new HashMap<String, BaseTrappedCommand>();
 		
 		commands.put("trapped", new TrappedCommand());
 		
@@ -64,6 +64,5 @@ public class TrappedModule extends CoreModule {
 	protected void unloadModule()
 	{
 	}
-	
 	
 }

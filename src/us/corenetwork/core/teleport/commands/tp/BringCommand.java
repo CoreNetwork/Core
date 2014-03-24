@@ -4,10 +4,9 @@ import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.corecommands.BaseCoreCommand;
 import us.corenetwork.core.teleport.OfflineTeleportation;
 
-public class BringCommand extends BaseCoreCommand {		
+public class BringCommand extends BaseTpCommand {		
 	public BringCommand()
 	{
 		desc = "Bring someone to you";

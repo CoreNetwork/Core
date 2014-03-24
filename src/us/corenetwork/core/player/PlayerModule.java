@@ -8,14 +8,14 @@ import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.corecommands.BaseCoreCommand;
+import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
 
 public class PlayerModule extends CoreModule {
 
 	public static PlayerModule instance;
 	
-	public static HashMap<String, BaseCoreCommand> commands;
+	public static HashMap<String, BasePlayerCommand> commands;
 	
 	public PlayerModule()
 	{
@@ -33,7 +33,7 @@ public class PlayerModule extends CoreModule {
 		}
 		else
 		{
-			BaseCoreCommand cmd = commands.get(args[0]);
+			BasePlayerCommand cmd = commands.get(args[0]);
 			if (cmd != null)
 				return cmd.execute(sender, args, false);
 			else
@@ -51,7 +51,7 @@ public class PlayerModule extends CoreModule {
 		}
 		saveConfig();
 		
-		commands = new HashMap<String, BaseCoreCommand>();
+		commands = new HashMap<String, BasePlayerCommand>();
 		
 		commands.put("clear", new ClearCommand());
 

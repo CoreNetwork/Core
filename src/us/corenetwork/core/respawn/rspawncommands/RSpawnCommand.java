@@ -27,7 +27,7 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 		permission = "rspawn";
 	}
 
-	public Boolean run(final CommandSender sender, String[] args) {
+	public void run(final CommandSender sender, String[] args) {
 
 		Location location = null;
 		Player player = (Player) sender;
@@ -55,7 +55,7 @@ public class RSpawnCommand extends BaseRSpawnCommand {
 		location = getLocation((Player) sender, minX, maxX, minZ, maxZ);
 		
 		PlayerUtils.safeTeleport((Player) sender, location);
-		return true;
+		return;
 	}	
 
 	public boolean throwDice(Player player)

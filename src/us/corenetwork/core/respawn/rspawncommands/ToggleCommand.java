@@ -17,7 +17,7 @@ public class ToggleCommand extends BaseRSpawnCommand {
 		permission = "toggle";
 	}
 
-	public Boolean run(final CommandSender sender, String[] args) {
+	public void run(final CommandSender sender, String[] args) {
 		String playerName = ((Player) sender).getName();
 		
 		if (ignoredPlayers.contains(playerName))
@@ -31,6 +31,6 @@ public class ToggleCommand extends BaseRSpawnCommand {
 			PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_IGNORED.string(), sender);
 		}
 		
-		return true;
+		return;
 	}	
 }

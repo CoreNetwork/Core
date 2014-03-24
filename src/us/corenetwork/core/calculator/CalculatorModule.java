@@ -6,14 +6,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CoreModule;
+import us.corenetwork.core.calculator.commands.BaseCalcCommand;
 import us.corenetwork.core.calculator.commands.CalcCommand;
-import us.corenetwork.core.corecommands.BaseCoreCommand;
 
 public class CalculatorModule extends CoreModule {
 
 	public static CalculatorModule instance;
 	
-	public static HashMap<String, BaseCoreCommand> commands;
+	public static HashMap<String, BaseCalcCommand> commands;
 	
 	public CalculatorModule()
 	{
@@ -30,7 +30,7 @@ public class CalculatorModule extends CoreModule {
 		}
 		else
 		{
-			BaseCoreCommand cmd = commands.get(args[0]);
+			BaseCalcCommand cmd = commands.get(args[0]);
 			if (cmd != null)
 				return cmd.execute(sender, args, false);
 			else
@@ -47,7 +47,7 @@ public class CalculatorModule extends CoreModule {
 		}
 		saveConfig();
 		
-		commands = new HashMap<String, BaseCoreCommand>();
+		commands = new HashMap<String, BaseCalcCommand>();
 		
 		commands.put("calc", new CalcCommand());
 		

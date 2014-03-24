@@ -10,6 +10,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.PlayerUtils.PickPlayerResult;
 import us.corenetwork.core.Util;
@@ -21,7 +22,7 @@ import us.corenetwork.core.teleport.TeleportSettings;
 import us.corenetwork.core.teleport.TeleportUtil;
 
 public class TpCommand extends BaseCoreCommand {	
-	public static HashMap<String, BaseCoreCommand> subCommands = new HashMap<String, BaseCoreCommand>();
+	public static HashMap<String, AbstractCoreCommand> subCommands = new HashMap<String, AbstractCoreCommand>();
 	static
 	{
 		subCommands.put("bring", new BringCommand());

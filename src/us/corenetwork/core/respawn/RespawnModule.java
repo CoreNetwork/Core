@@ -60,20 +60,20 @@ public class RespawnModule extends CoreModule {
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
 		if (command.getName().equals("togglespawn"))
 		{
-			return rspawnCommands.get("toggle").execute(sender, args);
+			return rspawnCommands.get("toggle").execute(sender, args, true);
 		}
 		else if (command.getName().equals("unprotect"))
 		{
-			return rspawnCommands.get("unprotect").execute(sender, args);
+			return rspawnCommands.get("unprotect").execute(sender, args, true);
 		}
 		else
 		{
 			if (args.length < 1 || Util.isInteger(args[0]))
-				return rspawnCommands.get("rspawn").execute(sender, args);
+				return rspawnCommands.get("rspawn").execute(sender, args, true);
 
 			BaseRSpawnCommand cmd = rspawnCommands.get(args[0]);
 			if (cmd != null)
-				return cmd.execute(sender, args);
+				return cmd.execute(sender, args, true);
 			else
 				return false;
 		}
