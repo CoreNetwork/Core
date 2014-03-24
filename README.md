@@ -69,11 +69,6 @@ Command | Permission | Description
 `/rspawn`     | `core.respawn.rspawn` | Respawn player randomly.
 `/togglespawn`     | `core.respawn.togglespawn` | Toggle lucky/unlucky spawn.
 `/unprotect`     | `core.respawn.unprotect` | Cancel the after-respawn protection.
-
-Coded, but unused?
-
-Command | Permission | Description
---- | --- | ---
 `/protect`     | `core.respawn.protect` | Protect player.
 `/nodrop`     | `core.respawn.nodrop` | Set playerDropItem as cancelled.
 
