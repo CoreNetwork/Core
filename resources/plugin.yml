@@ -30,4 +30,7 @@ commands:
         description: Rescue from trap
     clear:
         description: Clear player inventory
-    
+    vanish:
+        description: Vanish player
+    unvanish:
+        description: Unvanish player

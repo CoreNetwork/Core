@@ -10,16 +10,19 @@ import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
+import us.corenetwork.core.player.commands.UnvanishCommand;
+import us.corenetwork.core.player.commands.VanishCommand;
 
 public class PlayerModule extends CoreModule {
 
 	public static PlayerModule instance;
+	public static VanishManager vanishManager;
 	
 	public static HashMap<String, BasePlayerCommand> commands;
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish"}, "player");
 		
 		instance = this;
 	}
@@ -30,6 +33,14 @@ public class PlayerModule extends CoreModule {
 		if (command.getName().equals("clear"))
 		{
 			return commands.get("clear").execute(sender, args, false);
+		}
+		if (command.getName().equals("vanish"))
+		{
+			return commands.get("vanish").execute(sender, args, false);
+		}
+		if (command.getName().equals("unvanish"))
+		{
+			return commands.get("unvanish").execute(sender, args, false);
 		}
 		else
 		{
@@ -54,8 +65,15 @@ public class PlayerModule extends CoreModule {
 		commands = new HashMap<String, BasePlayerCommand>();
 		
 		commands.put("clear", new ClearCommand());
+		commands.put("vanish", new VanishCommand());
+		commands.put("unvanish", new UnvanishCommand());
 
+
+		vanishManager = new VanishManager();
+		
 		Bukkit.getServer().getPluginManager().registerEvents(new VoidListener(), CorePlugin.instance);
+		Bukkit.getServer().getPluginManager().registerEvents(new VanishListener(), CorePlugin.instance);
+		
 		return true;
 	}
 	
