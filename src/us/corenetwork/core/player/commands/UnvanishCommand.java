@@ -37,17 +37,7 @@ public class UnvanishCommand extends BasePlayerCommand {
 			PlayerUtils.Message("Cannot find player called " + ChatColor.stripColor(args[0]), sender);
 			return;
 		}
-		
-		if (PlayerModule.vanishManager.isVanished(player) == false)
-		{
-			if (silent == false)
-			{
-				PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_ALREADY_UNVANISHED.string().replace("<Player>", player.getName()), sender);
-				PlayerUtils.Message(PlayerSettings.MESSAGE_ALREADY_UNVANISHED.string(), player);
-			}
-			return;
-		}
-		
+
 		if (silent == false)
 		{
 			PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_UNVANISHED.string().replace("<Player>", player.getName()), sender);

@@ -32,14 +32,12 @@ public enum PlayerSettings {
 	MESSAGE_OPEN_CHEST_VANISHED("Message.OpenChestWhileVanished", "You are opening a chest while vanished."),
 	MESSAGE_VANISHED("Message.Vanished", "You have been vanished."),
 	MESSAGE_UNVANISHED("Message.Unvanished", "You have been unvanished."),
-	MESSAGE_ALREADY_VANISHED("Message.AlreadyVanished", "You were already vanished."),
-	MESSAGE_ALREADY_UNVANISHED("Message.AlreadyUnvanished", "You were already unvanished."),
 	
 	MESSAGE_PLAYER_VANISHED("Message.PlayerVanished", "<Player> vanished."),
 	MESSAGE_PLAYER_UNVANISHED("Message.PlayerUnvanished", "<Player> unvanished."),
-
-	MESSAGE_PLAYER_ALREADY_VANISHED("Message.PlayerAlreadyVanished", "<Player> was already vanished."),
-	MESSAGE_PLAYER_ALREADY_UNVANISHED("Message.PlayerAlreadyUnvanished", "<Player> was already unvanished.");
+	
+	MESSAGE_EFFECT_APPLIED("Message.EffectApplied", "Effect applied."),
+	MESSAGE_GOT_EFFECT("Message.GotEffect", "You have been grated <Effect> level <Level> effect.");
 	
 	protected String string;
 	protected Object def;

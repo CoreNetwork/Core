@@ -34,3 +34,5 @@ commands:
         description: Vanish player
     unvanish:
         description: Unvanish player
+    effect:
+        description: Custom effect command

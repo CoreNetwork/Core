@@ -92,7 +92,7 @@ public class VanishListener implements Listener {
 				// create a copy of the chest
 				final Inventory i = Bukkit.getServer().createInventory(event.getPlayer(), chest.getInventory().getSize());
 				i.setContents(chest.getInventory().getContents());
-				
+
 				// and have the player open that
 				event.getPlayer().openInventory(i);
 				

@@ -10,6 +10,7 @@ import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
+import us.corenetwork.core.player.commands.EffectCommand;
 import us.corenetwork.core.player.commands.UnvanishCommand;
 import us.corenetwork.core.player.commands.VanishCommand;
 
@@ -22,7 +23,7 @@ public class PlayerModule extends CoreModule {
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "effect"}, "player");
 		
 		instance = this;
 	}
@@ -41,6 +42,10 @@ public class PlayerModule extends CoreModule {
 		if (command.getName().equals("unvanish"))
 		{
 			return commands.get("unvanish").execute(sender, args, false);
+		}
+		if (command.getName().equals("effect"))
+		{
+			return commands.get("effect").execute(sender, args, false);
 		}
 		else
 		{
@@ -67,7 +72,7 @@ public class PlayerModule extends CoreModule {
 		commands.put("clear", new ClearCommand());
 		commands.put("vanish", new VanishCommand());
 		commands.put("unvanish", new UnvanishCommand());
-
+		commands.put("effect", new EffectCommand());
 
 		vanishManager = new VanishManager();
 		
