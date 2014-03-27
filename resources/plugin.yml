@@ -40,3 +40,6 @@ commands:
         description: God mode
     ungod:
         description: Revoke God mode
+    gamemode:
+        description: Revoke God mode
+        aliases: gm

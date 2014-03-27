@@ -12,6 +12,7 @@ import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
 import us.corenetwork.core.player.commands.EffectCommand;
+import us.corenetwork.core.player.commands.GamemodeCommand;
 import us.corenetwork.core.player.commands.GodCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
 import us.corenetwork.core.player.commands.UnvanishCommand;
@@ -27,7 +28,7 @@ public class PlayerModule extends CoreModule {
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "god", "ungod"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "god", "ungod", "gamemode"}, "player");
 		
 		instance = this;
 	}
@@ -59,6 +60,10 @@ public class PlayerModule extends CoreModule {
 		{
 			return commands.get("ungod").execute(sender, args, false);
 		}
+		if (command.getName().equals("gamemode") || command.getName().equals("gm"))
+		{
+			return commands.get("gamemode").execute(sender, args, false);
+		}
 		else
 		{
 			BasePlayerCommand cmd = commands.get(args[0]);
@@ -87,6 +92,7 @@ public class PlayerModule extends CoreModule {
 		commands.put("effect", new EffectCommand());
 		commands.put("god", new GodCommand());
 		commands.put("ungod", new UngodCommand());
+		commands.put("gamemode", new GamemodeCommand());
 
 		vanishManager = new VanishManager();
 		

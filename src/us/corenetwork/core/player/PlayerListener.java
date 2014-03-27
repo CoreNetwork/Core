@@ -1,5 +1,6 @@
 package us.corenetwork.core.player;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
@@ -9,12 +10,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 
 import us.corenetwork.core.PlayerUtils;
 
 public class PlayerListener implements Listener {
 
-	
 	// listener for cancelling damage on God players and rescuing lagged players from void.
 	@EventHandler(ignoreCancelled = true)
 	public void onEntityDamage(EntityDamageEvent event)

@@ -38,10 +38,16 @@ public enum PlayerSettings {
 	
 	MESSAGE_EFFECT_APPLIED("Message.EffectApplied", "Effect applied."),
 	MESSAGE_GOT_EFFECT("Message.GotEffect", "You have been granted <Effect> level <Level> effect."),
+	
 	MESSAGE_GOD_APPLIED("Message.GodApplied", "God mode applied."),
 	MESSAGE_GOD_REVOKED("Message.GodRevoked", "God mode revoked."),
 	MESSAGE_GOT_GOD("Message.GotGod", "You have been granted god mode."),
-	MESSAGE_LOST_GOD("Message.LostGod", "You have lost god mode.");
+	MESSAGE_LOST_GOD("Message.LostGod", "You have lost god mode."),
+	
+	
+	MESSAGE_SELF_GAMEMODE("Message.SelfGamemode", "You changed your gamemode to <Gamemode>."),
+	MESSAGE_SET_GAMEMODE("Message.SetGamemode", "You changed <Player>'s gamemode to <Gamemode>."),
+	MESSAGE_GAMEMODE_CHANGED("Message.GamemodeChanged", "Your gamemode was changed to <Gamemode>.");
 	
 	protected String string;
 	protected Object def;
