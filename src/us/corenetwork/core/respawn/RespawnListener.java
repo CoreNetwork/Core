@@ -108,7 +108,7 @@ public class RespawnListener implements Listener {
 			}
 			
 			PlayerUtils.safeTeleport(event.getPlayer(), loc);
-			WarpCommand.runWarpCommands(warpName);
+			WarpCommand.runWarpCommands(warpName, event.getPlayer());
 		}
 	}
 	

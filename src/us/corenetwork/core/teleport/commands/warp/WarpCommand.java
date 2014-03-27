@@ -46,7 +46,7 @@ public class WarpCommand extends BaseWarpCommand {
 		}
 		
 		PlayerUtils.safeTeleport(player, location);
-		runWarpCommands(name);
+		runWarpCommands(name, player);
 		
 		if (!SudoCommand.isUnderSudo(player.getName()))
 		{
@@ -76,11 +76,11 @@ public class WarpCommand extends BaseWarpCommand {
 		return commandsList;
 	}
 	
-	public static void runWarpCommands(String name)
+	public static void runWarpCommands(String name, Player player)
 	{
 		for(String command : getWarpCommands(name))
 		{
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("<Player>", player.getName()));
 		}
 	}
 }
