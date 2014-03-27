@@ -1,5 +1,8 @@
 package us.corenetwork.core.teleport.commands.warp;
 
+import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -41,8 +44,9 @@ public class WarpCommand extends BaseWarpCommand {
 			
 			return;
 		}
-						
+		
 		PlayerUtils.safeTeleport(player, location);
+		runWarpCommands(name);
 		
 		if (!SudoCommand.isUnderSudo(player.getName()))
 		{
@@ -53,13 +57,30 @@ public class WarpCommand extends BaseWarpCommand {
 			TeleportUtil.notifyModerators(sender, message);
 		}
 	}	
-	
+
 	public static Location getWarpLocation(String name)
 	{
-		String locationString = (String) TeleportModule.instance.storageConfig.get("Warps." + name);
+		String locationString = (String) TeleportModule.instance.storageConfig.get("Warps." + name + ".location");
 		if (locationString == null)
 			return null;
 		
 		return Util.unserializeLocation(locationString);
+	}
+	
+	public static ArrayList<String> getWarpCommands(String name)
+	{
+		ArrayList<String> commandsList = (ArrayList<String>) TeleportModule.instance.storageConfig.get("Warps." + name + ".RunCommands");
+		if (commandsList == null)
+			return null;
+		
+		return commandsList;
+	}
+	
+	public static void runWarpCommands(String name)
+	{
+		for(String command : getWarpCommands(name))
+		{
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+		}
 	}
 }

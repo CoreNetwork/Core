@@ -24,7 +24,7 @@ public class DeleteCommand extends BaseWarpCommand {
 		
 		String name = args[0].toLowerCase();
 		
-		String existing = (String) TeleportModule.instance.storageConfig.get("Warps." + name);
+		String existing = (String) TeleportModule.instance.storageConfig.get("Warps." + name + ".location");
 		if (existing == null)
 		{
 			String message = TeleportSettings.MESSAGE_UNKNOWN_WARP.string();
