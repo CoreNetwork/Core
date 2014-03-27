@@ -36,3 +36,7 @@ commands:
         description: Unvanish player
     effect:
         description: Custom effect command
+    god:
+        description: God mode
+    ungod:
+        description: Revoke God mode

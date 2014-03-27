@@ -12,28 +12,40 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import us.corenetwork.core.PlayerUtils;
 
-public class VoidListener implements Listener {
+public class PlayerListener implements Listener {
 
+	
+	// listener for cancelling damage on God players and rescuing lagged players from void.
 	@EventHandler(ignoreCancelled = true)
 	public void onEntityDamage(EntityDamageEvent event)
 	{
-		if (event.getCause() == DamageCause.VOID && event.getEntity() instanceof Player)
+		if (event.getEntity() instanceof Player)
 		{
 			Player player = (Player) event.getEntity();
-			World world = player.getWorld();
-			
-			int x = player.getLocation().getBlockX();
-			int z = player.getLocation().getBlockZ();
-			int y = getSafeY(world, x, z);
-			
-			if(isInBounds(player, x, z, player.getWorld().getName()))
+			if (PlayerModule.gods.contains(player.getName()))
 			{
-				Location tpLoc = new Location(world, x, y, z);
-				tpLoc.setPitch(player.getLocation().getPitch());
-				tpLoc.setYaw(player.getLocation().getYaw());
-				
-				PlayerUtils.safeTeleport(player, tpLoc);
 				event.setCancelled(true);
+				return;
+			}
+				
+			if (event.getCause() == DamageCause.VOID)
+			{
+				World world = player.getWorld();
+				
+				int x = player.getLocation().getBlockX();
+				int z = player.getLocation().getBlockZ();
+				int y = getSafeY(world, x, z);
+				
+				if(isInBounds(player, x, z, player.getWorld().getName()))
+				{
+					Location tpLoc = new Location(world, x, y, z);
+					tpLoc.setPitch(player.getLocation().getPitch());
+					tpLoc.setYaw(player.getLocation().getYaw());
+					
+					PlayerUtils.safeTeleport(player, tpLoc);
+					event.setCancelled(true);
+					return;
+				}
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package us.corenetwork.core.player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
@@ -11,6 +12,8 @@ import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
 import us.corenetwork.core.player.commands.EffectCommand;
+import us.corenetwork.core.player.commands.GodCommand;
+import us.corenetwork.core.player.commands.UngodCommand;
 import us.corenetwork.core.player.commands.UnvanishCommand;
 import us.corenetwork.core.player.commands.VanishCommand;
 
@@ -18,12 +21,13 @@ public class PlayerModule extends CoreModule {
 
 	public static PlayerModule instance;
 	public static VanishManager vanishManager;
+	public static ArrayList<String> gods = new ArrayList<String>();
 	
 	public static HashMap<String, BasePlayerCommand> commands;
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "effect"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "god", "ungod"}, "player");
 		
 		instance = this;
 	}
@@ -46,6 +50,14 @@ public class PlayerModule extends CoreModule {
 		if (command.getName().equals("effect"))
 		{
 			return commands.get("effect").execute(sender, args, false);
+		}
+		if (command.getName().equals("god"))
+		{
+			return commands.get("god").execute(sender, args, false);
+		}
+		if (command.getName().equals("ungod"))
+		{
+			return commands.get("ungod").execute(sender, args, false);
 		}
 		else
 		{
@@ -73,10 +85,12 @@ public class PlayerModule extends CoreModule {
 		commands.put("vanish", new VanishCommand());
 		commands.put("unvanish", new UnvanishCommand());
 		commands.put("effect", new EffectCommand());
+		commands.put("god", new GodCommand());
+		commands.put("ungod", new UngodCommand());
 
 		vanishManager = new VanishManager();
 		
-		Bukkit.getServer().getPluginManager().registerEvents(new VoidListener(), CorePlugin.instance);
+		Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), CorePlugin.instance);
 		Bukkit.getServer().getPluginManager().registerEvents(new VanishListener(), CorePlugin.instance);
 		
 		return true;
