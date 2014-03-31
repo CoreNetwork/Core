@@ -193,6 +193,8 @@ public class EffectCommand extends BasePlayerCommand {
 		
 		if(silent == false)
 		{
+			if (sender.equals(target) == false)
+				PlayerUtils.Message(PlayerSettings.MESSAGE_EFFECT_APPLIED.string().replace("<Player>", target.getName()), sender);
 			PlayerUtils.Message(PlayerSettings.MESSAGE_GOT_EFFECT.string().replace("<Effect>", effectString).replace("<Level>", ""+(level+1)), target);
 		}
 		

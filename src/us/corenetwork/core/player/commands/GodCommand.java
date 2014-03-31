@@ -93,7 +93,8 @@ public class GodCommand extends BasePlayerCommand {
 		
 		if(silent == false)
 		{
-			PlayerUtils.Message(PlayerSettings.MESSAGE_GOD_APPLIED.string(), sender);
+			if (sender.equals(player) == false)
+				PlayerUtils.Message(PlayerSettings.MESSAGE_GOD_APPLIED.string().replace("<Player>", player.getName()), sender);
 			PlayerUtils.Message(PlayerSettings.MESSAGE_GOT_GOD.string(), player);
 		}
 	}

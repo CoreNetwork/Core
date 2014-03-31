@@ -85,7 +85,8 @@ public class VanishCommand extends BasePlayerCommand  {
 		
 		if (silent == false)
 		{
-			PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_VANISHED.string().replace("<Player>", player.getName()), sender);
+			if (sender.equals(player) == false)
+				PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_VANISHED.string().replace("<Player>", player.getName()), sender);
 			PlayerUtils.Message(PlayerSettings.MESSAGE_VANISHED.string(), player);
 		}
 		

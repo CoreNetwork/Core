@@ -83,7 +83,8 @@ public class UnvanishCommand extends BasePlayerCommand {
 
 		if (silent == false)
 		{
-			PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_UNVANISHED.string().replace("<Player>", player.getName()), sender);
+			if (sender.equals(player) == false)
+				PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_UNVANISHED.string().replace("<Player>", player.getName()), sender);
 			PlayerUtils.Message(PlayerSettings.MESSAGE_UNVANISHED.string(), player);
 		}
 		
