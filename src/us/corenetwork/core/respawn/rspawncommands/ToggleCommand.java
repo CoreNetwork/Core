@@ -14,7 +14,7 @@ public class ToggleCommand extends BaseRSpawnCommand {
 	public ToggleCommand()
 	{
 		needPlayer = true;
-		permission = "toggle";
+		permission = "togglespawn";
 	}
 
 	public void run(final CommandSender sender, String[] args) {
