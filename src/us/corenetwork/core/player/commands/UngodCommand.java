@@ -91,7 +91,6 @@ public class UngodCommand extends BasePlayerCommand {
 		
 		if(silent == false)
 		{
-			PlayerUtils.Message(PlayerSettings.MESSAGE_GOD_REVOKED.string(), sender);
 			PlayerUtils.Message(PlayerSettings.MESSAGE_LOST_GOD.string(), player);
 		}
 	}
