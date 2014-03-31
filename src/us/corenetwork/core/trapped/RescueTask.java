@@ -1,9 +1,6 @@
 package us.corenetwork.core.trapped;
 
 import java.util.Collection;
-import java.util.List;
-
-import net.minecraft.server.v1_7_R1.Tuple;
 
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -21,6 +18,7 @@ import org.bukkit.entity.Slime;
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.GriefPreventionHandler;
+import us.corenetwork.core.LocationTuple;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 
@@ -28,7 +26,7 @@ public class RescueTask implements Runnable {
 
 	private Player player;
 	private Location originalLocation;
-	private Tuple claimLocation;
+	private LocationTuple claimLocation;
 	
 	private Material safeMaterial;
 	private int maxX;
@@ -42,7 +40,7 @@ public class RescueTask implements Runnable {
 	private int claimLowerZ;
 	private int claimGreaterZ;
 	
-	public RescueTask(Player player, Location originalLocation, Tuple claimLocation)
+	public RescueTask(Player player, Location originalLocation, LocationTuple claimLocation)
 	{
 		this.player = player;
 		this.originalLocation = originalLocation;

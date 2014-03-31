@@ -1,12 +1,11 @@
 package us.corenetwork.core.trapped.commands;
 
-import net.minecraft.server.v1_7_R1.Tuple;
-
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.GriefPreventionHandler;
+import us.corenetwork.core.LocationTuple;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.trapped.RescueTask;
 import us.corenetwork.core.trapped.TrappedPlayers;
@@ -25,7 +24,7 @@ public class TrappedCommand extends BaseTrappedCommand {
 		public void run(final CommandSender sender, String[] args) 
 		{
 			Player player = (sender instanceof Player) ? (Player) sender : null;
-			Tuple claimLocationTuple = GriefPreventionHandler.getExactClaimAt(player.getLocation());
+			LocationTuple claimLocationTuple = GriefPreventionHandler.getExactClaimAt(player.getLocation());
 
 			if (TrappedPlayers.trappedPlayers.contains(player))
 			{
