@@ -189,6 +189,8 @@ public class EffectCommand extends BasePlayerCommand {
 		
 		applyEffect(target, effect, level, duration, ambient);
 		
+		effectString = effectString.substring(0, 1).toUpperCase() + effectString.substring(1);
+		
 		if(silent == false)
 		{
 			PlayerUtils.Message(PlayerSettings.MESSAGE_GOT_EFFECT.string().replace("<Effect>", effectString).replace("<Level>", ""+(level+1)), target);

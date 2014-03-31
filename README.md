@@ -91,10 +91,10 @@ Warps:
 
 Command | Permission | Description
 --- | --- | ---
-`/warp help`     | `core.teleport.bring` | List all possible `/warp` commands.
-`/warp set <name>`     | `core.teleport.swap` | Create/edit warp.
-`/warp delete <name>`     | `core.teleport.swap` | Delete warp.
-`/warp warp <name>`     | `core.tp` | Move caller to warp.
+`/warp help`     | `core.teleport.warp.help` | List all possible `/warp` commands.
+`/warp set <name>`     | `core.teleport.warp.set` | Create/edit warp.
+`/warp delete <name>`     | `core.teleport.warp.delete` | Delete warp.
+`/warp warp <name>`     | `core.teleport.warp.warp` | Move caller to warp.
 
 ##Trapped
 
