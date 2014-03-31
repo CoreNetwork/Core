@@ -191,7 +191,6 @@ public class EffectCommand extends BasePlayerCommand {
 		
 		if(silent == false)
 		{
-			PlayerUtils.Message(PlayerSettings.MESSAGE_EFFECT_APPLIED.string(), sender);
 			PlayerUtils.Message(PlayerSettings.MESSAGE_GOT_EFFECT.string().replace("<Effect>", effectString).replace("<Level>", ""+(level+1)), target);
 		}
 		

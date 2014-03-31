@@ -36,7 +36,6 @@ public enum PlayerSettings {
 	MESSAGE_PLAYER_VANISHED("Message.PlayerVanished", "<Player> vanished."),
 	MESSAGE_PLAYER_UNVANISHED("Message.PlayerUnvanished", "<Player> unvanished."),
 	
-	MESSAGE_EFFECT_APPLIED("Message.EffectApplied", "Effect applied."),
 	MESSAGE_GOT_EFFECT("Message.GotEffect", "You have been granted <Effect> level <Level> effect."),
 	
 	MESSAGE_GOD_APPLIED("Message.GodApplied", "God mode applied."),
