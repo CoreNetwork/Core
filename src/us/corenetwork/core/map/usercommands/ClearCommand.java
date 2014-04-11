@@ -1,9 +1,9 @@
-package us.corenetwork.core.checkpoints.usercommands;
+package us.corenetwork.core.map.usercommands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.checkpoints.CheckpointsModule;
+import us.corenetwork.core.map.MapModule;
 
 public class ClearCommand extends BaseCheckpointUserCommand {	
 	public ClearCommand()
@@ -15,7 +15,7 @@ public class ClearCommand extends BaseCheckpointUserCommand {
 
 	public void run(final CommandSender sender, String[] args) {		
 		final Player player = (Player) sender;
-		CheckpointsModule.savedCheckpoints.remove(player.getName());
+		MapModule.savedCheckpoints.remove(player.getName());
 		return;
 	}	
 }

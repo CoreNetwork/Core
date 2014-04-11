@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints.admincommands;
+package us.corenetwork.core.map.admincommands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.checkpoints.CheckpointsModule;
-import us.corenetwork.core.checkpoints.CheckpointsSettings;
+import us.corenetwork.core.map.MapModule;
+import us.corenetwork.core.map.CheckpointsSettings;
 
 public class CreateCommand extends BaseCheckpointCommand {	
 	public CreateCommand()
@@ -30,7 +30,7 @@ public class CreateCommand extends BaseCheckpointCommand {
 		String checkpointList = args[0];
 		String node = "checkpoints."  + checkpointList.toLowerCase();
 		
-		List<String> stringList = CheckpointsModule.instance.config.getStringList(node);
+		List<String> stringList = MapModule.instance.config.getStringList(node);
 		if (stringList == null)
 			stringList = new ArrayList<String>();
 		
@@ -39,13 +39,13 @@ public class CreateCommand extends BaseCheckpointCommand {
 		Player player = (Player) sender;
 		
 		stringList.add(Util.serializeLocation(player.getLocation()));
-		CheckpointsModule.instance.config.set(node, stringList);
+		MapModule.instance.config.set(node, stringList);
 		
 		String message = CheckpointsSettings.MESSAGE_CHECKPOINT_CREATED.string();
 		message = message.replace("<Position>", Integer.toString(position));
 		message = message.replace("<List>", checkpointList);
 		
-		CheckpointsModule.instance.saveConfig();
+		MapModule.instance.saveConfig();
 		
 		PlayerUtils.Message(message, sender);
 		return;

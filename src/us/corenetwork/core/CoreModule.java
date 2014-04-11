@@ -11,7 +11,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import us.corenetwork.core.calculator.CalculatorModule;
-import us.corenetwork.core.checkpoints.CheckpointsModule;
+import us.corenetwork.core.map.MapModule;
 import us.corenetwork.core.player.PlayerModule;
 import us.corenetwork.core.respawn.RespawnModule;
 import us.corenetwork.core.scoreboard.ScoreboardModule;
@@ -194,7 +194,7 @@ public abstract class CoreModule implements CommandExecutor {
 		CoreModule module;
 
 		//Checkpoints
-		module = new CheckpointsModule();
+		module = new MapModule();
 		if (module.loadModuleInternal())
 		{
 			module.active = true;

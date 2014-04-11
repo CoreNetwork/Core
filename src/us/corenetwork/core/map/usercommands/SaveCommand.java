@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints.usercommands;
+package us.corenetwork.core.map.usercommands;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.checkpoints.CheckpointsModule;
-import us.corenetwork.core.checkpoints.CheckpointsSettings;
-import us.corenetwork.core.checkpoints.SavedCheckpoint;
+import us.corenetwork.core.map.MapModule;
+import us.corenetwork.core.map.CheckpointsSettings;
+import us.corenetwork.core.map.SavedCheckpoint;
 
 public class SaveCommand extends BaseCheckpointUserCommand {	
 	public SaveCommand()
@@ -39,7 +39,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 		
 		String node = "checkpoints."  + checkpointList.toLowerCase();
 		
-		List<String> stringList = CheckpointsModule.instance.config.getStringList(node);
+		List<String> stringList = MapModule.instance.config.getStringList(node);
 		if (stringList == null || stringList.size() == 0)
 		{
 			String message = CheckpointsSettings.MESSAGE_LIST_NOT_EXIST.string();
@@ -61,7 +61,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 		}
 
 		
-		SavedCheckpoint lastCheckpoint = CheckpointsModule.savedCheckpoints.get(player.getName());
+		SavedCheckpoint lastCheckpoint = MapModule.savedCheckpoints.get(player.getName());
 		if (lastCheckpoint != null && lastCheckpoint.list.equals(checkpointList) && lastCheckpoint.position > position)
 		{
 			String message = CheckpointsSettings.MESSAGE_CHECKPOINT_NO_BACKWARDS.string();
@@ -78,7 +78,7 @@ public class SaveCommand extends BaseCheckpointUserCommand {
 		lastCheckpoint.position = position;
 		lastCheckpoint.location = Util.unserializeLocation(stringList.get(position - 1));
 		
-		CheckpointsModule.savedCheckpoints.put(player.getName(), lastCheckpoint);
+		MapModule.savedCheckpoints.put(player.getName(), lastCheckpoint);
 		
 		
 		String message = CheckpointsSettings.MESSAGE_CHECKPOINT_SAVED.string();

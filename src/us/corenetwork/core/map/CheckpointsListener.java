@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints;
+package us.corenetwork.core.map;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +17,7 @@ public class CheckpointsListener implements Listener {
 		if ((event.getFrom().getBlockX() != event.getTo().getBlockX() || 
 				event.getFrom().getBlockY() != event.getTo().getBlockY() || 
 				event.getFrom().getBlockZ() != event.getTo().getBlockZ()) &&
-				CheckpointsModule.scheduledTeleports.containsKey(event.getPlayer().getName()) )
+				MapModule.scheduledTeleports.containsKey(event.getPlayer().getName()) )
 		{
 			cancelTeleport(event.getPlayer());
 		}
@@ -26,7 +26,7 @@ public class CheckpointsListener implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	public void onEntityDamage(EntityDamageEvent event)
 	{
-		if (event.getEntity() instanceof Player && CheckpointsModule.scheduledTeleports.containsKey(((Player) event.getEntity()).getName()))
+		if (event.getEntity() instanceof Player && MapModule.scheduledTeleports.containsKey(((Player) event.getEntity()).getName()))
 		{
 			cancelTeleport((Player) event.getEntity());
 			return;
@@ -36,7 +36,7 @@ public class CheckpointsListener implements Listener {
 		{
 			EntityDamageByEntityEvent newEvent = (EntityDamageByEntityEvent) event;
 			
-			if (newEvent.getDamager() instanceof Player && CheckpointsModule.scheduledTeleports.containsKey(((Player) newEvent.getDamager()).getName()))
+			if (newEvent.getDamager() instanceof Player && MapModule.scheduledTeleports.containsKey(((Player) newEvent.getDamager()).getName()))
 			{
 				cancelTeleport((Player) newEvent.getDamager());
 				return;
@@ -45,7 +45,7 @@ public class CheckpointsListener implements Listener {
 	}
 	private static void cancelTeleport(Player player)
 	{
-		CheckpointsModule.scheduledTeleports.remove(player.getName());
+		MapModule.scheduledTeleports.remove(player.getName());
 
 		String message = CheckpointsSettings.MESSAGE_TELEPORT_CANCELLED.string();
 		message = message.replace("<Player>", player.getName());

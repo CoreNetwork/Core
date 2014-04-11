@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints.usercommands;
+package us.corenetwork.core.map.usercommands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -6,10 +6,10 @@ import org.bukkit.entity.Player;
 
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.checkpoints.CheckpointsModule;
-import us.corenetwork.core.checkpoints.CheckpointsSettings;
-import us.corenetwork.core.checkpoints.SavedCheckpoint;
-import us.corenetwork.core.checkpoints.ScheduledTeleport;
+import us.corenetwork.core.map.MapModule;
+import us.corenetwork.core.map.CheckpointsSettings;
+import us.corenetwork.core.map.SavedCheckpoint;
+import us.corenetwork.core.map.ScheduledTeleport;
 
 public class TeleCommand extends BaseCheckpointUserCommand {	
 	public TeleCommand()
@@ -21,7 +21,7 @@ public class TeleCommand extends BaseCheckpointUserCommand {
 
 	public void run(final CommandSender sender, String[] args) {		
 		final Player player = (Player) sender;
-		SavedCheckpoint lastCheckpoint = CheckpointsModule.savedCheckpoints.get(player.getName());
+		SavedCheckpoint lastCheckpoint = MapModule.savedCheckpoints.get(player.getName());
 		if (lastCheckpoint == null)
 		{
 			String message = CheckpointsSettings.MESSAGE_NOTHING_SAVED.string();
@@ -46,7 +46,7 @@ public class TeleCommand extends BaseCheckpointUserCommand {
 		Bukkit.getScheduler().runTaskLater(CorePlugin.instance, new Runnable() {
 			@Override
 			public void run() {
-				CheckpointsModule.scheduledTeleports.put(player.getName(), schedule);
+				MapModule.scheduledTeleports.put(player.getName(), schedule);
 			}
 		}, 20);
 		

@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints.admincommands;
+package us.corenetwork.core.map.admincommands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,8 +10,8 @@ import org.bukkit.entity.Player;
 
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.checkpoints.CheckpointsModule;
-import us.corenetwork.core.checkpoints.CheckpointsSettings;
+import us.corenetwork.core.map.MapModule;
+import us.corenetwork.core.map.CheckpointsSettings;
 
 public class CheckpointHelpCommand extends BaseCheckpointCommand {
 	
@@ -28,7 +28,7 @@ public class CheckpointHelpCommand extends BaseCheckpointCommand {
 		if (args.length > 0 && Util.isInteger(args[0])) page = Integer.parseInt(args[0]);
 		List<String> komandes = new ArrayList<String>();
 
-		for (Entry<String, BaseCheckpointCommand> e : CheckpointsModule.admincommands.entrySet())
+		for (Entry<String, BaseCheckpointCommand> e : MapModule.admincommands.entrySet())
 		{
 			komandes.add(CheckpointsSettings.getCommandDescription(e.getKey(),  e.getValue().desc));
 		}  		

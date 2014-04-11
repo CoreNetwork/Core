@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints.admincommands;
+package us.corenetwork.core.map.admincommands;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.checkpoints.CheckpointsModule;
-import us.corenetwork.core.checkpoints.CheckpointsSettings;
+import us.corenetwork.core.map.MapModule;
+import us.corenetwork.core.map.CheckpointsSettings;
 
 public class MoveCommand extends BaseCheckpointCommand {	
 	public MoveCommand()
@@ -31,7 +31,7 @@ public class MoveCommand extends BaseCheckpointCommand {
 		
 		String node = "checkpoints."  + checkpointList.toLowerCase();
 		
-		List<String> stringList = CheckpointsModule.instance.config.getStringList(node);
+		List<String> stringList = MapModule.instance.config.getStringList(node);
 		if (stringList == null || stringList.size() == 0)
 		{
 			String message = CheckpointsSettings.MESSAGE_LIST_NOT_EXIST.string();
@@ -57,13 +57,13 @@ public class MoveCommand extends BaseCheckpointCommand {
 		Player player = (Player) sender;
 		
 		stringList.set(position - 1, Util.serializeLocation(player.getLocation()));
-		CheckpointsModule.instance.config.set(node, stringList);
+		MapModule.instance.config.set(node, stringList);
 		
 		String message = CheckpointsSettings.MESSAGE_CHECKPOINT_MOVED.string();
 		message = message.replace("<Position>", Integer.toString(position));
 		message = message.replace("<List>", checkpointList);
 		
-		CheckpointsModule.instance.saveConfig();
+		MapModule.instance.saveConfig();
 		
 		PlayerUtils.Message(message, sender);
 		return;

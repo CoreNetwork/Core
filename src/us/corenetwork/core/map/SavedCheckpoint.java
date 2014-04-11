@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints;
+package us.corenetwork.core.map;
 
 import org.bukkit.Location;
 
