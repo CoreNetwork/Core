@@ -61,7 +61,7 @@ public class EffectCommand extends BasePlayerCommand {
 		
 		int level = 0;
 		int duration = 20*60;
-		boolean ambient = false;
+		boolean ambient = true;
 		boolean silent = false;
 		
 		int levelCount = 0;
