@@ -8,7 +8,7 @@ Essential commands and universal modules
 
 
 - [Calculator] (#Calculator)
-- [Checkpoints] (#Checkpoints)
+- [Map Making Features] (#Map)
 - [Core] (#Core)
 - [Player] (#Player)
 - [Respawn] (#Respawn)
@@ -41,9 +41,9 @@ Usage:
 
 Command | Permission | Description
 --- | --- | ---
-`/checkpoint save <player_name> <list> <ch_number>`     | `core.checkpoints.checkpoint.save` | Save player at specified checkpoint.
-`/checkpoint clear <player_name>`     | `core.checkpoints.checkpoint.clear` | Clear any saved checkpoint for the player. 
-`/checkpoint`     | `core.checkpoints.checkpoint.tele` | Return calling player to his last saved checkpoint.
+`/checkpoint save <player_name> <list> <ch_number>`     | `core.map.checkpoint.save` | Save player at specified checkpoint.
+`/checkpoint clear <player_name>`     | `core.map.checkpoint.clear` | Clear any saved checkpoint for the player. 
+`/checkpoint`     | `core.map.checkpoint.tele` | Return calling player to his last saved checkpoint.
 
 
 ##Core
@@ -94,7 +94,7 @@ Command | Permission | Description
 `/warp help`     | `core.teleport.warp.help` | List all possible `/warp` commands.
 `/warp set <name>`     | `core.teleport.warp.set` | Create/edit warp.
 `/warp delete <name>`     | `core.teleport.warp.delete` | Delete warp.
-`/warp warp <name>`     | `core.teleport.warp.warp` | Move caller to warp.
+`/warp [warp] <name>`     | `core.teleport.warp.warp` | Move caller to warp.
 
 ##Trapped
 
