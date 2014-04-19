@@ -84,8 +84,6 @@ public class TeleportModule extends CoreModule {
 
 		Bukkit.getServer().getPluginManager().registerEvents(new TeleportListener(), CorePlugin.instance);
 		
-		loadStorageYaml();
-		
 		return true;
 	}
 
@@ -93,5 +91,11 @@ public class TeleportModule extends CoreModule {
 	protected void unloadModule() {
 	}
 
-
+	@Override
+	public void loadConfig()
+	{
+		super.loadConfig();
+		loadStorageYaml();
+	}
+	
 }
