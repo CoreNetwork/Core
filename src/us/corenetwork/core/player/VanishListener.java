@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.vehicle.VehicleEntityCollisionEvent;
@@ -40,6 +41,16 @@ public class VanishListener implements Listener {
 		}
 	}
 	
+	//Due to some weird bug in #36 disallow drinking milk while vanished
+	@EventHandler(ignoreCancelled = true)
+	public void onPlayerItemConsumeEvent(PlayerItemConsumeEvent event)
+	{
+		if( PlayerModule.vanishManager.isVanished(event.getPlayer()) && event.getItem().getType().equals(Material.MILK_BUCKET))
+		{
+			PlayerUtils.Message(PlayerSettings.MESSAGE_DRINK_MILK_VANISHED.string(), event.getPlayer());
+			event.setCancelled(true);
+		}
+	}
 
 	@EventHandler(ignoreCancelled = true)
 	public void onEntityTarget(EntityTargetEvent event) 
