@@ -60,7 +60,13 @@ public class UnvanishCommand extends BasePlayerCommand {
 						return;
 					}
 				}
+				else
+				{
+					PlayerUtils.Message("Cannot find player called " + ChatColor.stripColor(args[0]), sender);
+					return;
+				}
 			}
+			
 		}
 		else if (args.length == 2)
 		{
