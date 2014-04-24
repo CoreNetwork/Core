@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -17,6 +18,7 @@ import us.corenetwork.core.player.commands.GodCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
 import us.corenetwork.core.player.commands.UnvanishCommand;
 import us.corenetwork.core.player.commands.VanishCommand;
+import us.corenetwork.core.teleport.commands.tp.TpCommand;
 
 public class PlayerModule extends CoreModule {
 
@@ -50,7 +52,14 @@ public class PlayerModule extends CoreModule {
 		}
 		if (command.getName().equals("effect"))
 		{
-			return commands.get("effect").execute(sender, args, false);
+			if (sender instanceof BlockCommandSender)
+			{				
+				return new org.bukkit.command.defaults.EffectCommand().execute(sender, "effect", args);
+			}
+			else
+			{
+				return CorePlugin.coreCommands.get("effect").execute(sender, args, false);
+			}
 		}
 		if (command.getName().equals("god"))
 		{
@@ -94,6 +103,8 @@ public class PlayerModule extends CoreModule {
 		commands.put("ungod", new UngodCommand());
 		commands.put("gamemode", new GamemodeCommand());
 
+		CorePlugin.coreCommands.put("effect", new EffectCommand());
+		
 		vanishManager = new VanishManager();
 		
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), CorePlugin.instance);

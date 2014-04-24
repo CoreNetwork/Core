@@ -61,7 +61,7 @@ public class EffectCommand extends BasePlayerCommand {
 		
 		int level = 0;
 		int duration = 20*60;
-		boolean ambient = false;
+		boolean ambient = true;
 		boolean silent = false;
 		
 		int levelCount = 0;
@@ -161,9 +161,9 @@ public class EffectCommand extends BasePlayerCommand {
 					duration = getDuration(arg);
 					durationCount++;
 				}
-				else if (isAmbient(arg))
+				else if (isParticles(arg))
 				{
-					ambient = true;
+					ambient = false;
 					ambientCount++;
 				}
 				else if (isSilent(arg))
@@ -280,9 +280,9 @@ public class EffectCommand extends BasePlayerCommand {
 		return duration;
 	}
 	
-	private boolean isAmbient(String arg)
+	private boolean isParticles(String arg)
 	{
-		return arg.toLowerCase().equals("ambient");
+		return arg.toLowerCase().equals("particles");
 	}
 	
 	

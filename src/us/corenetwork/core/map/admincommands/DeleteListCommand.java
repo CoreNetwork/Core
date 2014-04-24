@@ -1,12 +1,12 @@
-package us.corenetwork.core.checkpoints.admincommands;
+package us.corenetwork.core.map.admincommands;
 
 import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.checkpoints.CheckpointsModule;
-import us.corenetwork.core.checkpoints.CheckpointsSettings;
+import us.corenetwork.core.map.MapModule;
+import us.corenetwork.core.map.CheckpointsSettings;
 
 public class DeleteListCommand extends BaseCheckpointCommand {	
 	public DeleteListCommand()
@@ -27,7 +27,7 @@ public class DeleteListCommand extends BaseCheckpointCommand {
 		String checkpointList = args[0];
 		String node = "checkpoints."  + checkpointList.toLowerCase();
 		
-		List<String> stringList = CheckpointsModule.instance.config.getStringList(node);
+		List<String> stringList = MapModule.instance.config.getStringList(node);
 		if (stringList == null || stringList.size() == 0)
 		{
 			String message = CheckpointsSettings.MESSAGE_LIST_NOT_EXIST.string();
@@ -37,12 +37,12 @@ public class DeleteListCommand extends BaseCheckpointCommand {
 			return;
 		}
 		
-		CheckpointsModule.instance.config.set(node, null);
+		MapModule.instance.config.set(node, null);
 		
 		String message = CheckpointsSettings.MESSAGE_LIST_DELETED.string();
 		message = message.replace("<List>", checkpointList);
 		
-		CheckpointsModule.instance.saveConfig();
+		MapModule.instance.saveConfig();
 		
 		PlayerUtils.Message(message, sender);
 		return;

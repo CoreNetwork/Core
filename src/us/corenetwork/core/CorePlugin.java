@@ -21,7 +21,7 @@ public class CorePlugin extends JavaPlugin {
 	
 	public static Random random;
 	
-	public static HashMap<String, BaseCoreCommand> coreCommands = new HashMap<String, BaseCoreCommand>();
+	public static HashMap<String, AbstractCoreCommand> coreCommands = new HashMap<String, AbstractCoreCommand>();
 	
 	@Override
 	public void onEnable() {
@@ -67,7 +67,7 @@ public class CorePlugin extends JavaPlugin {
 		if (args.length < 1 || Util.isInteger(args[0]))
 			return coreCommands.get("help").execute(sender, args, true);
 
-		BaseCoreCommand cmd = coreCommands.get(args[0]);
+		AbstractCoreCommand cmd = coreCommands.get(args[0]);
 		if (cmd != null)
 			return cmd.execute(sender, args, true);
 		else

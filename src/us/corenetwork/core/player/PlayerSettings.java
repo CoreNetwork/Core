@@ -28,7 +28,7 @@ public enum PlayerSettings {
 	MESSAGE_SELF_CLEARED("Message.InventorySelfCleared", "Inventory cleared."),
 	MESSAGE_PLAYER_CLEARED("Message.InventoryPlayerCleared", "<Player>'s inventory cleared."),
 	
-	
+	MESSAGE_DRINK_MILK_VANISHED("Message.DrinkMilkWhileVanished", "You can't drink milk while vanished."),
 	MESSAGE_OPEN_CHEST_VANISHED("Message.OpenChestWhileVanished", "You are opening a chest while vanished."),
 	MESSAGE_VANISHED("Message.Vanished", "You have been vanished."),
 	MESSAGE_UNVANISHED("Message.Unvanished", "You have been unvanished."),

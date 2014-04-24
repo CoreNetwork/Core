@@ -1,11 +1,11 @@
-package us.corenetwork.core.checkpoints.admincommands;
+package us.corenetwork.core.map.admincommands;
 
 import us.corenetwork.core.AbstractCoreCommand;
 
 public abstract class BaseCheckpointCommand extends AbstractCoreCommand {
 	
 	public BaseCheckpointCommand() {
-		permissionNode = "core.checkpoints.chp.";
+		permissionNode = "core.map.chp.";
 	}
 
 }

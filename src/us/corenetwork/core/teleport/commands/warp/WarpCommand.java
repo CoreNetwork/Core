@@ -71,7 +71,7 @@ public class WarpCommand extends BaseWarpCommand {
 	{
 		ArrayList<String> commandsList = (ArrayList<String>) TeleportModule.instance.storageConfig.get("Warps." + name + ".RunCommands");
 		if (commandsList == null)
-			return null;
+			return new ArrayList<String>();
 		
 		return commandsList;
 	}

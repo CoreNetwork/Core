@@ -66,7 +66,7 @@ public class GriefPreventionHandler {
 			if (!claim.getOwnerName().equals(player))
 				continue;
 			
-			if (claim.getClaimWorldName() != worldName)
+			if (claim.getClaimWorldName().equals(worldName) == false)
 				continue;
 			
 			if (biggestSize >= claim.getArea())

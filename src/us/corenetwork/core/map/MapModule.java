@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints;
+package us.corenetwork.core.map;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,20 +8,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.CoreModule;
-import us.corenetwork.core.checkpoints.admincommands.BaseCheckpointCommand;
-import us.corenetwork.core.checkpoints.admincommands.CheckpointHelpCommand;
-import us.corenetwork.core.checkpoints.admincommands.CreateCommand;
-import us.corenetwork.core.checkpoints.admincommands.DeleteListCommand;
-import us.corenetwork.core.checkpoints.admincommands.MoveCommand;
-import us.corenetwork.core.checkpoints.usercommands.BaseCheckpointUserCommand;
-import us.corenetwork.core.checkpoints.usercommands.ClearCommand;
-import us.corenetwork.core.checkpoints.usercommands.SaveCommand;
-import us.corenetwork.core.checkpoints.usercommands.TeleCommand;
+import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.map.admincommands.BaseCheckpointCommand;
+import us.corenetwork.core.map.admincommands.CheckpointHelpCommand;
+import us.corenetwork.core.map.admincommands.CreateCommand;
+import us.corenetwork.core.map.admincommands.DeleteListCommand;
+import us.corenetwork.core.map.admincommands.MoveCommand;
+import us.corenetwork.core.map.usercommands.BaseCheckpointUserCommand;
+import us.corenetwork.core.map.usercommands.ClearCommand;
+import us.corenetwork.core.map.usercommands.SaveCommand;
+import us.corenetwork.core.map.usercommands.TeleCommand;
 
-public class CheckpointsModule extends CoreModule {
-	public static CheckpointsModule instance;
+public class MapModule extends CoreModule {
+	public static MapModule instance;
 	
 	public static HashMap<String, BaseCheckpointCommand> admincommands;
 	public static HashMap<String, BaseCheckpointUserCommand> usercommands;
@@ -29,8 +29,8 @@ public class CheckpointsModule extends CoreModule {
 	public static HashMap<String, SavedCheckpoint> savedCheckpoints;
 	public static HashMap<String, ScheduledTeleport> scheduledTeleports;
 
-	public CheckpointsModule() {
-		super("Checkpoints", new String[] {"chp", "checkpoint"}, "checkpoints");
+	public MapModule() {
+		super("Map", new String[] {"chp", "checkpoint"}, "map");
 		
 		instance = this;
 	}
@@ -90,7 +90,9 @@ public class CheckpointsModule extends CoreModule {
 		scheduledTeleports = new HashMap<String, ScheduledTeleport>();
 		
 		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new Teleporter(), 20, 20);
-		
+
+		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new TimeTask(), 20, 400);
+
 		Bukkit.getServer().getPluginManager().registerEvents(new CheckpointsListener(), CorePlugin.instance);
 		
 		return true;

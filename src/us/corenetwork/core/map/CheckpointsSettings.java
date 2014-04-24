@@ -1,4 +1,4 @@
-package us.corenetwork.core.checkpoints;
+package us.corenetwork.core.map;
 
 
 public enum CheckpointsSettings {
@@ -27,24 +27,24 @@ public enum CheckpointsSettings {
 
 	public Integer integer()
 	{
-		return (Integer) CheckpointsModule.instance.config.get(string, def);
+		return (Integer) MapModule.instance.config.get(string, def);
 	}
 	
 	public String string()
 	{
-		return (String) CheckpointsModule.instance.config.get(string, def);
+		return (String) MapModule.instance.config.get(string, def);
 	}
 	
 	public static String getCommandDescription(String cmd, String def)
 	{
 		String path = "CommandDescriptions." + cmd;
 		
-		Object descO = CheckpointsModule.instance.config.get(path);
+		Object descO = MapModule.instance.config.get(path);
 		if (descO == null)
 		{
-			CheckpointsModule.instance.config.set(path, "&a/chp " + cmd + " &8-&f " + def);
-			CheckpointsModule.instance.saveConfig();
-			descO = CheckpointsModule.instance.config.get(path);
+			MapModule.instance.config.set(path, "&a/chp " + cmd + " &8-&f " + def);
+			MapModule.instance.saveConfig();
+			descO = MapModule.instance.config.get(path);
 		}
 		
 		return (String) descO;

@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Settings;
@@ -28,7 +29,7 @@ public class CoreHelpCommand extends BaseCoreCommand {
 		if (args.length > 0 && Util.isInteger(args[0])) page = Integer.parseInt(args[0]);
 		List<String> komandes = new ArrayList<String>();
 
-		for (Entry<String, BaseCoreCommand> e : CorePlugin.coreCommands.entrySet())
+		for (Entry<String, AbstractCoreCommand> e : CorePlugin.coreCommands.entrySet())
 		{
 			komandes.add(Settings.getCommandDescription(e.getKey(), "core", e.getValue().desc));
 		}  		
