@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -26,12 +25,11 @@ public class PlayerData {
 	
 	public void setStat(String name, Integer value)
 	{
-		OfflinePlayer player = Bukkit.getOfflinePlayer(name);
 		if (value == null)
-			playerStatsScoreboard.resetScores(player);
+			playerStatsScoreboard.resetScores(name);
 		else
 		{
-			Score score = playerStatsObjective.getScore(Bukkit.getOfflinePlayer(name));
+			Score score = playerStatsObjective.getScore(name);
 			if (value == 0)
 				score.setScore(1);
 			score.setScore(value);
