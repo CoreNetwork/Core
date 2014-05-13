@@ -14,7 +14,7 @@ import us.corenetwork.core.scoreboard.CoreScoreboardManager;
 public class VanishManager {
 
 	private final String VANISH_TEAM = "vanish";
-	private final String MOD_GROUP = "Guardian";
+	private final String MOD_GROUP = "Overseer";
 	
 	private ArrayList<Player> vanishedPlayers;
 	private Scoreboard scoreboard;
@@ -45,6 +45,12 @@ public class VanishManager {
 		CoreScoreboardManager.registerScoreboard(player, 3, scoreboard);
 	}
 	
+	public void removeFromSeeAllGroup(Player player)
+	{
+		scoreboard.getTeam(VANISH_TEAM).removePlayer(player);
+		CoreScoreboardManager.unregisterScoreboard(player, 3);
+	}
+	
 	public boolean canSeeAll(Player player)
 	{
 		return CorePlugin.permission.playerInGroup(player, MOD_GROUP);
@@ -69,7 +75,7 @@ public class VanishManager {
 				onlinePlayer.hidePlayer(player);
 
 		}
-		
+		addToSeeAllGroup(player);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 10000000, 0));		
 	}
 	
@@ -86,12 +92,7 @@ public class VanishManager {
 			if (CorePlugin.permission.playerInGroup(onlinePlayer, MOD_GROUP) == false)
 				onlinePlayer.showPlayer(player);
 		}
-
+		removeFromSeeAllGroup(player);
 		player.removePotionEffect(PotionEffectType.INVISIBILITY);
 	}
-
-
-	
-		
-	
 }

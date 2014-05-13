@@ -24,14 +24,8 @@ public class VanishListener implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event) 
 	{
 		Player player = event.getPlayer();
+		Player[] onlinePlayers = Bukkit.getServer().getOnlinePlayers();
 		
-		if (PlayerModule.vanishManager.canSeeAll(player))
-		{
-			PlayerModule.vanishManager.addToSeeAllGroup(player);
-			return;
-		}
-		
-		Player[] onlinePlayers = Bukkit.getServer().getOnlinePlayers();		
 		for(Player onlinePlayer : onlinePlayers) 
 		{
 			if(PlayerModule.vanishManager.isVanished(onlinePlayer)) 
