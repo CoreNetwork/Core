@@ -1,6 +1,7 @@
 package us.corenetwork.core.player;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -16,12 +17,12 @@ public class VanishManager {
 	private final String VANISH_TEAM = "vanish";
 	private final String MOD_GROUP = "Overseer";
 	
-	private ArrayList<Player> vanishedPlayers;
+	private Set<Player> vanishedPlayers;
 	private Scoreboard scoreboard;
 	
 	public VanishManager()
 	{
-		vanishedPlayers = new ArrayList<Player>();
+		vanishedPlayers = new HashSet<Player>();
 		initializeScoreboard();	
 	}
 	
