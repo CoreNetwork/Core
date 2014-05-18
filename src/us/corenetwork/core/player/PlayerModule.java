@@ -1,7 +1,8 @@
 package us.corenetwork.core.player;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.BlockCommandSender;
@@ -18,13 +19,12 @@ import us.corenetwork.core.player.commands.GodCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
 import us.corenetwork.core.player.commands.UnvanishCommand;
 import us.corenetwork.core.player.commands.VanishCommand;
-import us.corenetwork.core.teleport.commands.tp.TpCommand;
 
 public class PlayerModule extends CoreModule {
 
 	public static PlayerModule instance;
 	public static VanishManager vanishManager;
-	public static ArrayList<String> gods = new ArrayList<String>();
+	public static Set<String> gods = new HashSet<String>();
 	
 	public static HashMap<String, BasePlayerCommand> commands;
 	
