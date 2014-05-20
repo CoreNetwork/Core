@@ -1,15 +1,21 @@
 package us.corenetwork.core.player;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
 
+import us.corenetwork.core.CLog;
 import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.Util;
 import us.corenetwork.core.scoreboard.CoreScoreboardManager;
 
 public class VanishManager {
@@ -95,5 +101,29 @@ public class VanishManager {
 		}
 		removeFromSeeAllGroup(player);
 		player.removePotionEffect(PotionEffectType.INVISIBILITY);
+	}
+	
+	public void notifyModerators(CommandSender sender, String message, Player... ignored)
+	{
+		boolean alreadySent = false;
+		List<Player> ignoredPlayers = Arrays.asList(ignored);
+		
+		
+		for (Player player : Bukkit.getOnlinePlayers())
+		{
+			if (sender == player)
+				alreadySent = true;
+			
+			if (ignoredPlayers.contains(player))
+				continue;
+			
+			if (Util.hasPermission(player, "core.player.notify"))
+				PlayerUtils.Message(message, player);
+		}
+		
+		if (!alreadySent && sender != null && sender instanceof Player)
+			PlayerUtils.Message(message, sender);
+
+			CLog.info(message);
 	}
 }

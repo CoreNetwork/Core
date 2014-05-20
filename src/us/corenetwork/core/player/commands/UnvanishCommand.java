@@ -6,6 +6,9 @@ import org.bukkit.entity.Player;
 
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.Setting;
+import us.corenetwork.core.Settings;
+import us.corenetwork.core.Util;
 import us.corenetwork.core.player.PlayerModule;
 import us.corenetwork.core.player.PlayerSettings;
 
@@ -89,9 +92,20 @@ public class UnvanishCommand extends BasePlayerCommand {
 
 		if (silent == false)
 		{
+			String message = PlayerSettings.MESSAGE_PLAYER_UNVANISHED.string().replace("<Player>", player.getName());
 			if (sender.equals(player) == false)
-				PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_UNVANISHED.string().replace("<Player>", player.getName()), sender);
+				PlayerUtils.Message(message, sender);
 			PlayerUtils.Message(PlayerSettings.MESSAGE_UNVANISHED.string(), player);
+			
+			PlayerModule.vanishManager.notifyModerators(sender, message, player);
+		}
+		else
+		{
+			if(!Util.hasPermission(sender, permissionNode + permission + ".silent"))
+			{
+				PlayerUtils.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
+				return;
+			}
 		}
 		
 		PlayerModule.vanishManager.unvanish(player);
