@@ -1,5 +1,6 @@
 package us.corenetwork.core.player.commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -22,34 +23,82 @@ public class ClearCommand extends BasePlayerCommand {
 
 
 	public void run(final CommandSender sender, String[] args) 
-	{
-		Player p = null;
-		if(args.length == 1)
+	{	
+		if (args.length > 2 || (args.length == 2 && !args[1].toLowerCase().equals("silent")))
 		{
-			p = CorePlugin.instance.getServer().getPlayerExact(args[0]);
-		}
-		else if (sender instanceof Player && args.length == 0)
-		{
-			p = (Player) sender;
-		}
-		else
-		{
-			PlayerUtils.Message("Usage: /clear <player>", sender);
+			PlayerUtils.Message("Usage : /clear [<player>] [silent]", sender);
 			return;
 		}
 		
-		if(p == null)
+		boolean silent = false;
+		Player player = null;
+		
+		if (args.length == 0)
 		{
-			PlayerUtils.Message("Player not found", sender);
-			return;
+			if (sender instanceof Player)
+			{
+				player = (Player) sender;
+			}
+			else
+			{
+				PlayerUtils.Message("You can only execute /clear [silent] as player.", sender);
+				return;
+			}
+		}
+		else if (args.length == 1)
+		{
+			player = CorePlugin.instance.getServer().getPlayerExact(args[0]);
+			if(player == null)
+			{
+				if (args[0].toLowerCase().equals("silent"))
+				{
+					silent = true;
+					if (sender instanceof Player)
+					{
+						player = (Player) sender;
+					}
+					else
+					{
+						PlayerUtils.Message("You can only execute /clear [silent] as player.", sender);
+						return;
+					}
+				}
+				else
+				{
+					PlayerUtils.Message("Cannot find player called " + ChatColor.stripColor(args[0]), sender);
+					return;
+				}
+			}
+		}
+		else if (args.length == 2)
+		{
+			player = CorePlugin.instance.getServer().getPlayerExact(args[0]);
+			if(player == null)
+			{
+				PlayerUtils.Message("Cannot find player called " + ChatColor.stripColor(args[0]), sender);
+				return;
+			}
+			if (args[1].toLowerCase().equals("silent"))
+			{
+				silent = true;
+			}
+			else
+			{
+				PlayerUtils.Message("Usage : /clear [<player>] [silent]", sender);
+				return;
+			}
 		}
 		
-		clearInventory(p);
-		if(args.length == 0)
-			PlayerUtils.Message(PlayerSettings.MESSAGE_SELF_CLEARED.string(), sender);
-		else
-			PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_CLEARED.string().replace("<Player>", p.getName()), sender);
 		
+		
+		if (silent == false)
+		{
+			if (sender instanceof Player && player.equals((Player)sender))
+				PlayerUtils.Message(PlayerSettings.MESSAGE_SELF_CLEARED.string(), sender);
+			else
+				PlayerUtils.Message(PlayerSettings.MESSAGE_PLAYER_CLEARED.string().replace("<Player>", player.getName()), sender);
+		}
+		clearInventory(player);
 	}
 	
 	private void clearInventory(Player p)
@@ -65,5 +114,7 @@ public class ClearCommand extends BasePlayerCommand {
 		p.getInventory().setChestplate(null);
 		p.getInventory().setLeggings(null);
 		p.getInventory().setBoots(null);
+		
+		p.updateInventory();
 	}
 }
