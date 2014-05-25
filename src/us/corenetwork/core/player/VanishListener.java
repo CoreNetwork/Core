@@ -87,6 +87,7 @@ public class VanishListener implements Listener {
 		
 		if(event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			switch(event.getClickedBlock().getType()) {
+			case TRAPPED_CHEST:
 			case CHEST:
 				// cancel the opening thing
 				event.setCancelled(true);
