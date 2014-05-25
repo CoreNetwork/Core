@@ -126,4 +126,10 @@ public class PlayerUtils {
 				Message(message, p);
 		}
 	}
+	
+	public static boolean isPlayer(String arg)
+	{
+		Player player = CorePlugin.instance.getServer().getPlayerExact(arg);
+		return player != null;
+	}
 }

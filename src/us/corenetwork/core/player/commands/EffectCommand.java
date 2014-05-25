@@ -92,7 +92,7 @@ public class EffectCommand extends BasePlayerCommand {
 				}
 					
 			}
-			else if (isPlayer(args[0]))
+			else if (PlayerUtils.isPlayer(args[0]))
 			{
 				PlayerUtils.Message("Usage : /effect [<player>] <effect> [<level>] [<time>] [ambient] [silent]", sender);
 				return;
@@ -107,7 +107,7 @@ public class EffectCommand extends BasePlayerCommand {
 		{
 			int normalLength;
 			
-			if (isPlayer(args[0]))
+			if (PlayerUtils.isPlayer(args[0]))
 			{
 				if (isEffect(args[1]))
 				{
@@ -205,12 +205,6 @@ public class EffectCommand extends BasePlayerCommand {
 	{
 		player.removePotionEffect(potionEffectType);
 		player.addPotionEffect(new PotionEffect(potionEffectType, duration, level, ambient));
-	}
-	
-	private boolean isPlayer(String arg)
-	{
-		Player player = CorePlugin.instance.getServer().getPlayerExact(arg);
-		return player != null;
 	}
 	
 	private Player getPlayer(String arg)

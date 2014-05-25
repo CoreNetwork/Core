@@ -39,6 +39,13 @@ public enum PlayerSettings {
 	MESSAGE_EFFECT_APPLIED("Message.EffectApplied", "Effect applied."),
 	MESSAGE_GOT_EFFECT("Message.GotEffect", "You have been granted <Effect> level <Level> effect."),
 	
+	MESSAGE_ENCHANT_APPLIED("Message.EnchantApplied", "Item enchanted."),
+	MESSAGE_GOT_ENCHANT("Message.GotEnchant", "Your item has been enchanted."),
+	
+	MESSAGE_ENCHANT_CLEAR("Message.EnchantClear", "Item enchantments cleared."),
+	MESSAGE_GOT_ENCHANT_CLEAR("Message.GotEnchantClear", "Your item has been cleared."),
+	
+	
 	MESSAGE_GOD_APPLIED("Message.GodApplied", "God mode applied."),
 	MESSAGE_GOD_REVOKED("Message.GodRevoked", "God mode revoked."),
 	MESSAGE_GOT_GOD("Message.GotGod", "You have been granted god mode."),

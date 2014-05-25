@@ -15,6 +15,7 @@ import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
 import us.corenetwork.core.player.commands.EffectCommand;
+import us.corenetwork.core.player.commands.EnchantCommand;
 import us.corenetwork.core.player.commands.GamemodeCommand;
 import us.corenetwork.core.player.commands.GodCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
@@ -31,7 +32,7 @@ public class PlayerModule extends CoreModule {
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "god", "ungod", "gamemode"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "enchant", "god", "ungod", "gamemode"}, "player");
 		
 		instance = this;
 	}
@@ -60,6 +61,17 @@ public class PlayerModule extends CoreModule {
 			else
 			{
 				return CorePlugin.coreCommands.get("effect").execute(sender, args, false);
+			}
+		}
+		if (command.getName().equals("enchant"))
+		{
+			if (sender instanceof BlockCommandSender || sender instanceof ConsoleCommandSender)
+			{				
+				return new org.bukkit.command.defaults.EnchantCommand().execute(sender, "enchant", args);
+			}
+			else
+			{
+				return CorePlugin.coreCommands.get("enchant").execute(sender, args, false);
 			}
 		}
 		if (command.getName().equals("god"))
@@ -100,11 +112,13 @@ public class PlayerModule extends CoreModule {
 		commands.put("vanish", new VanishCommand());
 		commands.put("unvanish", new UnvanishCommand());
 		commands.put("effect", new EffectCommand());
+		commands.put("enchant", new EnchantCommand());
 		commands.put("god", new GodCommand());
 		commands.put("ungod", new UngodCommand());
 		commands.put("gamemode", new GamemodeCommand());
 
 		CorePlugin.coreCommands.put("effect", new EffectCommand());
+		CorePlugin.coreCommands.put("enchant", new EnchantCommand());
 		
 		vanishManager = new VanishManager();
 		

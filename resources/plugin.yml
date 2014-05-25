@@ -36,6 +36,8 @@ commands:
         description: Unvanish player
     effect:
         description: Custom effect command
+    enchant:
+        description: Custom enchant command 
     god:
         description: God mode
     ungod:
