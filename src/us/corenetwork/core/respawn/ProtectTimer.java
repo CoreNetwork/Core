@@ -43,6 +43,7 @@ public class ProtectTimer implements Runnable
 			if (timeLeft <= 0)
 			{
 				i.remove();
+				player.setSaturation(20);
 				endProtectionMessage(player);
 			}
 			else
