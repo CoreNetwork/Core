@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
@@ -52,7 +53,7 @@ public class PlayerModule extends CoreModule {
 		}
 		if (command.getName().equals("effect"))
 		{
-			if (sender instanceof BlockCommandSender)
+			if (sender instanceof BlockCommandSender || sender instanceof ConsoleCommandSender)
 			{				
 				return new org.bukkit.command.defaults.EffectCommand().execute(sender, "effect", args);
 			}

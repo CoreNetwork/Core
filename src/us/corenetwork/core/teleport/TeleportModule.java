@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 
 import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.CoreModule;
@@ -31,7 +32,7 @@ public class TeleportModule extends CoreModule {
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
 		if (command.getName().equals("tp"))
 		{
-			if (sender instanceof BlockCommandSender)
+			if (sender instanceof BlockCommandSender || sender instanceof ConsoleCommandSender)
 			{				
 				return new org.bukkit.command.defaults.TeleportCommand().execute(sender, "tp", args);
 			}
