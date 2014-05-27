@@ -80,13 +80,13 @@ public class EnchantCommand extends BasePlayerCommand {
 		
 		if (args.length < 1)
 		{
-			PlayerUtils.Message("Usage : /enchant [<player>] <ench> <lvl> [<ench> <lvl> …] [silent]   or   /enchant [<player>] clear [silent]", sender);
+			PlayerUtils.Message("Usage : /enchant [<player>] <ench> <lvl> [<ench> <lvl> ...] [silent]   or   /enchant [<player>] clear [silent]", sender);
 			return;
 		}
 
 		if (args.length == 1 && args[0].toLowerCase().equals("clear") == false)
 		{
-			PlayerUtils.Message("Usage : /enchant [<player>] <ench> <lvl> [<ench> <lvl> …] [silent]"
+			PlayerUtils.Message("Usage : /enchant [<player>] <ench> <lvl> [<ench> <lvl> ...] [silent]"
 					+ "  or   /enchant [<player>] clear [silent]", sender);
 			return;
 		}
@@ -99,7 +99,7 @@ public class EnchantCommand extends BasePlayerCommand {
 			}
 			else
 			{
-				PlayerUtils.Message("You can only execute /enchant <ench> <lvl> [<ench> <lvl> …] [silent] as player.", sender);
+				PlayerUtils.Message("You can only execute /enchant <ench> <lvl> [<ench> <lvl> ...] [silent] as player.", sender);
 				return;
 			}
 		}
@@ -140,7 +140,7 @@ public class EnchantCommand extends BasePlayerCommand {
 		
 		if((args.length - otherKeyWords) % 2 != 0 || args.length - otherKeyWords == 0) 
 		{
-			PlayerUtils.Message("Usage : /enchant [<player>] <ench> <lvl> [<ench> <lvl> …] [silent]", sender);
+			PlayerUtils.Message("Usage : /enchant [<player>] <ench> <lvl> [<ench> <lvl> ...] [silent]", sender);
 			return;
 		}
 		
