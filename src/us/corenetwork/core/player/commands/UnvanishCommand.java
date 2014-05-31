@@ -101,7 +101,7 @@ public class UnvanishCommand extends BasePlayerCommand {
 		}
 		else
 		{
-			if(!Util.hasPermission(sender, permissionNode + permission + ".silent"))
+			if(sender instanceof Player && !Util.hasPermission(sender, permissionNode + permission + ".silent"))
 			{
 				PlayerUtils.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 				return;
