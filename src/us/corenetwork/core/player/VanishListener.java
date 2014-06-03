@@ -3,18 +3,21 @@ package us.corenetwork.core.player;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.vehicle.VehicleEntityCollisionEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 
 import us.corenetwork.core.PlayerUtils;
 
@@ -73,13 +76,11 @@ public class VanishListener implements Listener {
 			event.setCancelled(true);
 		}
 	}
-	
-	
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteract(PlayerInteractEvent event) 
 	{
-		Player player = event.getPlayer();
+		final Player player = event.getPlayer();
 		if(PlayerModule.vanishManager.isVanished(player) == false) 
 		{
 			return;
@@ -89,21 +90,41 @@ public class VanishListener implements Listener {
 			switch(event.getClickedBlock().getType()) {
 			case TRAPPED_CHEST:
 			case CHEST:
-				// cancel the opening thing
+				if(player.isSneaking())
+					return;
+				
 				event.setCancelled(true);
-				
-				// but actually open it
 				final Chest chest = (Chest)event.getClickedBlock().getState();
-				
-				// create a copy of the chest
-				final Inventory i = Bukkit.getServer().createInventory(event.getPlayer(), chest.getInventory().getSize());
-				i.setContents(chest.getInventory().getContents());
 
-				// and have the player open that
-				event.getPlayer().openInventory(i);
+				InventoryView iv = new InventoryView() {
+					
+					@Override
+					public InventoryType getType()
+					{
+						return InventoryType.CHEST;
+					}
+					
+					@Override
+					public Inventory getTopInventory()
+					{
+						return chest.getInventory();
+					}
+					
+					@Override
+					public HumanEntity getPlayer()
+					{
+						return player;
+					}
+					
+					@Override
+					public Inventory getBottomInventory()
+					{
+						return player.getInventory();
+					}
+				};
 				
-				// alert them
-				PlayerUtils.Message(PlayerSettings.MESSAGE_OPEN_CHEST_VANISHED.string(), player);
+				player.openInventory(iv);
+				
 				break;
 			case ENDER_CHEST:
 				event.setCancelled(true);
