@@ -94,9 +94,9 @@ public class RespawnListener implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	public void onPLayerJoin(PlayerJoinEvent event)
 	{
-		if (!KnownPlayers.isKnownPlayer(event.getPlayer().getName()))
+		if (!KnownPlayers.isKnownPlayer(event.getPlayer().getUniqueId()))
 		{
-			KnownPlayers.savePlayer(event.getPlayer().getName());
+			KnownPlayers.savePlayer(event.getPlayer().getUniqueId());
 			
 			String warpName = RespawnSettings.NEW_PLAYER_SPAWN_WARP_NAME.string();
 			Location loc = WarpCommand.getWarpLocation(warpName);

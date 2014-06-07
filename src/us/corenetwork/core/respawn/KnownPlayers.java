@@ -3,9 +3,10 @@ package us.corenetwork.core.respawn;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 public class KnownPlayers {
-	private static HashSet<String> playerList = new HashSet<String>();
+	private static HashSet<UUID> playerList = new HashSet<UUID>();
 	
 	public static void load()
 	{
@@ -17,27 +18,27 @@ public class KnownPlayers {
 			return;
 		
 		for (String player : savedPlayers)
-			playerList.add(player);
+			playerList.add(UUID.fromString(player));
 	}
 	
 	public static void save()
 	{
 		List<String> playersToSave = new ArrayList<String>(playerList.size());
-		for (String player : playerList)
-			playersToSave.add(player);
+		for (UUID player : playerList)
+			playersToSave.add(player.toString());
 		
 		RespawnModule.instance.storageConfig.set("knownPlayers", playersToSave);
 		RespawnModule.instance.saveStorageYaml();
 	}
 	
-	public static boolean isKnownPlayer(String player)
+	public static boolean isKnownPlayer(UUID uuid)
 	{
-		return playerList.contains(player.toLowerCase());
+		return playerList.contains(uuid);
 	}
 	
-	public static void savePlayer(String player)
+	public static void savePlayer(UUID uuid)
 	{
-		playerList.add(player.toLowerCase());
+		playerList.add(uuid);
 		save();
 	}
 }
