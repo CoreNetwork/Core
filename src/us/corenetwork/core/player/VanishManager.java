@@ -5,8 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.server.v1_7_R3.PacketPlayOutPlayerInfo;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_7_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -79,8 +82,10 @@ public class VanishManager {
 				continue;
 			
 			if (CorePlugin.permission.playerInGroup(onlinePlayer, MOD_GROUP) == false)
+			{
 				onlinePlayer.hidePlayer(player);
-
+				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(player.getName(), true, 10));
+			}
 		}
 		addToSeeAllGroup(player);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 10000000, 0));		

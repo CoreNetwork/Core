@@ -26,11 +26,7 @@ public class CalcCommand extends BaseCalcCommand {
 		try
 		{
 			result = math.evaluate(expression);
-		} catch (ArithmeticException e)
-		{
-			PlayerUtils.Message(CalculatorSettings.MESSAGE_INCORRECT_EXPRESSION.string(), sender);
-			return;
-		} catch (NumberFormatException e)
+		} catch (Exception e)
 		{
 			PlayerUtils.Message(CalculatorSettings.MESSAGE_INCORRECT_EXPRESSION.string(), sender);
 			return;

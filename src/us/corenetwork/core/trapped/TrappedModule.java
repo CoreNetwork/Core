@@ -2,7 +2,6 @@ package us.corenetwork.core.trapped;
 
 import java.util.HashMap;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -27,18 +26,8 @@ public class TrappedModule extends CoreModule {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args)
 	{
-		if (command.getName().equals("trapped"))
-		{
-			return commands.get("trapped").execute(sender, args, false);
-		}
-		else
-		{
-			BaseTrappedCommand cmd = commands.get(args[0]);
-			if (cmd != null)
-				return cmd.execute(sender, args, false);
-			else
-				return false;
-		}
+		//Trapped moved to /core trapped, nothing happens here
+		return false;
 	}
 	
 	@Override
@@ -53,9 +42,7 @@ public class TrappedModule extends CoreModule {
 		
 		commands = new HashMap<String, BaseTrappedCommand>();
 		
-		commands.put("trapped", new TrappedCommand());
-		
-		Bukkit.getServer().getPluginManager().registerEvents(new TrappedListener(), CorePlugin.instance);
+		CorePlugin.coreCommands.put("trapped", new TrappedCommand());
 		
 		return true;
 	}

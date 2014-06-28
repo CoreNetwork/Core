@@ -1,8 +1,11 @@
 package us.corenetwork.core.player;
 
+import net.minecraft.server.v1_7_R3.PacketPlayOutPlayerInfo;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
+import org.bukkit.craftbukkit.v1_7_R3.entity.CraftPlayer;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,6 +37,7 @@ public class VanishListener implements Listener {
 			if(PlayerModule.vanishManager.isVanished(onlinePlayer)) 
 			{
 				player.hidePlayer(onlinePlayer);
+				((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(onlinePlayer.getName(), true, 10));
 			}
 		}
 	}
