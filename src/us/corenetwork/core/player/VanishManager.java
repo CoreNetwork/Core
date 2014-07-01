@@ -8,6 +8,7 @@ import java.util.Set;
 import net.minecraft.server.v1_7_R3.PacketPlayOutPlayerInfo;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_7_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -32,7 +33,7 @@ public class VanishManager {
 	public VanishManager()
 	{
 		vanishedPlayers = new HashSet<Player>();
-		initializeScoreboard();	
+		initializeScoreboard();
 	}
 	
 	
@@ -74,17 +75,19 @@ public class VanishManager {
 	public void vanish(Player player)
 	{
 		vanishedPlayers.add(player);
-		
+        
 		Player[] onlinePlayers = Bukkit.getServer().getOnlinePlayers();
 		for(Player onlinePlayer: onlinePlayers) 
 		{
 			if(onlinePlayer.equals(player))
 				continue;
 			
-			if (CorePlugin.permission.playerInGroup(onlinePlayer, MOD_GROUP) == false)
+			if (canSeeAll(onlinePlayer) == false)
 			{
 				onlinePlayer.hidePlayer(player);
-				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(player.getName(), true, 10));
+				
+				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(ChatColor.translateAlternateColorCodes('&', CorePlugin.chat.getPlayerPrefix(player)+player.getName()), true, 10));
+				
 			}
 		}
 		addToSeeAllGroup(player);
@@ -101,8 +104,11 @@ public class VanishManager {
 			if(onlinePlayer.equals(player))
 				continue;
 			
-			if (CorePlugin.permission.playerInGroup(onlinePlayer, MOD_GROUP) == false)
+			if (canSeeAll(onlinePlayer) == false)
+			{
 				onlinePlayer.showPlayer(player);
+				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(ChatColor.translateAlternateColorCodes('&', CorePlugin.chat.getPlayerPrefix(player)+player.getName()), false, 10));
+			}
 		}
 		removeFromSeeAllGroup(player);
 		player.removePotionEffect(PotionEffectType.INVISIBILITY);

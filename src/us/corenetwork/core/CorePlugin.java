@@ -3,6 +3,7 @@ package us.corenetwork.core;
 import java.util.HashMap;
 import java.util.Random;
 
+import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
 
 import org.bukkit.command.Command;
@@ -10,7 +11,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import us.corenetwork.core.corecommands.BaseCoreCommand;
 import us.corenetwork.core.corecommands.CoreHelpCommand;
 import us.corenetwork.core.corecommands.ReloadCommand;
 import us.corenetwork.core.corecommands.SudoCommand;
@@ -18,6 +18,7 @@ public class CorePlugin extends JavaPlugin {
 	public static CorePlugin instance;
 	
 	public static Permission permission;
+	public static Chat chat;
 	
 	public static Random random;
 	
@@ -39,6 +40,11 @@ public class CorePlugin extends JavaPlugin {
 			getLogger().warning("could not load Vault permissions - did you forget to install Vault?");
 		}
 		
+		if (!setupChat())
+		{
+			getLogger().warning("could not load Vault chat - did you forget to install Vault?");
+		}
+		
 		CoreModule.loadModules();
 	}
 
@@ -49,6 +55,16 @@ public class CorePlugin extends JavaPlugin {
 		}
 		return (permission != null);
 	}
+	
+	private boolean setupChat()
+    {
+        RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
+        if (chatProvider != null) {
+            chat = chatProvider.getProvider();
+        }
+
+        return (chat != null);
+    }
 	
 	@Override
 	public void onDisable() {
