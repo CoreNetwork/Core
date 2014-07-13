@@ -13,16 +13,18 @@ import us.corenetwork.core.respawn.rspawncommands.BaseRSpawnCommand;
 import us.corenetwork.core.respawn.rspawncommands.NoDropCommand;
 import us.corenetwork.core.respawn.rspawncommands.ProtectCommand;
 import us.corenetwork.core.respawn.rspawncommands.RSpawnCommand;
+import us.corenetwork.core.respawn.rspawncommands.RSpawnTeamCommand;
 import us.corenetwork.core.respawn.rspawncommands.ToggleCommand;
 import us.corenetwork.core.respawn.rspawncommands.UnprotectCommand;
 
 public class RespawnModule extends CoreModule {
 	public static RespawnModule instance;
-
+	public static RespawnTeamManager teamManager;
+	public static RespawnManager manager;
 	public static HashMap<String, BaseRSpawnCommand> rspawnCommands = new HashMap<String, BaseRSpawnCommand>();
 	
 	public RespawnModule() {
-		super("Random respawn", new String[] { "rspawn", "togglespawn", "unprotect" }, "respawn");
+		super("Random respawn", new String[] { "rspawn", "togglespawn", "unprotect", "rspawnteam"}, "respawn");
 		
 		instance = this;
 	}
@@ -30,6 +32,8 @@ public class RespawnModule extends CoreModule {
 	@Override
 	protected boolean loadModule() {
 
+		teamManager = new RespawnTeamManager();
+		manager = new RespawnManager();
 		for (RespawnSettings setting : RespawnSettings.values())
 		{
 			if (config.get(setting.string) == null)
@@ -44,6 +48,7 @@ public class RespawnModule extends CoreModule {
 		rspawnCommands.put("protect", new ProtectCommand());
 		rspawnCommands.put("unprotect", new UnprotectCommand());
 		rspawnCommands.put("nodrop", new NoDropCommand());
+		rspawnCommands.put("rspawnteam", new RSpawnTeamCommand());
 
 		Bukkit.getServer().getScheduler().runTaskTimer(CorePlugin.instance, new ProtectTimer(), 20, 20);
 		
@@ -65,6 +70,10 @@ public class RespawnModule extends CoreModule {
 		else if (command.getName().equals("unprotect"))
 		{
 			return rspawnCommands.get("unprotect").execute(sender, args, true);
+		}
+		else if (command.getName().equals("rspawnteam"))
+		{
+			return rspawnCommands.get("rspawnteam").execute(sender, args, false);
 		}
 		else
 		{

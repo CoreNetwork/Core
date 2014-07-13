@@ -112,8 +112,7 @@ public class RespawnListener implements Listener {
 		}
 	}
 	
-	@EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST
-			)
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
 	public void onPlayerReSpawn(PlayerRespawnEvent event)
 	{
 		

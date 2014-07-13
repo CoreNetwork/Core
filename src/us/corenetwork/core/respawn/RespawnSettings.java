@@ -31,6 +31,20 @@ public enum RespawnSettings {
 	NEW_PLAYER_SPAWN_WARP_NAME("SpawnWarps.NewPlayer", "endguide"),
 	EXISTING_PLAYER_SPAWN_WARP_NAME("SpawnWarps.ExistingPlayer", "limbocrystal"),
 	
+	GROUP_RESPAWN_TIME_LIMIT("Group.TimeLimit", 10),
+	GROUP_RESPAWN_HEADER("Group.Header", "&cRespawn group:"),
+	
+	GROUP_RESPAWN_NAME_COLOR("Group.NameColor", "&a"),
+	GROUP_RESPAWN_COUNTER_COLOR("Group.CounterColor", "&6"),
+	
+	HOLOGRAMS_LISTS("Holograms.Lists", new ArrayList<String>(){{
+		add("world_the_end;-2010.5;65;-4005.5;0;0");
+		add("world_the_end;-2017.5;93;-1106.5;0;0");
+	}}),
+	HOLOGRAMS_COUNTERS("Holograms.Counters", new ArrayList<String>(){{
+		add("world_the_end;-2010.5;65.3;-4005.5;0;0");
+		add("world_the_end;-2017.5;93.3;-1106.5;0;0");
+	}}),
 	MESSAGE_SPAWN_IGNORED("Messages.SpawnIgnored", "Your home is now ignored when spawning"),
 	MESSAGE_SPAWN_UNIGNORED("Messages.SpawnUnignored", "Your home is now unignored when spawning"),
 	MESSAGE_SPAWN_PROTECTION_START("Messages.SpawnProtectionStart", "You are invincible for <Time> seconds!"),
@@ -38,8 +52,9 @@ public enum RespawnSettings {
 	MESSAGE_SPAWN_PROTECTION_END_CLAIMS("Messages.SpawnProtectionEndClaims", "&eYou are no longer invincible! Find food and weapons before you try to reach your &6/base"),
 	MESSAGE_SPAWN_PROTECTION_END_NO_CLAIMS("Messages.SpawnProtectionEndNoClaims", "&eYou are no longer invincible! Find food or shelter."),
 	MESSAGE_SPAWN_UNPROTECT_NOT_PROTECTED("Messages.UnprotectNotProtected", "&eYou are already not protected."),
-	MESSAGE_SPAWN_PROTECTION_DONT_ABUSE("Messages.SpawnProtectionDontAbuse", "Do not abuse spawn protection! Use /unprotect to disable it to start killing mobs.");
-	
+	MESSAGE_SPAWN_PROTECTION_DONT_ABUSE("Messages.SpawnProtectionDontAbuse", "Do not abuse spawn protection! Use /unprotect to disable it to start killing mobs."),
+	MESSAGE_GROUP_JOIN("Messages.GroupJoin", "You joined respawn group! Click on the crystal before time runs out to spawn with others."),
+	MESSAGE_GROUP_REMAIN("Messages.GroupRemain", "The group spawn has ended. Join another group, or respawn on your own.");
 	protected String string;
 	protected Object def;
 	

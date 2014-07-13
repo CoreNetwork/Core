@@ -4,7 +4,7 @@
   
   <groupId>Core</groupId>
   <artifactId>Core</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <packaging>jar</packaging>
   <name>Core</name>
   <url>https://github.com/CoreNetwork/Core</url>
@@ -63,6 +63,14 @@
       <version>7.8-SNAPSHOT</version>
       <scope>system</scope>
       <systemPath>${basedir}/lib/GriefPrevention-7.8-SNAPSHOT.jar</systemPath>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.gmail.filoghost</groupId>
+      <artifactId>HolographicDisplays</artifactId>
+      <version>1.8.4</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/HolographicDisplays.jar</systemPath>
     </dependency>
     
     <dependency>
