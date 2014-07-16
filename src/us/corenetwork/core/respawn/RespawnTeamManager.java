@@ -1,6 +1,5 @@
 package us.corenetwork.core.respawn;
 
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 import org.bukkit.Location;
@@ -22,7 +21,6 @@ public class RespawnTeamManager {
 	{
 		respawnTeam = new LinkedList<Player>();
 		display = new TeamDisplay(this);
-		
 		countdown = new RespawnCountdown();
 	}
 	
@@ -41,7 +39,7 @@ public class RespawnTeamManager {
 		}
 		
 		respawnTeam.add(player);
-		display.display();
+		display.addLine(respawnTeam.size()-1, player.getName());
 	}
 	
 	
@@ -53,18 +51,16 @@ public class RespawnTeamManager {
 	public void removeFromTeam(Player player)
 	{
 		//Stop the countdown when removing last player from the list
-		
+		display.removeLine(respawnTeam.indexOf(player));
 		respawnTeam.remove(player);
 		
 		if(respawnTeam.size() == 0)
 		{
 			countdown.stop();
-			clear();
 		}
 		else
 		{
 			checkLocation(player);
-			display.display();
 		}
 	}
 	
@@ -88,15 +84,14 @@ public class RespawnTeamManager {
 		}
 	}
 	
-	
 	public void clear()
 	{
 		for(Player player : respawnTeam)
 		{
 			PlayerUtils.Message(RespawnSettings.MESSAGE_GROUP_REMAIN.string(), player);
 		}
-		respawnTeam.clear();
 		display.clear();
+		respawnTeam.clear();
 	}
 
 	public LinkedList<Player> getTeam()

@@ -80,7 +80,7 @@ public class RespawnCountdown {
 		currentTime = value;
 		if(running)
 		{
-			display.display();
+			display.refresh();
 			if(value == 0)
 			{
 				finish();

@@ -2,14 +2,9 @@ package us.corenetwork.core.respawn;
 
 import java.util.ArrayList;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.HoloDisplay;
 
-import com.gmail.filoghost.holograms.api.Hologram;
-import com.gmail.filoghost.holograms.api.HolographicDisplaysAPI;
 
 public class CountdownDisplay extends HoloDisplay {
 
@@ -20,21 +15,26 @@ public class CountdownDisplay extends HoloDisplay {
 		super(false);
 		this.countdown = countdown;
 		ArrayList<String> list = (ArrayList<String>) RespawnSettings.HOLOGRAMS_COUNTERS.list();
-		initHolograms("", list);
+		initHolograms(list);
 	}
 	
-	
-	public void display()
+	public void refresh()
 	{
-		for (Hologram holo : holograms)
+		setLine(countdown.getTime()+"");
+	}
+	
+	public void clear()
+	{
+		setLine("");
+	}
+	
+	private void setLine(String msg)
+	{
+		for(String holoName : holograms)
 		{
-			String msg = ChatColor.translateAlternateColorCodes('&', RespawnSettings.GROUP_RESPAWN_COUNTER_COLOR.string() + countdown.getTime());
-			if(holo.getLinesLength() == 0)
-				holo.addLine(msg);
-			else
-				holo.setLine(0, msg);
-			holo.update();
+			String command = RespawnSettings.HOLOGRAMS_COMM_COULINE.string();
+			command = command.replace("<holoName>", holoName).replace("<text>", msg);
+			CorePlugin.instance.getServer().dispatchCommand(CorePlugin.instance.getServer().getConsoleSender(), command);
 		}
 	}
-
 }

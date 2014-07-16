@@ -1,7 +1,7 @@
 name: Core
 main: us.corenetwork.core.CorePlugin
 version: 1.0.0
-depend: [GriefPrevention, HolographicDisplays]
+depend: [GriefPrevention]
 author: matejdro
 commands:
     core:

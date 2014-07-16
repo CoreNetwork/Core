@@ -2,18 +2,8 @@ package us.corenetwork.core.respawn;
 
 import java.util.ArrayList;
 
-import net.milkbowl.vault.chat.Chat;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
-
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.HoloDisplay;
-import us.corenetwork.core.Util;
-
-import com.gmail.filoghost.holograms.api.Hologram;
-import com.gmail.filoghost.holograms.api.HolographicDisplaysAPI;
 
 public class TeamDisplay extends HoloDisplay {
 
@@ -23,27 +13,40 @@ public class TeamDisplay extends HoloDisplay {
 	{
 		super(true);
 		this.teamManager = teamManager;
-		String msg = ChatColor.translateAlternateColorCodes('&', RespawnSettings.GROUP_RESPAWN_HEADER.string());
 		ArrayList<String> list = (ArrayList<String>) RespawnSettings.HOLOGRAMS_LISTS.list();
-		initHolograms(msg, list);
+		initHolograms(list);
 	}
 
-	
-
-	@Override
-	public void display()
+	public void addLine(int line, String name)
 	{
-		clear();
-		for(Hologram holo : holograms)
+		line += hasHeader ? 2 : 1;
+		for(String holoName : holograms)
 		{
-			for(Player player : teamManager.getTeam())
-			{
-				String msg = ChatColor.translateAlternateColorCodes('&', RespawnSettings.GROUP_RESPAWN_NAME_COLOR.string() + player.getName());
-				holo.addLine(msg);
-			}
-			holo.update();
+			String command = RespawnSettings.HOLOGRAMS_COMM_LISTLINE.string();
+			command = command.replace("<holoName>", holoName).replace("<text>", name);
+			CorePlugin.instance.getServer().dispatchCommand(CorePlugin.instance.getServer().getConsoleSender(), command);
 		}
 	}
-	
+
+	public void removeLine(int line)
+	{
+		String command;
+		line += hasHeader ? 2 : 1;
+		
+		for(String holoName : holograms)
+		{
+			command = RespawnSettings.HOLOGRAMS_COMM_DELLINE.string();
+			command = command.replace("<holoName>", holoName).replace("<lineNumber>", line+"");
+			CorePlugin.instance.getServer().dispatchCommand(CorePlugin.instance.getServer().getConsoleSender(), command);
+		}
+	}
+
+	public void clear()
+	{
+		for(int i = 0; i<teamManager.getTeam().size();i++)
+		{
+			removeLine(0);
+		}
+	}
 	
 }

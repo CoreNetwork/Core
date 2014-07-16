@@ -32,19 +32,19 @@ public enum RespawnSettings {
 	EXISTING_PLAYER_SPAWN_WARP_NAME("SpawnWarps.ExistingPlayer", "limbocrystal"),
 	
 	GROUP_RESPAWN_TIME_LIMIT("Group.TimeLimit", 10),
-	GROUP_RESPAWN_HEADER("Group.Header", "&cRespawn group:"),
-	
-	GROUP_RESPAWN_NAME_COLOR("Group.NameColor", "&a"),
-	GROUP_RESPAWN_COUNTER_COLOR("Group.CounterColor", "&6"),
 	
 	HOLOGRAMS_LISTS("Holograms.Lists", new ArrayList<String>(){{
-		add("world_the_end;-2010.5;65;-4005.5;0;0");
-		add("world_the_end;-2017.5;93;-1106.5;0;0");
+		add("listHolo01");
+		add("listHolo02");
 	}}),
 	HOLOGRAMS_COUNTERS("Holograms.Counters", new ArrayList<String>(){{
-		add("world_the_end;-2010.5;65.3;-4005.5;0;0");
-		add("world_the_end;-2017.5;93.3;-1106.5;0;0");
+		add("counterHolo01");
+		add("counterHolo02");
 	}}),
+	HOLOGRAMS_COMM_COULINE("Holograms.Commands.counterLine", "hd setline <holoName> 1 &6<text>"),
+	HOLOGRAMS_COMM_LISTLINE("Holograms.Commands.listLine", "hd addline <holoName> &a<text>"),
+	HOLOGRAMS_COMM_DELLINE("Holograms.Commands.delLine", "hd removeline <holoName> <lineNumber>"),
+	
 	MESSAGE_SPAWN_IGNORED("Messages.SpawnIgnored", "Your home is now ignored when spawning"),
 	MESSAGE_SPAWN_UNIGNORED("Messages.SpawnUnignored", "Your home is now unignored when spawning"),
 	MESSAGE_SPAWN_PROTECTION_START("Messages.SpawnProtectionStart", "You are invincible for <Time> seconds!"),
