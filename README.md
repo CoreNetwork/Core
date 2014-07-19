@@ -1,7 +1,7 @@
 Core
 ====
 
-Essential commands and universal modules
+Essential commands and universal modules for map making.
 
 
 #Modules
