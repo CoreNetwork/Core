@@ -84,6 +84,7 @@ Various teleportations.
 Command | Permission | Description
 --- | --- | ---
 `/bring <player>`     | `core.teleport.bring` | Brings player to the caller.
+`/bring confirm`     | `core.teleport.bring` | Confirms offline bring teleport.
 `/swap <player> <player>`     | `core.teleport.swap` | Swap two players.
 `/swap <player> <player>`     | `core.teleport.swap` | Swap two players.
 `/tp ~`     | `core.tp` | Alias for `/core tp`.
