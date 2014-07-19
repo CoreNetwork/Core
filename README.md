@@ -83,7 +83,7 @@ Various teleportations.
 
 Command | Permission | Description
 --- | --- | ---
-`/brind <player>`     | `core.teleport.bring` | Brings player to the caller.
+`/bring <player>`     | `core.teleport.bring` | Brings player to the caller.
 `/swap <player> <player>`     | `core.teleport.swap` | Swap two players.
 `/swap <player> <player>`     | `core.teleport.swap` | Swap two players.
 `/tp ~`     | `core.tp` | Alias for `/core tp`.
