@@ -60,7 +60,7 @@ Command | Permission | Description
 
 Command | Permission | Description
 --- | --- | ---
-`/clear`     | `core.player.clear` | Upgrade of vanilla `/clear`.
+`/clear`     | `core.player.clear` | Upgrade of vanilla `/clear`. Parameters: `<player>` and `silent`
 
 ##Respawn
 
