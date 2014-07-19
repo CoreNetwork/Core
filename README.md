@@ -67,6 +67,7 @@ Command | Permission | Description
 Command | Permission | Description
 --- | --- | ---
 `/rspawn`     | `core.respawn.rspawn` | Respawn player randomly.
+`/rspawnteam`     | `core.respawn.rspawnteam` | Add player to team respawn.
 `/togglespawn`     | `core.respawn.togglespawn` | Toggle lucky/unlucky spawn.
 `/unprotect`     | `core.respawn.unprotect` | Cancel the after-respawn protection.
 `/protect`     | `core.respawn.protect` | Protect player.
@@ -100,4 +101,4 @@ Command | Permission | Description
 
 Command | Permission | Description
 --- | --- | ---
-`/trapped`     | `core.trapped.trapped` | Teleport caller to nearby, but randomized safe location, where he can build.
+`/core trapped`     | `core.trapped.trapped` | Teleport caller to nearby, but randomized safe location, where he can build.
