@@ -40,6 +40,11 @@ public class RespawnCountdown {
 				countdownTasks.add(taskId);
 			}
 		}
+		else
+		{
+			stop();
+			start();
+		}
 	}
 	
 	public void stop()

@@ -34,10 +34,9 @@ public class RespawnTeamManager {
 		//Start the countdown when adding the first player
 		if(respawnTeam.size() == 0)
 		{
-			countdown.start();
 			initializeLocation(player);
 		}
-		
+		countdown.start();
 		respawnTeam.add(player);
 		display.addLine(respawnTeam.size()-1, player.getName());
 	}
