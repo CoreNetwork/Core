@@ -60,7 +60,16 @@ Command | Permission | Description
 
 Command | Permission | Description
 --- | --- | ---
-`/clear`     | `core.player.clear` | Upgrade of vanilla `/clear`. Parameters: `<player>` and `silent`
+`/clear`     | `core.player.clear` | Upgrade of vanilla `/clear`.
+`/clear <player>`     | `core.player.clear` | Clear player’s inventory
+`/clear <player> silent`     | `core.player.clear` | Don’t display any confirmations
+`/enchant `     | `core.player.enchant` | 
+`/effect `     | `core.player.effect` | 
+`/vanish `     | `core.player.vanish` | 
+`/unvanish `     | `core.player.unvanish` | 
+`/god `     | `core.player.god` | 
+`/ungod `     | `core.player.ungod` | 
+`/gamemode `     | `core.player.gamemode` | 
 
 ##Respawn
 
