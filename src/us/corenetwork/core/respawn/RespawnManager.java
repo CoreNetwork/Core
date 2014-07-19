@@ -29,7 +29,7 @@ public class RespawnManager {
 		if(RespawnModule.teamManager.isInTeam(player))
 		{
 			location = RespawnModule.teamManager.getTeamRespawnLocation();
-			RespawnModule.teamManager.removeFromTeam(player);
+			RespawnModule.teamManager.playerSpawned(player);
 		}
 		else
 		{

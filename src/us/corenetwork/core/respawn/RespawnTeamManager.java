@@ -63,6 +63,18 @@ public class RespawnTeamManager {
 		}
 	}
 	
+	public void playerSpawned(Player player)
+	{
+		//Stop the countdown when removing last player from the list
+		display.removeLine(respawnTeam.indexOf(player));
+		respawnTeam.remove(player);
+		
+		if(respawnTeam.size() == 0)
+		{
+			countdown.stop();
+		}
+	}
+	
 	private void initializeLocation(Player player)
 	{
 		respawnLocation = RespawnModule.manager.getRespawnLocation(player);
