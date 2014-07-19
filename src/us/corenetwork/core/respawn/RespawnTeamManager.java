@@ -38,7 +38,7 @@ public class RespawnTeamManager {
 		}
 		countdown.start();
 		respawnTeam.add(player);
-		display.addLine(respawnTeam.size()-1, player.getName());
+		display.addLine(player.getName());
 	}
 	
 	

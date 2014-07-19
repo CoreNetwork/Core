@@ -32,18 +32,19 @@ public enum RespawnSettings {
 	EXISTING_PLAYER_SPAWN_WARP_NAME("SpawnWarps.ExistingPlayer", "limbocrystal"),
 	
 	GROUP_RESPAWN_TIME_LIMIT("Group.TimeLimit", 10),
-	
+	GROUP_RESPAWN_HEADER("Group.Header", "&bTeam respawn &3(optional)"),
+
+	GROUP_RESPAWN_NAME_COLOR("Group.NameColor", "&a"),
+	GROUP_RESPAWN_COUNTER_COLOR("Group.CounterColor", "&f"),
+
 	HOLOGRAMS_LISTS("Holograms.Lists", new ArrayList<String>(){{
-		add("listHolo01");
-		add("listHolo02");
+		add("world_the_end;-2010.5;65;-4005.5;0;0");
+		add("world_the_end;-2017.5;93;-1106.5;0;0");
 	}}),
 	HOLOGRAMS_COUNTERS("Holograms.Counters", new ArrayList<String>(){{
-		add("counterHolo01");
-		add("counterHolo02");
+		add("world_the_end;-2010.5;65.3;-4005.5;0;0");
+		add("world_the_end;-2017.5;93.3;-1106.5;0;0");
 	}}),
-	HOLOGRAMS_COMM_COULINE("Holograms.Commands.counterLine", "hd setline <holoName> 1 &6<text>"),
-	HOLOGRAMS_COMM_LISTLINE("Holograms.Commands.listLine", "hd addline <holoName> &a<text>"),
-	HOLOGRAMS_COMM_DELLINE("Holograms.Commands.delLine", "hd removeline <holoName> <lineNumber>"),
 	
 	MESSAGE_SPAWN_IGNORED("Messages.SpawnIgnored", "Your home is now ignored when spawning"),
 	MESSAGE_SPAWN_UNIGNORED("Messages.SpawnUnignored", "Your home is now unignored when spawning"),
@@ -53,8 +54,8 @@ public enum RespawnSettings {
 	MESSAGE_SPAWN_PROTECTION_END_NO_CLAIMS("Messages.SpawnProtectionEndNoClaims", "&eYou are no longer invincible! Find food or shelter."),
 	MESSAGE_SPAWN_UNPROTECT_NOT_PROTECTED("Messages.UnprotectNotProtected", "&eYou are already not protected."),
 	MESSAGE_SPAWN_PROTECTION_DONT_ABUSE("Messages.SpawnProtectionDontAbuse", "Do not abuse spawn protection! Use /unprotect to disable it to start killing mobs."),
-	MESSAGE_GROUP_JOIN("Messages.GroupJoin", "You joined respawn group! Click on the crystal before time runs out to spawn with others."),
-	MESSAGE_GROUP_REMAIN("Messages.GroupRemain", "The group spawn has ended. Join another group, or respawn on your own.");
+	MESSAGE_GROUP_JOIN("Messages.GroupJoin", "&bWait for everyone else to join the list and click the crystal."),
+	MESSAGE_GROUP_REMAIN("Messages.GroupRemain", "&3Team respawn timed out. Try again or spawn on your own.");
 	protected String string;
 	protected Object def;
 	

@@ -2,8 +2,11 @@ package us.corenetwork.core.respawn;
 
 import java.util.ArrayList;
 
-import us.corenetwork.core.CorePlugin;
+import org.bukkit.ChatColor;
+
 import us.corenetwork.core.HoloDisplay;
+
+import com.gmail.filoghost.holograms.api.Hologram;
 
 
 public class CountdownDisplay extends HoloDisplay {
@@ -15,26 +18,19 @@ public class CountdownDisplay extends HoloDisplay {
 		super(false);
 		this.countdown = countdown;
 		ArrayList<String> list = (ArrayList<String>) RespawnSettings.HOLOGRAMS_COUNTERS.list();
-		initHolograms(list);
+		initHolograms("", list);
 	}
 	
-	public void refresh()
+	public void display()
 	{
-		setLine(countdown.getTime()+"");
-	}
-	
-	public void clear()
-	{
-		setLine("");
-	}
-	
-	private void setLine(String msg)
-	{
-		for(String holoName : holograms)
+		for (Hologram holo : holograms)
 		{
-			String command = RespawnSettings.HOLOGRAMS_COMM_COULINE.string();
-			command = command.replace("<holoName>", holoName).replace("<text>", msg);
-			CorePlugin.instance.getServer().dispatchCommand(CorePlugin.instance.getServer().getConsoleSender(), command);
+			String msg = ChatColor.translateAlternateColorCodes('&', RespawnSettings.GROUP_RESPAWN_COUNTER_COLOR.string() + countdown.getTime());
+			if(holo.getLinesLength() == 0)
+				holo.addLine(msg);
+			else
+				holo.setLine(0, msg);
+			holo.update();
 		}
 	}
 }
