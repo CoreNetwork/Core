@@ -7,14 +7,14 @@ Essential commands and universal modules for map making.
 #Modules
 
 
-- [Calculator] (#Calculator)
-- [Map Making Features] (#Map)
-- [Core] (#Core)
-- [Player] (#Player)
-- [Respawn] (#Respawn)
-- [Scoreboard] (#Scoreboard)
-- [Teleport] (#Teleport)
-- [Trapped] (#Trapped)
+- [Calculator] (#calculator)
+- [Map Making Features] (#map)
+- [Core] (#core)
+- [Player] (#player)
+- [Respawn] (#respawn)
+- [Scoreboard] (#scoreboard)
+- [Teleport] (#teleport)
+- [Trapped] (#trapped)
 
 ==
 
