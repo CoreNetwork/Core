@@ -41,11 +41,15 @@ public class RespawnManager {
 	public Location getRespawnLocation(Player player)
 	{
 		int minX, minZ, maxX, maxZ;
+		Location biggestClaim = null;
 		
 		if (isLucky(player))
 		{
-			Location biggestClaim = GriefPreventionHandler.findBiggestClaimInWorld(player.getName(), RespawnSettings.RESPAWN_WORLD.string());
-			
+			biggestClaim = GriefPreventionHandler.findBiggestClaimInWorld(player.getName(), RespawnSettings.RESPAWN_WORLD.string());
+		}
+		
+		if(biggestClaim != null)
+		{
 			minX = Math.max(RespawnSettings.RESPAWN_BASE_MIN_X.integer(), biggestClaim.getBlockX() - 2500);
 			maxX = Math.min(RespawnSettings.RESPAWN_BASE_MAX_X.integer(), biggestClaim.getBlockX() + 2500);
 			minZ = Math.max(RespawnSettings.RESPAWN_BASE_MIN_Z.integer(), biggestClaim.getBlockZ() - 2500);
