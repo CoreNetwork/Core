@@ -1,16 +1,17 @@
 package us.corenetwork.core.player;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import net.minecraft.server.v1_7_R3.PacketPlayOutPlayerInfo;
+import net.minecraft.server.v1_7_R4.PacketPlayOutPlayerInfo;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_7_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -42,8 +43,7 @@ public class VanishManager {
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		scoreboard.registerNewTeam(VANISH_TEAM);
 		
-		Player[] onlinePlayers = Bukkit.getServer().getOnlinePlayers();
-		for(Player onlinePlayer: onlinePlayers) 
+		for(Player onlinePlayer: Bukkit.getServer().getOnlinePlayers()) 
 		{	
 			if (canSeeAll(onlinePlayer))
 				addToSeeAllGroup(onlinePlayer);
@@ -76,8 +76,7 @@ public class VanishManager {
 	{
 		vanishedPlayers.add(player);
         
-		Player[] onlinePlayers = Bukkit.getServer().getOnlinePlayers();
-		for(Player onlinePlayer: onlinePlayers) 
+		for(Player onlinePlayer: Bukkit.getServer().getOnlinePlayers()) 
 		{
 			if(onlinePlayer.equals(player))
 				continue;
@@ -98,8 +97,7 @@ public class VanishManager {
 	{
 		vanishedPlayers.remove(player);
 		
-		Player[] onlinePlayers = Bukkit.getServer().getOnlinePlayers();
-		for(Player onlinePlayer: onlinePlayers) 
+		for(Player onlinePlayer: Bukkit.getServer().getOnlinePlayers()) 
 		{
 			if(onlinePlayer.equals(player))
 				continue;
