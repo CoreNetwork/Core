@@ -71,6 +71,13 @@ public class RespawnManager {
 	
 	private boolean isLucky(Player player)
 	{
+		if(isLuckyBoosterActive())
+		{
+			return true;
+		}
+		
+		
+		
 		if(ToggleCommand.ignoredPlayers.contains(player.getName()))
 		{
 			ToggleCommand.ignoredPlayers.remove(player.getName());
@@ -82,6 +89,11 @@ public class RespawnManager {
 		}
 	}
 	
+	private boolean isLuckyBoosterActive()
+	{
+		long luckyTimer = RespawnModule.instance.storageConfig.getLong("luckyTimer", 0);
+		return luckyTimer > 0;
+	}
 	
 	private boolean throwDice(Player player)
 	{

@@ -1,19 +1,19 @@
 package us.corenetwork.core.respawn;
 
 import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.respawn.rspawncommands.BaseRSpawnCommand;
+import us.corenetwork.core.respawn.rspawncommands.BuyBoosterCommand;
 import us.corenetwork.core.respawn.rspawncommands.NoDropCommand;
 import us.corenetwork.core.respawn.rspawncommands.ProtectCommand;
 import us.corenetwork.core.respawn.rspawncommands.RSpawnCommand;
 import us.corenetwork.core.respawn.rspawncommands.RSpawnTeamCommand;
+import us.corenetwork.core.respawn.rspawncommands.RunBoosterCommand;
 import us.corenetwork.core.respawn.rspawncommands.ToggleCommand;
 import us.corenetwork.core.respawn.rspawncommands.UnprotectCommand;
 
@@ -50,7 +50,28 @@ public class RespawnModule extends CoreModule {
 		rspawnCommands.put("nodrop", new NoDropCommand());
 		rspawnCommands.put("rspawnteam", new RSpawnTeamCommand());
 
+		CorePlugin.coreCommands.put("buylucky", new BuyBoosterCommand());
+		CorePlugin.coreCommands.put("runlucky", new RunBoosterCommand());
+		
 		Bukkit.getServer().getScheduler().runTaskTimer(CorePlugin.instance, new ProtectTimer(), 20, 20);
+		Bukkit.getServer().getScheduler().runTaskTimer(CorePlugin.instance, new Runnable() {
+			@Override
+			public void run()
+			{
+				long luckyTimer = RespawnModule.instance.storageConfig.getLong("luckyTimer", 0);
+				if(luckyTimer == 0)
+					return;
+				
+				luckyTimer -= 600;
+
+				if(luckyTimer < 0)
+					luckyTimer = 0;
+				
+				RespawnModule.instance.storageConfig.set("luckyTimer", luckyTimer);
+				RespawnModule.instance.saveStorageYaml();
+
+			}
+		}, 600, 600);
 		
 		KnownPlayers.load();
 		

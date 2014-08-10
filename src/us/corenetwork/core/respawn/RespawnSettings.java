@@ -27,7 +27,7 @@ public enum RespawnSettings {
 	LUCKY66("Lucky66", new ArrayList<String>(){{
 		add("SubGrass");
 	}}),
-	
+	LUCKYBOOSTER("LuckyBoosterMinutes", 720),
 	NEW_PLAYER_SPAWN_WARP_NAME("SpawnWarps.NewPlayer", "endguide"),
 	EXISTING_PLAYER_SPAWN_WARP_NAME("SpawnWarps.ExistingPlayer", "limbocrystal"),
 	
@@ -55,7 +55,11 @@ public enum RespawnSettings {
 	MESSAGE_SPAWN_UNPROTECT_NOT_PROTECTED("Messages.UnprotectNotProtected", "&eYou are already not protected."),
 	MESSAGE_SPAWN_PROTECTION_DONT_ABUSE("Messages.SpawnProtectionDontAbuse", "Do not abuse spawn protection! Use /unprotect to disable it to start killing mobs."),
 	MESSAGE_GROUP_JOIN("Messages.GroupJoin", "&bWait for everyone else to join the list and click the crystal."),
-	MESSAGE_GROUP_REMAIN("Messages.GroupRemain", "&3Team respawn timed out. Try again or spawn on your own.");
+	MESSAGE_GROUP_REMAIN("Messages.GroupRemain", "&3Team respawn timed out. Try again or spawn on your own."),
+	MESSAGE_LUCKY_BOOSTER_BOUGHT("Messages.LuckyBoosterBought", "You have bought a Lucky Booster!"),
+	MESSAGE_NO_LUCKY_BOOSTER("Messages.NoLuckyBooster", "You have 0 boosters left!"),
+	MESSAGE_ACTIVATED_LUCKY_BOOSTER("Messages.ActivatedLuckyBooster", "You activated Lucky Booster!"),
+	;
 	protected String string;
 	protected Object def;
 	
