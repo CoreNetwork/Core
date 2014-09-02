@@ -4,6 +4,7 @@ package us.corenetwork.core.player;
 public enum PlayerSettings {
 
 	ENABLED("Enabled", true),
+	VANISH_ENABLED("VanishEnabled", true),
 	
 	NETHER_SURFACE_Y("Trapped.Surface.world_nether", 64),
 	
@@ -54,8 +55,9 @@ public enum PlayerSettings {
 	
 	MESSAGE_SELF_GAMEMODE("Message.SelfGamemode", "You changed your gamemode to <Gamemode>."),
 	MESSAGE_SET_GAMEMODE("Message.SetGamemode", "You changed <Player>'s gamemode to <Gamemode>."),
-	MESSAGE_GAMEMODE_CHANGED("Message.GamemodeChanged", "Your gamemode was changed to <Gamemode>.");
+	MESSAGE_GAMEMODE_CHANGED("Message.GamemodeChanged", "Your gamemode was changed to <Gamemode>."),
 	
+	MESSAGE_VANISH_DISABLED("Message.VanishDisabled", "Vanish is disabled due to some bugs :[");
 	protected String string;
 	protected Object def;
 	
@@ -75,6 +77,10 @@ public enum PlayerSettings {
 		return (String) PlayerModule.instance.config.get(string, def);
 	}
 	
+	public Boolean bool()
+	{
+		return (Boolean) PlayerModule.instance.config.get(string, def);
+	}
 	public static String getCommandDescription(String cmd, String def)
 	{
 		String path = "CommandDescriptions." + cmd;

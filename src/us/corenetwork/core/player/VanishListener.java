@@ -1,9 +1,7 @@
 package us.corenetwork.core.player;
 
 import java.util.Collection;
-
 import net.minecraft.server.v1_7_R4.PacketPlayOutPlayerInfo;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -16,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
@@ -24,7 +23,6 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.vehicle.VehicleEntityCollisionEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
-
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.PlayerUtils;
 
@@ -41,6 +39,7 @@ public class VanishListener implements Listener {
 			if(PlayerModule.vanishManager.isVanished(onlinePlayer)) 
 			{
 				player.hidePlayer(onlinePlayer);
+				
 				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(ChatColor.translateAlternateColorCodes('&', CorePlugin.chat.getPlayerPrefix(player)+player.getName()), true, 10));
 			}
 		}
@@ -149,4 +148,17 @@ public class VanishListener implements Listener {
 		}
 	}
 	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onInventoryClickEvent(InventoryClickEvent event) 
+	{
+		final Player player = (Player) event.getWhoClicked();
+		if(PlayerModule.vanishManager.isVanished(player) == false) 
+		{
+			return;
+		}
+		if(event.isShiftClick())
+		{
+			event.setCancelled(true);
+		}
+	}
 }

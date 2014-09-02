@@ -23,6 +23,11 @@ public class UnvanishCommand extends BasePlayerCommand {
 	
 	public void run(CommandSender sender, String[] args) 
 	{
+		if(PlayerSettings.VANISH_ENABLED.bool() == false)
+		{
+			PlayerUtils.Message(PlayerSettings.MESSAGE_VANISH_DISABLED.string(), sender);
+			return;
+		}
 		
 		if (args.length > 2 || (args.length == 2 && !args[1].equals("silent")))
 		{
