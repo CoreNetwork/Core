@@ -14,8 +14,8 @@ public enum CheckpointsSettings {
 	MESSAGE_CHECKPOINT_NO_BACKWARDS("Messages.CheckpointNoBackwards", "<Player>, Checkpoint <Position> at <List> is behind your latest checkpoint! Nothing has been saved."),
 	MESSAGE_NOTHING_SAVED("Messages.NothingSaved", "<Player>, You need to save checkpoint first before teleporting!"),
 	MESSAGE_TELEPORT_SCHEDULED("Messages.TeleportScheduled", "<Player>, You will be teleported in few seconds to your checkpoint! Be completely still until then."),
-	MESSAGE_TELEPORT_CANCELLED("Messages.TeleportCancelled", "<Player>, Your teleport was cancelled! Try again and don't move.");
-
+	MESSAGE_TELEPORT_CANCELLED("Messages.TeleportCancelled", "<Player>, Your teleport was cancelled! Try again and don't move."),
+	MESSAGE_TELEPORT_INSTANT("Messages.TeleportInstant", "aReturned you to Checkpoint #<Position>");
 	protected String string;
 	protected Object def;
 	

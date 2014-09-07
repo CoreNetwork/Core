@@ -17,7 +17,8 @@ public class ReloadCommand extends BaseCoreCommand {
 	}
 
 
-	public void run(final CommandSender sender, String[] args) {
+	public void run(final CommandSender sender, String[] args) 
+	{
 		IO.LoadSettings();
 		CoreModule.reloadConfigs();
 		PlayerUtils.Message(Settings.getString(Setting.MESSAGE_CONFIGURATION_RELOADED), sender);

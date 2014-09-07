@@ -3,11 +3,9 @@ package us.corenetwork.core.map;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.map.admincommands.BaseCheckpointCommand;
@@ -19,6 +17,7 @@ import us.corenetwork.core.map.usercommands.BaseCheckpointUserCommand;
 import us.corenetwork.core.map.usercommands.ClearCommand;
 import us.corenetwork.core.map.usercommands.SaveCommand;
 import us.corenetwork.core.map.usercommands.TeleCommand;
+import us.corenetwork.core.map.usercommands.TeleInstantCommand;
 
 public class MapModule extends CoreModule {
 	public static MapModule instance;
@@ -84,6 +83,7 @@ public class MapModule extends CoreModule {
 		usercommands = new HashMap<String, BaseCheckpointUserCommand>();
 		usercommands.put("save", new SaveCommand());
 		usercommands.put("tele", new TeleCommand());
+		usercommands.put("instant", new TeleInstantCommand());
 		usercommands.put("clear", new ClearCommand());
 
 		savedCheckpoints = new HashMap<String, SavedCheckpoint>();
