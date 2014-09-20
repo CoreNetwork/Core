@@ -26,6 +26,9 @@ public class EnchantCommand extends BasePlayerCommand {
 		enchantments.put("projprot", Enchantment.PROTECTION_PROJECTILE);
 		enchantments.put("blastprotection", Enchantment.PROTECTION_EXPLOSIONS);
 		enchantments.put("blastprot", Enchantment.PROTECTION_EXPLOSIONS);
+		enchantments.put("featherfalling", Enchantment.PROTECTION_FALL);
+		enchantments.put("featherfall", Enchantment.PROTECTION_FALL);
+		enchantments.put("ff", Enchantment.PROTECTION_FALL);
 		enchantments.put("respiration", Enchantment.OXYGEN);
 		enchantments.put("aquaaffinity", Enchantment.WATER_WORKER);
 		enchantments.put("aqua", Enchantment.WATER_WORKER);
