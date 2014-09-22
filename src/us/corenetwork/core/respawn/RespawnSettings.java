@@ -46,6 +46,15 @@ public enum RespawnSettings {
 		add("world_the_end;-2017.5;93.3;-1106.5;0;0");
 	}}),
 	
+	HOLOGRAMS_LISTS_18("Holograms18.Lists", new ArrayList<String>(){{
+		add("teamRespawn01");
+		add("teamRespawn02");
+	}}),
+	HOLOGRAMS_COUNTERS_18("Holograms18.Counters", new ArrayList<String>(){{
+		add("teamRespawnCounter01");
+		add("teamRespawnCounter02");
+	}}),
+	
 	MESSAGE_SPAWN_IGNORED("Messages.SpawnIgnored", "Your home is now ignored when spawning"),
 	MESSAGE_SPAWN_UNIGNORED("Messages.SpawnUnignored", "Your home is now unignored when spawning"),
 	MESSAGE_SPAWN_PROTECTION_START("Messages.SpawnProtectionStart", "You are invincible for <Time> seconds!"),

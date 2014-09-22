@@ -16,11 +16,13 @@ public class RespawnTeamManager {
 	Player respawnLocationSource;
 	
 	private TeamDisplay display;
+	private CommandTeamDisplay commDisplay;
 	
 	public RespawnTeamManager()
 	{
 		respawnTeam = new LinkedList<Player>();
 		display = new TeamDisplay(this);
+		commDisplay = new CommandTeamDisplay();
 		countdown = new RespawnCountdown();
 	}
 	
@@ -39,6 +41,7 @@ public class RespawnTeamManager {
 		countdown.start();
 		respawnTeam.add(player);
 		display.addLine(player.getName());
+		commDisplay.set(respawnTeam);
 	}
 	
 	
@@ -52,7 +55,8 @@ public class RespawnTeamManager {
 		//Stop the countdown when removing last player from the list
 		display.removeLine(respawnTeam.indexOf(player));
 		respawnTeam.remove(player);
-		
+
+		commDisplay.set(respawnTeam);
 		if(respawnTeam.size() == 0)
 		{
 			countdown.stop();
@@ -68,6 +72,7 @@ public class RespawnTeamManager {
 		//Stop the countdown when removing last player from the list
 		display.removeLine(respawnTeam.indexOf(player));
 		respawnTeam.remove(player);
+		commDisplay.set(respawnTeam);
 		
 		if(respawnTeam.size() == 0)
 		{
@@ -102,6 +107,7 @@ public class RespawnTeamManager {
 			PlayerUtils.Message(RespawnSettings.MESSAGE_GROUP_REMAIN.string(), player);
 		}
 		display.clear();
+		commDisplay.clear();
 		respawnTeam.clear();
 	}
 
