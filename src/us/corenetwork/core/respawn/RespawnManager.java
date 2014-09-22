@@ -3,9 +3,6 @@ package us.corenetwork.core.respawn;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -13,11 +10,9 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
-
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.GriefPreventionHandler;
-import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.respawn.rspawncommands.ToggleCommand;
 
@@ -35,7 +30,7 @@ public class RespawnManager {
 		{
 			location = getRespawnLocation(player);
 		}
-		PlayerUtils.safeTeleport(player, location);
+	    player.teleport(location);
 	}
 	
 	public Location getRespawnLocation(Player player)

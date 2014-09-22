@@ -107,8 +107,8 @@ public class SwapCommand extends BaseTpCommand {
 			TeleportUtil.notifyModerators(sender, notice, player1, player2);
 		}
 
-		PlayerUtils.safeTeleport(player1, destinationPlayer1);
-		PlayerUtils.safeTeleport(player2, destinationPlayer2);
+		player1.teleport(destinationPlayer1);
+        player2.teleport(destinationPlayer2);
 
 	}
 }

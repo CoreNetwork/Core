@@ -261,7 +261,7 @@ public class TpCommand extends BaseCoreCommand {
 				TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 			}
 
-			PlayerUtils.safeTeleport(onlinePlayer, tpLoc);
+			onlinePlayer.teleport(tpLoc);
 		}
 		else
 		{
@@ -351,7 +351,7 @@ public class TpCommand extends BaseCoreCommand {
 				TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 			}
 
-			PlayerUtils.safeTeleport(onlinePlayer, playerTo.getLocation());
+			onlinePlayer.teleport(playerTo.getLocation());
 		}
 		else
 		{

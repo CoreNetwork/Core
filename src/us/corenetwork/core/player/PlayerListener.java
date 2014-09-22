@@ -1,6 +1,5 @@
 package us.corenetwork.core.player;
 
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
@@ -10,9 +9,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.event.player.PlayerGameModeChangeEvent;
-
-import us.corenetwork.core.PlayerUtils;
 
 public class PlayerListener implements Listener {
 
@@ -43,7 +39,7 @@ public class PlayerListener implements Listener {
 					tpLoc.setPitch(player.getLocation().getPitch());
 					tpLoc.setYaw(player.getLocation().getYaw());
 					
-					PlayerUtils.safeTeleport(player, tpLoc);
+					player.teleport(tpLoc);
 					event.setCancelled(true);
 					return;
 				}

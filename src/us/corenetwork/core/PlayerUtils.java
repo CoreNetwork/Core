@@ -2,14 +2,10 @@ package us.corenetwork.core;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 import us.corenetwork.core.PlayerUtils.PickPlayerResult.PickPlayerResultState;
-import us.corenetwork.core.respawn.RespawnSettings;
 
 public class PlayerUtils {
 	public static PickPlayerResult pickPlayer(String partialName)
@@ -77,23 +73,7 @@ public class PlayerUtils {
 			AMBIGUOUS;
 		}
 	}
-	
-	public static void safeTeleport(final Player player, final Location location)
-	{
-		Chunk c = location.getChunk();
-		if (!c.isLoaded())
-			location.getChunk().load();
-		player.setFallDistance(0);
-		player.teleport(location);
-	
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(CorePlugin.instance, new Runnable() {
-			@Override
-			public void run() {
-				player.teleport(location);
-			}
-		}, 10);
-	}
-	
+
 	public static void Message(String message, CommandSender sender)
 	{
 		message = message.replaceAll("\\&([0-9abcdefklmnor])", ChatColor.COLOR_CHAR + "$1");

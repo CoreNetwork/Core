@@ -45,7 +45,7 @@ public class WarpCommand extends BaseWarpCommand {
 			return;
 		}
 		
-		PlayerUtils.safeTeleport(player, location);
+		player.teleport(location);
 		runWarpCommands(name, player);
 		
 		if (!SudoCommand.isUnderSudo(player.getName()))

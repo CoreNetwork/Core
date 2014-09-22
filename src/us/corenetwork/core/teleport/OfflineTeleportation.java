@@ -80,7 +80,7 @@ public class OfflineTeleportation {
 
 			TeleportUtil.notifyModerators(null, notice, player);
 			
-			PlayerUtils.safeTeleport(player, location);
+			player.teleport(location);
 		}
 	}
 	
