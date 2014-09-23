@@ -141,10 +141,14 @@ public class PlayerModule extends CoreModule {
 		kits = new HashMap<String, List<String>>();
 		ConfigurationSection chSection = config.getConfigurationSection(PlayerSettings.KITS.string);
 		kits = new HashMap<String, List<String>>();
-		for(String key : chSection.getKeys(false))
+		if(chSection != null)
 		{
-			kits.put(key.toLowerCase(), chSection.getStringList(key));
+			for(String key : chSection.getKeys(false))
+			{
+				kits.put(key.toLowerCase(), chSection.getStringList(key));
+			}
 		}
+		
 	}
 	
 	@Override
