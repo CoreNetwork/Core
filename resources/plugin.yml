@@ -47,3 +47,5 @@ commands:
     gamemode:
         description: Revoke God mode
         aliases: gm
+    kit:
+        description: Kit package for a player.

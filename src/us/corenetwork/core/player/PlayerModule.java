@@ -2,14 +2,15 @@ package us.corenetwork.core.player;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
-
+import org.bukkit.configuration.ConfigurationSection;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
@@ -18,6 +19,7 @@ import us.corenetwork.core.player.commands.EffectCommand;
 import us.corenetwork.core.player.commands.EnchantCommand;
 import us.corenetwork.core.player.commands.GamemodeCommand;
 import us.corenetwork.core.player.commands.GodCommand;
+import us.corenetwork.core.player.commands.KitCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
 import us.corenetwork.core.player.commands.UnvanishCommand;
 import us.corenetwork.core.player.commands.VanishCommand;
@@ -27,12 +29,12 @@ public class PlayerModule extends CoreModule {
 	public static PlayerModule instance;
 	public static VanishManager vanishManager;
 	public static Set<String> gods = new HashSet<String>();
-	
+	public static Map<String, List<String>> kits;
 	public static HashMap<String, BasePlayerCommand> commands;
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "enchant", "god", "ungod", "gamemode"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "enchant", "god", "ungod", "gamemode", "kit"}, "player");
 		
 		instance = this;
 	}
@@ -86,6 +88,10 @@ public class PlayerModule extends CoreModule {
 		{
 			return commands.get("gamemode").execute(sender, args, false);
 		}
+		if (command.getName().equals("kit"))
+		{
+			return commands.get("kit").execute(sender, args, false);
+		}
 		else
 		{
 			BasePlayerCommand cmd = commands.get(args[0]);
@@ -116,11 +122,13 @@ public class PlayerModule extends CoreModule {
 		commands.put("god", new GodCommand());
 		commands.put("ungod", new UngodCommand());
 		commands.put("gamemode", new GamemodeCommand());
+		commands.put("kit", new KitCommand());
 
 		CorePlugin.coreCommands.put("effect", new EffectCommand());
 		CorePlugin.coreCommands.put("enchant", new EnchantCommand());
 		
 		vanishManager = new VanishManager();
+		
 		
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), CorePlugin.instance);
 		Bukkit.getServer().getPluginManager().registerEvents(new VanishListener(), CorePlugin.instance);
@@ -128,8 +136,27 @@ public class PlayerModule extends CoreModule {
 		return true;
 	}
 	
+	private void initializeKits()
+	{
+		kits = new HashMap<String, List<String>>();
+		ConfigurationSection chSection = config.getConfigurationSection(PlayerSettings.KITS.string);
+		kits = new HashMap<String, List<String>>();
+		for(String key : chSection.getKeys(false))
+		{
+			kits.put(key.toLowerCase(), chSection.getStringList(key));
+		}
+	}
+	
 	@Override
 	protected void unloadModule()
 	{
+	}
+	
+	@Override
+	public void loadConfig()
+	{
+		super.loadConfig();
+
+		initializeKits();
 	}
 }

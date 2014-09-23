@@ -40,8 +40,14 @@ public class SudoCommand extends BaseCoreCommand {
 		if (player == null)
 			return;
 
-		playerName = player.getName();
-				
+		sudo(player, commandLine);
+
+	}	
+	
+	public static void sudo(Player player, String command)
+	{
+		String playerName = player.getName();
+		
 		boolean isOp = player.isOp();
 		try
 		{
@@ -50,7 +56,7 @@ public class SudoCommand extends BaseCoreCommand {
 			if (!isOp)
 				player.setOp(true);
 
-			Bukkit.getServer().dispatchCommand(player, commandLine);
+			Bukkit.getServer().dispatchCommand(player, command);
 
 		}
 		finally
@@ -60,8 +66,7 @@ public class SudoCommand extends BaseCoreCommand {
 
 			sudoPlayers.remove(playerName);
 		}
-
-	}	
+	}
 	
 	public static boolean isUnderSudo(String player)
 	{

@@ -1,5 +1,7 @@
 package us.corenetwork.core.player;
 
+import java.util.ArrayList;
+
 
 public enum PlayerSettings {
 
@@ -25,6 +27,8 @@ public enum PlayerSettings {
 	
 	OVERWORLD_IGNORE_BORDER("Border.world", 10),
 	IGNORE_BORDER("Border.Other", 0),
+	
+	KITS("Kits", new ArrayList<String>()),
 	
 	MESSAGE_SELF_CLEARED("Message.InventorySelfCleared", "Inventory cleared."),
 	MESSAGE_PLAYER_CLEARED("Message.InventoryPlayerCleared", "<Player>'s inventory cleared."),
@@ -57,7 +61,12 @@ public enum PlayerSettings {
 	MESSAGE_SET_GAMEMODE("Message.SetGamemode", "You changed <Player>'s gamemode to <Gamemode>."),
 	MESSAGE_GAMEMODE_CHANGED("Message.GamemodeChanged", "Your gamemode was changed to <Gamemode>."),
 	
-	MESSAGE_VANISH_DISABLED("Message.VanishDisabled", "Vanish is disabled due to some bugs :[");
+	MESSAGE_VANISH_DISABLED("Message.VanishDisabled", "Vanish is disabled due to some bugs :["),
+	
+	MESSAGE_KIT_RECEIVED("Message.KitReceived", "You have been granted a <Kit> kit."),
+	MESSAGE_KIT_GRANTED("Message.KitGranted", "<Kit> kit granted to a <Player>."),
+	
+	;
 	protected String string;
 	protected Object def;
 	
