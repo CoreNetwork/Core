@@ -1,10 +1,9 @@
 package us.corenetwork.core.trapped;
 
 import java.util.HashMap;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-
+import us.corenetwork.core.CLog;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.trapped.commands.BaseTrappedCommand;
@@ -33,6 +32,12 @@ public class TrappedModule extends CoreModule {
 	@Override
 	protected boolean loadModule()
 	{
+		if(CorePlugin.instance.getServer().getPluginManager().getPlugin("GriefPrevention") == null)
+		{
+			CLog.info("Trapped module requires GriefPrevention. Skipping.");
+			return false;
+		}
+		
 		for (TrappedSettings setting : TrappedSettings.values())
 		{
 			if (config.get(setting.string) == null)

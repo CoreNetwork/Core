@@ -4,6 +4,7 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import us.corenetwork.core.CLog;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.Util;
@@ -32,6 +33,13 @@ public class RespawnModule extends CoreModule {
 	@Override
 	protected boolean loadModule() {
 
+		if(CorePlugin.instance.getServer().getPluginManager().getPlugin("GriefPrevention") == null)
+		{
+			CLog.info("Respawn module requires GriefPrevention. Skipping.");
+			return false;
+		}
+		
+		
 		teamManager = new RespawnTeamManager();
 		manager = new RespawnManager();
 		for (RespawnSettings setting : RespawnSettings.values())
