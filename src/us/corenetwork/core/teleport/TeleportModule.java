@@ -38,7 +38,8 @@ public class TeleportModule extends CoreModule {
 			}
 			else
 			{
-				return CorePlugin.coreCommands.get("tp").execute(sender, args, false);
+				//return CorePlugin.coreCommands.get("tp").execute(sender, args, false);
+				return commands.get("tp").execute(sender, args, false);
 			}
 		}
 		else if (command.getName().equals("bring"))
@@ -80,6 +81,7 @@ public class TeleportModule extends CoreModule {
 		commands.put("set", new SetCommand());
 		commands.put("warp", new WarpCommand());
 		commands.put("delete", new DeleteCommand());
+		commands.put("tp", new TpCommand());
 		
 		CorePlugin.coreCommands.put("tp", new TpCommand());
 

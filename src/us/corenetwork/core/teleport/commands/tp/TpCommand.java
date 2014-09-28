@@ -1,7 +1,6 @@
 package us.corenetwork.core.teleport.commands.tp;
 
 import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
@@ -9,19 +8,17 @@ import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.PlayerUtils.PickPlayerResult;
 import us.corenetwork.core.Util;
-import us.corenetwork.core.corecommands.BaseCoreCommand;
 import us.corenetwork.core.corecommands.SudoCommand;
 import us.corenetwork.core.teleport.Coordinate;
 import us.corenetwork.core.teleport.OfflineTeleportation;
 import us.corenetwork.core.teleport.TeleportSettings;
 import us.corenetwork.core.teleport.TeleportUtil;
 
-public class TpCommand extends BaseCoreCommand {	
+public class TpCommand extends BaseTpCommand {	
 	public static HashMap<String, AbstractCoreCommand> subCommands = new HashMap<String, AbstractCoreCommand>();
 	static
 	{
