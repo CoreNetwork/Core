@@ -92,7 +92,9 @@ public class MapModule extends CoreModule {
 		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new Teleporter(), 20, 20);
 
 		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new TimeTask(), 20, 400);
-
+		
+		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new ClearOrbTask(), 20, CheckpointsSettings.ORB_CLEARING_INTERVAL.integer() * 20);
+		
 		Bukkit.getServer().getPluginManager().registerEvents(new CheckpointsListener(), CorePlugin.instance);
 		
 		return true;

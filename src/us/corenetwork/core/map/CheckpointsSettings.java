@@ -4,7 +4,8 @@ package us.corenetwork.core.map;
 public enum CheckpointsSettings {
 	ENABLED("Enabled", true),
 	TELEPORT_DELAY("TeleportDelay", 5),
-	
+	ORB_CLEARING_BOX_SIZE("OrbClearBoxSize", 10),
+	ORB_CLEARING_INTERVAL("OrbClearInterval", 60),
 	MESSAGE_CHECKPOINT_CREATED("Messages.PointCreated", "Checkpoint <Position> in list <List> created!"),
 	MESSAGE_LIST_NOT_EXIST("Messages.ListNotExist", "List <List> does not exist!"),
 	MESSAGE_LIST_DELETED("Messages.ListDeleted", "List <List> deleted."),
