@@ -1,4 +1,4 @@
-package us.corenetwork.core.trapped;
+package us.corenetwork.core.claims;
 
 import java.util.Collection;
 
@@ -53,11 +53,11 @@ public class RescueTask implements Runnable {
 		if (!player.isOnline())
 			return;
 		
-		TrappedPlayers.trappedPlayers.remove(player);
+		ClaimsPlayers.trappedPlayers.remove(player);
 		
 		if (player.getLocation().distance(originalLocation) > 1)
 		{
-			PlayerUtils.Message(TrappedSettings.MESSAGE_RESCUE_PLAYER_MOVED.string(), player);	
+			PlayerUtils.Message(ClaimsSettings.MESSAGE_RESCUE_PLAYER_MOVED.string(), player);	
 			return;
 		}
 		
@@ -88,14 +88,14 @@ public class RescueTask implements Runnable {
 		minX = getLimit(worldName, "MinX");
 		maxZ = getLimit(worldName, "MaxZ");
 		minZ = getLimit(worldName, "MinZ");
-		y = (Integer) TrappedModule.instance.config.get("Trapped.Surface." + worldName);
+		y = (Integer) ClaimsModule.instance.config.get("Trapped.Surface." + worldName);
 	}
 	
 	private int getLimit(String worldName, String limitType)
 	{
-		Integer limit = (Integer) TrappedModule.instance.config.get("Trapped.Limits." + worldName + "." + limitType);
+		Integer limit = (Integer) ClaimsModule.instance.config.get("Trapped.Limits." + worldName + "." + limitType);
 		if (limit == null)
-			limit = (Integer) TrappedModule.instance.config.get("Trapped.Limits.Other." + limitType);
+			limit = (Integer) ClaimsModule.instance.config.get("Trapped.Limits.Other." + limitType);
 		
 		return limit;
 	}
@@ -225,7 +225,7 @@ public class RescueTask implements Runnable {
 	
 	private void clearTargetLocation(Location location)
 	{
-		int radiusSquared = TrappedSettings.CLEAR_RADIUS.integer()*TrappedSettings.CLEAR_RADIUS.integer();
+		int radiusSquared = ClaimsSettings.CLEAR_RADIUS.integer()*ClaimsSettings.CLEAR_RADIUS.integer();
 	
 		Collection<LivingEntity> monsters = player.getWorld().getEntitiesByClass(LivingEntity.class);
 		for (LivingEntity entity : monsters)

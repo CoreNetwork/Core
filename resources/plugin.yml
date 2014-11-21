@@ -1,6 +1,6 @@
 name: Core
 main: us.corenetwork.core.CorePlugin
-version: 1.0.0
+version: 1.1.0
 softdepend: [GriefPrevention]
 author: matejdro
 commands:
@@ -49,3 +49,7 @@ commands:
         aliases: gm
     kit:
         description: Kit package for a player.
+    blocks:
+        description: List your blocks
+    claimslist:
+        description: List your claims

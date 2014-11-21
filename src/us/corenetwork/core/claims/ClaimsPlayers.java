@@ -1,9 +1,9 @@
-package us.corenetwork.core.trapped;
+package us.corenetwork.core.claims;
 
 import java.util.ArrayList;
 
 import org.bukkit.entity.Player;
 
-public class TrappedPlayers {
+public class ClaimsPlayers {
 	public static ArrayList<Player> trappedPlayers = new ArrayList<Player>();
 }

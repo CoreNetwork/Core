@@ -1,12 +1,13 @@
 package us.corenetwork.core;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
-
+import java.util.List;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.ClaimArray;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
-
+import me.ryanhamshire.GriefPrevention.PlayerData;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -113,4 +114,40 @@ public class GriefPreventionHandler {
 		return claim == null || claim.allowBuild(player) == null; 
 	}
 	
+	public static List<ClaimSimple> getPlayerClaimsSimple(Player player, String worldName)
+	{
+		List<ClaimSimple> listOfClaimSimple = new ArrayList<ClaimSimple>();
+				
+		//TODO UUID Switch!
+		for(Claim c : GriefPrevention.instance.dataStore.getPlayerData(player.getName()).claims)
+		{
+			if(c.getClaimWorldName().equalsIgnoreCase(worldName))
+			{
+				int width = c.getWidth();
+				width = width*width;
+				int area = c.getArea();
+				listOfClaimSimple.add(new ClaimSimple(c.getGreaterBoundaryCorner(), area, area==width));
+			}
+		}
+
+		return listOfClaimSimple;
+	}
+	
+	public static ClaimBlocks getPlayerClaimBlocks(Player player)
+	{
+		PlayerData pd = GriefPrevention.instance.dataStore.getPlayerData(player.getName());
+		int accrued = pd.accruedClaimBlocks;
+		int bonus = pd.bonusClaimBlocks;
+		int rank = GriefPrevention.instance.dataStore.getGroupBonusBlocks(player.getName());
+		int remaining = pd.getRemainingClaimBlocks();
+		
+		return new ClaimBlocks(accrued, bonus, rank, remaining);
+	}
+
+	public static void addBonusClaimBlocks(Player player, Integer toAdd)
+	{
+		PlayerData pd = GriefPrevention.instance.dataStore.getPlayerData(player.getName());
+		pd.bonusClaimBlocks += toAdd;
+		GriefPrevention.instance.dataStore.savePlayerData(player.getName(), pd);
+	}
 }

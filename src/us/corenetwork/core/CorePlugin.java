@@ -2,15 +2,12 @@ package us.corenetwork.core;
 
 import java.util.HashMap;
 import java.util.Random;
-
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import us.corenetwork.core.corecommands.CoreHelpCommand;
 import us.corenetwork.core.corecommands.ReloadCommand;
 import us.corenetwork.core.corecommands.SudoCommand;
@@ -34,7 +31,8 @@ public class CorePlugin extends JavaPlugin {
 		coreCommands.put("sudo", new SudoCommand());
 		
 		IO.LoadSettings();
-		
+		IO.PrepareDB();
+
 		if (!setupPermissions())
 		{
 			getLogger().warning("could not load Vault permissions - did you forget to install Vault?");

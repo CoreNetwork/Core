@@ -5,18 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-
 import us.corenetwork.core.calculator.CalculatorModule;
+import us.corenetwork.core.claims.ClaimsModule;
 import us.corenetwork.core.map.MapModule;
 import us.corenetwork.core.player.PlayerModule;
 import us.corenetwork.core.respawn.RespawnModule;
 import us.corenetwork.core.scoreboard.ScoreboardModule;
 import us.corenetwork.core.teleport.TeleportModule;
-import us.corenetwork.core.trapped.TrappedModule;
 
 public abstract class CoreModule implements CommandExecutor {
 	private String moduleName;
@@ -234,7 +232,7 @@ public abstract class CoreModule implements CommandExecutor {
 		}
 		
 		//Trapped
-		module = new TrappedModule();
+		module = new ClaimsModule();
 		if (module.loadModuleInternal())
 		{
 			module.active = true;
