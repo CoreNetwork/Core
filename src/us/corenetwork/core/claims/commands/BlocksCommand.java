@@ -16,7 +16,7 @@ public class BlocksCommand extends BaseClaimsCommand{
 	public BlocksCommand()
 	{
 		desc = "List your blocks";
-		permission = "blocks.buy";
+		permission = "blocks";
 		needPlayer = true;
 	}
 	
