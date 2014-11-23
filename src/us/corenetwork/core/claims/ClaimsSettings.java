@@ -64,6 +64,7 @@ public enum ClaimsSettings {
 	CLAIMSLIST_MESSAGES_LINE("Claimslist.Messages.Line", "------------"),
 	CLAIMSLIST_MESSAGES_CLAIM("Claimslist.Messages.Claim", "<X>, <Z> (area: <Area>)"),
 	CLAIMSLIST_MESSAGES_SC_CLAIM("Claimslist.Messages.SpecialCaseClaim", "&c<X>, <Z> (area: <Area>)"),
+	CLAIMSLIST_MESSAGES_NO_CLAIMS("Claimslist.Messages.NoClaims", "&cYou don't have claims yet! Learn how to do it: &7/help Claims"),
 	CLAIMSLIST_WORLDS_OW_NAME("Claimslist.Worlds.World.Name", "Overworld"),
 	CLAIMSLIST_WORLDS_OW_CLAIMS_MAX("Claimslist.Worlds.World.ClaimsMax", 5),
 	CLAIMSLIST_WORLDS_NETHER_NAME("Claimslist.Worlds.Nether.Name", "Nether"),

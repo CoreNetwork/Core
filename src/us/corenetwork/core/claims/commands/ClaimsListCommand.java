@@ -32,16 +32,33 @@ public class ClaimsListCommand extends BaseClaimsCommand{
 	@Override
 	public void run(CommandSender sender, String[] args)
 	{
-		printClaims((Player)sender, "world");
-		PlayerUtils.Message("", sender);
-		printClaims((Player)sender, "world_nether");
+		String world = "world";
+		String nether = "world_nether";
+		Player player = (Player)sender;
+		
+		List<ClaimSimple> worldClaims = GriefPreventionHandler.getPlayerClaimsSimple(player, world);
+		List<ClaimSimple> netherClaims = GriefPreventionHandler.getPlayerClaimsSimple(player, nether);
+		
+		if(worldClaims.size() == 0 && netherClaims.size() == 0)
+		{
+			PlayerUtils.Message(ClaimsSettings.CLAIMSLIST_MESSAGES_NO_CLAIMS.string(), player);
+		}
+		else
+		{
+			printClaimsIfAny(worldClaims, player, world);
+			printClaimsIfAny(netherClaims, player, nether);
+		}
+		
 		
 	}
 
 	
-	private void printClaims(Player player, String worldName)
+	private void printClaimsIfAny(List<ClaimSimple> worldClaims, Player player, String worldName)
 	{
-		List<ClaimSimple> worldClaims = GriefPreventionHandler.getPlayerClaimsSimple(player, worldName);
+		if(worldClaims.size() == 0)
+		{
+			return;
+		}
 		Collections.sort(worldClaims);
 		Collections.reverse(worldClaims);
 		
@@ -62,6 +79,7 @@ public class ClaimsListCommand extends BaseClaimsCommand{
 		}
 		
 		String header = ClaimsSettings.CLAIMSLIST_MESSAGES_HEADER.string().replace("<WorldName>", prettyName).replace("<ClaimsNow>", claimsNow).replace("<ClaimsMax>", claimsMax);
+		PlayerUtils.Message("", player);
 		PlayerUtils.Message(header, player);
 		PlayerUtils.Message(ClaimsSettings.CLAIMSLIST_MESSAGES_LINE.string(), player);
 		

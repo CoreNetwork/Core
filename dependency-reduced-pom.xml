@@ -4,7 +4,7 @@
   <groupId>Core</groupId>
   <artifactId>Core</artifactId>
   <name>Core</name>
-  <version>1.0.2</version>
+  <version>1.1.0</version>
   <url>https://github.com/CoreNetwork/Core</url>
   <build>
     <sourceDirectory>src</sourceDirectory>
