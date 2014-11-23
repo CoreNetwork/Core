@@ -57,7 +57,13 @@ public enum ClaimsSettings {
 	BUYING_MESSAGE_CONFIRM_PREFIX("Buying.Messages.ConfirmPrefix", "&a<Resource>: ["),
 	BUYING_MESSAGE_CONFIRM_BUTTON("Buying.Messages.ConfirmButton", "&6Buy for <Amount>"),
 	BUYING_MESSAGE_CONFIRM_SUFFIX("Buying.Messages.ConfirmSuffix", "&a]"),
-	BUYING_MESSAGE_BOUGHT("Buying.Messages.Bought", "&aYou bought 1,000 claim blocks!"),
+	
+	BUYING_MESSAGE_CONFIRM_SUCCESS_PREFIX("Buying.Messages.Confirm.SuccessPrefix", "&aSuccess! Buy another 1,000 for ["),
+	BUYING_MESSAGE_CONFIRM_SUCCESS_BUTTON("Buying.Messages.Confirm.SuccessButton", "&6<Resource>, <Amount>"),
+	BUYING_MESSAGE_CONFIRM_SUCCESS_SUFFIX("Buying.Messages.Confirm.SuccessSuffix", "&a]"),
+	
+	BUYING_MESSAGE_CONFIRM_NO_NEXT("Buying.Messages.Confirm.SuccessNoNext", "&aSuccess!"),
+	
 	BUYING_MESSAGE_NOT_ENOUGH ("Buying.Messages.NotEnough", "&cYou don''t have enough resources in your inventory."),
 	
 	CLAIMSLIST_MESSAGES_HEADER("Claimslist.Messages.Header", "<WorldName> (<ClaimsNow>/<ClaimsMax>)"),

@@ -22,8 +22,6 @@ public class ClaimPacket {
 	private static List<Integer> costList;
 	private static List<PacketResource> resourceList;
 	
-	private static Map<Player, Integer> awaitingConfirmation = new HashMap<Player, Integer>();
-	
 	public static void reloadValues()
 	{
 		costList = ClaimsModule.instance.config.getIntegerList(ClaimsSettings.BUYING_PACKET_COST.string);
@@ -74,27 +72,21 @@ public class ClaimPacket {
 	
 	public static void trySchedulePurchase(Player player)
 	{
-		//already scheduled, remove last, do it again?
-		awaitingConfirmation.remove(player);
-		
 		int packetsBoughtAlready = getAmountOfPacketsBought(player);
 		
-		if(packetsBoughtAlready >= costList.size() * resourceList.size())
+		if(packetsBoughtAlready >= getMaximumAmountOfPackets())
 		{
 			PlayerUtils.Message(ClaimsSettings.BUYING_MESSAGE_BOUGHT_ALL.string(), player);
 			return;
 		}
-
-		//No need to increase packetsBoughtAlready here, coz counting arrays from 0!
 		
 		int amount = costList.get(packetsBoughtAlready % costList.size());
 		PacketResource resource = resourceList.get(packetsBoughtAlready / costList.size());
 		
-		awaitingConfirmation.put(player, packetsBoughtAlready);
 		PlayerUtils.Message(ClaimsSettings.BUYING_MESSAGE_CONFIRM_INFO.string(), player);
 		
-		new FancyMessage(ChatColor.translateAlternateColorCodes('&', ClaimsSettings.BUYING_MESSAGE_CONFIRM_PREFIX.string().replace("<Resource>", resource.name)))
-		                .then(ChatColor.translateAlternateColorCodes('&', ClaimsSettings.BUYING_MESSAGE_CONFIRM_BUTTON.string().replace("<Amount>", amount+"")))
+		new FancyMessage(ChatColor.translateAlternateColorCodes('&', ClaimsSettings.BUYING_MESSAGE_CONFIRM_PREFIX.string().replace("<Resource>", resource.name).replace("<Amount>", amount+"")))
+		                .then(ChatColor.translateAlternateColorCodes('&', ClaimsSettings.BUYING_MESSAGE_CONFIRM_BUTTON.string().replace("<Resource>", resource.name).replace("<Amount>", amount+"")))
 		                	.command("/blocks confirm")
 		                .then(ChatColor.translateAlternateColorCodes('&', ClaimsSettings.BUYING_MESSAGE_CONFIRM_SUFFIX.string()))
 		                .send(player);
@@ -103,22 +95,20 @@ public class ClaimPacket {
 	
 	public static void confirmPurchase(Player player)
 	{
-		
-		//Nothing to confirm from this player, quit silently.
-		if(awaitingConfirmation.containsKey(player) == false)
+		int packetNumber = getAmountOfPacketsBought(player);
+	
+		if(packetNumber >= getMaximumAmountOfPackets())
 		{
+			PlayerUtils.Message(ClaimsSettings.BUYING_MESSAGE_BOUGHT_ALL.string(), player);
 			return;
 		}
-		
-		int packetNumber = awaitingConfirmation.get(player);
 		
 		if(hasResources(player, packetNumber))
 		{
 			removeResources(player, packetNumber);
 			addClaimPacket(player);
 			saveAmountBought(player, packetNumber);
-			awaitingConfirmation.remove(player);
-			PlayerUtils.Message(ClaimsSettings.BUYING_MESSAGE_BOUGHT.string(), player);
+			sendSuccessMessage(player, packetNumber);			
 		}
 		else
 		{
@@ -129,8 +119,8 @@ public class ClaimPacket {
 
 	private static boolean hasResources(Player player, int packetNumber)
 	{
-		int amount = costList.get(packetNumber % costList.size());
-		PacketResource resource = resourceList.get(packetNumber / costList.size());
+		int amount = getAmount(packetNumber);
+		PacketResource resource = getResource(packetNumber);
 		
 		return player.getInventory().contains(resource.material, amount);
 	}
@@ -138,9 +128,8 @@ public class ClaimPacket {
 
 	private static void removeResources(Player player, int packetNumber)
 	{
-
-		int amount = costList.get(packetNumber % costList.size());
-		PacketResource resource = resourceList.get(packetNumber / costList.size());
+		int amount = getAmount(packetNumber);
+		PacketResource resource = getResource(packetNumber);
 
 		Inventory inventory = player.getInventory();
 		for (int i = 0; i < inventory.getSize(); i++)
@@ -187,7 +176,39 @@ public class ClaimPacket {
 			e.printStackTrace();
 		}
 	}
+	
+	private static void sendSuccessMessage(Player player, int packetNumber)
+	{
+		if(packetNumber + 1 >= getMaximumAmountOfPackets())
+		{
+			PlayerUtils.Message(ClaimsSettings.BUYING_MESSAGE_CONFIRM_NO_NEXT.string(), player);
+		}
+		else
+		{
+			int amount = getAmount(packetNumber+1);
+			PacketResource resource = getResource(packetNumber+1);
+
+			new FancyMessage(ChatColor.translateAlternateColorCodes('&', ClaimsSettings.BUYING_MESSAGE_CONFIRM_SUCCESS_PREFIX.string().replace("<Resource>", resource.name).replace("<Amount>", amount+"")))
+            .then(ChatColor.translateAlternateColorCodes('&', ClaimsSettings.BUYING_MESSAGE_CONFIRM_SUCCESS_BUTTON.string().replace("<Resource>", resource.name).replace("<Amount>", amount+"")))
+            	.command("/blocks confirm")
+            .then(ChatColor.translateAlternateColorCodes('&', ClaimsSettings.BUYING_MESSAGE_CONFIRM_SUCCESS_SUFFIX.string()))
+            .send(player);
+		}
+	}
 
 	
+	private static int getAmount(int packetNumber)
+	{
+		return costList.get(packetNumber % costList.size());
+	}
 	
+	private static PacketResource getResource(int packetNumber)
+	{
+		return resourceList.get(packetNumber / costList.size());
+	}
+	
+	private static int getMaximumAmountOfPackets()
+	{
+		return costList.size() * resourceList.size();
+	}
 }
