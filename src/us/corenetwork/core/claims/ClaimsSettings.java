@@ -52,7 +52,7 @@ public enum ClaimsSettings {
 		}});
 	}}), 
 	
-	BUYING_MESSAGE_BOUGHT_ALL("Buying.Message.BoughtAll", "&cYou you can''t buy more claim blocks."),
+	BUYING_MESSAGE_BOUGHT_ALL("Buying.Messages.BoughtAll", "&cYou you can't buy more claim blocks."),
 	BUYING_MESSAGE_CONFIRM_INFO("Buying.Messages.ConfirmInfo", "&aBuying 1,000 claim blocks."),
 	BUYING_MESSAGE_CONFIRM_PREFIX("Buying.Messages.ConfirmPrefix", "&a<Resource>: ["),
 	BUYING_MESSAGE_CONFIRM_BUTTON("Buying.Messages.ConfirmButton", "&6Buy for <Amount>"),
@@ -64,7 +64,7 @@ public enum ClaimsSettings {
 	
 	BUYING_MESSAGE_CONFIRM_NO_NEXT("Buying.Messages.Confirm.SuccessNoNext", "&aSuccess!"),
 	
-	BUYING_MESSAGE_NOT_ENOUGH ("Buying.Messages.NotEnough", "&cYou don''t have enough resources in your inventory."),
+	BUYING_MESSAGE_NOT_ENOUGH ("Buying.Messages.NotEnough", "&cYou don't have enough resources in your inventory."),
 	
 	CLAIMSLIST_MESSAGES_HEADER("Claimslist.Messages.Header", "<WorldName> (<ClaimsNow>/<ClaimsMax>)"),
 	CLAIMSLIST_MESSAGES_LINE("Claimslist.Messages.Line", "------------"),
