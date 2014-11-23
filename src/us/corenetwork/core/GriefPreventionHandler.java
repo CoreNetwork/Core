@@ -126,7 +126,7 @@ public class GriefPreventionHandler {
 				int width = c.getWidth();
 				width = width*width;
 				int area = c.getArea();
-				listOfClaimSimple.add(new ClaimSimple(c.getGreaterBoundaryCorner(), area, area==width));
+				listOfClaimSimple.add(new ClaimSimple(c.getGreaterBoundaryCorner(), area, area==width && area == 81));
 			}
 		}
 
