@@ -40,7 +40,7 @@ public class RespawnManager {
 		
 		if (isLucky(player))
 		{
-			biggestClaim = GriefPreventionHandler.findBiggestClaimInWorld(player.getName(), RespawnSettings.RESPAWN_WORLD.string());
+			biggestClaim = GriefPreventionHandler.findBiggestClaimInWorld(player, RespawnSettings.RESPAWN_WORLD.string());
 		}
 		
 		if(biggestClaim != null)

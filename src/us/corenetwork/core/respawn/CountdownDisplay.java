@@ -1,11 +1,9 @@
 package us.corenetwork.core.respawn;
 
 import java.util.ArrayList;
-
 import org.bukkit.ChatColor;
-
+import org.bukkit.entity.ArmorStand;
 import us.corenetwork.core.HoloDisplay;
-
 import com.gmail.filoghost.holograms.api.Hologram;
 
 
@@ -19,6 +17,7 @@ public class CountdownDisplay extends HoloDisplay {
 		this.countdown = countdown;
 		ArrayList<String> list = (ArrayList<String>) RespawnSettings.HOLOGRAMS_COUNTERS.list();
 		initHolograms("", list);
+		
 	}
 	
 	public void display()

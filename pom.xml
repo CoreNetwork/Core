@@ -80,23 +80,25 @@
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.7.10-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
+			<version>1.8-R0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/bukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
 		</dependency>
 
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>craftbukkit</artifactId>
-			<version>1.7.10-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
+			<version>1.8-R0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/craftbukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
 		</dependency>
 
 		<dependency>
 			<groupId>me.ryanhamshire</groupId>
 			<artifactId>GriefPrevention</artifactId>
-			<version>7.8-SNAPSHOT</version>
+			<version>9.1</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/GriefPrevention-7.8-SNAPSHOT.jar</systemPath>
+			<systemPath>${basedir}/lib/GriefPrevention.jar</systemPath>
 		</dependency>
 
 		<dependency>

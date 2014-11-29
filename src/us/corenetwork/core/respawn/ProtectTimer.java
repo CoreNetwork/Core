@@ -19,7 +19,7 @@ public class ProtectTimer implements Runnable
 	public static void endProtectionMessage(Player player)
 	{
 		String message;
-		if (GriefPreventionHandler.playerHasClaim(player.getName()))
+		if (GriefPreventionHandler.playerHasClaim(player))
 			message = RespawnSettings.MESSAGE_SPAWN_PROTECTION_END_CLAIMS.string();
 		else
 			message = RespawnSettings.MESSAGE_SPAWN_PROTECTION_END_NO_CLAIMS.string();

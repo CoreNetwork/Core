@@ -1,12 +1,12 @@
 package us.corenetwork.core.player;
 
 import java.util.Collection;
-import net.minecraft.server.v1_7_R4.PacketPlayOutPlayerInfo;
+import net.minecraft.server.v1_8_R1.PacketPlayOutPlayerInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,7 +40,7 @@ public class VanishListener implements Listener {
 			{
 				player.hidePlayer(onlinePlayer);
 				
-				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(ChatColor.translateAlternateColorCodes('&', CorePlugin.chat.getPlayerPrefix(player)+player.getName()), true, 10));
+				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo());
 			}
 		}
 	}

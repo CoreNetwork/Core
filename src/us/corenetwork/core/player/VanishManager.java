@@ -1,22 +1,18 @@
 package us.corenetwork.core.player;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import net.minecraft.server.v1_7_R4.PacketPlayOutPlayerInfo;
-
+import net.minecraft.server.v1_8_R1.PacketPlayOutPlayerInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
-
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.PlayerUtils;
@@ -85,7 +81,7 @@ public class VanishManager {
 			{
 				onlinePlayer.hidePlayer(player);
 				
-				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(ChatColor.translateAlternateColorCodes('&', CorePlugin.chat.getPlayerPrefix(player)+player.getName()), true, 10));
+				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo());
 				
 			}
 		}
@@ -105,7 +101,7 @@ public class VanishManager {
 			if (canSeeAll(onlinePlayer) == false)
 			{
 				onlinePlayer.showPlayer(player);
-				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(ChatColor.translateAlternateColorCodes('&', CorePlugin.chat.getPlayerPrefix(player)+player.getName()), false, 10));
+				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo());
 			}
 		}
 		removeFromSeeAllGroup(player);
