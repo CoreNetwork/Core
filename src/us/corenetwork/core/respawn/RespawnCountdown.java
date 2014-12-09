@@ -13,7 +13,6 @@ public class RespawnCountdown {
 	
 	private List<Integer> countdownTasks;
 	
-	CountdownDisplay display;
 	CommandCountdownDisplay commDisplay;
 	
 	public RespawnCountdown()
@@ -23,7 +22,6 @@ public class RespawnCountdown {
 		
 		countdownTasks = new ArrayList<Integer>();
 		
-		display = new CountdownDisplay(this);
 		commDisplay = new CommandCountdownDisplay();
 	}
 	
@@ -69,7 +67,6 @@ public class RespawnCountdown {
 	{
 		running = false;
 		countdownTasks.clear();
-		display.clear();
 		commDisplay.clear();
 	}
 	
@@ -88,7 +85,6 @@ public class RespawnCountdown {
 		currentTime = value;
 		if(running)
 		{
-			display.display();
 			commDisplay.set(value);
 			if(value == 0)
 			{
