@@ -75,28 +75,28 @@
       <artifactId>bukkit</artifactId>
       <version>1.8-R0.1-SNAPSHOT</version>
       <scope>system</scope>
-      <systemPath>d:\Projects\GitHub\Core/lib/bukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
+      <systemPath>/Users/tux/projects/CoreNetwork/Core/lib/bukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>craftbukkit</artifactId>
       <version>1.8-R0.1-SNAPSHOT</version>
       <scope>system</scope>
-      <systemPath>d:\Projects\GitHub\Core/lib/craftbukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
+      <systemPath>/Users/tux/projects/CoreNetwork/Core/lib/craftbukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>me.ryanhamshire</groupId>
       <artifactId>GriefPrevention</artifactId>
       <version>9.1</version>
       <scope>system</scope>
-      <systemPath>d:\Projects\GitHub\Core/lib/GriefPrevention.jar</systemPath>
+      <systemPath>/Users/tux/projects/CoreNetwork/Core/lib/GriefPrevention.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.gmail.filoghost</groupId>
       <artifactId>HolographicDisplays</artifactId>
       <version>1.8.4</version>
       <scope>system</scope>
-      <systemPath>d:\Projects\GitHub\Core/lib/HolographicDisplays.jar</systemPath>
+      <systemPath>/Users/tux/projects/CoreNetwork/Core/lib/HolographicDisplays.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>net.milkbowl.vault</groupId>

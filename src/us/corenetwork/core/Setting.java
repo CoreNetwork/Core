@@ -6,7 +6,8 @@ public enum Setting {
 	DEBUG("Debug", false),
 	
 	MESSAGE_NO_PERMISSION("Messages.NoPermission", "No permission!"),
-	MESSAGE_CONFIGURATION_RELOADED("Messages.ConfigurationReloaded", "Configuration reloaded successfully!");
+	MESSAGE_CONFIGURATION_RELOADED("Messages.ConfigurationReloaded", "Configuration reloaded successfully!"),
+    MESSAGE_DEFAULT_KICK_ON_REBOOT("Messages.Reboot.Kick", "Server Reboot.");
 
 	private String name;
 	private Object def;
