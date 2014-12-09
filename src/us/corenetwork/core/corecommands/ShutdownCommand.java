@@ -108,11 +108,11 @@ public class ShutdownCommand extends BaseCoreCommand {
         if (relative) {
             long remaining = (long) Math.ceil((shutdownTime - System.currentTimeMillis()) / 1000d);
             if (remaining < 60) {
-                return remaining + " seconds";
+                return remaining + "s";
             } else if (remaining < 60 * 60) {
-                return remaining / 60 + " minutes";
+                return remaining / 60 + "m";
             } else {
-                return remaining / (60 * 60) + " hours";
+                return remaining / (60 * 60) + "h";
             }
         } else {
             return new Date(shutdownTime).toString();

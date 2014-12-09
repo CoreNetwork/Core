@@ -29,18 +29,9 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Maven: me.ryanhamshire:GriefPrevention:9.1">
+      <library name="Maven: me.ryanhamshire:GriefPrevention:9.2.2">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/GriefPrevention.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: com.gmail.filoghost:HolographicDisplays:1.8.4">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/HolographicDisplays.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/GriefPrevention-9.2.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
