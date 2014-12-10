@@ -91,10 +91,10 @@ public class AliasModule extends CoreModule implements Listener {
             if (itemMap.containsKey("route")) {
                 Object routeObj = itemMap.get("route");
                 if (routeObj instanceof String) {
-                    actions.add(new RunCommandAction((String) routeObj, sudo));
+                    actions.add(new RunCommandAction(((String) routeObj).replaceFirst("\\/", ""), sudo));
                 } else if (routeObj instanceof List) {
                     for (String route : (List<String>) routeObj) {
-                        actions.add(new RunCommandAction(route, sudo));
+                        actions.add(new RunCommandAction(route.replaceFirst("\\/", ""), sudo));
                     }
                 }
             }

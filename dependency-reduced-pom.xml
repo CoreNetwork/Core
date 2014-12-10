@@ -67,21 +67,21 @@
       <artifactId>bukkit</artifactId>
       <version>1.8-R0.1-SNAPSHOT</version>
       <scope>system</scope>
-      <systemPath>d:\Projects\GitHub\Core/lib/bukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
+      <systemPath>/Users/tux/Entwicklung/CoreNetwork/Core/lib/bukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>craftbukkit</artifactId>
       <version>1.8-R0.1-SNAPSHOT</version>
       <scope>system</scope>
-      <systemPath>d:\Projects\GitHub\Core/lib/craftbukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
+      <systemPath>/Users/tux/Entwicklung/CoreNetwork/Core/lib/craftbukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>me.ryanhamshire</groupId>
       <artifactId>GriefPrevention</artifactId>
       <version>9.2.2</version>
       <scope>system</scope>
-      <systemPath>d:\Projects\GitHub\Core/lib/GriefPrevention-9.2.2.jar</systemPath>
+      <systemPath>/Users/tux/Entwicklung/CoreNetwork/Core/lib/GriefPrevention-9.2.2.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>net.milkbowl.vault</groupId>
