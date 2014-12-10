@@ -8,6 +8,7 @@ import java.util.List;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+import us.corenetwork.core.alias.AliasModule;
 import us.corenetwork.core.calculator.CalculatorModule;
 import us.corenetwork.core.claims.ClaimsModule;
 import us.corenetwork.core.map.MapModule;
@@ -246,6 +247,14 @@ public abstract class CoreModule implements CommandExecutor {
 			module.active = true;
 			modules.add(module);
 		}
+
+        //Alias
+        module = new AliasModule();
+        if (module.loadModuleInternal())
+        {
+            module.active = true;
+            modules.add(module);
+        }
 	}
 
 	public static void reloadConfigs()
