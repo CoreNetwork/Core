@@ -1,5 +1,13 @@
 *.class
 
+# IDE stuff
+/.settings
+/.idea
+.classpath
+.project
+
+dependency-reduced-pom.xml
+*.iml
 # Package Files #
 *.war
 *.ear
