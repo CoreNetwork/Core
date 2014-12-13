@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import us.corenetwork.core.CLog;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.alias.actions.RunAliasAction;
@@ -32,9 +33,10 @@ public class AliasModule extends CoreModule implements Listener {
     @Override
     protected boolean loadModule() {
         Bukkit.getPluginManager().registerEvents(this, CorePlugin.instance);
-        CorePlugin.instance.getLogger().info("Alias module loaded");
+
 
         loadSettings(this.config);
+        CLog.info("Alias module loaded");
         return true;
     }
 
@@ -66,7 +68,17 @@ public class AliasModule extends CoreModule implements Listener {
     }
 
     public void loadSettings(YamlConfiguration config) {
-        List<?> items = config.getList("Aliases");
+        List<?> items = config.getList("Aliases", new ArrayList());
+
+        if(items.size() == 0)
+        {
+            CLog.info("No aliases found in config.");
+        }
+        else
+        {
+            CLog.info("Loading " + items.size() + " aliases.");
+        }
+
 
         for (Object item : items) {
             List<Pattern> patterns = new ArrayList<Pattern>();
