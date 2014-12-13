@@ -51,7 +51,7 @@ public class ClaimsModule extends CoreModule {
 	{
 		if(CorePlugin.instance.getServer().getPluginManager().getPlugin("GriefPrevention") == null)
 		{
-			CLog.info("Trapped module requires GriefPrevention. Skipping.");
+			CLog.info("Claims module requires GriefPrevention. Skipping.");
 			return false;
 		}
 		
