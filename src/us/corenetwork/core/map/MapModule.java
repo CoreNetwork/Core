@@ -96,6 +96,10 @@ public class MapModule extends CoreModule {
 		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new ClearOrbTask(), 20, CheckpointsSettings.ORB_CLEARING_INTERVAL.integer() * 20);
 		
 		Bukkit.getServer().getPluginManager().registerEvents(new CheckpointsListener(), CorePlugin.instance);
+
+        ClickRegionListener clickRegionListener = new ClickRegionListener();
+        clickRegionListener.load(config);
+        Bukkit.getServer().getPluginManager().registerEvents(clickRegionListener, CorePlugin.instance);
 		
 		return true;
 	}

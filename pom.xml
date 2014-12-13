@@ -65,6 +65,11 @@
 			<id>fanciful-mvn-repo</id>
 			<url>https://raw.github.com/mkremins/fanciful/mvn-repo/</url>
 		</repository>
+        <repository>
+            <id>sk89q-repo</id>
+            <name>sk89q repository</name>
+            <url>http://maven.sk89q.com/artifactory/repo/</url>
+        </repository>
 	</repositories>
 
 	<dependencies>
@@ -105,6 +110,13 @@
 			<artifactId>fanciful</artifactId>
 			<version>0.1.5</version>
 		</dependency>
+
+        <dependency>
+            <groupId>com.sk89q</groupId>
+            <artifactId>worldguard</artifactId>
+            <version>6.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 </project>
