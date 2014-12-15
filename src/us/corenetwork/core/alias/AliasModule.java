@@ -34,8 +34,6 @@ public class AliasModule extends CoreModule implements Listener {
     protected boolean loadModule() {
         Bukkit.getPluginManager().registerEvents(this, CorePlugin.instance);
 
-
-        loadSettings(this.config);
         CLog.info("Alias module loaded");
         return true;
     }
@@ -136,6 +134,12 @@ public class AliasModule extends CoreModule implements Listener {
             CommandAlias alias = new CommandAlias(patterns, actions);
             aliases.add(alias);
         }
+    }
+
+    @Override
+    public void loadConfig() {
+        super.loadConfig();
+        loadSettings(config);
     }
 
     public Pattern makePattern(String pre, boolean raw) {

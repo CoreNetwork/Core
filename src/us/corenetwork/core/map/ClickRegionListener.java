@@ -89,6 +89,7 @@ public class ClickRegionListener implements Listener {
                 ClickAlias alias = regionsToCommandMap.get(new ClickAliasIndex(event.getClickedBlock().getType(), region.getId()));
                 if (alias != null) {
                     alias.execute(event.getPlayer());
+                    return;
                 }
             }
         }

@@ -27,8 +27,9 @@ public class MapModule extends CoreModule {
 
 	public static HashMap<String, SavedCheckpoint> savedCheckpoints;
 	public static HashMap<String, ScheduledTeleport> scheduledTeleports;
+    private ClickRegionListener clickRegionListener = new ClickRegionListener();
 
-	public MapModule() {
+    public MapModule() {
 		super("Map", new String[] {"chp", "checkpoint"}, "map");
 		
 		instance = this;
@@ -97,14 +98,18 @@ public class MapModule extends CoreModule {
 		
 		Bukkit.getServer().getPluginManager().registerEvents(new CheckpointsListener(), CorePlugin.instance);
 
-        ClickRegionListener clickRegionListener = new ClickRegionListener();
-        clickRegionListener.load(config);
         Bukkit.getServer().getPluginManager().registerEvents(clickRegionListener, CorePlugin.instance);
 		
 		return true;
 	}
 
-	@Override
+    @Override
+    public void loadConfig() {
+        super.loadConfig();
+        clickRegionListener.load(config);
+    }
+
+    @Override
 	protected void unloadModule() {
 	}
 
