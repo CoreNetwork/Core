@@ -138,7 +138,6 @@ public class PlayerModule extends CoreModule {
 	
 	private void initializeKits()
 	{
-		kits = new HashMap<String, List<String>>();
 		ConfigurationSection chSection = config.getConfigurationSection(PlayerSettings.KITS.string);
 		kits = new HashMap<String, List<String>>();
 		if(chSection != null)
