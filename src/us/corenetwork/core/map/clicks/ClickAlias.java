@@ -3,6 +3,8 @@ package us.corenetwork.core.map.clicks;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import us.corenetwork.core.corecommands.SudoCommand;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,9 +20,9 @@ public class ClickAlias {
         this.commands.addAll(commands);
     }
 
-    public void execute(CommandSender subject) {
+    public void execute(Player subject) {
         for (String command : commands) {
-            Bukkit.dispatchCommand(subject, command);
+            SudoCommand.sudo(subject, command);
         }
     }
 }
