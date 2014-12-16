@@ -182,7 +182,7 @@ public abstract class CoreModule implements CommandExecutor {
 	{
 		for (CoreModule module : modules)
 		{
-			module.saveConfig();
+			// module.saveConfig();
 			module.unloadModule();
 			module.active = false;
 		}
