@@ -22,7 +22,7 @@ public class ClickAlias {
 
     public void execute(Player subject) {
         for (String command : commands) {
-            SudoCommand.sudo(subject, command);
+            SudoCommand.sudo(subject, command.replaceAll("<Player>", subject.getName()));
         }
     }
 }
