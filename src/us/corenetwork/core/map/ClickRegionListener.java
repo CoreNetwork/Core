@@ -32,6 +32,7 @@ public class ClickRegionListener implements Listener {
     private HashMap<ClickAliasIndex, ClickAlias> regionsToCommandMap = new HashMap<ClickAliasIndex, ClickAlias>();
 
     public void load(YamlConfiguration config) {
+        regionsToCommandMap.clear();
         List clicks = config.getList("Clicks");
         if (clicks != null) {
             for (Object obj : clicks) {

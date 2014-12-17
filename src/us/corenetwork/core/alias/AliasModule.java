@@ -139,6 +139,7 @@ public class AliasModule extends CoreModule implements Listener {
     @Override
     public void loadConfig() {
         super.loadConfig();
+        aliases.clear();
         loadSettings(config);
     }
 
