@@ -16,6 +16,7 @@ import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
 import us.corenetwork.core.player.commands.DMCommand;
+import us.corenetwork.core.player.commands.DelayCommand;
 import us.corenetwork.core.player.commands.EffectCommand;
 import us.corenetwork.core.player.commands.EnchantCommand;
 import us.corenetwork.core.player.commands.GamemodeCommand;
@@ -35,7 +36,7 @@ public class PlayerModule extends CoreModule {
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "enchant", "god", "ungod", "gamemode", "kit", "dm"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "enchant", "god", "ungod", "gamemode", "kit", "dm", "delay"}, "player");
 		
 		instance = this;
 	}
@@ -97,6 +98,10 @@ public class PlayerModule extends CoreModule {
 		{
 			return commands.get("dm").execute(sender, args, false);
 		}
+		if (command.getName().equals("delay"))
+		{
+			return commands.get("delay").execute(sender, args, false);
+		}
 		else
 		{
 			BasePlayerCommand cmd = commands.get(args[0]);
@@ -129,6 +134,7 @@ public class PlayerModule extends CoreModule {
 		commands.put("gamemode", new GamemodeCommand());
 		commands.put("kit", new KitCommand());
 		commands.put("dm", new DMCommand());
+		commands.put("delay", new DelayCommand());
 
 		CorePlugin.coreCommands.put("effect", new EffectCommand());
 		CorePlugin.coreCommands.put("enchant", new EnchantCommand());

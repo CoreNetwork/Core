@@ -6,11 +6,22 @@ import org.bukkit.World.Environment;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerMoveEvent;
+import us.corenetwork.core.player.commands.DelayCommand;
 
 public class PlayerListener implements Listener {
+
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
+	public void onPlayerMove(PlayerMoveEvent event)
+	{
+		//Make sure players stay frozen
+		DelayCommand.playerMoved(event);
+	}
+
 
 	// listener for cancelling damage on God players and rescuing lagged players from void.
 	@EventHandler(ignoreCancelled = true)

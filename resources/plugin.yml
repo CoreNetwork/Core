@@ -55,3 +55,5 @@ commands:
         description: List your claims
     dm:
         description: Direct Message
+    delay:
+        description: Delay command
