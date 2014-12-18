@@ -72,9 +72,17 @@ public class EffectCommand extends BasePlayerCommand {
 		if (args.length == 0 || args.length > 6)
 		{
 			PlayerUtils.Message("Usage : /effect [<player>] <effect> [<level>] [<time>] [ambient] [silent]", sender);
+			PlayerUtils.Message("Usage : /effect clear [<player>] [<effect>] [silent]", sender);
 			return;
 		}
-	
+
+		//biig command :F
+		if(args[0].equalsIgnoreCase("clear"))
+		{
+			handleClear(sender, args);
+			return;
+		}
+
 		if (args.length == 1)
 		{
 			if(isEffect(args[0]))
@@ -200,12 +208,170 @@ public class EffectCommand extends BasePlayerCommand {
 		
 		return;
 	}
-	
+
+
+	private void handleClear(CommandSender sender, String[] args)
+	{
+		boolean silent = false;
+		Player target = null;
+		PotionEffectType effect = null;
+		String effectString = null;
+		boolean all = false;
+
+		if(args.length == 1)
+		{
+			if (sender instanceof Player)
+			{
+				target = (Player) sender;
+				all = true;
+			}
+			else
+			{
+				PlayerUtils.Message("You can only execute /effect clear as player.", sender);
+				return;
+			}
+		}
+		else if(args.length == 2)
+		{
+			String arr = args[1];
+			if(isEffect(arr))
+			{
+				effect = getEffect(arr);
+				effectString = arr;
+				if (sender instanceof Player)
+				{
+					target = (Player) sender;
+				}
+				else
+				{
+					PlayerUtils.Message("You can only execute /effect clear <effect> as player.", sender);
+					return;
+				}
+			}
+			else if(PlayerUtils.isPlayer(arr))
+			{
+				target = getPlayer(arr);
+				all = true;
+			}
+			else if(isSilent(arr))
+			{
+				if (sender instanceof Player)
+				{
+					target = (Player) sender;
+				}
+				else
+				{
+					PlayerUtils.Message("You can only execute /effect clear <effect> as player.", sender);
+					return;
+				}
+				silent = true;
+				all = true;
+			}
+			else
+			{
+				PlayerUtils.Message("Cannot find " + arr + " player." , sender);
+				return;
+			}
+		}
+		else if (args.length == 3)
+		{
+			if(isEffect(args[1]) && isSilent(args[2]))
+			{
+				effect = getEffect(args[1]);
+				effectString = args[1];
+				silent = true;
+				if (sender instanceof Player)
+				{
+					target = (Player) sender;
+				}
+				else
+				{
+					PlayerUtils.Message("You can only execute /effect clear <effect> [silent] as player.", sender);
+					return;
+				}
+			}
+			else
+			{
+				if(PlayerUtils.isPlayer(args[1]))
+				{
+					target = getPlayer(args[1]);
+					if (isEffect(args[2]))
+					{
+						effect = getEffect(args[2]);
+						effectString = args[2];
+					} else if (isSilent(args[2]))
+					{
+						silent = true;
+						all = true;
+					}
+					else
+					{
+						PlayerUtils.Message("Usage : /effect clear [<player>] [<effect>] [silent]", sender);
+						return;
+					}
+				}
+				else
+				{
+					PlayerUtils.Message("Cannot find " + args[1] + " player." , sender);
+					return;
+				}
+			}
+		}
+		else if (args.length == 4)
+		{
+			if(PlayerUtils.isPlayer(args[1]) && isEffect(args[2]) && isSilent(args[3]))
+			{
+				target = getPlayer(args[1]);
+				effect = getEffect(args[2]);
+				silent = true;
+			}
+			else
+			{
+				PlayerUtils.Message("Usage : /effect clear [<player>] [<effect>] [silent]", sender);
+				return;
+			}
+		}
+
+		if(all)
+		{
+			for(PotionEffect eff : target.getActivePotionEffects())
+			{
+				target.removePotionEffect(eff.getType());
+			}
+		}
+		else
+		{
+			target.removePotionEffect(effect);
+		}
+
+
+
+
+
+		if(!silent)
+		{
+			if(all)
+			{
+				if (!sender.equals(target))
+					PlayerUtils.Message(PlayerSettings.MESSAGE_CLEARED_ALL.string().replace("<Player>", target.getName()), sender);
+				PlayerUtils.Message(PlayerSettings.MESSAGE_LOST_ALL.string(), target);
+			}
+			else
+			{
+				effectString = effectString.substring(0, 1).toUpperCase() + effectString.substring(1);
+				if (!sender.equals(target))
+					PlayerUtils.Message(PlayerSettings.MESSAGE_EFFECT_CLEARED.string().replace("<Player>", target.getName()), sender);
+				PlayerUtils.Message(PlayerSettings.MESSAGE_LOST_EFFECT.string().replace("<Effect>", effectString), target);
+			}
+		}
+	}
+
 	private void applyEffect(Player player, PotionEffectType potionEffectType, int level, int duration, boolean ambient)
 	{
 		player.removePotionEffect(potionEffectType);
 		player.addPotionEffect(new PotionEffect(potionEffectType, duration, level, ambient));
 	}
+
 	
 	private Player getPlayer(String arg)
 	{

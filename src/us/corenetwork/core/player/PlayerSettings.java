@@ -40,10 +40,16 @@ public enum PlayerSettings {
 	
 	MESSAGE_PLAYER_VANISHED("Message.PlayerVanished", "<Player> vanished."),
 	MESSAGE_PLAYER_UNVANISHED("Message.PlayerUnvanished", "<Player> unvanished."),
-	
+
 	MESSAGE_EFFECT_APPLIED("Message.EffectApplied", "Effect applied."),
 	MESSAGE_GOT_EFFECT("Message.GotEffect", "You have been granted <Effect> level <Level> effect."),
-	
+
+	MESSAGE_EFFECT_CLEARED("Message.EffectCleared", "Effect cleared."),
+	MESSAGE_LOST_EFFECT("Message.LostEffect", "You have lost <Effect> effect."),
+	MESSAGE_CLEARED_ALL("Message.EffectsCleared", "All effects cleared."),
+	MESSAGE_LOST_ALL("Message.LostAllEffects", "You have lost all effects!"),
+
+
 	MESSAGE_ENCHANT_APPLIED("Message.EnchantApplied", "Item enchanted."),
 	MESSAGE_GOT_ENCHANT("Message.GotEnchant", "Your item has been enchanted."),
 	
