@@ -53,3 +53,5 @@ commands:
         description: List your blocks
     claimslist:
         description: List your claims
+    dm:
+        description: Direct Message
