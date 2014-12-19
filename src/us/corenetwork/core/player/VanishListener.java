@@ -1,6 +1,8 @@
 package us.corenetwork.core.player;
 
 import java.util.Collection;
+
+import net.minecraft.server.v1_8_R1.EnumPlayerInfoAction;
 import net.minecraft.server.v1_8_R1.PacketPlayOutPlayerInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,7 +42,7 @@ public class VanishListener implements Listener {
 			{
 				player.hidePlayer(onlinePlayer);
 				
-				((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo());
+				((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(EnumPlayerInfoAction.ADD_PLAYER, ((CraftPlayer) onlinePlayer).getHandle()));
 			}
 		}
 	}
