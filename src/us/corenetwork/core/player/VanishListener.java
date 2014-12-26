@@ -42,7 +42,7 @@ public class VanishListener implements Listener {
 			{
 				player.hidePlayer(onlinePlayer);
 				
-				((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(EnumPlayerInfoAction.ADD_PLAYER, ((CraftPlayer) onlinePlayer).getHandle()));
+				//((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(EnumPlayerInfoAction.ADD_PLAYER, ((CraftPlayer) onlinePlayer).getHandle()));
 			}
 		}
 	}
