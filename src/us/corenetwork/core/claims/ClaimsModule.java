@@ -1,6 +1,8 @@
 package us.corenetwork.core.claims;
 
 import java.util.HashMap;
+
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import us.corenetwork.core.CLog;
@@ -20,8 +22,9 @@ public class ClaimsModule extends CoreModule {
 	public static ClaimsModule instance;
 	
 	public static HashMap<String, BaseClaimsCommand> commands;
-	
-	public ClaimsModule()
+    public ClaimsAreaProxy claimsAreaProxy = new ClaimsAreaProxy();
+
+    public ClaimsModule()
 	{
 		super("Claims", new String[] {"trapped", "blocks", "claimslist"}, "claims");
 		
@@ -71,7 +74,10 @@ public class ClaimsModule extends CoreModule {
 		
 		CorePlugin.coreCommands.put("trapped", new TrappedCommand());
 		CorePlugin.coreCommands.put("claimslist", new ClaimsListCommand());
-		
+
+        claimsAreaProxy.init();
+        Bukkit.getServer().getPluginManager().registerEvents(claimsAreaProxy, CorePlugin.instance);
+
 		return true;
 	}
 	
@@ -87,5 +93,6 @@ public class ClaimsModule extends CoreModule {
 	{
 		super.loadConfig();
 		ClaimPacket.reloadValues();
+        claimsAreaProxy.loadConfig(this.config);
 	}
 }

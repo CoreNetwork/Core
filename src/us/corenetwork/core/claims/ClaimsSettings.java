@@ -85,12 +85,13 @@ public enum ClaimsSettings {
 	BLOCKS_MESSAGES_TOTAL("Blocks.Messages.Total", "Total: <Amount>"),
 	BLOCKS_MESSAGES_USED("Blocks.Messages.Used", "Used: <Amount>"),
 	BLOCKS_MESSAGES_AVAILABLE("Blocks.Messages.Available", "Available: <Amount>"),
-	
-	
+
 	MESSAGE_NOT_ENABLED_IN("Messages.NotEnabledIn", "&4You cannot use /trapped in this world."),
 	MESSAGE_CAN_BUILD("Messages.CanBuild", "&4You can build here. Save yourelf."),
 	MESSAGE_RESCUE_IN_PROGRESS("Messages.RescueInProgress", "Please wait still for 5 seconds."),
-	MESSAGE_RESCUE_PLAYER_MOVED("Messages.RescurePlayerMoved", "Rescue cancelled, you moved!");
+	MESSAGE_RESCUE_PLAYER_MOVED("Messages.RescurePlayerMoved", "Rescue cancelled, you moved!"),
+
+    CLAIMSLIMIT_NO_CLAIMS_LEFT("ClaimsLimit.Messages.NoClaimsLeft", "You used all of your <Claims> claims in this world.");
 	
 	protected String string;
 	protected Object def;

@@ -3,6 +3,10 @@ package us.corenetwork.core.claims.commands;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import us.corenetwork.core.CLog;
@@ -55,7 +59,8 @@ public class ClaimsListCommand extends BaseClaimsCommand{
 	
 	private void printClaimsIfAny(List<ClaimSimple> worldClaims, Player player, String worldName)
 	{
-		if(worldClaims.size() == 0)
+        World world = Bukkit.getWorld(worldName);
+        if(worldClaims.size() == 0)
 		{
 			return;
 		}
@@ -70,13 +75,13 @@ public class ClaimsListCommand extends BaseClaimsCommand{
 		if(worldName.equalsIgnoreCase("world"))
 		{
 			prettyName = ClaimsSettings.CLAIMSLIST_WORLDS_OW_NAME.string();
-			claimsMax = ClaimsSettings.CLAIMSLIST_WORLDS_OW_CLAIMS_MAX.integer()+"";
 		}
 		else if(worldName.equalsIgnoreCase("world_nether"))
 		{
 			prettyName = ClaimsSettings.CLAIMSLIST_WORLDS_NETHER_NAME.string();
-			claimsMax = ClaimsSettings.CLAIMSLIST_WORLDS_NETHER_CLAIMS_MAX.integer()+"";
 		}
+
+        claimsMax = "" + ClaimsModule.instance.claimsAreaProxy.getMaxClaims(player);
 		
 		String header = ClaimsSettings.CLAIMSLIST_MESSAGES_HEADER.string().replace("<WorldName>", prettyName).replace("<ClaimsNow>", claimsNow).replace("<ClaimsMax>", claimsMax);
 		PlayerUtils.Message("", player);
