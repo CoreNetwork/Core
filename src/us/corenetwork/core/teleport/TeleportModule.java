@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 
+import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
 import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
@@ -33,8 +34,8 @@ public class TeleportModule extends CoreModule {
 		if (command.getName().equals("tp"))
 		{
 			if (sender instanceof BlockCommandSender || sender instanceof ConsoleCommandSender)
-			{				
-				return new org.bukkit.command.defaults.TeleportCommand().execute(sender, "tp", args);
+			{
+				return ((CraftServer) Bukkit.getServer()).getCommandMap().getCommand("minecraft:tp").execute(sender, "tp", args);
 			}
 			else
 			{
