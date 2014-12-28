@@ -14,6 +14,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.RedirectedVanillaCommand;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
 import us.corenetwork.core.player.commands.DMCommand;
@@ -59,25 +60,11 @@ public class PlayerModule extends CoreModule {
 		}
 		if (command.getName().equals("effect"))
 		{
-			if (sender instanceof BlockCommandSender || sender instanceof ConsoleCommandSender)
-			{
-				return ((CraftServer) Bukkit.getServer()).getCommandMap().getCommand("minecraft:effect").execute(sender, "effect", args);
-			}
-			else
-			{
-				return CorePlugin.coreCommands.get("effect").execute(sender, args, false);
-			}
+			return CorePlugin.coreCommands.get("effect").execute(sender, args, false);
 		}
 		if (command.getName().equals("enchant"))
 		{
-			if (sender instanceof BlockCommandSender || sender instanceof ConsoleCommandSender)
-			{				
-				return ((CraftServer) Bukkit.getServer()).getCommandMap().getCommand("minecraft:enchant").execute(sender, "enchant", args);
-			}
-			else
-			{
-				return CorePlugin.coreCommands.get("enchant").execute(sender, args, false);
-			}
+			return CorePlugin.coreCommands.get("enchant").execute(sender, args, false);
 		}
 		if (command.getName().equals("god"))
 		{
@@ -145,7 +132,18 @@ public class PlayerModule extends CoreModule {
 		
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), CorePlugin.instance);
 		Bukkit.getServer().getPluginManager().registerEvents(new VanishListener(), CorePlugin.instance);
-		
+
+		Bukkit.getScheduler().runTask(CorePlugin.instance, new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				RedirectedVanillaCommand.redirectVanillaCommand("enchant");
+				RedirectedVanillaCommand.redirectVanillaCommand("effect");
+			}
+		});
+
+
 		return true;
 	}
 	

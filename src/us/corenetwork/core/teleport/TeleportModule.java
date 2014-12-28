@@ -12,6 +12,7 @@ import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
 import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.RedirectedVanillaCommand;
 import us.corenetwork.core.teleport.commands.tp.TpCommand;
 import us.corenetwork.core.teleport.commands.warp.DeleteCommand;
 import us.corenetwork.core.teleport.commands.warp.SetCommand;
@@ -25,23 +26,16 @@ public class TeleportModule extends CoreModule {
 
 	public TeleportModule() {
 		super("Teleportation", new String[] {"warp", "tp", "bring", "swap"}, "teleportation");
-		
+
 		instance = this;
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
+		Bukkit.broadcastMessage("cmd " + command.getName());
 		if (command.getName().equals("tp"))
 		{
-			if (sender instanceof BlockCommandSender || sender instanceof ConsoleCommandSender)
-			{
-				return ((CraftServer) Bukkit.getServer()).getCommandMap().getCommand("minecraft:tp").execute(sender, "tp", args);
-			}
-			else
-			{
-				//return CorePlugin.coreCommands.get("tp").execute(sender, args, false);
-				return commands.get("tp").execute(sender, args, false);
-			}
+			return commands.get("tp").execute(sender, args, false);
 		}
 		else if (command.getName().equals("bring"))
 		{
@@ -87,7 +81,16 @@ public class TeleportModule extends CoreModule {
 		CorePlugin.coreCommands.put("tp", new TpCommand());
 
 		Bukkit.getServer().getPluginManager().registerEvents(new TeleportListener(), CorePlugin.instance);
-		
+
+		Bukkit.getScheduler().runTask(CorePlugin.instance, new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				RedirectedVanillaCommand.redirectVanillaCommand("tp");
+			}
+		});
+
 		return true;
 	}
 
