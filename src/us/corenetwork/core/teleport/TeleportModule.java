@@ -32,7 +32,6 @@ public class TeleportModule extends CoreModule {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
-		Bukkit.broadcastMessage("cmd " + command.getName());
 		if (command.getName().equals("tp"))
 		{
 			return commands.get("tp").execute(sender, args, false);
