@@ -7,6 +7,7 @@ import me.ryanhamshire.GriefPrevention.PlayerData;
 import net.milkbowl.vault.item.Items;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
@@ -70,8 +71,8 @@ public class ClaimsAreaProxy implements Listener {
         try {
             boolean cancel = false;
             if (griefPreventionListener != null && griefPreventionDataStore != null) {
+                PlayerData playerData = griefPreventionDataStore.getPlayerData(event.getPlayer().getUniqueId());
                 if (event.getPlayer().getItemInHand().getType() == tool && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                    PlayerData playerData = griefPreventionDataStore.getPlayerData(event.getPlayer().getUniqueId());
                     if (griefPreventionDataStore.getClaimAt(event.getClickedBlock().getLocation(), false, null) == null) {
                         // player clicked outside of a claim or is not resizing a claim
                         if (playerData.claimResizing == null && playerData.claimSubdividing == null) {
@@ -87,7 +88,29 @@ public class ClaimsAreaProxy implements Listener {
                 }
                 if (!cancel) {
                     CLog.debug("Calling GP player interaction event via proxy.");
+                    Claim claim = playerData.claimResizing;
+                    Location bStart = null, bEnd = null;
+                    if (claim != null) {
+                        bStart = claim.getLesserBoundaryCorner().clone();
+                        bEnd = claim.getGreaterBoundaryCorner().clone();
+                    }
                     griefPreventionListener.callEvent(event);
+                    if (claim != null && playerData.claimResizing == null) {
+                        claim = griefPreventionDataStore.getClaimAt(event.getClickedBlock().getLocation(), true, null);
+                        for (int x = bStart.getBlockX(); x <= bEnd.getBlockX(); x++) {
+                            for (int y = 0; y <= 255; y++) {
+                                for (int z = bStart.getBlockZ(); z <= bEnd.getBlockZ(); z++) {
+                                    Location current = new Location(bStart.getWorld(), x, y, z);
+                                    if (!claim.contains(current, true, false)) {
+                                        Material mat = ClaimFluids.getLiquidType(current.getBlock().getType());
+                                        if (mat != null && !ClaimsModule.instance.claimFluids.isFluidAllowed(mat, current.getBlock(), null, null)) {
+                                            current.getBlock().setType(Material.AIR);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         } catch (EventException e) {

@@ -102,7 +102,7 @@ public class ClaimFluids implements Listener {
      * @param mat the type to clear
      * @return LAVA, WATER or null
      */
-    private Material getLiquidType(Material mat) {
+    public static Material getLiquidType(Material mat) {
         if (mat == Material.STATIONARY_LAVA || mat == Material.LAVA_BUCKET) {
             mat = Material.LAVA;
         }
