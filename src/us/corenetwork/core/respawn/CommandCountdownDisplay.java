@@ -21,7 +21,7 @@ public class CommandCountdownDisplay {
 		for(String holo : holoNames)
 		{
 			CorePlugin.instance.getServer().dispatchCommand(CorePlugin.instance.getServer().getConsoleSender(), 
-					"holo update "+ holo+ " \"\"");
+					"holo update "+ holo+ " \" \"");
 		}
 	}
 	
