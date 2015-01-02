@@ -21,7 +21,7 @@ public class CommandTeamDisplay {
 		for(String holo : holoNames)
 		{
 			CorePlugin.instance.getServer().dispatchCommand(CorePlugin.instance.getServer().getConsoleSender(), 
-					"holo update "+ holo+ " \""+RespawnSettings.GROUP_RESPAWN_HEADER.string()+"\"");
+					"holo set "+ holo+ " \""+RespawnSettings.GROUP_RESPAWN_HEADER.string()+"\"");
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class CommandTeamDisplay {
 				sb.append(msg+"<N>");
 			}
 			CorePlugin.instance.getServer().dispatchCommand(CorePlugin.instance.getServer().getConsoleSender(), 
-					"holo update "+ holo+ " \"" + RespawnSettings.GROUP_RESPAWN_HEADER.string()+"<N>"+sb.toString()+"\"");
+					"holo set "+ holo+ " \"" + RespawnSettings.GROUP_RESPAWN_HEADER.string()+"<N>"+sb.toString()+"\"");
 		}
 	}
 }
