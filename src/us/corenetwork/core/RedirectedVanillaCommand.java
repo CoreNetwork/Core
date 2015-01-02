@@ -41,7 +41,7 @@ public class RedirectedVanillaCommand extends CommandAbstract
     @Override
     public String getCommand()
     {
-        return null;
+        return originalCommand.getName();
     }
 
     @Override
