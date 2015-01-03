@@ -151,7 +151,11 @@ public class ClaimFluids implements Listener {
         }
         LiquidIndex index = new LiquidIndex(material, block.getWorld().getName());
         Range range = ranges.get(index);
-        return range != null && block.getY() >= range.getMin() && block.getY() <= range.getMax();
+        if (range == null || block.getY() < range.getMin() || block.getY() > range.getMax()) {
+            return player == null && origin.getBlock().getType() != Material.DISPENSER;
+        } else {
+            return true;
+        }
     }
 
     public void loadConfig(Configuration configuration) {
