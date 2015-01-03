@@ -60,7 +60,6 @@ public class DelayCommand extends BasePlayerCommand {
 			if (player == null)
 				return;
 
-
 			String message = (String) PlayerModule.instance.config.get("Message.FrozenMessages." + messageNode + ".Start");
 
 			message = message.replace("<Time>", Integer.toString(seconds));
@@ -94,19 +93,13 @@ public class DelayCommand extends BasePlayerCommand {
 		}, seconds * 20);
 	}
 
-	public static void playerMoved(PlayerMoveEvent event)
+	public static void playerGotDamaged(Player player)
 	{
-		Player player = event.getPlayer();
 		String interruptMessage = frozenPlayers.get(player.getUniqueId());
 		if (interruptMessage != null)
 		{
-			boolean stayedStill = event.getFrom().getX() == event.getTo().getX() && event.getFrom().getY() == event.getTo().getY() && event.getFrom().getZ() == event.getTo().getZ();
-
-			if (!stayedStill)
-			{
-				PlayerUtils.Message(interruptMessage, player);
-				frozenPlayers.remove(player.getUniqueId());
-			}
+			PlayerUtils.Message(interruptMessage, player);
+			frozenPlayers.remove(player.getUniqueId());
 		}
 	}
 }
