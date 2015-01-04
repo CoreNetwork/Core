@@ -20,6 +20,9 @@ public class RunCommandAction extends AliasAction {
     @Override
     public void execute(CommandSender subject, Matcher matcher) {
         String commandLine = matcher.replaceAll(command);
+        if (subject instanceof Player) {
+            commandLine = commandLine.replaceAll("<Player>", subject.getName());
+        }
         if (sudo && subject instanceof Player) {
             SudoCommand.sudo((Player) subject, commandLine);
         } else {

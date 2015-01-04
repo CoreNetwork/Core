@@ -140,12 +140,15 @@ public class ClaimFluids implements Listener {
 
     public boolean isFluidAllowed(Material material, Block block, Player player, Location origin) {
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(block.getLocation(), false, null);
-        if (claim != null) {
+        Claim originClaim = null;
+        if (origin != null) {
+            originClaim = GriefPrevention.instance.dataStore.getClaimAt(origin, false, null);
+        }
+        if (claim != null || originClaim != null) {
             if (player != null) {
                 return claim.allowBuild(player, material) == null;
                 // griefprevention returns an error message if not allowed, null when allowed
             } else {
-                Claim originClaim = GriefPrevention.instance.dataStore.getClaimAt(origin, false, null);
                 return originClaim == claim;
             }
         }
