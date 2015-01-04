@@ -91,7 +91,7 @@ public enum ClaimsSettings {
 	MESSAGE_RESCUE_IN_PROGRESS("Messages.RescueInProgress", "Please wait still for 5 seconds."),
 	MESSAGE_RESCUE_PLAYER_MOVED("Messages.RescurePlayerMoved", "Rescue cancelled, you moved!"),
 
-    CLAIMSLIMIT_NO_CLAIMS_LEFT("ClaimsLimit.Messages.NoClaimsLeft", "You used all of your <Claims> claims in this world.");
+	CLAIMSLIMIT_NO_CLAIMS_LEFT("ClaimsLimits.Messages.NoClaimsLeft", "You used all of your <Claims> claims in this world.");
 	
 	protected String string;
 	protected Object def;
