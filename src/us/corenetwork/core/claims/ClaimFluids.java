@@ -165,11 +165,11 @@ public class ClaimFluids implements Listener {
         Range range = ranges.get(index);
         if (range == null) {
             lastReason = ClaimsSettings.CLAIM_FLUIDS_MESSAGE_DENY_CLAIM.string();
-            lastReason = lastReason.replaceAll("<Liquid>", material.name());
+            lastReason = lastReason.replaceAll("<Liquid>", material.name().toLowerCase());
             return player == null && (origin == null || origin.getBlock().getType() != Material.DISPENSER);
         } else if (block.getY() < range.getMin() || block.getY() > range.getMax()) {
             lastReason = ClaimsSettings.CLAIM_FLUIDS_MESSAGE_DENY_HEIGHT.string();
-            lastReason = lastReason.replaceAll("<Liquid>", material.name());
+            lastReason = lastReason.replaceAll("<Liquid>", material.name().toLowerCase());
             lastReason = lastReason.replaceAll("<Height>", range.getMax() + "");
             return player == null && (origin == null || origin.getBlock().getType() != Material.DISPENSER);
         } else {
