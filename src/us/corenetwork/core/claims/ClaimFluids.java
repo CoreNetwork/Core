@@ -89,6 +89,9 @@ public class ClaimFluids implements Listener {
         mat = getLiquidType(mat);
         if (mat != null) {
             if (!isFluidAllowed(mat, event.getBlockClicked().getRelative(event.getBlockFace()), event.getPlayer(), null)) {
+                if (event.getPlayer().hasPermission("core.claims.fluids.override")) {
+                    return;
+                }
                 event.setCancelled(true);
                 // TODO inform player why this was blocked.
             }
