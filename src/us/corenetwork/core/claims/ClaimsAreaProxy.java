@@ -103,7 +103,7 @@ public class ClaimsAreaProxy implements Listener {
                                     Location current = new Location(bStart.getWorld(), x, y, z);
                                     if (!claim.contains(current, true, false)) {
                                         Material mat = ClaimFluids.getLiquidType(current.getBlock().getType());
-                                        if (mat != null && !ClaimsModule.instance.claimFluids.isFluidAllowed(mat, current.getBlock(), null, null)) {
+                                        if (mat != null) {
                                             current.getBlock().setType(Material.AIR);
                                         }
                                     }

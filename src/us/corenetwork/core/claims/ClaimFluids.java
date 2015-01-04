@@ -145,7 +145,7 @@ public class ClaimFluids implements Listener {
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(block.getLocation(), false, null);
         Claim originClaim = null;
         if (origin != null) {
-            originClaim = GriefPrevention.instance.dataStore.getClaimAt(origin, false, null);
+            originClaim = GriefPrevention.instance.dataStore.getClaimAt(origin, false, claim);
         }
         if (claim != null || originClaim != null) {
             if (player != null) {
