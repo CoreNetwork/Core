@@ -91,7 +91,10 @@ public enum ClaimsSettings {
 	MESSAGE_RESCUE_IN_PROGRESS("Messages.RescueInProgress", "Please wait still for 5 seconds."),
 	MESSAGE_RESCUE_PLAYER_MOVED("Messages.RescurePlayerMoved", "Rescue cancelled, you moved!"),
 
-	CLAIMSLIMIT_NO_CLAIMS_LEFT("ClaimsLimits.Messages.NoClaimsLeft", "You used all of your <Claims> claims in this world.");
+	CLAIMSLIMIT_NO_CLAIMS_LEFT("ClaimsLimits.Messages.NoClaimsLeft", "You used all of your <Claims> claims in this world."),
+
+    CLAIM_FLUIDS_MESSAGE_DENY_HEIGHT("ClaimLiquids.Messages.DenyHeight", "&cYou can only place <Liquid> below y = <Height>"),
+    CLAIM_FLUIDS_MESSAGE_DENY_CLAIM("ClaimLiquids.Messages.DenyClaim", "&cYou can only place <Liquid> in a claim.");
 	
 	protected String string;
 	protected Object def;

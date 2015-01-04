@@ -7,7 +7,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import us.corenetwork.core.PlayerUtils.PickPlayerResult.PickPlayerResultState;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 public class PlayerUtils {
+    private static HashMap<UUID, HashMap<String, Long>> antiSpamMap = new HashMap<UUID, HashMap<String, Long>>();
+
 	public static PickPlayerResult pickPlayer(String partialName)
 	{
 		return pickPlayer(partialName, false);
@@ -114,5 +119,28 @@ public class PlayerUtils {
 		return player != null;
 	}
 
+    /**
+     * Checks if the given message has been sent to the player in the last 10 seconds. If not, sends the message.<br>
+     * @param player the recipient of the message
+     * @param message the message
+     * @return wether the message actually has been sent
+     */
+    public static boolean sendSpammyMessage(Player player, String message) {
+        HashMap<String, Long> playerMap = antiSpamMap.get(player.getUniqueId());
+        boolean send = true;
+        if (playerMap == null) {
+            playerMap = new HashMap<String, Long>();
+            antiSpamMap.put(player.getUniqueId(), playerMap);
+        }
+        Long lastMessage = playerMap.get(message);
+        if (lastMessage != null && System.currentTimeMillis() - lastMessage < 10000) {
+            send = false;
+        }
+        playerMap.put(message, System.currentTimeMillis());
+        if (send) {
+            Message(message, player);
+        }
+        return send;
+    }
 
 }

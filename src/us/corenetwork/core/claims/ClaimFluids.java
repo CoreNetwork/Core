@@ -17,6 +17,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketEvent;
 import org.bukkit.util.Vector;
+import us.corenetwork.core.PlayerUtils;
 
 import java.util.HashMap;
 
@@ -81,6 +82,7 @@ public class ClaimFluids implements Listener {
         }
     }
 
+    private String lastReason = null;
     private HashMap<LiquidIndex, Range> ranges = new HashMap<LiquidIndex, Range>();
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
@@ -93,6 +95,9 @@ public class ClaimFluids implements Listener {
                     return;
                 }
                 event.setCancelled(true);
+                if (lastReason != null) {
+                    PlayerUtils.sendSpammyMessage(event.getPlayer(), lastReason);
+                }
                 // TODO inform player why this was blocked.
             }
         }
@@ -142,13 +147,14 @@ public class ClaimFluids implements Listener {
     }
 
     public boolean isFluidAllowed(Material material, Block block, Player player, Location origin) {
+        lastReason = null;
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(block.getLocation(), false, null);
         Claim originClaim = null;
         if (origin != null) {
             originClaim = GriefPrevention.instance.dataStore.getClaimAt(origin, false, claim);
         }
         if (claim != null || originClaim != null) {
-            if (player != null) {
+            if (player != null && claim != null) {
                 return claim.allowBuild(player, material) == null;
                 // griefprevention returns an error message if not allowed, null when allowed
             } else {
@@ -157,8 +163,15 @@ public class ClaimFluids implements Listener {
         }
         LiquidIndex index = new LiquidIndex(material, block.getWorld().getName());
         Range range = ranges.get(index);
-        if (range == null || block.getY() < range.getMin() || block.getY() > range.getMax()) {
-            return player == null && origin.getBlock().getType() != Material.DISPENSER;
+        if (range == null) {
+            lastReason = ClaimsSettings.CLAIM_FLUIDS_MESSAGE_DENY_CLAIM.string();
+            lastReason = lastReason.replaceAll("<Liquid>", material.name());
+            return player == null && (origin == null || origin.getBlock().getType() != Material.DISPENSER);
+        } else if (block.getY() < range.getMin() || block.getY() > range.getMax()) {
+            lastReason = ClaimsSettings.CLAIM_FLUIDS_MESSAGE_DENY_HEIGHT.string();
+            lastReason = lastReason.replaceAll("<Liquid>", material.name());
+            lastReason = lastReason.replaceAll("<Height>", range.getMax() + "");
+            return player == null && (origin == null || origin.getBlock().getType() != Material.DISPENSER);
         } else {
             return true;
         }
