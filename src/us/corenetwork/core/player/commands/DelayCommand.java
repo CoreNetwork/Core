@@ -11,10 +11,11 @@ import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.player.PlayerModule;
+import us.corenetwork.core.player.PlayerSettings;
 
 public class DelayCommand extends BasePlayerCommand {
 
-	private static HashMap<UUID, String> frozenPlayers = new HashMap<UUID, String>();
+	private static HashMap<UUID, InterHelper> frozenPlayers = new HashMap<UUID, InterHelper>();
 
 	public DelayCommand()
 	{
@@ -70,7 +71,8 @@ public class DelayCommand extends BasePlayerCommand {
 				message = message.replace("<PluralS>", "s");
 
 			PlayerUtils.Message(message, player);
-			frozenPlayers.put(player.getUniqueId(), (String) PlayerModule.instance.config.get("Message.FrozenMessages." + messageNode + ".Interrupt"));
+			frozenPlayers.put(player.getUniqueId(), new InterHelper((String) PlayerModule.instance.config.get("Message.FrozenMessages." + messageNode + ".Interrupt"))
+                    );
 
 		}
 		else
@@ -94,17 +96,28 @@ public class DelayCommand extends BasePlayerCommand {
 		}, seconds * 20);
 	}
 
+    class InterHelper
+    {
+        String interruptMessage;
+        long time;
+        public InterHelper(String msg)
+        {
+            interruptMessage = msg;
+            time = System.currentTimeMillis();
+        }
+    }
+
 	public static void playerMoved(PlayerMoveEvent event)
 	{
 		Player player = event.getPlayer();
-		String interruptMessage = frozenPlayers.get(player.getUniqueId());
-		if (interruptMessage != null)
+        InterHelper interHelper = frozenPlayers.get(player.getUniqueId());
+		if (interHelper.interruptMessage != null && (System.currentTimeMillis() - interHelper.time)/50 > PlayerSettings.DELAY_GRACE_PERIOD_TICKS.integer())
 		{
 			boolean stayedStill = event.getFrom().getX() == event.getTo().getX() && event.getFrom().getY() == event.getTo().getY() && event.getFrom().getZ() == event.getTo().getZ();
 
 			if (!stayedStill)
 			{
-				PlayerUtils.Message(interruptMessage, player);
+				PlayerUtils.Message(interHelper.interruptMessage, player);
 				frozenPlayers.remove(player.getUniqueId());
 			}
 		}

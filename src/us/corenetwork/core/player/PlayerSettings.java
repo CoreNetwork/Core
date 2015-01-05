@@ -71,7 +71,8 @@ public enum PlayerSettings {
 	
 	MESSAGE_KIT_RECEIVED("Message.KitReceived", "You have been granted a <Kit> kit."),
 	MESSAGE_KIT_GRANTED("Message.KitGranted", "<Kit> kit granted to a <Player>."),
-	
+
+	DELAY_GRACE_PERIOD_TICKS("DelayGracePeriodInTicks", 20),
 	;
 	protected String string;
 	protected Object def;
