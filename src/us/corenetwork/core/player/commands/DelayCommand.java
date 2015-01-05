@@ -111,15 +111,18 @@ public class DelayCommand extends BasePlayerCommand {
 	{
 		Player player = event.getPlayer();
         InterHelper interHelper = frozenPlayers.get(player.getUniqueId());
-		if (interHelper.interruptMessage != null && (System.currentTimeMillis() - interHelper.time)/50 > PlayerSettings.DELAY_GRACE_PERIOD_TICKS.integer())
-		{
-			boolean stayedStill = event.getFrom().getX() == event.getTo().getX() && event.getFrom().getY() == event.getTo().getY() && event.getFrom().getZ() == event.getTo().getZ();
+        if(interHelper != null)
+        {
+            if (interHelper.interruptMessage != null && (System.currentTimeMillis() - interHelper.time)/50 > PlayerSettings.DELAY_GRACE_PERIOD_TICKS.integer())
+            {
+                boolean stayedStill = event.getFrom().getX() == event.getTo().getX() && event.getFrom().getY() == event.getTo().getY() && event.getFrom().getZ() == event.getTo().getZ();
 
-			if (!stayedStill)
-			{
-				PlayerUtils.Message(interHelper.interruptMessage, player);
-				frozenPlayers.remove(player.getUniqueId());
-			}
-		}
+                if (!stayedStill)
+                {
+                    PlayerUtils.Message(interHelper.interruptMessage, player);
+                    frozenPlayers.remove(player.getUniqueId());
+                }
+            }
+        }
 	}
 }
