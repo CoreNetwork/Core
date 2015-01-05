@@ -10,7 +10,7 @@ public class RunBoosterCommand extends BaseRSpawnCommand {
 
 	public RunBoosterCommand()
 	{
-		permission = "runboost";
+		permission = "runlucky";
 		desc = "Adds a lucky booster time";
 		needPlayer = true;
 	}

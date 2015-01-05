@@ -12,8 +12,8 @@ public class BuyBoosterCommand extends BaseRSpawnCommand{
 
 	public BuyBoosterCommand()
 	{
-		permission = "buybooster";
-		desc = "Adds one lucky booster to callers pool, run later with /core runluckybooster";
+		permission = "buylucky";
+		desc = "Adds one lucky booster to callers pool, run later with /core runlucky";
 		needPlayer = false;
 	}
 	
@@ -22,7 +22,7 @@ public class BuyBoosterCommand extends BaseRSpawnCommand{
 	{
 		if(args.length != 1)
 		{
-			PlayerUtils.Message("Usage: /core buyluckybooster <playerName>", sender);
+			PlayerUtils.Message("Usage: /core buylucky <playerName>", sender);
 			return;
 		}
 		String playerName = args[0]; 
