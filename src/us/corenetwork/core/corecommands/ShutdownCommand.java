@@ -81,12 +81,12 @@ public class ShutdownCommand extends BaseCoreCommand {
             String json = "{text: '" + text + "', color: gold}";
             for (Player player : Bukkit.getOnlinePlayers()) {
                 if (shutdownTime - System.currentTimeMillis() < 10000) {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title " + player.getName() + " times 5 10 5");
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title " + player.getName() + " title " + json);
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " times 5 10 5");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " title " + json);
                 } else {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title " + player.getName() + " times 5 50 5");
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title " + player.getName() + " subtitle " + json);
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title " + player.getName() + " title {text: ''}");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " times 5 50 5");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " subtitle " + json);
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " title {text: ''}");
                 }
             }
             CorePlugin.instance.getLogger().info("Shutdown in " + formatTime(shutdownTime, true));
