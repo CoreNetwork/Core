@@ -20,8 +20,6 @@ commands:
         description: Warps
     sudo:
         description: sudo
-    tp:
-        description: tp
     bring:
         description: bring    
     swap:
@@ -36,10 +34,6 @@ commands:
         description: Vanish player
     unvanish:
         description: Unvanish player
-    effect:
-        description: Custom effect command
-    enchant:
-        description: Custom enchant command 
     god:
         description: God mode
     ungod:

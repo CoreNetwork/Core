@@ -38,7 +38,7 @@ public class PlayerModule extends CoreModule {
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "effect", "enchant", "god", "ungod", "gamemode", "kit", "dm", "delay"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "god", "ungod", "gamemode", "kit", "dm", "delay"}, "player");
 		
 		instance = this;
 	}
@@ -132,16 +132,6 @@ public class PlayerModule extends CoreModule {
 		
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), CorePlugin.instance);
 		Bukkit.getServer().getPluginManager().registerEvents(new VanishListener(), CorePlugin.instance);
-
-		Bukkit.getScheduler().runTask(CorePlugin.instance, new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				RedirectedVanillaCommand.redirectVanillaCommand("enchant");
-				RedirectedVanillaCommand.redirectVanillaCommand("effect");
-			}
-		});
 
 
 		return true;

@@ -25,7 +25,7 @@ public class TeleportModule extends CoreModule {
 	public static HashMap<String, AbstractCoreCommand> commands;
 
 	public TeleportModule() {
-		super("Teleportation", new String[] {"warp", "tp", "bring", "swap"}, "teleportation");
+		super("Teleportation", new String[] {"warp", "bring", "swap"}, "teleportation");
 
 		instance = this;
 	}
@@ -80,15 +80,6 @@ public class TeleportModule extends CoreModule {
 		CorePlugin.coreCommands.put("tp", new TpCommand());
 
 		Bukkit.getServer().getPluginManager().registerEvents(new TeleportListener(), CorePlugin.instance);
-
-		Bukkit.getScheduler().runTask(CorePlugin.instance, new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				RedirectedVanillaCommand.redirectVanillaCommand("tp");
-			}
-		});
 
 		return true;
 	}
