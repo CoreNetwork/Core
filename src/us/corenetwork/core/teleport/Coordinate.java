@@ -24,11 +24,16 @@ public class Coordinate {
 			return new Coordinate(Double.parseDouble(input), false);
 		else if (input.startsWith("~"))
 		{
-			input = input.substring(1);
-			if (Util.isDouble(input))
-				return new Coordinate(Double.parseDouble(input), true);
-			else
-				return null;
+			double coord = 0;
+			if(input.length() != 1)
+			{
+				input = input.substring(1);
+				if (Util.isDouble(input))
+					coord = Double.parseDouble(input);
+				else
+					return null;
+			}
+			return new Coordinate(coord, true);
 		}
 		else
 			return null;
