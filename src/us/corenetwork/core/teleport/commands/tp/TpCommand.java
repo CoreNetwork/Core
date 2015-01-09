@@ -6,8 +6,10 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
+import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.minecart.CommandMinecart;
 import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.PlayerUtils.PickPlayerResult;
@@ -60,8 +62,11 @@ public class TpCommand extends BaseTpCommand {
 				subCommands.get(args[0]).execute(sender, args, true);
 				return;
 			}
-
 		}
+
+		//Automatically apply silent on command blocks.
+		if (sender instanceof BlockCommandSender || sender instanceof CommandMinecart)
+			silent = true;
 
 
 		if (argsSize == 1)
