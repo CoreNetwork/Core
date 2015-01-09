@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -13,17 +14,7 @@ import us.corenetwork.core.CLog;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 
-public class TeleportUtil {	
-	public static Location getSenderLocation(CommandSender sender)
-	{
-		if (sender instanceof Player)
-			return ((Player) sender).getLocation();
-		else if (sender instanceof BlockCommandSender)
-			return ((BlockCommandSender) sender).getBlock().getLocation();
-		else
-			return null;
-	}
-	
+public class TeleportUtil {
 	public static void notifyModerators(CommandSender sender, String message, Player... ignored)
 	{
 		boolean alreadySent = false;
@@ -78,5 +69,13 @@ public class TeleportUtil {
 			limit = (Integer) TeleportModule.instance.config.get("Teleport.Limits.Other." + limitType);
 		
 		return limit;
+	}
+
+	public static Location getPossiblePlayerLocation(OfflinePlayer player)
+	{
+		if (player.isOnline())
+			return player.getPlayer().getLocation();
+
+		return null;
 	}
 }

@@ -26,7 +26,7 @@ public class Coordinate {
 		{
 			input = input.substring(1);
 			if (Util.isDouble(input))
-				return new Coordinate(Double.parseDouble(input), false);
+				return new Coordinate(Double.parseDouble(input), true);
 			else
 				return null;
 		}

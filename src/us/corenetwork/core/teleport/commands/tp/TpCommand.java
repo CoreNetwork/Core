@@ -195,10 +195,10 @@ public class TpCommand extends BaseTpCommand {
 			}
 		}
 
-		Location senderLocation = TeleportUtil.getSenderLocation(sender);
+		Location senderLocation = TeleportUtil.getPossiblePlayerLocation(player);
 		if ((x.isRelative() || z.isRelative() || (y != null && y.isRelative())) && senderLocation == null)
 		{
-			PlayerUtils.Message(TeleportSettings.MESSAGE_RELATIVE_NO_CONSOLE.string(), sender);
+			PlayerUtils.Message(TeleportSettings.MESSAGE_RELATIVE_NO_OFFLINE.string(), sender);
 			return;
 		}
 

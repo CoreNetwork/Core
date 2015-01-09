@@ -24,6 +24,7 @@ public class Util {
 	}
 
 
+
 	public static int flatDistance(Location a, Location b)
 	{
 		return ((a.getBlockX() - b.getBlockX()) * (a.getBlockX() - b.getBlockX())) + ((a.getBlockZ() - b.getBlockZ()) * (a.getBlockZ() - b.getBlockZ()));

@@ -22,7 +22,7 @@ public enum TeleportSettings {
 	MESSAGE_UNKNOWN_PLAYER("Messages.UnknownPlayer", "Unknown player <Name>!"),
 	MESSAGE_AMBIGUOUS_MATCH("Messages.AmbiguousMatch", "More than one players name starts with <Name>! Please be more specific."),
 	MESSAGE_ONLY_PLAYER("Messages.OnlyPlayer", "You can only execute that as player!"),
-	MESSAGE_RELATIVE_NO_CONSOLE("Messages.RelativeNoConsole", "You can't use relative coordinates from console!"),
+	MESSAGE_RELATIVE_NO_OFFLINE("Messages.RelativeNoOnline", "You can't use relative coordinates on offline players!"),
 	MESSAGE_YOU_TELEPORTED_TO_PLAYER("Messages.YouTeleportedToPlayer", "You were teleported to <Player>."),
 	MESSAGE_SWAPPED_WITH_PLAYER("Messages.SwappedWithPlayer", "You were swapped with <Player>."),
 	MESSAGE_YOU_TELEPORTED_TO_COORDINATES("Messages.YouTeleportedToCoordinates", "You were teleported to <X> <Y> <Z>"),
