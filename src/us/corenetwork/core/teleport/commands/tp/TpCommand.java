@@ -80,7 +80,7 @@ public class TpCommand extends BaseTpCommand {
 			if (Coordinate.isCoordinate(args[0]) && Coordinate.isCoordinate(args[1]))
 			{
 				// "/tp x y"
-				teleportTo(sender, sender, null, Coordinate.parseCoordinate(args[0]), null, Coordinate.parseCoordinate(args[1]), silent);
+				teleportTo(sender, sender, null, Coordinate.parseCoordinate(args[0]), null, Coordinate.parseCoordinate(args[1]), null, null, silent);
 				return;
 			}
 			else
@@ -95,7 +95,7 @@ public class TpCommand extends BaseTpCommand {
 			if (Coordinate.isCoordinate(args[0]) && Coordinate.isCoordinate(args[1]) && Coordinate.isCoordinate(args[2]))
 			{
 				// "/tp x y z"
-				teleportTo(sender, sender, null, Coordinate.parseCoordinate(args[0]), Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), silent);
+				teleportTo(sender, sender, null, Coordinate.parseCoordinate(args[0]), Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), null, null, silent);
 				return;
 			}
 			else if (Coordinate.isCoordinate(args[1]) && Coordinate.isCoordinate(args[2]))
@@ -103,47 +103,101 @@ public class TpCommand extends BaseTpCommand {
 				if (Bukkit.getWorld(args[0]) == null)
 				{
 					// "/tp player x z"
-					teleportTo(sender, args[0], null, Coordinate.parseCoordinate(args[1]), null, Coordinate.parseCoordinate(args[2]), silent);
+					teleportTo(sender, args[0], null, Coordinate.parseCoordinate(args[1]), null, Coordinate.parseCoordinate(args[2]), null, null, silent);
 					return;
 				}
 				else
 				{
 					// "/tp world x z"
-					teleportTo(sender, sender, args[0], Coordinate.parseCoordinate(args[1]), null, Coordinate.parseCoordinate(args[2]), silent);
+					teleportTo(sender, sender, args[0], Coordinate.parseCoordinate(args[1]), null, Coordinate.parseCoordinate(args[2]), null, null, silent);
 					return;
 				}
 			}
 		}
 		else if (argsSize == 4)
 		{
-			if (Bukkit.getWorld(args[0]) == null)
+			if (Coordinate.isCoordinate(args[0]))
 			{
-				// "/tp player x y z"
-				teleportTo(sender, args[0], null, Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), silent);
+				// "/tp x y yaw pitch"
+				teleportTo(sender, sender, null, Coordinate.parseCoordinate(args[0]), null, Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), silent);
 				return;
 			}
 			else
 			{
-				// "/tp world x y z"
-				teleportTo(sender, sender, args[0], Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), silent);
-				return;
+				if (Bukkit.getWorld(args[0]) == null)
+				{
+					// "/tp player x y z"
+					teleportTo(sender, args[0], null, Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), null, null, silent);
+					return;
+				}
+				else
+				{
+					// "/tp world x y z"
+					teleportTo(sender, sender, args[0], Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), null, null, silent);
+					return;
+				}
 			}
 		}
 		else if (argsSize == 5)
 		{
-			// "/tp player world x y z"
-			teleportTo(sender, args[0], args[1], Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), Coordinate.parseCoordinate(args[4]), silent);
+			if (Coordinate.isCoordinate(args[0]))
+			{
+				// "/tp x y z yaw pitch"
+				teleportTo(sender, sender, null, Coordinate.parseCoordinate(args[0]), Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), Coordinate.parseCoordinate(args[4]), silent);
+				return;
+			}
+			else if (Coordinate.isCoordinate(args[1]))
+			{
+				if (Bukkit.getWorld(args[0]) == null)
+				{
+					// "/tp player x z pitch yaw"
+					teleportTo(sender, args[0], null, Coordinate.parseCoordinate(args[1]), null, Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), Coordinate.parseCoordinate(args[4]), silent);
+					return;
+				}
+				else
+				{
+					// "/tp world x z pitch yaw"
+					teleportTo(sender, sender, args[0], Coordinate.parseCoordinate(args[1]), null, Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), Coordinate.parseCoordinate(args[4]), silent);
+					return;
+				}
+			}
+			else
+			{
+				// "/tp player world x y z"
+				teleportTo(sender, args[0], args[1], Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), Coordinate.parseCoordinate(args[4]), null, null, silent);
+				return;
+			}
+		}
+		else if (argsSize == 6)
+		{
+			if (Bukkit.getWorld(args[0]) == null)
+			{
+				// "/tp player x y z yaw pitch"
+				teleportTo(sender, args[0], null, Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), Coordinate.parseCoordinate(args[4]), Coordinate.parseCoordinate(args[5]), silent);
+				return;
+			}
+			else
+			{
+				// "/tp world x y z yaw p itch"
+				teleportTo(sender, sender, args[0], Coordinate.parseCoordinate(args[1]), Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), Coordinate.parseCoordinate(args[4]), Coordinate.parseCoordinate(args[5]), silent);
+				return;
+			}
+		}
+		else if (argsSize == 7)
+		{
+			// "/tp player world x y z yaw pitch"
+			teleportTo(sender, args[0], args[1], Coordinate.parseCoordinate(args[2]), Coordinate.parseCoordinate(args[3]), Coordinate.parseCoordinate(args[4]), Coordinate.parseCoordinate(args[5]), Coordinate.parseCoordinate(args[6]), silent);
 			return;
 		}
 
 		PlayerUtils.Message("Usage:", sender);
-		PlayerUtils.Message("/tp [player]", sender);
-		PlayerUtils.Message("/tp [player] [player]", sender);
+		PlayerUtils.Message("/tp <player> [<silent>]", sender);
+		PlayerUtils.Message("/tp <player> <other player> [<silent>]", sender);
+		PlayerUtils.Message("/tp [<player]>] [<world>] <x> [<y>] <z> [<yaw>] [<pitch] [<silent>]", sender);
 
-		PlayerUtils.Message("/tp (player) (world) [x] (y) [z]", sender);
 	}	
 
-	public static void teleportTo(CommandSender sender, Object teleported, String worldName, Coordinate x, Coordinate y, Coordinate z, boolean silent)
+	public static void teleportTo(CommandSender sender, Object teleported, String worldName, Coordinate x, Coordinate y, Coordinate z, Coordinate yaw, Coordinate pitch, boolean silent)
 	{
 
 		OfflinePlayer player = null;
@@ -201,7 +255,7 @@ public class TpCommand extends BaseTpCommand {
 		}
 
 		Location senderLocation = TeleportUtil.getPossiblePlayerLocation(player);
-		if ((x.isRelative() || z.isRelative() || (y != null && y.isRelative())) && senderLocation == null)
+		if ((x.isRelative() || z.isRelative() || (y != null && y.isRelative()) || (yaw != null && yaw.isRelative()) || (pitch != null && pitch.isRelative())) && senderLocation == null)
 		{
 			PlayerUtils.Message(TeleportSettings.MESSAGE_RELATIVE_NO_OFFLINE.string(), sender);
 			return;
@@ -217,7 +271,7 @@ public class TpCommand extends BaseTpCommand {
 
 		if (y == null)
 		{
-			if (world.getEnvironment() != Environment.NETHER && world != null)
+			if (world != null && world.getEnvironment() != Environment.NETHER)
 				yNumber = world.getHighestBlockYAt((int) xNumber, (int) zNumber);
 			else
 				yNumber = TeleportSettings.NETHER_SURFACE_Y.doubleNumber();
@@ -230,6 +284,23 @@ public class TpCommand extends BaseTpCommand {
 
 		Location tpLoc = new Location(world, xNumber, yNumber, zNumber);
 
+
+		if (yaw != null)
+		{
+			if (yaw.isRelative())
+				tpLoc.setYaw((float) (yaw.getNumber() + senderLocation.getPitch()));
+			else
+				tpLoc.setYaw((float) yaw.getNumber());
+		}
+
+		if (pitch != null)
+		{
+			if (pitch.isRelative())
+				tpLoc.setPitch((float) (pitch.getNumber() + senderLocation.getPitch()));
+			else
+				tpLoc.setPitch((float) pitch.getNumber());
+		}
+
 		if (world != null && !TeleportUtil.isInBounds(sender, (int) xNumber, (int) zNumber, world.getName()))
 		{
 			PlayerUtils.Message(TeleportSettings.MESSAGE_OUT_OF_BOUNDS.string(), sender);
@@ -239,10 +310,7 @@ public class TpCommand extends BaseTpCommand {
 		if (player.isOnline())
 		{
 			Player onlinePlayer = (Player) player;
-			
-			tpLoc.setPitch(onlinePlayer.getLocation().getPitch());
-			tpLoc.setYaw(onlinePlayer.getLocation().getYaw());
-			
+
 			if (!silent  && !(sender instanceof Player && SudoCommand.isUnderSudo(sender.getName())))
 			{
 				String message = TeleportSettings.MESSAGE_YOU_TELEPORTED_TO_COORDINATES.string();

@@ -37,5 +37,7 @@ public class Coordinate {
 	public static boolean isCoordinate(String input)
 	{
 		return parseCoordinate(input) != null;
-	}	
+	}
+
+
 }
