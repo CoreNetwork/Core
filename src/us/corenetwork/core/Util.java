@@ -3,6 +3,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.plugin.RegisteredListener;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class Util {
 	public static Boolean isInteger(String text) {
@@ -73,4 +80,41 @@ public class Util {
 			permission = permission.substring(0, lastIndex).concat(".*");  
 		}
 	}
+
+    /**
+     * Removes a listener from the given event class. Useful for GriefPrevention fuckups
+     * @param listenerClassName fully qualified class name of the listener containing the EventHandler of the event
+     * @param event event class
+     * @return a RegisteredListener instance that is useful to fire the listener with appropriate events.
+     */
+    public static RegisteredListener removeListener(String listenerClassName, Class<? extends Event> event) {
+        HandlerList list = null;
+
+        try {
+            Method getHandlers = event.getMethod("getHandlerList");
+            list = (HandlerList) getHandlers.invoke(null);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        RegisteredListener found = null;
+
+        for (RegisteredListener listener : list.getRegisteredListeners()) {
+            if (listener.getListener().getClass().getName().equals(listenerClassName)) {
+                found = listener;
+                break;
+            }
+        }
+        if (found != null) {
+            PlayerInteractEvent.getHandlerList().unregister(found);
+        }
+        return found;
+    }
 }

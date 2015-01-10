@@ -19,11 +19,11 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.Util;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -54,14 +54,9 @@ public class ClaimsAreaProxy implements Listener {
     }
 
     public void init() {
-        for (RegisteredListener listener : PlayerInteractEvent.getHandlerList().getRegisteredListeners()) {
-            if (listener.getListener().getClass().getName().equals("me.ryanhamshire.GriefPrevention.PlayerEventHandler")) {
-                griefPreventionListener = listener;
-            }
-        }
+        griefPreventionListener = Util.removeListener("me.ryanhamshire.GriefPrevention.PlayerEventHandler", PlayerInteractEvent.class);
         if (griefPreventionListener != null) {
-            PlayerInteractEvent.getHandlerList().unregister(griefPreventionListener);
-            CLog.info("Proxied GriefPrevention PlayerInteractionEvent");
+            CLog.debug("Proxied GP's PlayerInteractionEvent handler");
         }
         griefPreventionDataStore = GriefPrevention.instance.dataStore;
     }
