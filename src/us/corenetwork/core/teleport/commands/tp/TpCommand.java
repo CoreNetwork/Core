@@ -191,9 +191,9 @@ public class TpCommand extends BaseTpCommand {
 		}
 
 		PlayerUtils.Message("Usage:", sender);
-		PlayerUtils.Message("/tp <player> [<silent>]", sender);
-		PlayerUtils.Message("/tp <player> <other player> [<silent>]", sender);
-		PlayerUtils.Message("/tp [<player]>] [<world>] <x> [<y>] <z> [<yaw>] [<pitch] [<silent>]", sender);
+		PlayerUtils.Message("/core tp <player> [<silent>]", sender);
+		PlayerUtils.Message("/core tp <player> <other player> [<silent>]", sender);
+		PlayerUtils.Message("/core tp [<player]>] [<world>] <x> [<y>] <z> [<yaw>] [<pitch] [<silent>]", sender);
 
 	}	
 

@@ -25,8 +25,11 @@ public class Coordinate {
 		else if (input.startsWith("~"))
 		{
 			input = input.substring(1);
+
 			if (Util.isDouble(input))
 				return new Coordinate(Double.parseDouble(input), true);
+			else if (input.isEmpty())
+				return new Coordinate(0, true);
 			else
 				return null;
 		}
