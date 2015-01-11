@@ -106,6 +106,7 @@ public class GriefPreventionHandler {
 	public static LocationTuple getExactClaimAt(Location location)
 	{
 		Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, false, null);
+
 		if(claim == null)
 			return null;
 		else
@@ -116,6 +117,12 @@ public class GriefPreventionHandler {
 			
 		}
 		
+	}
+
+	public static boolean isAdminClaim(Location location)
+	{
+		Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, false, null);
+		return claim.isAdminClaim();
 	}
 	
 	public static boolean canBuildAt(Player player, Location location)

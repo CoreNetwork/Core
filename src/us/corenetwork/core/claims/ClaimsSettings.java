@@ -90,9 +90,9 @@ public enum ClaimsSettings {
 	MESSAGE_CAN_BUILD("Messages.CanBuild", "&4You can build here. Save yourelf."),
 	MESSAGE_RESCUE_IN_PROGRESS("Messages.RescueInProgress", "Please wait still for 5 seconds."),
 	MESSAGE_RESCUE_PLAYER_MOVED("Messages.RescurePlayerMoved", "Rescue cancelled, you moved!"),
-
+	MESSAGE_CANNOT_BE_RESCURED_FROM_HERE("Messages.CannotBeRescuredFromHere", "&cYou cannot be rescured from here!"),
+	MESSAGE_COULDNT_FIND_SAFE_LOCATION("Messages.CouldntFindSafeLocation", "&c/trapped couldn't find a safe location for you."),
 	CLAIMSLIMIT_NO_CLAIMS_LEFT("ClaimsLimits.Messages.NoClaimsLeft", "You used all of your <Claims> claims in this world."),
-
     CLAIM_FLUIDS_MESSAGE_DENY_HEIGHT("ClaimLiquids.Messages.DenyHeight", "&cYou can only place <Liquid> below y = <Height>"),
     CLAIM_FLUIDS_MESSAGE_DENY_CLAIM("ClaimLiquids.Messages.DenyClaim", "&cYou can only place <Liquid> in a claim.");
 	

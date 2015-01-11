@@ -41,6 +41,12 @@ public class TrappedCommand extends BaseClaimsCommand {
 				PlayerUtils.Message(ClaimsSettings.MESSAGE_CAN_BUILD.string(), sender);
 				return;
 			}
+
+			if(GriefPreventionHandler.isAdminClaim(player.getLocation()))
+			{
+				PlayerUtils.Message(ClaimsSettings.MESSAGE_CANNOT_BE_RESCURED_FROM_HERE.string(), sender);
+				return;
+			}
 			
 			PlayerUtils.Message(ClaimsSettings.MESSAGE_RESCUE_IN_PROGRESS.string(), sender);
 			RescueTask task = new RescueTask(player, player.getLocation(), claimLocationTuple);

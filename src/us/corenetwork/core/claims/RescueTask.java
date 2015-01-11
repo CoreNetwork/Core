@@ -2,6 +2,7 @@ package us.corenetwork.core.claims;
 
 import java.util.Collection;
 
+import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -70,8 +71,17 @@ public class RescueTask implements Runnable {
 		initializeWorldBounds(player.getWorld().getName());
 		normalizeClaimCorners();	
 		Location targetLocation = getRandomSafeLocation();
-		clearTargetLocation(targetLocation);
-		teleportTo(targetLocation);
+
+		if(targetLocation != null)
+		{
+			clearTargetLocation(targetLocation);
+			teleportTo(targetLocation);
+		}
+		else
+		{
+			PlayerUtils.Message(ClaimsSettings.MESSAGE_COULDNT_FIND_SAFE_LOCATION.string(), player);
+		}
+
 	}
 	
 
@@ -127,18 +137,24 @@ public class RescueTask implements Runnable {
 		boolean found = false;
 		int border = 20;
 		int counter = 0;
+		int totalCounter = 0;
 		Location newLocation = null;
 		
 		while(found == false)
 		{
 			counter++;
-			
+			totalCounter++;
 			if(counter == 50)
 			{
 				border += (border < 8000) ? border : 0;
 				counter = 0;
 			}
-			
+
+			if(totalCounter == 1000)
+			{
+				return null;
+			}
+
 			//We choose which rectangle player will spawn
 			// -------------
 			// |____1____|  |
@@ -170,9 +186,20 @@ public class RescueTask implements Runnable {
 			default:
 				break;
 			}
-			
+
+			if(xx > maxX)
+				xx = maxX;
+			if(xx < minX)
+				xx = minX;
+			if(zz > maxZ)
+				zz = maxZ;
+			if(zz < minZ)
+				zz = minZ;
+
 			newLocation = new Location(player.getWorld(), xx + 0.5, y, zz + 0.5);
-			
+
+
+
 			if(isAcceptable(newLocation))
 			{
 				found = true;
