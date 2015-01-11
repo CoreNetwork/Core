@@ -189,11 +189,6 @@ public class RescueTask implements Runnable {
 			return false;
 		
 		Block block = location.getBlock();
-
-		if(Math.abs(location.getBlockX())> 2000 || Math.abs(location.getBlockZ()) > 2000)
-		{
-			System.out.println(location);
-		}
 		
 		if (!block.getChunk().isLoaded())
 			block.getChunk().load();
