@@ -104,6 +104,16 @@ public class PlayerUtils {
 			sender.sendMessage(lines[i]);
 	}
 
+	public static void Broadcast(String message, String exclusion)
+	{
+		for (Player p : Bukkit.getOnlinePlayers())
+		{
+			if (!p.getName().equals(exclusion))
+				PlayerUtils.Message(message, p);
+		}
+
+	}
+
 	public static void MessagePermissions(String message, String permission)
 	{
 		for (Player p : Bukkit.getOnlinePlayers())

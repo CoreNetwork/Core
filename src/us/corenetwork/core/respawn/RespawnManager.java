@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.GriefPreventionHandler;
+import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.Util;
 import us.corenetwork.core.respawn.rspawncommands.ToggleCommand;
 
@@ -66,13 +67,6 @@ public class RespawnManager {
 	
 	private boolean isLucky(Player player)
 	{
-		if(isLuckyBoosterActive())
-		{
-			return true;
-		}
-		
-		
-		
 		if(ToggleCommand.ignoredPlayers.contains(player.getName()))
 		{
 			ToggleCommand.ignoredPlayers.remove(player.getName());
@@ -80,10 +74,38 @@ public class RespawnManager {
 		}
 		else
 		{
-			return throwDice(player);
+			if(isLuckyBoosterActive())
+			{
+				PlayerUtils.Message(getLuckyActiveMessage(), player);
+				return true;
+			}
+
+			boolean isLucky = throwDice(player);
+
+			if(isLucky)
+				PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_LUCKY.string(), player);
+
+			return isLucky;
 		}
 	}
-	
+
+	public String getLuckyActiveMessage()
+	{
+		long luckyTimer = RespawnModule.instance.storageConfig.getLong("luckyTimer", 0);
+		String luckyRunBy = RespawnModule.instance.storageConfig.getString("luckyRuner", "");
+		String message = RespawnSettings.MESSAGE_SPAWN_LUCKY_WITH_BOOSTER.string().replace("<Player>", luckyRunBy);
+
+		String timeMessage;
+		long hours = luckyTimer /60/60/20;
+		long minutes = (luckyTimer /20) % 60;
+		timeMessage = RespawnSettings.MESSAGE_TIME_SYNTAX.string();
+		timeMessage = timeMessage.replace("<Hours>", hours+"");
+		timeMessage = timeMessage.replace("<Minutes>", minutes+"");
+
+		message = message.replace("<Time>", timeMessage);
+		return message;
+	}
+
 	private boolean isLuckyBoosterActive()
 	{
 		long luckyTimer = RespawnModule.instance.storageConfig.getLong("luckyTimer", 0);

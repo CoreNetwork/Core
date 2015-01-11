@@ -54,7 +54,6 @@ public enum RespawnSettings {
 		add("teamRespawnCounter01");
 		add("teamRespawnCounter02");
 	}}),
-	
 	MESSAGE_SPAWN_IGNORED("Messages.SpawnIgnored", "Your home is now ignored when spawning"),
 	MESSAGE_SPAWN_UNIGNORED("Messages.SpawnUnignored", "Your home is now unignored when spawning"),
 	MESSAGE_SPAWN_PROTECTION_START("Messages.SpawnProtectionStart", "You are invincible for <Time> seconds!"),
@@ -68,6 +67,11 @@ public enum RespawnSettings {
 	MESSAGE_LUCKY_BOOSTER_BOUGHT("Messages.LuckyBoosterBought", "You have bought a Lucky Booster!"),
 	MESSAGE_NO_LUCKY_BOOSTER("Messages.NoLuckyBooster", "You have 0 boosters left!"),
 	MESSAGE_ACTIVATED_LUCKY_BOOSTER("Messages.ActivatedLuckyBooster", "You activated Lucky Booster!"),
+	MESSAGE_ACTIVATED_LUCKY_BOOSTER_BROADCAST("Messages.ActivatedLuckyBoosterBroadcast", "<Player> activated Lucky Booster!"),
+	MESSAGE_TIME_SYNTAX("Messages.TimeSyntax", "<Hours>h <Minutes>m"),
+	MESSAGE_LUCKY_ALREADY_ACTIVE("Messages.LuckyAlreadyActive", "Another lucky booster is already active! It has been sponsored by <Player>. <Time> left."),
+	MESSAGE_SPAWN_LUCKY_WITH_BOOSTER("Messages.SpawnLuckyWithBooster","You had a lucky spawn thanks to <Player>! <Time> left."),
+	MESSAGE_SPAWN_LUCKY("Messages.SpawnLucky", "You had a lucky spawn!"),
 	;
 	protected String string;
 	protected Object def;
