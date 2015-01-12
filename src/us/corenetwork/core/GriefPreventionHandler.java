@@ -74,7 +74,7 @@ public class GriefPreventionHandler {
 		{
 			Claim claim = playerClaims.get(i);
 			
-			if (!claim.getOwnerName().equals(player))
+			if (!claim.ownerID.equals(player.getUniqueId()))
 				continue;
 			
 			if (claim.getLesserBoundaryCorner().getWorld().getName().equals(worldName) == false)
