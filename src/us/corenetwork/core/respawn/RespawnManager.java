@@ -46,10 +46,11 @@ public class RespawnManager {
 		
 		if(biggestClaim != null)
 		{
-			minX = Math.max(RespawnSettings.RESPAWN_BASE_MIN_X.integer(), biggestClaim.getBlockX() - 2500);
-			maxX = Math.min(RespawnSettings.RESPAWN_BASE_MAX_X.integer(), biggestClaim.getBlockX() + 2500);
-			minZ = Math.max(RespawnSettings.RESPAWN_BASE_MIN_Z.integer(), biggestClaim.getBlockZ() - 2500);
-			maxZ = Math.min(RespawnSettings.RESPAWN_BASE_MAX_Z.integer(), biggestClaim.getBlockZ() + 2500);
+			int halfLength = RespawnSettings.LUCKY_SQUARE_LENGTH.integer() / 2;
+			minX = Math.max(RespawnSettings.RESPAWN_BASE_MIN_X.integer(), biggestClaim.getBlockX() - halfLength);
+			maxX = Math.min(RespawnSettings.RESPAWN_BASE_MAX_X.integer(), biggestClaim.getBlockX() + halfLength);
+			minZ = Math.max(RespawnSettings.RESPAWN_BASE_MIN_Z.integer(), biggestClaim.getBlockZ() - halfLength);
+			maxZ = Math.min(RespawnSettings.RESPAWN_BASE_MAX_Z.integer(), biggestClaim.getBlockZ() + halfLength);
 		}
 		else
 		{
@@ -74,9 +75,9 @@ public class RespawnManager {
 		}
 		else
 		{
-			if(isLuckyBoosterActive())
+			if(RespawnModule.luckyBoosterManager.isActive())
 			{
-				PlayerUtils.Message(getLuckyActiveMessage(), player);
+				PlayerUtils.Message(RespawnModule.luckyBoosterManager.getLuckyActiveMessage(), player);
 				return true;
 			}
 
@@ -87,29 +88,6 @@ public class RespawnManager {
 
 			return isLucky;
 		}
-	}
-
-	public String getLuckyActiveMessage()
-	{
-		long luckyTimer = RespawnModule.instance.storageConfig.getLong("luckyTimer", 0);
-		String luckyRunBy = RespawnModule.instance.storageConfig.getString("luckyRuner", "");
-		String message = RespawnSettings.MESSAGE_SPAWN_LUCKY_WITH_BOOSTER.string().replace("<Player>", luckyRunBy);
-
-		String timeMessage;
-		long hours = luckyTimer /60/60/20;
-		long minutes = (luckyTimer /20) % 60;
-		timeMessage = RespawnSettings.MESSAGE_TIME_SYNTAX.string();
-		timeMessage = timeMessage.replace("<Hours>", hours+"");
-		timeMessage = timeMessage.replace("<Minutes>", minutes+"");
-
-		message = message.replace("<Time>", timeMessage);
-		return message;
-	}
-
-	private boolean isLuckyBoosterActive()
-	{
-		long luckyTimer = RespawnModule.instance.storageConfig.getLong("luckyTimer", 0);
-		return luckyTimer > 0;
 	}
 	
 	private boolean throwDice(Player player)

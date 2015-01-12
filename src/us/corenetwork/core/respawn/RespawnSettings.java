@@ -27,7 +27,8 @@ public enum RespawnSettings {
 	LUCKY66("Lucky66", new ArrayList<String>(){{
 		add("SubGrass");
 	}}),
-	LUCKYBOOSTER("LuckyBoosterMinutes", 720),
+	LUCKY_SQUARE_LENGTH("LuckySquareLength", 4000),
+	LUCKY_BOOSTER_DURATION_MINUTES("LuckyBoosterMinutes", 720),
 	NEW_PLAYER_SPAWN_WARP_NAME("SpawnWarps.NewPlayer", "endguide"),
 	EXISTING_PLAYER_SPAWN_WARP_NAME("SpawnWarps.ExistingPlayer", "limbocrystal"),
 	

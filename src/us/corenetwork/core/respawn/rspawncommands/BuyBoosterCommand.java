@@ -1,9 +1,9 @@
 package us.corenetwork.core.respawn.rspawncommands;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
-import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.PlayerUtils;
 import us.corenetwork.core.respawn.RespawnModule;
 import us.corenetwork.core.respawn.RespawnSettings;
@@ -25,18 +25,13 @@ public class BuyBoosterCommand extends BaseRSpawnCommand{
 			PlayerUtils.Message("Usage: /core buylucky <playerName>", sender);
 			return;
 		}
-		String playerName = args[0]; 
-		
-		String path = "Amount."+playerName.toLowerCase();
-		int amountLeft = RespawnModule.instance.storageConfig.getInt(path);
-		
-		RespawnModule.instance.storageConfig.set(path, amountLeft + 1);
-		RespawnModule.instance.saveStorageYaml();
-		
-		Player player = CorePlugin.instance.getServer().getPlayer(playerName);
-		if(player != null)
+
+		String playerName = args[0];
+		OfflinePlayer offlinePlayer = Bukkit.getServer().getOfflinePlayer(playerName);
+		RespawnModule.luckyBoosterManager.addPass(offlinePlayer);
+		if(offlinePlayer.isOnline())
 		{
-			PlayerUtils.Message(RespawnSettings.MESSAGE_LUCKY_BOOSTER_BOUGHT.string(), player);
+			PlayerUtils.Message(RespawnSettings.MESSAGE_LUCKY_BOOSTER_BOUGHT.string(), offlinePlayer.getPlayer());
 		}
 	}
 }

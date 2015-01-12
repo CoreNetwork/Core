@@ -22,6 +22,7 @@ public class RespawnModule extends CoreModule {
 	public static RespawnModule instance;
 	public static RespawnTeamManager teamManager;
 	public static RespawnManager manager;
+	public static LuckyBoosterManager luckyBoosterManager;
 	public static HashMap<String, BaseRSpawnCommand> rspawnCommands = new HashMap<String, BaseRSpawnCommand>();
 	
 	public RespawnModule() {
@@ -42,6 +43,7 @@ public class RespawnModule extends CoreModule {
 		
 		teamManager = new RespawnTeamManager();
 		manager = new RespawnManager();
+		luckyBoosterManager = new LuckyBoosterManager();
 		for (RespawnSettings setting : RespawnSettings.values())
 		{
 			if (config.get(setting.string) == null)
@@ -62,25 +64,6 @@ public class RespawnModule extends CoreModule {
 		CorePlugin.coreCommands.put("runlucky", new RunBoosterCommand());
 		
 		Bukkit.getServer().getScheduler().runTaskTimer(CorePlugin.instance, new ProtectTimer(), 20, 20);
-		Bukkit.getServer().getScheduler().runTaskTimer(CorePlugin.instance, new Runnable() {
-			@Override
-			public void run()
-			{
-				long luckyTimer = RespawnModule.instance.storageConfig.getLong("luckyTimer", 0);
-				if(luckyTimer == 0)
-					return;
-				
-				luckyTimer -= 600;
-
-				if(luckyTimer < 0)
-					luckyTimer = 0;
-				
-				RespawnModule.instance.storageConfig.set("luckyTimer", luckyTimer);
-				RespawnModule.instance.saveStorageYaml();
-
-			}
-		}, 600, 600);
-		
 		KnownPlayers.load();
 		
 		return true;
@@ -88,6 +71,7 @@ public class RespawnModule extends CoreModule {
 	@Override
 	protected void unloadModule() {
 		KnownPlayers.save();
+		luckyBoosterManager.removeExpired();
 	}
 	
 	@Override
