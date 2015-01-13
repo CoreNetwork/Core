@@ -5,7 +5,6 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.RegisteredListener;
 
 import java.lang.reflect.InvocationTargetException;
@@ -112,8 +111,9 @@ public class Util {
                 break;
             }
         }
+
         if (found != null) {
-            PlayerInteractEvent.getHandlerList().unregister(found);
+			list.unregister(found);
         }
         return found;
     }
