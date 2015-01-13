@@ -70,7 +70,6 @@ public enum RespawnSettings {
 	MESSAGE_ACTIVATED_LUCKY_BOOSTER("Messages.ActivatedLuckyBooster", "You activated Lucky Booster!"),
 	MESSAGE_ACTIVATED_LUCKY_BOOSTER_BROADCAST("Messages.ActivatedLuckyBoosterBroadcast", "<Player> activated Lucky Booster!"),
 	MESSAGE_TIME_SYNTAX("Messages.TimeSyntax", "<Hours>h <Minutes>m"),
-	MESSAGE_LUCKY_ALREADY_ACTIVE("Messages.LuckyAlreadyActive", "Another lucky booster is already active! It has been sponsored by <Player>. <Time> left."),
 	MESSAGE_SPAWN_LUCKY_WITH_BOOSTER("Messages.SpawnLuckyWithBooster","You had a lucky spawn thanks to <Player>! <Time> left."),
 	MESSAGE_SPAWN_LUCKY("Messages.SpawnLucky", "You had a lucky spawn!"),
 	;
