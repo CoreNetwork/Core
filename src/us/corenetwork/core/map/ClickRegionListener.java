@@ -6,6 +6,7 @@ import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import net.milkbowl.vault.item.Items;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
@@ -83,7 +84,7 @@ public class ClickRegionListener implements Listener {
 
     @EventHandler
     public void onUseBlock(PlayerInteractEvent event) {
-        if (event.getClickedBlock() != null) {
+        if (event.getClickedBlock() != null && event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             RegionManager regionManager = worldGuard.getRegionManager(event.getClickedBlock().getWorld());
             ApplicableRegionSet set = regionManager.getApplicableRegions(event.getClickedBlock().getLocation());
             for (ProtectedRegion region : set) {
