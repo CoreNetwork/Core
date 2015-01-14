@@ -24,6 +24,7 @@ import us.corenetwork.core.player.commands.EnchantCommand;
 import us.corenetwork.core.player.commands.GamemodeCommand;
 import us.corenetwork.core.player.commands.GodCommand;
 import us.corenetwork.core.player.commands.KitCommand;
+import us.corenetwork.core.player.commands.RemindCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
 import us.corenetwork.core.player.commands.UnvanishCommand;
 import us.corenetwork.core.player.commands.VanishCommand;
@@ -38,7 +39,7 @@ public class PlayerModule extends CoreModule {
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "god", "ungod", "gamemode", "kit", "dm", "delay"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "god", "ungod", "gamemode", "kit", "dm", "delay", "remind"}, "player");
 		
 		instance = this;
 	}
@@ -90,6 +91,10 @@ public class PlayerModule extends CoreModule {
 		{
 			return commands.get("delay").execute(sender, args, false);
 		}
+		if (command.getName().equals("remind"))
+		{
+			return commands.get("remind").execute(sender, args, false);
+		}
 		else
 		{
 			BasePlayerCommand cmd = commands.get(args[0]);
@@ -123,6 +128,7 @@ public class PlayerModule extends CoreModule {
 		commands.put("kit", new KitCommand());
 		commands.put("dm", new DMCommand());
 		commands.put("delay", new DelayCommand());
+		commands.put("remind", new RemindCommand());
 
 		CorePlugin.coreCommands.put("effect", new EffectCommand());
 		CorePlugin.coreCommands.put("enchant", new EnchantCommand());

@@ -29,6 +29,8 @@ public class TimeUtils
             int duration = Integer.parseInt(arg.substring(0, arg.length()-1));
 
             switch (c) {
+                case SECOND:
+                    break;
                 case MINUTE:
                     duration = duration * SECONDS_PER_MINUTE;
                     break;
@@ -36,7 +38,7 @@ public class TimeUtils
                     duration = duration * SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
                     break;
                 default:
-                    break;
+                    return -1; //If letter on the end is unknown then we likely got invalid time string
             }
 
             return duration;

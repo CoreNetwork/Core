@@ -27,6 +27,8 @@ public enum PlayerSettings {
 	
 	OVERWORLD_IGNORE_BORDER("Border.world", 10),
 	IGNORE_BORDER("Border.Other", 0),
+
+	REMINDER_DISPLAYED_TIME_TICKS("ReminderDisplayedTimeTicks", 5 * 20),
 	
 	KITS("Kits", new ArrayList<String>()),
 	
@@ -72,8 +74,9 @@ public enum PlayerSettings {
 	MESSAGE_KIT_RECEIVED("Message.KitReceived", "You have been granted a <Kit> kit."),
 	MESSAGE_KIT_GRANTED("Message.KitGranted", "<Kit> kit granted to a <Player>."),
 
-	DELAY_GRACE_PERIOD_TICKS("DelayGracePeriodInTicks", 20),
-	;
+	MESSAGE_REMINDER_ADDED("Message.ReminderAdded", "Reminder added"),
+
+	DELAY_GRACE_PERIOD_TICKS("DelayGracePeriodInTicks", 20);
 	protected String string;
 	protected Object def;
 	
