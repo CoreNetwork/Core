@@ -140,9 +140,9 @@ public class RemindCommand extends BasePlayerCommand {
 					TitleSender.times(player, 10, PlayerSettings.REMINDER_DISPLAYED_TIME_TICKS.integer() ,10);
 
 					if (pendingReminder.author != null)
-						TitleSender.subtitle(player, MinecraftJson.getColorMessage("set by " + pendingReminder.author, PlayerSettings.REMINDER_MAIN_COLOR.string()));
+						TitleSender.subtitle(player, MinecraftJson.getColorMessage("set by " + pendingReminder.author, PlayerSettings.REMINDER_SUBTITLE_COLOR.string()));
 
-					TitleSender.title(player, MinecraftJson.getColorMessage(pendingReminder.message, PlayerSettings.REMINDER_SUBTITLE_COLOR.string()));
+					TitleSender.title(player, MinecraftJson.getColorMessage(pendingReminder.message, PlayerSettings.REMINDER_MAIN_COLOR.string()));
 					player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
 				}
 			}
