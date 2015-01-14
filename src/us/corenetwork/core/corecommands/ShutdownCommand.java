@@ -11,17 +11,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
+import us.corenetwork.core.Util;
 
 public class ShutdownCommand extends BaseCoreCommand {
     protected long shutdownTime = 0;
+    private int requestedTime = 0;
     private List<Integer> tasks = new ArrayList<Integer>();
     private String kickMessage;
     private static final int INTERVAL[] = {
             1, 2, 3, 4, 5, 10, 30, 60, 120, 180, 240, 300, 600, 900, 1800, 3600
     };
-    private final ShutdownNotifier NOTIFIER_INSTANCE = new ShutdownNotifier();
-    private final ShutdownExecutor EXECUTOR_INSTANCE = new ShutdownExecutor();
+    private static boolean[] messagesSent = new boolean[INTERVAL.length];
+    private final ShutdownTimer TIMER_INSTANCE = new ShutdownTimer();
 
     public ShutdownCommand() {
         desc = "Shutdown with grace period";
@@ -44,7 +45,8 @@ public class ShutdownCommand extends BaseCoreCommand {
                 int time;
                 try {
                     time = Integer.valueOf(args[0]);
-                    shutdownTime = (System.currentTimeMillis() + time * 1000);
+                    shutdownTime = System.currentTimeMillis() + time * 1000;
+                    requestedTime = 0;
                 } catch (NumberFormatException e) {
                     sender.sendMessage("Invalid number " + args[0]);
                     return;
@@ -61,48 +63,81 @@ public class ShutdownCommand extends BaseCoreCommand {
 
                 sender.sendMessage("Shutdown scheduled in " + formatTime(shutdownTime, true) + ".");
 
-                for (int i : INTERVAL) {
-                    if (i < time) {
-                        tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(CorePlugin.instance, NOTIFIER_INSTANCE, (time - i) * 20));
-                    }
-                }
-                NOTIFIER_INSTANCE.run();
-                tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(CorePlugin.instance, EXECUTOR_INSTANCE, time * 20));
+                for (int i = 0; i < messagesSent.length; i++)
+                    messagesSent[i] = false;
+
+                sendNotifications();
+                scheduleNext();
             }
         } else {
             sender.sendMessage("No shutdown time specified.");
         }
     }
 
-    private class ShutdownNotifier implements Runnable {
+    private class ShutdownTimer implements Runnable {
         @Override
         public void run() {
-            String text = "Reboot in " + formatTime(shutdownTime, true);
-            String json = "{text: '" + text + "', color: gold}";
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                if (shutdownTime - System.currentTimeMillis() < 10000) {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " times 5 10 5");
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " title " + json);
-                } else {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " times 5 50 5");
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " subtitle " + json);
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " title {text: ''}");
+            int remaining = (int) Math.ceil((shutdownTime - System.currentTimeMillis()) / 1000d);
+
+            if (remaining <= 0)
+            {
+                shutdown();
+                return;
+
+            }
+            
+            for (int i = INTERVAL.length - 1; i >= 0; i--)
+            {
+                int curInterval = INTERVAL[i];
+                if (curInterval > remaining && curInterval <= requestedTime && !messagesSent[i])
+                {
+                    sendNotifications();
+                    messagesSent[i] = true;
+                    break;
                 }
             }
-            CorePlugin.instance.getLogger().info("Shutdown in " + formatTime(shutdownTime, true));
+
+            if (Util.arrayContains(INTERVAL, remaining))
+            {
+                sendNotifications();
+            }
+
+            scheduleNext();
         }
     }
 
-    private class ShutdownExecutor implements Runnable {
-        @Override
-        public void run() {
-            Bukkit.broadcastMessage("Reboot.");
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                player.kickPlayer(kickMessage);
-            }
-            Bukkit.shutdown();
-        }
+    private void scheduleNext()
+    {
+        tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(CorePlugin.instance, TIMER_INSTANCE, 20));
     }
+
+    private void shutdown()
+    {
+        Bukkit.broadcastMessage("Reboot.");
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.kickPlayer(kickMessage);
+        }
+        Bukkit.shutdown();
+    }
+
+    private void sendNotifications()
+    {
+        String text = "Reboot in " + formatTime(shutdownTime, true);
+        String json = "{text: '" + text + "', color: gold}";
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (shutdownTime - System.currentTimeMillis() < 10000) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " times 5 10 5");
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " title " + json);
+            } else {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " times 5 50 5");
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " subtitle " + json);
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " title {text: ''}");
+            }
+        }
+        CorePlugin.instance.getLogger().info("Shutdown in " + formatTime(shutdownTime, true));
+
+    }
+
 
     private static String formatTime(long shutdownTime, boolean relative) {
         if (relative) {

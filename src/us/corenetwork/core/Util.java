@@ -117,4 +117,15 @@ public class Util {
         }
         return found;
     }
+
+	public static boolean arrayContains(int[] array, int num)
+	{
+		for (int arrayEntry : array)
+		{
+			if (arrayEntry == num)
+				return true;
+		}
+
+		return false;
+	}
 }
