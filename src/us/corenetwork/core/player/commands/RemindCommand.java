@@ -63,20 +63,24 @@ public class RemindCommand extends BasePlayerCommand {
 						PlayerUtils.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 						return;
 					}
-				}
 
-				author = sender.getName();
+					author = sender.getName();
+				}
 
 				// We don't move forward here as first argument is neither "me" or valid online player name.
 			}
 
-			if (targetPlayer == null && !(sender instanceof Player))
+			if (targetPlayer == null)
 			{
-				sender.sendMessage("You need to be player to message yourself!");
-				return;
+				if (!(sender instanceof Player))
+				{
+					sender.sendMessage("You need to be player to message yourself!");
+					return;
+				}
+
+				targetPlayer = (Player) sender;
 			}
 
-			targetPlayer = (Player) sender;
 
 			if (args[pointer].equalsIgnoreCase("in")) //ignore "in" and just move forward to next argument
 				pointer++;
