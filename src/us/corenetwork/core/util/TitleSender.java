@@ -9,8 +9,8 @@ import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 
-/*
-    Used as silent alternative to /title command
+/**
+    Bunch of convenience commands that execute minecraft title functions. They are also silent unlike /title command itself which sends spam to moderators.
  */
 public class TitleSender {
 
