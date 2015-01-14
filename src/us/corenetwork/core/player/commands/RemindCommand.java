@@ -115,7 +115,7 @@ public class RemindCommand extends BasePlayerCommand {
 
 	private void displayUsage(CommandSender sender)
 	{
-		sender.sendMessage("ERRROR");
+		sender.sendMessage("Usage: /remind [me | <player>] [in] <time> [to] <message>");
 	}
 
 	private static class RemindTimer implements Runnable
