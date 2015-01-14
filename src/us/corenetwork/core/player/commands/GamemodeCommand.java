@@ -1,14 +1,11 @@
 package us.corenetwork.core.player.commands;
 
-import java.util.HashMap;
-
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffectType;
 
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.player.PlayerSettings;
 
 public class GamemodeCommand extends BasePlayerCommand {

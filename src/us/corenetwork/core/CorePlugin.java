@@ -12,6 +12,8 @@ import us.corenetwork.core.corecommands.CoreHelpCommand;
 import us.corenetwork.core.corecommands.ReloadCommand;
 import us.corenetwork.core.corecommands.ShutdownCommand;
 import us.corenetwork.core.corecommands.SudoCommand;
+import us.corenetwork.core.util.Util;
+
 public class CorePlugin extends JavaPlugin {
 	public static CorePlugin instance;
 	

@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.IO;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.Setting;
 import us.corenetwork.core.Settings;
 

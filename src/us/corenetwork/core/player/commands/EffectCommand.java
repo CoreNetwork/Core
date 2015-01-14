@@ -1,5 +1,6 @@
 package us.corenetwork.core.player.commands;
 
+import java.sql.Time;
 import java.util.HashMap;
 
 import org.bukkit.command.CommandSender;
@@ -8,8 +9,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.player.PlayerSettings;
+import us.corenetwork.core.util.TimeUtils;
 
 public class EffectCommand extends BasePlayerCommand {
 
@@ -164,9 +166,9 @@ public class EffectCommand extends BasePlayerCommand {
 					level = getLevel(arg) - 1;
 					levelCount++;
 				}
-				else if (isTime(arg))
+				else if (TimeUtils.isStrictlyTime(arg))
 				{
-					duration = getDuration(arg);
+					duration = TimeUtils.getTimeFromString(arg) * TimeUtils.TICKS_PER_SECOND;
 					durationCount++;
 				}
 				else if (isParticles(arg))
@@ -402,44 +404,7 @@ public class EffectCommand extends BasePlayerCommand {
 	{
 		return Integer.parseInt(arg);
 	}
-	
-	private boolean isTime(String arg)
-	{
-		char c = arg.toLowerCase().charAt(arg.length() - 1);
-		String number = arg.substring(0, arg.length()-1);
-		
-		if ((c == SECOND || c == MINUTE || c == HOUR) && isInteger(number))
-			return true;
-		else
-			return false;
-	}
-	
-	private int getDuration(String arg)
-	{
-		final int TICKS_PER_SECOND = 20;
-		final int SECONDS_PER_MINUTE = 60;
-		final int MINUTES_PER_HOUR = 60;
-		
-		char c = arg.toLowerCase().charAt(arg.length() - 1);
-		int duration = Integer.parseInt(arg.substring(0, arg.length()-1));
-		
-		switch (c) {
-		case SECOND:
-			duration = duration * TICKS_PER_SECOND;
-			break;
-		case MINUTE:
-			duration = duration * TICKS_PER_SECOND * SECONDS_PER_MINUTE;
-			break;
-		case HOUR:
-			duration = duration * TICKS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
-			break;
-		default:
-			break;
-		}
-		
-		return duration;
-	}
-	
+
 	private boolean isParticles(String arg)
 	{
 		return arg.toLowerCase().equals("particles");

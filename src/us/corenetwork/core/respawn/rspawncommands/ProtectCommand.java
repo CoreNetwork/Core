@@ -9,8 +9,8 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 
-import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 import us.corenetwork.core.respawn.ProtectTimer;
 import us.corenetwork.core.respawn.RespawnSettings;
 

@@ -2,8 +2,8 @@ package us.corenetwork.core.teleport.commands.tp;
 
 import org.bukkit.command.CommandSender;
 
-import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 import us.corenetwork.core.teleport.OfflineTeleportation;
 
 public class BringCommand extends BaseTpCommand {		

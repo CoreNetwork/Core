@@ -1,15 +1,14 @@
 package us.corenetwork.core.player.commands;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 import us.corenetwork.core.player.PlayerModule;
 import us.corenetwork.core.player.PlayerSettings;
 

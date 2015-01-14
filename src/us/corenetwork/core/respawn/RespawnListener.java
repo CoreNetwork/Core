@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import us.corenetwork.core.CLog;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.respawn.rspawncommands.NoDropCommand;
 import us.corenetwork.core.teleport.commands.warp.WarpCommand;
 

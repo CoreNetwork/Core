@@ -2,7 +2,7 @@ package us.corenetwork.core.teleport.commands.warp;
 
 import org.bukkit.command.CommandSender;
 
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.teleport.TeleportModule;
 import us.corenetwork.core.teleport.TeleportSettings;
 

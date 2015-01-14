@@ -6,13 +6,12 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.CLog;
-import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 
 public class TeleportUtil {
 	public static void notifyModerators(CommandSender sender, String message, Player... ignored)

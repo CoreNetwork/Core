@@ -2,7 +2,7 @@ package us.corenetwork.core.calculator.commands;
 
 import org.bukkit.command.CommandSender;
 
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.calculator.CalculatorSettings;
 import us.corenetwork.core.calculator.MathEval;
 

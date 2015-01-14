@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.map.MapModule;
 import us.corenetwork.core.map.CheckpointsSettings;
 

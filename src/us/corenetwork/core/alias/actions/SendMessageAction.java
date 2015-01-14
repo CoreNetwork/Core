@@ -1,7 +1,7 @@
 package us.corenetwork.core.alias.actions;
 
 import org.bukkit.command.CommandSender;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.alias.AliasAction;
 
 import java.util.regex.Matcher;

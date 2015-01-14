@@ -3,7 +3,7 @@ package us.corenetwork.core.respawn.rspawncommands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.respawn.ProtectTimer;
 import us.corenetwork.core.respawn.RespawnSettings;
 

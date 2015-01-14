@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 
 public abstract class AbstractCoreCommand {
 
@@ -23,7 +25,7 @@ public abstract class AbstractCoreCommand {
 			return true;
 		}
 		
-		if (sender instanceof Player && !Util.hasPermission(sender, permissionNode + permission)) 
+		if (sender instanceof Player && !Util.hasPermission(sender, permissionNode + permission))
 		{
 			PlayerUtils.Message(Settings.getString(Setting.MESSAGE_NO_PERMISSION), sender);
 			return true;

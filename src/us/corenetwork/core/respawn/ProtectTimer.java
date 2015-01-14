@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.GriefPreventionHandler;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 
 public class ProtectTimer implements Runnable
 {

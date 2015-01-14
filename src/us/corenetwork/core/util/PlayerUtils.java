@@ -1,11 +1,12 @@
-package us.corenetwork.core;
+package us.corenetwork.core.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import us.corenetwork.core.PlayerUtils.PickPlayerResult.PickPlayerResultState;
+import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.util.PlayerUtils.PickPlayerResult.PickPlayerResultState;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -118,7 +119,7 @@ public class PlayerUtils {
 	{
 		for (Player p : Bukkit.getOnlinePlayers())
 		{
-			if (Util.hasPermission(p,permission))
+			if (Util.hasPermission(p, permission))
 				Message(message, p);
 		}
 	}

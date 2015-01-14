@@ -22,8 +22,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import us.corenetwork.core.CLog;
-import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

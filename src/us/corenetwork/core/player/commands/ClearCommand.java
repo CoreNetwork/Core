@@ -9,7 +9,7 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.player.PlayerSettings;
 
 public class ClearCommand extends BasePlayerCommand {

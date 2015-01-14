@@ -1,4 +1,4 @@
-package us.corenetwork.core;
+package us.corenetwork.core.util;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -117,15 +117,4 @@ public class Util {
         }
         return found;
     }
-
-	public static boolean arrayContains(int[] array, int num)
-	{
-		for (int arrayEntry : array)
-		{
-			if (arrayEntry == num)
-				return true;
-		}
-
-		return false;
-	}
 }

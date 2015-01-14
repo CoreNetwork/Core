@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.Util;
 
 public class NoDropCommand extends BaseRSpawnCommand {	
 	public static HashSet<String> blockedPlayers = new HashSet<String>();

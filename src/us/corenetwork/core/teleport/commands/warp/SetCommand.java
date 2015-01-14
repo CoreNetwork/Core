@@ -6,8 +6,8 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 import us.corenetwork.core.teleport.TeleportModule;
 import us.corenetwork.core.teleport.TeleportSettings;
 

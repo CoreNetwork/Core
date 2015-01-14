@@ -5,10 +5,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.Setting;
 import us.corenetwork.core.Settings;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.Util;
 import us.corenetwork.core.player.PlayerModule;
 import us.corenetwork.core.player.PlayerSettings;
 

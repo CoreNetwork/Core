@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.TitleSender;
+import us.corenetwork.core.util.Util;
 
 public class ShutdownCommand extends BaseCoreCommand {
     protected long shutdownTime = 0;
@@ -46,7 +47,7 @@ public class ShutdownCommand extends BaseCoreCommand {
                 try {
                     time = Integer.valueOf(args[0]);
                     shutdownTime = System.currentTimeMillis() + time * 1000;
-                    requestedTime = 0;
+                    requestedTime = time;
                 } catch (NumberFormatException e) {
                     sender.sendMessage("Invalid number " + args[0]);
                     return;
@@ -85,21 +86,16 @@ public class ShutdownCommand extends BaseCoreCommand {
                 return;
 
             }
-            
+
             for (int i = INTERVAL.length - 1; i >= 0; i--)
             {
                 int curInterval = INTERVAL[i];
-                if (curInterval > remaining && curInterval <= requestedTime && !messagesSent[i])
+                if (curInterval >= remaining && curInterval <= requestedTime && !messagesSent[i])
                 {
                     sendNotifications();
                     messagesSent[i] = true;
                     break;
                 }
-            }
-
-            if (Util.arrayContains(INTERVAL, remaining))
-            {
-                sendNotifications();
             }
 
             scheduleNext();
@@ -126,12 +122,12 @@ public class ShutdownCommand extends BaseCoreCommand {
         String json = "{text: '" + text + "', color: gold}";
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (shutdownTime - System.currentTimeMillis() < 10000) {
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " times 5 10 5");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " title " + json);
+                TitleSender.times(player, 5, 10, 5);
+                TitleSender.title(player, json);
             } else {
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " times 5 50 5");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " subtitle " + json);
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "minecraft:title " + player.getName() + " title {text: ''}");
+                TitleSender.times(player, 5, 50, 5);
+                TitleSender.subtitle(player, json);
+                TitleSender.title(player, "{text: ''}");
             }
         }
         CorePlugin.instance.getLogger().info("Shutdown in " + formatTime(shutdownTime, true));

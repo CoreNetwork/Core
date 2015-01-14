@@ -1,6 +1,6 @@
 package us.corenetwork.core.teleport;
 
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.Util;
 
 public class Coordinate {
 	double number;

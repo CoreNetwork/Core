@@ -5,7 +5,7 @@ import java.util.HashSet;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.respawn.RespawnSettings;
 
 public class ToggleCommand extends BaseRSpawnCommand {	

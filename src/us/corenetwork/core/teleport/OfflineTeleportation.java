@@ -7,7 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 
 public class OfflineTeleportation {
 	public static Map<String, PendingTeleport> awaitingConfirmation = new HashMap<String, PendingTeleport>();

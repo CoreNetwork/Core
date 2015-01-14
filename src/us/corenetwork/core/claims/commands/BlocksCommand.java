@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import us.corenetwork.core.ClaimBlocks;
 import us.corenetwork.core.GriefPreventionHandler;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.claims.ClaimPacket;
 import us.corenetwork.core.claims.ClaimsSettings;
 

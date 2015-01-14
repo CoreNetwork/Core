@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.GriefPreventionHandler;
 import us.corenetwork.core.LocationTuple;
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.claims.ClaimsPlayers;
 import us.corenetwork.core.claims.ClaimsSettings;
 import us.corenetwork.core.claims.RescueTask;

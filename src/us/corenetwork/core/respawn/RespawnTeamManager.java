@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import us.corenetwork.core.PlayerUtils;
+import us.corenetwork.core.util.PlayerUtils;
 
 public class RespawnTeamManager {
 

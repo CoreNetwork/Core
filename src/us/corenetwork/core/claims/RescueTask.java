@@ -2,7 +2,6 @@ package us.corenetwork.core.claims;
 
 import java.util.Collection;
 
-import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,8 +19,8 @@ import us.corenetwork.core.CLog;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.GriefPreventionHandler;
 import us.corenetwork.core.LocationTuple;
-import us.corenetwork.core.PlayerUtils;
-import us.corenetwork.core.Util;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 
 public class RescueTask implements Runnable {
 
