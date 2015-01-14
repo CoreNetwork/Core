@@ -15,6 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.Setting;
 import us.corenetwork.core.Settings;
+import us.corenetwork.core.player.PlayerModule;
 import us.corenetwork.core.respawn.ProtectTimer;
 import us.corenetwork.core.util.MinecraftJson;
 import us.corenetwork.core.util.PlayerUtils;
@@ -115,7 +116,7 @@ public class RemindCommand extends BasePlayerCommand {
 
 	private void displayUsage(CommandSender sender)
 	{
-		sender.sendMessage("Usage: /remind [me | <player>] [in] <time> [to] <message>");
+		PlayerUtils.Message(PlayerSettings.MESSAGE_REMINDER_SYNTAX.string(), sender);
 	}
 
 	private static class RemindTimer implements Runnable
@@ -139,9 +140,9 @@ public class RemindCommand extends BasePlayerCommand {
 					TitleSender.times(player, 10, PlayerSettings.REMINDER_DISPLAYED_TIME_TICKS.integer() ,10);
 
 					if (pendingReminder.author != null)
-						TitleSender.subtitle(player, MinecraftJson.getColorMessage("set by " + pendingReminder.author, EnumChatFormat.DARK_GRAY));
+						TitleSender.subtitle(player, MinecraftJson.getColorMessage("set by " + pendingReminder.author, PlayerSettings.REMINDER_MAIN_COLOR.string()));
 
-					TitleSender.title(player, MinecraftJson.getColorMessage(pendingReminder.message, EnumChatFormat.GRAY));
+					TitleSender.title(player, MinecraftJson.getColorMessage(pendingReminder.message, PlayerSettings.REMINDER_SUBTITLE_COLOR.string()));
 					player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
 				}
 			}

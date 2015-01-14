@@ -39,7 +39,7 @@ public class PlayerModule extends CoreModule {
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "god", "ungod", "gamemode", "kit", "dm", "delay", "remind"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "god", "ungod", "gamemode", "kit", "dm", "delay"}, "player");
 		
 		instance = this;
 	}
@@ -91,10 +91,6 @@ public class PlayerModule extends CoreModule {
 		{
 			return commands.get("delay").execute(sender, args, false);
 		}
-		if (command.getName().equals("remind"))
-		{
-			return commands.get("remind").execute(sender, args, false);
-		}
 		else
 		{
 			BasePlayerCommand cmd = commands.get(args[0]);
@@ -128,11 +124,11 @@ public class PlayerModule extends CoreModule {
 		commands.put("kit", new KitCommand());
 		commands.put("dm", new DMCommand());
 		commands.put("delay", new DelayCommand());
-		commands.put("remind", new RemindCommand());
 
 		CorePlugin.coreCommands.put("effect", new EffectCommand());
 		CorePlugin.coreCommands.put("enchant", new EnchantCommand());
-		
+		CorePlugin.coreCommands.put("remind", new RemindCommand());
+
 		vanishManager = new VanishManager();
 		
 		

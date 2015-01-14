@@ -51,5 +51,3 @@ commands:
         description: Direct Message
     delay:
         description: Delay command
-    remind:
-        description: Your own second brain to remind stuff

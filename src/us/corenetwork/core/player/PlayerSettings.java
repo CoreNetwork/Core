@@ -28,7 +28,9 @@ public enum PlayerSettings {
 	OVERWORLD_IGNORE_BORDER("Border.world", 10),
 	IGNORE_BORDER("Border.Other", 0),
 
-	REMINDER_DISPLAYED_TIME_TICKS("ReminderDisplayedTimeTicks", 5 * 20),
+	REMINDER_DISPLAYED_TIME_TICKS("Reminder.DisplayedTimeTicks", 5 * 20),
+	REMINDER_MAIN_COLOR("Reminder.MainColor", "gray"),
+	REMINDER_SUBTITLE_COLOR("Reminder.SubtitleColor", "dark_gray"),
 	
 	KITS("Kits", new ArrayList<String>()),
 	
@@ -75,6 +77,7 @@ public enum PlayerSettings {
 	MESSAGE_KIT_GRANTED("Message.KitGranted", "<Kit> kit granted to a <Player>."),
 
 	MESSAGE_REMINDER_ADDED("Message.ReminderAdded", "Reminder added"),
+	MESSAGE_REMINDER_SYNTAX("Message.ReminderSyntax", "Usage: /remind [me | <player>] [in] <time> [to] <message>"),
 
 	DELAY_GRACE_PERIOD_TICKS("DelayGracePeriodInTicks", 20);
 	protected String string;
