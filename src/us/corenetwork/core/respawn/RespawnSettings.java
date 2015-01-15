@@ -55,6 +55,9 @@ public enum RespawnSettings {
 		add("teamRespawnCounter01");
 		add("teamRespawnCounter02");
 	}}),
+
+	PROTECTION_ABUSE_SPAM_DELAY_SECONDS("ProtectionAbuseDelaySeconds", 5),
+
 	MESSAGE_SPAWN_IGNORED("Messages.SpawnIgnored", "Your home is now ignored when spawning"),
 	MESSAGE_SPAWN_UNIGNORED("Messages.SpawnUnignored", "Your home is now unignored when spawning"),
 	MESSAGE_SPAWN_PROTECTION_START("Messages.SpawnProtectionStart", "You are invincible for <Time> seconds!"),

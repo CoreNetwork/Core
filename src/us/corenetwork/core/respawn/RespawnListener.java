@@ -17,9 +17,17 @@ import us.corenetwork.core.CLog;
 import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.respawn.rspawncommands.NoDropCommand;
 import us.corenetwork.core.teleport.commands.warp.WarpCommand;
+import us.corenetwork.core.util.RegulatedMessenger;
 
 public class RespawnListener implements Listener {
-		
+
+	private RegulatedMessenger godModeAbuseMessenger;
+
+	public RespawnListener()
+	{
+		godModeAbuseMessenger = new RegulatedMessenger(RespawnSettings.PROTECTION_ABUSE_SPAM_DELAY_SECONDS.integer() * 1000);
+	}
+
 	@EventHandler(ignoreCancelled = true)
 	public void onEntityTarget(EntityTargetEvent event)
 	{
@@ -49,7 +57,7 @@ public class RespawnListener implements Listener {
 				{
 					event.setCancelled(true);
 
-					PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_PROTECTION_DONT_ABUSE.string(), damager);
+					godModeAbuseMessenger.sendMessage(damager, RespawnSettings.MESSAGE_SPAWN_PROTECTION_DONT_ABUSE.string());
 
 					return;
 				}
