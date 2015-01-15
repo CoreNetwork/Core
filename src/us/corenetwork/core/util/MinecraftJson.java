@@ -16,7 +16,7 @@ public class MinecraftJson
     public static String getColorMessage(String message, String color)
     {
         JSONObject object = new JSONObject();
-        object.put("text" ,message);
+        object.put("text", message);
         object.put("color", color);
         return object.toJSONString();
     }
