@@ -31,6 +31,8 @@ public enum PlayerSettings {
 	REMINDER_DISPLAYED_TIME_TICKS("Reminder.DisplayedTimeTicks", 5 * 20),
 	REMINDER_MAIN_COLOR("Reminder.MainColor", "gray"),
 	REMINDER_SUBTITLE_COLOR("Reminder.SubtitleColor", "dark_gray"),
+	REMINDER_MAXIMUM_TIME("Reminder.MaximumTime", 3600 * 24),
+	REMINDER_MAXIMUM_PENDING("Reminder.MaximumPending", 10),
 	
 	KITS("Kits", new ArrayList<String>()),
 	
@@ -78,7 +80,8 @@ public enum PlayerSettings {
 
 	MESSAGE_REMINDER_ADDED("Message.ReminderAdded", "Reminder added"),
 	MESSAGE_REMINDER_SYNTAX("Message.ReminderSyntax", "Usage: /remind [me | <player>] [in] <time> [to] <message>"),
-
+	MESSAGE_REMINDER_TOO_LONG("Message.ReminderTooLong", "You can't set reminders for longer than 24h"),
+	MESSAGE_TOO_MANY_REMINDERS("Message.TooManyReminders", "You have too many reminders set. Wait for some to remind you."),
 	MESSAGE_EXPERIENCE_CLEARED("Message.ExperienceCleared", "Experience cleared."),
 	MESSAGE_EXPERIENCE_ADDED("Message.ExperienceAdded", "<Amount> experience added."),
 	MESSAGE_LEVELS_ADDED("Message.LevelsAdded", "<Amount> levels added."),

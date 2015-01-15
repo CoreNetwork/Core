@@ -79,8 +79,13 @@ public class RemindCommand extends BasePlayerCommand {
 				}
 
 				targetPlayer = (Player) sender;
-			}
 
+				if (getPendingRemindersForPlayer(targetPlayer) > PlayerSettings.REMINDER_MAXIMUM_PENDING.integer())
+				{
+					PlayerUtils.Message(PlayerSettings.MESSAGE_TOO_MANY_REMINDERS.string(), sender);
+					return;
+				}
+			}
 
 			if (args[pointer].equalsIgnoreCase("in")) //ignore "in" and just move forward to next argument
 				pointer++;
@@ -89,6 +94,11 @@ public class RemindCommand extends BasePlayerCommand {
 			if (time < 0)
 			{
 				displayUsage(sender);
+				return;
+			}
+			if (time > PlayerSettings.REMINDER_MAXIMUM_TIME.integer())
+			{
+				PlayerUtils.Message(PlayerSettings.MESSAGE_REMINDER_TOO_LONG.string(), sender);
 				return;
 			}
 			pointer++; //We got time
@@ -151,6 +161,18 @@ public class RemindCommand extends BasePlayerCommand {
 				}
 			}
 		}
+	}
+
+	private int getPendingRemindersForPlayer(Player player)
+	{
+		int amount = 0;
+		for (PendingReminder reminder : pendingReminders)
+		{
+			if (reminder.author == null && reminder.playerUUID.equals(player.getUniqueId()))
+				amount++;
+		}
+
+		return amount;
 	}
 
 	private static class PendingReminder
