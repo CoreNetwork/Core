@@ -1,6 +1,8 @@
 package us.corenetwork.core.util;
 
 import net.minecraft.server.v1_8_R1.EnumChatFormat;
+import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
+import org.json.simple.JSONObject;
 
 public class MinecraftJson
 {
@@ -13,7 +15,10 @@ public class MinecraftJson
      */
     public static String getColorMessage(String message, String color)
     {
-        return "{text: '" + message + "', color: " + color + "}";
+        JSONObject object = new JSONObject();
+        object.put("text" ,message);
+        object.put("color", color);
+        return object.toJSONString();
     }
 
 }
