@@ -79,6 +79,12 @@ public enum PlayerSettings {
 	MESSAGE_REMINDER_ADDED("Message.ReminderAdded", "Reminder added"),
 	MESSAGE_REMINDER_SYNTAX("Message.ReminderSyntax", "Usage: /remind [me | <player>] [in] <time> [to] <message>"),
 
+	MESSAGE_EXPERIENCE_CLEARED("Message.ExperienceCleared", "Experience cleared."),
+	MESSAGE_EXPERIENCE_ADDED("Message.ExperienceAdded", "<Amount> experience added."),
+	MESSAGE_LEVELS_ADDED("Message.LevelsAdded", "<Amount> levels added."),
+	MESSAGE_XP_SYNTAX("Message.XpSyntax", "Usage: /core xp [<player>] (<experience> | <levels> | clear) [silent]"),
+
+
 	DELAY_GRACE_PERIOD_TICKS("DelayGracePeriodInTicks", 20);
 	protected String string;
 	protected Object def;

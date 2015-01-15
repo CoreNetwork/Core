@@ -28,6 +28,7 @@ import us.corenetwork.core.player.commands.RemindCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
 import us.corenetwork.core.player.commands.UnvanishCommand;
 import us.corenetwork.core.player.commands.VanishCommand;
+import us.corenetwork.core.player.commands.XpCommand;
 
 public class PlayerModule extends CoreModule {
 
@@ -128,6 +129,7 @@ public class PlayerModule extends CoreModule {
 		CorePlugin.coreCommands.put("effect", new EffectCommand());
 		CorePlugin.coreCommands.put("enchant", new EnchantCommand());
 		CorePlugin.coreCommands.put("remind", new RemindCommand());
+		CorePlugin.coreCommands.put("xp", new XpCommand());
 
 		vanishManager = new VanishManager();
 		

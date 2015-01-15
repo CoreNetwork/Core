@@ -29,11 +29,9 @@ public class RemindCommand extends BasePlayerCommand {
 
 	public RemindCommand()
 	{
-		desc = "Remind me";
-		permission = "remind";
+		desc = "Give XP";
+		permission = "xp";
 		needPlayer = false;
-
-		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new RemindTimer(), 20, 20);
 	}
 
 	// /remind [me | <player>] [in] <time> [to] <message>
