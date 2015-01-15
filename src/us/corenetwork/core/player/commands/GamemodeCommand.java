@@ -35,7 +35,7 @@ public class GamemodeCommand extends BasePlayerCommand {
 		gameMode = getGameMode(args[0]);
 		if (gameMode == null)
 		{
-			PlayerUtils.Message("Wrong mode, use 0/s/survival or 1/c/creative or 2/a/adventure", sender);
+			PlayerUtils.Message("Wrong mode, use 0/s/survival, 1/c/creative,  2/a/adventure or 3/sp/spectator", sender);
 			return;
 		}
 		
@@ -131,6 +131,10 @@ public class GamemodeCommand extends BasePlayerCommand {
 		else if (arg.equals("2") || arg.equals("a") || arg.equals("adventrue"))
 		{
 			return GameMode.ADVENTURE;
+		}
+		else if (arg.equals("3") || arg.equals("sp") || arg.equals("spectator"))
+		{
+			return GameMode.SPECTATOR;
 		}
 		else
 		{
