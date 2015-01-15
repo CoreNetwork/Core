@@ -40,7 +40,7 @@ public class PlayerModule extends CoreModule {
 	
 	public PlayerModule()
 	{
-		super("Player", new String[] {"clear", "vanish", "unvanish", "god", "ungod", "gamemode", "kit", "dm", "delay"}, "player");
+		super("Player", new String[] {"clear", "vanish", "unvanish", "god", "ungod", "kit", "dm", "delay"}, "player");
 		
 		instance = this;
 	}
@@ -75,10 +75,6 @@ public class PlayerModule extends CoreModule {
 		if (command.getName().equals("ungod"))
 		{
 			return commands.get("ungod").execute(sender, args, false);
-		}
-		if (command.getName().equals("gamemode") || command.getName().equals("gm"))
-		{
-			return commands.get("gamemode").execute(sender, args, false);
 		}
 		if (command.getName().equals("kit"))
 		{
@@ -121,7 +117,6 @@ public class PlayerModule extends CoreModule {
 		commands.put("enchant", new EnchantCommand());
 		commands.put("god", new GodCommand());
 		commands.put("ungod", new UngodCommand());
-		commands.put("gamemode", new GamemodeCommand());
 		commands.put("kit", new KitCommand());
 		commands.put("dm", new DMCommand());
 		commands.put("delay", new DelayCommand());
@@ -130,6 +125,7 @@ public class PlayerModule extends CoreModule {
 		CorePlugin.coreCommands.put("enchant", new EnchantCommand());
 		CorePlugin.coreCommands.put("remind", new RemindCommand());
 		CorePlugin.coreCommands.put("xp", new XpCommand());
+		CorePlugin.coreCommands.put("gamemode", new GamemodeCommand());
 
 		vanishManager = new VanishManager();
 		
