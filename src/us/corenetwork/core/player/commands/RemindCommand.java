@@ -79,16 +79,23 @@ public class RemindCommand extends BasePlayerCommand {
 				}
 
 				targetPlayer = (Player) sender;
-
-				if (getPendingRemindersForPlayer(targetPlayer) > PlayerSettings.REMINDER_MAXIMUM_PENDING.integer())
-				{
-					PlayerUtils.Message(PlayerSettings.MESSAGE_TOO_MANY_REMINDERS.string(), sender);
-					return;
-				}
 			}
 
 			if (args[pointer].equalsIgnoreCase("in")) //ignore "in" and just move forward to next argument
 				pointer++;
+
+			if (args[pointer].equals("clear"))
+			{
+				clearRemindersForPlayer(targetPlayer);
+				PlayerUtils.Message(PlayerSettings.MESSAGE_REMINDERS_CLEARED.string(), sender);
+				return;
+			}
+
+			if (targetPlayer == sender && getPendingRemindersForPlayer(targetPlayer) > PlayerSettings.REMINDER_MAXIMUM_PENDING.integer())
+			{
+				PlayerUtils.Message(PlayerSettings.MESSAGE_TOO_MANY_REMINDERS.string(), sender);
+				return;
+			}
 
 			int time = TimeUtils.getTimeFromString(args[pointer]);
 			if (time < 0)
@@ -173,6 +180,20 @@ public class RemindCommand extends BasePlayerCommand {
 		}
 
 		return amount;
+	}
+
+	private void clearRemindersForPlayer(Player player)
+	{
+		Iterator<PendingReminder> iterator = pendingReminders.iterator();
+		while (iterator.hasNext())
+		{
+			PendingReminder pendingReminder = iterator.next();
+			if (pendingReminder.playerUUID == player.getUniqueId())
+			{
+				iterator.remove();
+			}
+		}
+
 	}
 
 	private static class PendingReminder
