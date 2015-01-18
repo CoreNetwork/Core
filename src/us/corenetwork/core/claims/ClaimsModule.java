@@ -27,6 +27,7 @@ public class ClaimsModule extends CoreModule {
 	public static HashMap<String, BaseClaimsCommand> commands;
     public ClaimsAreaProxy claimsAreaProxy = new ClaimsAreaProxy();
     public ClaimFluids claimFluids = new ClaimFluids();
+	public ClaimPerks claimPerks = new ClaimPerks();
 
     public ClaimsModule()
 	{

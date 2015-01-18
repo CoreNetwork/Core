@@ -23,6 +23,7 @@ public class AbandonAllClaimsCommand extends BaseClaimsCommand {
 
         for (Claim claim : claims) {
             ClaimsModule.instance.claimFluids.onRemoveClaim(claim);
+            ClaimsModule.instance.claimPerks.onRemoveClaim(claim);
         }
 
         Bukkit.dispatchCommand(player, "AbandonAllClaims");
