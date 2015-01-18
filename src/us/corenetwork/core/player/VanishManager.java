@@ -21,7 +21,8 @@ import us.corenetwork.core.scoreboard.CoreScoreboardManager;
 public class VanishManager {
 
 	private final String MOD_GROUP = "Overseer";
-	
+	private final String MOD_SCOREBOARD_TEAM = "Guardian"; //Teams only change on login so guardians stay in guardian team even after duty mode switch.
+
 	private Set<Player> vanishedPlayers;
 	private Scoreboard scoreboard;
 	
@@ -33,7 +34,7 @@ public class VanishManager {
 	
 	private void initializeScoreboard()
 	{
-		ScoreboardUtils.getOrCreateTeam(CoreScoreboardManager.getTeamsScoreboard(), MOD_GROUP).setCanSeeFriendlyInvisibles(true);
+		ScoreboardUtils.getOrCreateTeam(CoreScoreboardManager.getTeamsScoreboard(), MOD_SCOREBOARD_TEAM).setCanSeeFriendlyInvisibles(true);
 	}
 
 	public boolean canSeeAll(Player player)
