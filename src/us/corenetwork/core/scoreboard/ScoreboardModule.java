@@ -1,9 +1,11 @@
 package us.corenetwork.core.scoreboard;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import org.bukkit.scoreboard.Team;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
 
@@ -28,7 +30,6 @@ public class ScoreboardModule extends CoreModule {
 		}
 		saveConfig();
 
-		
 		return true;
 	}
 	

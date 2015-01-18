@@ -12,7 +12,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 public class PlayerData {
 	private int curScoreboard;
-	private HashMap<Integer, Scoreboard> scoreboards;
+	protected HashMap<Integer, Scoreboard> scoreboards;
 	
 	private Scoreboard playerStatsScoreboard;
 	private Objective playerStatsObjective;
