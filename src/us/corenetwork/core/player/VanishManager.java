@@ -31,7 +31,6 @@ public class VanishManager {
 		initializeScoreboard();
 	}
 	
-	
 	private void initializeScoreboard()
 	{
 		ScoreboardUtils.getOrCreateTeam(CoreScoreboardManager.getTeamsScoreboard(), MOD_GROUP).setCanSeeFriendlyInvisibles(true);
