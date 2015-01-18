@@ -14,12 +14,12 @@ import org.bukkit.scoreboard.Scoreboard;
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.ScoreboardUtils;
 import us.corenetwork.core.util.Util;
 import us.corenetwork.core.scoreboard.CoreScoreboardManager;
 
 public class VanishManager {
 
-	private final String VANISH_TEAM = "vanish";
 	private final String MOD_GROUP = "Overseer";
 	
 	private Set<Player> vanishedPlayers;
@@ -34,28 +34,9 @@ public class VanishManager {
 	
 	private void initializeScoreboard()
 	{
-		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-		scoreboard.registerNewTeam(VANISH_TEAM);
-		
-		for(Player onlinePlayer: Bukkit.getServer().getOnlinePlayers()) 
-		{	
-			if (canSeeAll(onlinePlayer))
-				addToSeeAllGroup(onlinePlayer);
-		}
+		ScoreboardUtils.getOrCreateTeam(CoreScoreboardManager.getTeamsScoreboard(), MOD_GROUP).setCanSeeFriendlyInvisibles(true);
 	}
-	
-	public void addToSeeAllGroup(Player player) 
-	{
-		scoreboard.getTeam(VANISH_TEAM).addPlayer(player);
-		CoreScoreboardManager.registerScoreboard(player, 3, scoreboard);
-	}
-	
-	public void removeFromSeeAllGroup(Player player)
-	{
-		scoreboard.getTeam(VANISH_TEAM).removePlayer(player);
-		CoreScoreboardManager.unregisterScoreboard(player, 3);
-	}
-	
+
 	public boolean canSeeAll(Player player)
 	{
 		return CorePlugin.permission.playerInGroup(player, MOD_GROUP);
@@ -83,8 +64,7 @@ public class VanishManager {
 				//((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(EnumPlayerInfoAction.ADD_PLAYER, ((CraftPlayer) player).getHandle()));
 			}
 		}
-		addToSeeAllGroup(player);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 10000000, 0));		
+		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 10000000, 0));
 	}
 	
 	public void unvanish(Player player)
@@ -103,7 +83,6 @@ public class VanishManager {
 				//((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(EnumPlayerInfoAction.ADD_PLAYER, ((CraftPlayer) onlinePlayer).getHandle()));
 			}
 		}
-		removeFromSeeAllGroup(player);
 		player.removePotionEffect(PotionEffectType.INVISIBILITY);
 	}
 	
