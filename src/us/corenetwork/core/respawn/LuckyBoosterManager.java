@@ -30,6 +30,11 @@ public class LuckyBoosterManager {
         setAmount(offlinePlayer, getAmount(offlinePlayer) + 1);
     }
 
+    public void addPass(OfflinePlayer offlinePlayer, int amount)
+    {
+        setAmount(offlinePlayer, getAmount(offlinePlayer) + amount);
+    }
+
     public void removePass(OfflinePlayer offlinePlayer)
     {
         setAmount(offlinePlayer, getAmount(offlinePlayer) - 1);
