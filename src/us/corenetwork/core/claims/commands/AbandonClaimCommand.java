@@ -27,6 +27,7 @@ public class AbandonClaimCommand extends BaseClaimsCommand {
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, true, null);
         if (claim != null && claim.parent == null && claim.allowEdit(player) == null) {
             ClaimsModule.instance.claimFluids.onRemoveClaim(claim);
+            ClaimsModule.instance.claimPerks.onRemoveClaim(claim);
         }
     }
 }

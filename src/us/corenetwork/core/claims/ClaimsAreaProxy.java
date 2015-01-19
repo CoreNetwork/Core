@@ -7,11 +7,16 @@ import me.ryanhamshire.GriefPrevention.PlayerData;
 import net.milkbowl.vault.item.Items;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventException;
 import org.bukkit.event.EventHandler;
@@ -100,6 +105,45 @@ public class ClaimsAreaProxy implements Listener {
                                         Material mat = ClaimFluids.getLiquidType(current.getBlock().getType());
                                         if (mat != null) {
                                             current.getBlock().setType(Material.AIR);
+                                        }
+                                        Block block = current.getBlock();
+                                        if(ClaimsModule.instance.claimPerks.isPerkBlock(block))
+                                            block.setType(Material.AIR);
+                                    }
+                                }
+                            }
+                        }
+
+
+                        //Removing perks armorstands
+                        Chunk startChunk = bStart.getChunk();
+                        Chunk endChunk = bEnd.getChunk();
+
+                        World world = bStart.getWorld();
+
+                        for (int x = startChunk.getX(); x <= endChunk.getX(); x++) {
+                            for (int z = startChunk.getZ(); z <= endChunk.getZ(); z++) {
+                                Chunk chunk = world.getChunkAt(x,z);
+                                for(Entity e : chunk.getEntities())
+                                {
+                                    if(e.getType() == EntityType.ARMOR_STAND)
+                                    {
+                                        int xLoc = e.getLocation().getBlockX();
+                                        int zLoc = e.getLocation().getBlockZ();
+
+                                        //is in original claim
+                                        if( xLoc >= bStart.getBlockX() && xLoc <= bEnd.getBlockX() && zLoc >= bStart.getBlockZ() && zLoc <= bEnd.getBlockZ())
+                                        {
+                                            Location current = e.getLocation();
+                                            //is in new claim
+                                            if (!claim.contains(current, true, false)) {
+                                                ArmorStand as = (ArmorStand) e;
+                                                if(as.hasArms())
+                                                {
+                                                    e.remove();
+                                                }
+                                            }
+
                                         }
                                     }
                                 }
