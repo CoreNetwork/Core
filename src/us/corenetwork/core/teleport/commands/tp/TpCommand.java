@@ -8,6 +8,7 @@ import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.CommandMinecart;
 import us.corenetwork.core.AbstractCoreCommand;
@@ -65,7 +66,7 @@ public class TpCommand extends BaseTpCommand {
 		}
 
 		//Automatically apply silent on command blocks.
-		if (sender instanceof BlockCommandSender || sender instanceof CommandMinecart)
+		if (sender instanceof BlockCommandSender || sender instanceof CommandMinecart || sender instanceof ConsoleCommandSender)
 			silent = true;
 
 
