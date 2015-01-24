@@ -12,6 +12,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ArmorStand;
@@ -26,6 +27,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.util.BlockIterator;
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.util.Util;
@@ -66,26 +68,45 @@ public class ClaimsAreaProxy implements Listener {
         griefPreventionDataStore = GriefPrevention.instance.dataStore;
     }
 
-    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOW)
     public void onPlayerInteract(PlayerInteractEvent event) {
         try {
             boolean cancel = false;
             if (griefPreventionListener != null && griefPreventionDataStore != null) {
+
+                Block clickedBlock = null;
                 PlayerData playerData = griefPreventionDataStore.getPlayerData(event.getPlayer().getUniqueId());
-                if (event.getPlayer().getItemInHand().getType() == tool && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                    if (griefPreventionDataStore.getClaimAt(event.getClickedBlock().getLocation(), false, null) == null) {
-                        // player clicked outside of a claim or is not resizing a claim
-                        if (playerData.claimResizing == null && playerData.claimSubdividing == null) {
-                            int maxClaims = getMaxClaims(event.getPlayer());
-                            if (getPlayerClaims(event.getPlayer(), event.getClickedBlock().getWorld()) >= maxClaims) {
-                                // player has no claims left in this world. cancel event and don't execute GriefPreventions thing
-                                PlayerUtils.Message(ClaimsSettings.CLAIMSLIMIT_NO_CLAIMS_LEFT.string().replace("<Claims>", "" + maxClaims), event.getPlayer());
-                                cancel = true;
-                                event.setCancelled(true);
+                if (event.getPlayer().getItemInHand().getType() == tool)
+                {
+                    if (event.getAction() == Action.RIGHT_CLICK_BLOCK)
+                    {
+                        clickedBlock = event.getClickedBlock();
+                    }
+                    else if(event.getAction() == Action.RIGHT_CLICK_AIR)
+                    {
+                        clickedBlock = getTargetBlock(event.getPlayer(), 100);
+                    }
+
+                    if (clickedBlock != null)
+                    {
+                        if (griefPreventionDataStore.getClaimAt(clickedBlock.getLocation(), false, null) == null)
+                        {
+                            // player clicked outside of a claim or is not resizing a claim
+                            if (playerData.claimResizing == null && playerData.claimSubdividing == null)
+                            {
+                                int maxClaims = getMaxClaims(event.getPlayer());
+                                if (getPlayerClaims(event.getPlayer(), clickedBlock.getWorld()) >= maxClaims)
+                                {
+                                    // player has no claims left in this world. cancel event and don't execute GriefPreventions thing
+                                    PlayerUtils.Message(ClaimsSettings.CLAIMSLIMIT_NO_CLAIMS_LEFT.string().replace("<Claims>", "" + maxClaims), event.getPlayer());
+                                    cancel = true;
+                                    event.setCancelled(true);
+                                }
                             }
                         }
                     }
                 }
+
                 if (!cancel) {
                     CLog.debug("Calling GP player interaction event via proxy.");
                     Claim claim = playerData.claimResizing;
@@ -96,7 +117,7 @@ public class ClaimsAreaProxy implements Listener {
                     }
                     griefPreventionListener.callEvent(event);
                     if (claim != null && playerData.claimResizing == null) {
-                        claim = griefPreventionDataStore.getClaimAt(event.getClickedBlock().getLocation(), true, null);
+                        claim = griefPreventionDataStore.getClaimAt(clickedBlock.getLocation(), true, null);
                         for (int x = bStart.getBlockX(); x <= bEnd.getBlockX(); x++) {
                             for (int y = 0; y <= 255; y++) {
                                 for (int z = bStart.getBlockZ(); z <= bEnd.getBlockZ(); z++) {
@@ -156,6 +177,22 @@ public class ClaimsAreaProxy implements Listener {
             e.printStackTrace();
         }
     }
+
+    static Block getTargetBlock(Player player, int maxDistance) throws IllegalStateException
+    {
+        BlockIterator iterator = new BlockIterator(player.getLocation(), player.getEyeHeight(), maxDistance);
+        Block result = player.getLocation().getBlock().getRelative(BlockFace.UP);
+        while (iterator.hasNext())
+        {
+            result = iterator.next();
+            if(result.getType() != Material.AIR &&
+                    result.getType() != Material.STATIONARY_WATER &&
+                    result.getType() != Material.LONG_GRASS) return result;
+        }
+
+        return result;
+    }
+
 
     public int getPlayerClaims(Player player, World world) {
         PlayerData playerData = griefPreventionDataStore.getPlayerData(player.getUniqueId());
