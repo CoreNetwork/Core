@@ -20,7 +20,7 @@ import us.corenetwork.core.util.PlayerUtils;
 import java.util.HashMap;
 
 public class ClaimFluids implements Listener {
-    private static class Range {
+    public static class Range {
         private int min, max;
 
         private Range(int min, int max) {
@@ -42,7 +42,7 @@ public class ClaimFluids implements Listener {
         }
     }
 
-    private static class LiquidIndex {
+    public static class LiquidIndex {
         private Material liquid;
         private String world;
 
@@ -82,6 +82,10 @@ public class ClaimFluids implements Listener {
 
     private String lastReason = null;
     private HashMap<LiquidIndex, Range> ranges = new HashMap<LiquidIndex, Range>();
+
+    public Range getRange(Material fluid, String world) {
+        return ranges.get(new LiquidIndex(fluid, world));
+    }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onPlayerUseBucket(PlayerBucketEmptyEvent event) {
