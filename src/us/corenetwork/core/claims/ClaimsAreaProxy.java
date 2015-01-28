@@ -126,6 +126,9 @@ public class ClaimsAreaProxy implements Listener {
                                 for (int z = bStart.getBlockZ(); z <= bEnd.getBlockZ(); z++) {
 
                                     Block block = world.getBlockAt(x, y, z);
+                                    if (!claim.contains(block.getLocation(), false, false)) {
+                                        continue;
+                                    }
                                     Material mat = ClaimFluids.getLiquidType(block.getType());
                                     if (mat == Material.WATER && (water == null || (y < water.getMin() || y > water.getMax()))) {
                                         block.setType(Material.AIR);
