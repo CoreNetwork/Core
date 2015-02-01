@@ -26,6 +26,7 @@ public class ClaimsModule extends CoreModule {
 	
 	public static HashMap<String, BaseClaimsCommand> commands;
     public ClaimsAreaProxy claimsAreaProxy = new ClaimsAreaProxy();
+    public ClaimsDamageProxy claimsDamageProxy = new ClaimsDamageProxy();
     public ClaimFluids claimFluids = new ClaimFluids();
 	public ClaimPerks claimPerks = new ClaimPerks();
 
@@ -83,8 +84,10 @@ public class ClaimsModule extends CoreModule {
 		CorePlugin.coreCommands.put("claimslist", new ClaimsListCommand());
 
         claimsAreaProxy.init();
+        claimsDamageProxy.init();
         Bukkit.getServer().getPluginManager().registerEvents(claimsAreaProxy, CorePlugin.instance);
         Bukkit.getServer().getPluginManager().registerEvents(claimFluids, CorePlugin.instance);
+        Bukkit.getServer().getPluginManager().registerEvents(claimsDamageProxy, CorePlugin.instance);
 
 		return true;
 	}
