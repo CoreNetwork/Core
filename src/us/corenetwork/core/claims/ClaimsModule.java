@@ -17,8 +17,6 @@ import us.corenetwork.core.claims.commands.BlocksConfirmCommand;
 import us.corenetwork.core.claims.commands.ClaimsListCommand;
 import us.corenetwork.core.claims.commands.DeleteClaimCommand;
 import us.corenetwork.core.claims.commands.TrappedCommand;
-import us.corenetwork.core.map.admincommands.BaseCheckpointCommand;
-import us.corenetwork.core.map.usercommands.BaseCheckpointUserCommand;
 
 public class ClaimsModule extends CoreModule {
 
@@ -29,6 +27,7 @@ public class ClaimsModule extends CoreModule {
     public ClaimsDamageProxy claimsDamageProxy = new ClaimsDamageProxy();
     public ClaimFluids claimFluids = new ClaimFluids();
 	public ClaimPerks claimPerks = new ClaimPerks();
+    public ClaimEggs claimEggs = new ClaimEggs();
 
     public ClaimsModule()
 	{
@@ -88,6 +87,7 @@ public class ClaimsModule extends CoreModule {
         Bukkit.getServer().getPluginManager().registerEvents(claimsAreaProxy, CorePlugin.instance);
         Bukkit.getServer().getPluginManager().registerEvents(claimFluids, CorePlugin.instance);
         Bukkit.getServer().getPluginManager().registerEvents(claimsDamageProxy, CorePlugin.instance);
+        Bukkit.getServer().getPluginManager().registerEvents(claimEggs, CorePlugin.instance);
 
 		return true;
 	}

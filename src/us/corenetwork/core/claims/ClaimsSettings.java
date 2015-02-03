@@ -94,7 +94,8 @@ public enum ClaimsSettings {
 	MESSAGE_COULDNT_FIND_SAFE_LOCATION("Messages.CouldntFindSafeLocation", "&c/trapped couldn't find a safe location for you."),
 	CLAIMSLIMIT_NO_CLAIMS_LEFT("ClaimsLimits.Messages.NoClaimsLeft", "You used all of your <Claims> claims in this world."),
     CLAIM_FLUIDS_MESSAGE_DENY_HEIGHT("ClaimLiquids.Messages.DenyHeight", "&cYou can only place <Liquid> below y = <Height>"),
-    CLAIM_FLUIDS_MESSAGE_DENY_CLAIM("ClaimLiquids.Messages.DenyClaim", "&cYou can only place <Liquid> in a claim.");
+    CLAIM_FLUIDS_MESSAGE_DENY_CLAIM("ClaimLiquids.Messages.DenyClaim", "&cYou can only place <Liquid> in a claim."),
+    MESSAGE_NO_EGGS_IN_OTHER_CLAIM("Messages.NoEggsInOtherClaim", "You are not allowed to throw eggs in claim you can't build in!");
 	
 	protected String string;
 	protected Object def;
