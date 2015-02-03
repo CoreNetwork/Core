@@ -31,7 +31,7 @@ public class ClaimEggs implements Listener
         Projectile projectile = event.getEntity();
 
         // Prevent spamming eggs in non-claimed land
-        if (projectile.getType() == EntityType.EGG) //
+        if (projectile.getType() == EntityType.EGG)
         {
             ProjectileSource shooter = projectile.getShooter();
             if (shooter == null)
@@ -70,7 +70,7 @@ public class ClaimEggs implements Listener
 
             recentlySpawnedChickens.add(spawnedChicken);
 
-            //Remove chicken from recently spawned list after 1 tick (when all possible chicken spawns already happened)
+            //Remove chicken from recently spawned list after 1 tick (when all possible egg events for that chicken would have already triggered)
             Bukkit.getScheduler().runTaskLater(CorePlugin.instance, new Runnable()
             {
                 @Override
