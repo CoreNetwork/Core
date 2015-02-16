@@ -60,7 +60,8 @@ public class XpCommand extends BasePlayerCommand {
 			String action = args[levelsPosition];
 			if (action.equals("clear"))
 			{
-				targetPlayer.setTotalExperience(0);
+				targetPlayer.setExp(0);
+				targetPlayer.setLevel(0);
 				if (!silent)
 				{
 					PlayerUtils.Message(PlayerSettings.MESSAGE_EXPERIENCE_CLEARED.string(), sender);
