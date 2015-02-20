@@ -37,8 +37,6 @@ public class ProtectCommand extends BaseRSpawnCommand {
 			player.setHealth(20.0);
 			player.setFoodLevel(20);
 			player.setSaturation(20);
-			player.setExp(0);
-			player.setLevel(0);
 			for (int i =0; i < player.getInventory().getSize() + 4; i++)
 				player.getInventory().setItem(i, null);
 			
