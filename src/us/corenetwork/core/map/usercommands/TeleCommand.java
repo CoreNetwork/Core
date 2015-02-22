@@ -41,17 +41,9 @@ public class TeleCommand extends BaseCheckpointUserCommand {
 		final ScheduledTeleport schedule = new ScheduledTeleport();
 		schedule.player = player;
 		schedule.location = lastCheckpoint.location;
-		schedule.time = System.currentTimeMillis() + delay * 1000 - 1000;
-		
-		Bukkit.getScheduler().runTaskLater(CorePlugin.instance, new Runnable() {
-			@Override
-			public void run() {
-				MapModule.scheduledTeleports.put(player.getName(), schedule);
-			}
-		}, 20);
-		
-		
-		
+		schedule.time = System.currentTimeMillis() + delay * 1000;
+		MapModule.scheduledTeleports.put(player.getName(), schedule);
+
 		return;
 	}	
 }

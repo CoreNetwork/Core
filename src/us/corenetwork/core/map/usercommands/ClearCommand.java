@@ -16,6 +16,7 @@ public class ClearCommand extends BaseCheckpointUserCommand {
 	public void run(final CommandSender sender, String[] args) {		
 		final Player player = (Player) sender;
 		MapModule.savedCheckpoints.remove(player.getName());
+		MapModule.scheduledTeleports.remove(player.getName());
 		return;
 	}	
 }
