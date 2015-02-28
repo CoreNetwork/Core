@@ -1,43 +1,71 @@
 package us.corenetwork.core.map;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import com.google.common.collect.Range;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
 import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.respawn.RespawnSettings;
 
 public class TimeTask implements Runnable {
 
-	private final String OBJECTIVE_PREFIX = "time";
-	private final String OBJECTIVE_CRITERIA = "time_crit";
-	private Scoreboard scoreboard = null;
-	private String lastObjective = null;
-	private String newObjective = null;
-	
+	private static Map<Range<Integer>, String> ranges = new HashMap<Range<Integer>, String>();
+
+	private World overworld;
+
 	public TimeTask()
 	{
-		scoreboard = CorePlugin.instance.getServer().getScoreboardManager().getMainScoreboard();
-		for(Objective obj : scoreboard.getObjectives())
+		overworld = Bukkit.getWorld("world");
+	}
+
+	public static void load(YamlConfiguration config)
+	{
+		ranges.clear();
+		List<Map<?,?>> listOfMaps = config.getMapList(CheckpointsSettings.CLOCK_TIME_RANGE_MESSAGES.getString());
+
+		for(Map<?,?> map : listOfMaps)
 		{
-			obj.unregister();
+			Integer beg = (Integer) map.get("beginning");
+			Integer end = (Integer) map.get("end");
+			String msg = (String) map.get("message");
+
+			msg = ChatColor.translateAlternateColorCodes('&', msg);
+
+			ranges.put(Range.closed(beg, end), msg);
 		}
 	}
-	
+
 	@Override
 	public void run() 
 	{
-		long time = CorePlugin.instance.getServer().getWorld("world").getTime();
-		double hour = time / 1000.0;
+		int time = (int) overworld.getTime();
 
-		if(lastObjective != null)
+		String msg = "";
+
+		for(Range<Integer> rr : ranges.keySet())
 		{
-			scoreboard.getObjective(lastObjective).unregister();
+			if(rr.contains(time))
+			{
+				msg = ranges.get(rr);
+				break;
+			}
 		}
-		
-		newObjective = OBJECTIVE_PREFIX + Math.round(hour);
-		scoreboard.registerNewObjective(newObjective, OBJECTIVE_CRITERIA);
-		lastObjective = newObjective;
+
+		for(String holo : CheckpointsSettings.CLOCK_HOLO_LIST.stringList())
+		{
+			CorePlugin.instance.getServer().dispatchCommand(CorePlugin.instance.getServer().getConsoleSender(),
+					"holo update " + holo + " \"" + msg + "\"");
+		}
 	}
 
 }

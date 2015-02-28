@@ -29,6 +29,8 @@ public class MapModule extends CoreModule {
 	public static HashMap<String, ScheduledTeleport> scheduledTeleports;
     private ClickRegionListener clickRegionListener = new ClickRegionListener();
 
+	private TimeTask timeTask;
+
     public MapModule() {
 		super("Map", new String[] {"chp", "checkpoint"}, "map");
 		
@@ -92,7 +94,8 @@ public class MapModule extends CoreModule {
 		
 		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new Teleporter(), 20, 20);
 
-		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new TimeTask(), 20, 400);
+		timeTask = new TimeTask();
+		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, timeTask, 20, CheckpointsSettings.CLOCK_UDPATE_FREQUENCY.integer());
 		
 		Bukkit.getScheduler().runTaskTimer(CorePlugin.instance, new ClearOrbTask(), 20, CheckpointsSettings.ORB_CLEARING_INTERVAL.integer() * 20);
 		
@@ -107,6 +110,7 @@ public class MapModule extends CoreModule {
     public void loadConfig() {
         super.loadConfig();
         clickRegionListener.load(config);
+		timeTask.load(config);
     }
 
     @Override

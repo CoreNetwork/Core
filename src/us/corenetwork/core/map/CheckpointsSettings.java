@@ -1,8 +1,30 @@
 package us.corenetwork.core.map;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public enum CheckpointsSettings {
 	ENABLED("Enabled", true),
+
+	CLOCK_UDPATE_FREQUENCY("Clock.UpdateFrequency", 200),
+	CLOCK_HOLO_LIST("Clock.HoloList", new ArrayList<String>(){{add("clock-spawn");add("clock-respawn");}}),
+	CLOCK_TIME_RANGE_MESSAGES("Clock.TimeRanges",new ArrayList<Map>(){{
+		add(new HashMap<String, Object>(){{
+			put("beginning", 0);
+			put("end", 12000);
+			put("message", "&eDay ");
+		}});
+		add(new HashMap<String, Object>(){{
+			put("beginning", 12001);
+			put("end", 24000);
+			put("message", "&9Night ");
+		}});
+	}}),
+
+
 	TELEPORT_DELAY("TeleportDelay", 5),
 	ORB_CLEARING_BOX_SIZE("OrbClearBoxSize", 10),
 	ORB_CLEARING_INTERVAL("OrbClearInterval", 60),
@@ -26,6 +48,11 @@ public enum CheckpointsSettings {
 		this.def = def;
 	}
 
+	public String getString()
+	{
+		return string;
+	}
+
 	public Integer integer()
 	{
 		return (Integer) MapModule.instance.config.get(string, def);
@@ -35,7 +62,12 @@ public enum CheckpointsSettings {
 	{
 		return (String) MapModule.instance.config.get(string, def);
 	}
-	
+
+	public List<String> stringList()
+	{
+		return MapModule.instance.config.getStringList(string);
+	}
+
 	public static String getCommandDescription(String cmd, String def)
 	{
 		String path = "CommandDescriptions." + cmd;
