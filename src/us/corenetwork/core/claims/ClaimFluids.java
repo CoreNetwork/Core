@@ -46,7 +46,7 @@ public class ClaimFluids implements Listener {
         private Material liquid;
         private String world;
 
-        private LiquidIndex(Material liquid, String world) {
+        LiquidIndex(Material liquid, String world) {
             this.liquid = liquid;
             this.world = world;
         }
@@ -89,6 +89,13 @@ public class ClaimFluids implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onPlayerUseBucket(PlayerBucketEmptyEvent event) {
+        Claim claim = GriefPrevention.instance.dataStore.getClaimAt(event.getBlockClicked().getLocation(), false, null);
+
+        if (ClaimsModule.instance.untouchableClaims.contains(claim)) {
+            event.setCancelled(true);
+            return;
+        }
+
         Material mat = event.getBucket();
         mat = getLiquidType(mat);
         if (mat != null) {
@@ -127,6 +134,13 @@ public class ClaimFluids implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onBlockFromTo(BlockFromToEvent event) {
+        Claim claim = GriefPrevention.instance.dataStore.getClaimAt(event.getToBlock().getLocation(), false, null);
+
+        if (ClaimsModule.instance.untouchableClaims.contains(claim)) {
+            event.setCancelled(true);
+            return;
+        }
+
         Material mat = getLiquidType(event.getBlock().getType());
         if (mat != null) {
             if (!isFluidAllowed(mat, event.getToBlock(), null, event.getBlock().getLocation())) {
@@ -137,6 +151,7 @@ public class ClaimFluids implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onDispense(BlockDispenseEvent event) {
+
         // dispenser places fluid
         Material mat = getLiquidType(event.getItem().getType());
         if (mat != null) {
@@ -205,29 +220,5 @@ public class ClaimFluids implements Listener {
         Range range = new Range(min, max);
 
         ranges.put(index, range);
-    }
-
-    public void onRemoveClaim(Claim claim) {
-        Location start = claim.getLesserBoundaryCorner();
-        Location end = claim.getGreaterBoundaryCorner();
-
-        String world = start.getWorld().getName();
-        Range lava = ranges.get(new LiquidIndex(Material.LAVA, world));
-        Range water = ranges.get(new LiquidIndex(Material.WATER, world));
-
-        for (int x = start.getBlockX(); x <= end.getBlockX(); x++) {
-            for (int y = 0; y <= 255; y++) {
-                for (int z = start.getBlockZ(); z <= end.getBlockZ(); z++) {
-                    Block block = start.getWorld().getBlockAt(x, y, z);
-                    Material mat = getLiquidType(block.getType());
-                    if (mat == Material.WATER && (water == null || (y < water.getMin() || y > water.getMax()))) {
-                        block.setType(Material.AIR);
-                    }
-                    if (mat == Material.LAVA && (lava == null || (y < lava.getMin() || y > lava.getMax()))) {
-                        block.setType(Material.AIR);
-                    }
-                }
-            }
-        }
     }
 }

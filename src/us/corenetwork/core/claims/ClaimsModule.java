@@ -1,7 +1,10 @@
 package us.corenetwork.core.claims;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
+import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -28,6 +31,8 @@ public class ClaimsModule extends CoreModule {
     public ClaimFluids claimFluids = new ClaimFluids();
 	public ClaimPerks claimPerks = new ClaimPerks();
     public ClaimEggs claimEggs = new ClaimEggs();
+    public BlockWorkerPool pool = new BlockWorkerPool();
+    public Set<Claim> untouchableClaims = new HashSet<Claim>();
 
     public ClaimsModule()
 	{
@@ -89,11 +94,13 @@ public class ClaimsModule extends CoreModule {
         Bukkit.getServer().getPluginManager().registerEvents(claimsDamageProxy, CorePlugin.instance);
         Bukkit.getServer().getPluginManager().registerEvents(claimEggs, CorePlugin.instance);
 
+        int interval = ClaimsSettings.WORKER_INTERVAL.integer();
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(CorePlugin.instance, pool, interval, interval);
 		return true;
 	}
 	
 	@Override
-	protected void unloadModule()
+    protected void unloadModule()
 	{
 	}
 	
