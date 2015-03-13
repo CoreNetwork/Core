@@ -6,15 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.bukkit.Bukkit;
-import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.RedirectedVanillaCommand;
 import us.corenetwork.core.player.commands.BasePlayerCommand;
 import us.corenetwork.core.player.commands.ClearCommand;
 import us.corenetwork.core.player.commands.DMCommand;
@@ -23,6 +19,7 @@ import us.corenetwork.core.player.commands.EffectCommand;
 import us.corenetwork.core.player.commands.EnchantCommand;
 import us.corenetwork.core.player.commands.GamemodeCommand;
 import us.corenetwork.core.player.commands.GodCommand;
+import us.corenetwork.core.player.commands.HealCommand;
 import us.corenetwork.core.player.commands.KitCommand;
 import us.corenetwork.core.player.commands.RemindCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
@@ -122,6 +119,7 @@ public class PlayerModule extends CoreModule {
 		CorePlugin.coreCommands.put("remind", new RemindCommand());
 		CorePlugin.coreCommands.put("xp", new XpCommand());
 		CorePlugin.coreCommands.put("gamemode", new GamemodeCommand());
+		CorePlugin.coreCommands.put("heal", new HealCommand());
 
 		vanishManager = new VanishManager();
 		

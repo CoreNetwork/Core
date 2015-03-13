@@ -89,6 +89,8 @@ public enum PlayerSettings {
 	MESSAGE_LEVELS_ADDED("Message.LevelsAdded", "<Amount> levels added."),
 	MESSAGE_XP_SYNTAX("Message.XpSyntax", "Usage: /core xp [<player>] (<experience> | <levels> | clear) [silent]"),
 
+	MESSAGE_SELF_HEALED("Message.InventorySelfHealed", "Healed!"),
+	MESSAGE_PLAYER_HEALED("Message.InventoryPlayerHealed", "<Player> has been healed."),
 
 	DELAY_GRACE_PERIOD_TICKS("DelayGracePeriodInTicks", 20);
 	protected String string;
