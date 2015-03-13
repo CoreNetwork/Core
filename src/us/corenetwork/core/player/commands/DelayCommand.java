@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.scheduler.BukkitTask;
 import us.corenetwork.core.CorePlugin;
 import us.corenetwork.core.util.PlayerUtils;
 import us.corenetwork.core.util.Util;
@@ -61,48 +62,56 @@ public class DelayCommand extends BasePlayerCommand {
 				return;
 
 
-			String message = (String) PlayerModule.instance.config.get("Message.FrozenMessages." + messageNode + ".Start");
-
-			message = message.replace("<Time>", Integer.toString(seconds));
+			String startMessage = PlayerModule.instance.config.getString("Message.FrozenMessages." + messageNode + ".Start");
+			startMessage = startMessage.replace("<Time>", Integer.toString(seconds));
 			if (seconds == 1)
-				message = message.replace("<PluralS>", "");
+				startMessage = startMessage.replace("<PluralS>", "");
 			else
-				message = message.replace("<PluralS>", "s");
+				startMessage = startMessage.replace("<PluralS>", "s");
 
-			PlayerUtils.Message(message, player);
-			frozenPlayers.put(player.getUniqueId(), new InterHelper((String) PlayerModule.instance.config.get("Message.FrozenMessages." + messageNode + ".Interrupt"))
-                    );
-
+			PlayerUtils.Message(startMessage, player);
 		}
 		else
+		{
 			player = null;
-
+		}
 
 		final String commandFinal = commandToRun;
-		Bukkit.getScheduler().runTaskLater(CorePlugin.instance, new Runnable()
+		BukkitTask task = Bukkit.getScheduler().runTaskLater(CorePlugin.instance, new Runnable()
 		{
 			@Override
 			public void run()
 			{
-				if (freeze && !frozenPlayers.containsKey(player.getUniqueId()))
-					return;
+				if (freeze)
+				{
+					if (!frozenPlayers.containsKey(player.getUniqueId()))
+						return;
 
-				if (player != null)
-					frozenPlayers.remove(player.getUniqueId());
-
+					if (player != null)
+						frozenPlayers.remove(player.getUniqueId());
+				}
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), commandFinal);
 			}
 		}, seconds * 20);
+
+		if(freeze)
+		{
+			String interruptMessage = PlayerModule.instance.config.getString("Message.FrozenMessages." + messageNode + ".Interrupt");
+			frozenPlayers.put(player.getUniqueId(), new InterHelper(task, interruptMessage));
+		}
 	}
 
     class InterHelper
     {
+
         String interruptMessage;
         long time;
-        public InterHelper(String msg)
+		BukkitTask task;
+        public InterHelper(BukkitTask task, String msg)
         {
             interruptMessage = msg;
             time = System.currentTimeMillis();
+			this.task = task;
         }
     }
 
@@ -114,12 +123,15 @@ public class DelayCommand extends BasePlayerCommand {
         {
             if (interHelper.interruptMessage != null && (System.currentTimeMillis() - interHelper.time)/50 > PlayerSettings.DELAY_GRACE_PERIOD_TICKS.integer())
             {
-                boolean stayedStill = event.getFrom().getX() == event.getTo().getX() && event.getFrom().getY() == event.getTo().getY() && event.getFrom().getZ() == event.getTo().getZ();
+                boolean stayedStill =  event.getFrom().getBlockX() == event.getTo().getBlockX()
+									&& event.getFrom().getBlockY() == event.getTo().getBlockY()
+									&& event.getFrom().getBlockZ() == event.getTo().getBlockZ();
 
                 if (!stayedStill)
                 {
                     PlayerUtils.Message(interHelper.interruptMessage, player);
                     frozenPlayers.remove(player.getUniqueId());
+					interHelper.task.cancel();
                 }
             }
         }
