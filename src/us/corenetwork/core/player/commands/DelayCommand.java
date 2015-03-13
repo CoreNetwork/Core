@@ -123,9 +123,9 @@ public class DelayCommand extends BasePlayerCommand {
         {
             if (interHelper.interruptMessage != null && (System.currentTimeMillis() - interHelper.time)/50 > PlayerSettings.DELAY_GRACE_PERIOD_TICKS.integer())
             {
-                boolean stayedStill =  event.getFrom().getBlockX() == event.getTo().getBlockX()
-									&& event.getFrom().getBlockY() == event.getTo().getBlockY()
-									&& event.getFrom().getBlockZ() == event.getTo().getBlockZ();
+                boolean stayedStill =  event.getFrom().getX() == event.getTo().getX()
+									&& event.getFrom().getY() == event.getTo().getY()
+									&& event.getFrom().getZ() == event.getTo().getZ();
 
                 if (!stayedStill)
                 {
