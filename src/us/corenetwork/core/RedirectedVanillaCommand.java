@@ -55,7 +55,8 @@ public class RedirectedVanillaCommand extends CommandAbstract
     {
         if (!(iCommandListener instanceof EntityPlayer))
         {
-            vanillaCommand.dispatchVanillaCommand(iCommandListener, strings);
+            vanillaCommand.dispatchVanillaCommand(null, iCommandListener, strings);
+            //vanillaCommand.dispatchVanillaCommand(iCommandListener, strings);
             return;
         }
 
