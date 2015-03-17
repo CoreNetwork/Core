@@ -17,6 +17,7 @@ import us.corenetwork.core.player.commands.DMCommand;
 import us.corenetwork.core.player.commands.DelayCommand;
 import us.corenetwork.core.player.commands.EffectCommand;
 import us.corenetwork.core.player.commands.EnchantCommand;
+import us.corenetwork.core.player.commands.FeedCommand;
 import us.corenetwork.core.player.commands.GamemodeCommand;
 import us.corenetwork.core.player.commands.GodCommand;
 import us.corenetwork.core.player.commands.HealCommand;
@@ -120,6 +121,8 @@ public class PlayerModule extends CoreModule {
 		CorePlugin.coreCommands.put("xp", new XpCommand());
 		CorePlugin.coreCommands.put("gamemode", new GamemodeCommand());
 		CorePlugin.coreCommands.put("heal", new HealCommand());
+		CorePlugin.coreCommands.put("feed", new FeedCommand());
+
 
 		vanishManager = new VanishManager();
 		

@@ -92,6 +92,9 @@ public enum PlayerSettings {
 	MESSAGE_SELF_HEALED("Message.InventorySelfHealed", "Healed!"),
 	MESSAGE_PLAYER_HEALED("Message.InventoryPlayerHealed", "<Player> has been healed."),
 
+	MESSAGE_SELF_FEED("Message.InventorySelfFeed", "Feeded!"),
+	MESSAGE_PLAYER_FEED("Message.InventoryPlayerFeed", "<Player> has been feeded."),
+
 	DELAY_GRACE_PERIOD_TICKS("DelayGracePeriodInTicks", 20);
 	protected String string;
 	protected Object def;
