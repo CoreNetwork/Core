@@ -9,6 +9,7 @@ import java.util.Map;
 public enum CheckpointsSettings {
 	ENABLED("Enabled", true),
 
+	CLOCK_ENABLED("Clock.Enabled", true),
 	CLOCK_UDPATE_FREQUENCY("Clock.UpdateFrequency", 200),
 	CLOCK_HOLO_LIST("Clock.HoloList", new ArrayList<String>(){{add("clock-spawn");add("clock-respawn");}}),
 	CLOCK_TIME_RANGE_MESSAGES("Clock.TimeRanges",new ArrayList<Map>(){{
@@ -57,10 +58,15 @@ public enum CheckpointsSettings {
 	{
 		return (Integer) MapModule.instance.config.get(string, def);
 	}
-	
+
 	public String string()
 	{
 		return (String) MapModule.instance.config.get(string, def);
+	}
+
+	public Boolean bool()
+	{
+		return (Boolean) MapModule.instance.config.get(string, def);
 	}
 
 	public List<String> stringList()

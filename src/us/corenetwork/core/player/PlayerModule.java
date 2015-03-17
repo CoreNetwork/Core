@@ -21,6 +21,7 @@ import us.corenetwork.core.player.commands.FeedCommand;
 import us.corenetwork.core.player.commands.GamemodeCommand;
 import us.corenetwork.core.player.commands.GodCommand;
 import us.corenetwork.core.player.commands.HealCommand;
+import us.corenetwork.core.player.commands.InfoCommand;
 import us.corenetwork.core.player.commands.KitCommand;
 import us.corenetwork.core.player.commands.RemindCommand;
 import us.corenetwork.core.player.commands.UngodCommand;
@@ -122,6 +123,8 @@ public class PlayerModule extends CoreModule {
 		CorePlugin.coreCommands.put("gamemode", new GamemodeCommand());
 		CorePlugin.coreCommands.put("heal", new HealCommand());
 		CorePlugin.coreCommands.put("feed", new FeedCommand());
+		CorePlugin.coreCommands.put("info", new InfoCommand()
+		);
 
 
 		vanishManager = new VanishManager();
