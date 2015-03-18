@@ -12,7 +12,7 @@ import us.corenetwork.core.respawn.rspawncommands.BaseRSpawnCommand;
 import us.corenetwork.core.respawn.rspawncommands.BuyBoosterCommand;
 import us.corenetwork.core.respawn.rspawncommands.NoDropCommand;
 import us.corenetwork.core.respawn.rspawncommands.ProtectCommand;
-import us.corenetwork.core.respawn.rspawncommands.RSpawnCommand;
+import us.corenetwork.core.respawn.rspawncommands.SpawnCommand;
 import us.corenetwork.core.respawn.rspawncommands.RSpawnTeamCommand;
 import us.corenetwork.core.respawn.rspawncommands.RunBoosterCommand;
 import us.corenetwork.core.respawn.rspawncommands.ToggleCommand;
@@ -26,7 +26,7 @@ public class RespawnModule extends CoreModule {
 	public static HashMap<String, BaseRSpawnCommand> rspawnCommands = new HashMap<String, BaseRSpawnCommand>();
 	
 	public RespawnModule() {
-		super("Random respawn", new String[] { "rspawn", "togglespawn", "unprotect", "rspawnteam"}, "respawn");
+		super("Random respawn", new String[] { "togglespawn", "unprotect", "rspawnteam"}, "respawn");
 		
 		instance = this;
 	}
@@ -53,7 +53,6 @@ public class RespawnModule extends CoreModule {
 				
 		Bukkit.getServer().getPluginManager().registerEvents(new RespawnListener(), CorePlugin.instance);
 		
-		rspawnCommands.put("rspawn", new RSpawnCommand());
 		rspawnCommands.put("toggle", new ToggleCommand());
 		rspawnCommands.put("protect", new ProtectCommand());
 		rspawnCommands.put("unprotect", new UnprotectCommand());
@@ -62,6 +61,7 @@ public class RespawnModule extends CoreModule {
 
 		CorePlugin.coreCommands.put("buylucky", new BuyBoosterCommand());
 		CorePlugin.coreCommands.put("runlucky", new RunBoosterCommand());
+		CorePlugin.coreCommands.put("spawn", new SpawnCommand());
 		
 		Bukkit.getServer().getScheduler().runTaskTimer(CorePlugin.instance, new ProtectTimer(), 20, 20);
 		KnownPlayers.load();
@@ -90,9 +90,6 @@ public class RespawnModule extends CoreModule {
 		}
 		else
 		{
-			if (args.length < 1 || Util.isInteger(args[0]))
-				return rspawnCommands.get("rspawn").execute(sender, args, true);
-
 			BaseRSpawnCommand cmd = rspawnCommands.get(args[0]);
 			if (cmd != null)
 				return cmd.execute(sender, args, true);

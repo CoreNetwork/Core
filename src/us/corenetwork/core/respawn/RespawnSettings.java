@@ -17,6 +17,7 @@ public enum RespawnSettings {
 	RESPAWN_BASE_MAX_X("Border.Base.MaxX", 16000),
 	RESPAWN_BASE_MAX_Z("Border.Base.MaxZ", 16000),
 	SPAWN_PROTECTION_LENGTH("SpawnProtectionLength", 120),
+	SPAWN_PROTECTION_LENGTH_FIRST("SpawnProtectionLengthFirst", 300),
 	SPAWN_PROTECTION_NOTIFICATIONS("SpawnProtectionNotifications", Arrays.asList(new Integer[] {90, 60, 30, 10})),
 	MOB_REMOVAL_RADIUS_SQUARED("MobRemovalRadiusSquared", 625),
 
