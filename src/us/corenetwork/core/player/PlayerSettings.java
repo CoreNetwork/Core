@@ -1,6 +1,9 @@
 package us.corenetwork.core.player;
 
+import us.corenetwork.core.map.MapModule;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 public enum PlayerSettings {
@@ -35,7 +38,14 @@ public enum PlayerSettings {
 	REMINDER_MAXIMUM_PENDING("Reminder.MaximumPending", 10),
 	
 	KITS("Kits", new ArrayList<String>()),
-	
+
+
+	INFO_SIMPLE("Info.Simple", "<Player> <X> <Y> <Z> <World> <Vehicle>"),
+	INFO_VERBOSE("Info.Verbose", "<Player> <X> <Y> <Z> <World> <Vehicle> <Health> <Hunger> <Saturation> <Air> <Level> <Effects>"),
+	INFO_COMMANDS("Info.Commands", new ArrayList<String>(){{
+		add("seen <Player>");
+	}}),
+
 	MESSAGE_SELF_CLEARED("Message.InventorySelfCleared", "Inventory cleared."),
 	MESSAGE_PLAYER_CLEARED("Message.InventoryPlayerCleared", "<Player>'s inventory cleared."),
 	
@@ -114,7 +124,12 @@ public enum PlayerSettings {
 	{
 		return (String) PlayerModule.instance.config.get(string, def);
 	}
-	
+
+	public List<String> stringList()
+	{
+		return PlayerModule.instance.config.getStringList(string);
+	}
+
 	public Boolean bool()
 	{
 		return (Boolean) PlayerModule.instance.config.get(string, def);
