@@ -37,7 +37,7 @@ public class SpawnCommand extends BaseRSpawnCommand {
 		{
 
 
-			int startTime = player.getStatistic(Statistic.DEATHS) == 1 ? RespawnSettings.SPAWN_PROTECTION_LENGTH_FIRST.integer() : RespawnSettings.SPAWN_PROTECTION_LENGTH.integer();
+			int startTime = player.getStatistic(Statistic.DEATHS) == 0 ? RespawnSettings.SPAWN_PROTECTION_LENGTH_FIRST.integer() : RespawnSettings.SPAWN_PROTECTION_LENGTH.integer();
 			ProtectTimer.protectedPlayers.put(playerName, startTime);
 			RespawnModule.manager.respawnPlayer(player);
 			//Resetting player
