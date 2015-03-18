@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.Util;
 
 public class OfflineTeleportation {
 	public static Map<String, PendingTeleport> awaitingConfirmation = new HashMap<String, PendingTeleport>();
@@ -80,7 +81,7 @@ public class OfflineTeleportation {
 
 			TeleportUtil.notifyModerators(null, notice, player);
 			
-			player.teleport(location);
+			Util.teleportWithVehicle(player, location);
 		}
 	}
 	

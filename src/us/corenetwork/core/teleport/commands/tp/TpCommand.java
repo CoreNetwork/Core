@@ -332,7 +332,7 @@ public class TpCommand extends BaseTpCommand {
 				TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 			}
 
-			onlinePlayer.teleport(tpLoc);
+			Util.teleportWithVehicle(onlinePlayer, tpLoc);
 		}
 		else
 		{
@@ -422,7 +422,8 @@ public class TpCommand extends BaseTpCommand {
 				TeleportUtil.notifyModerators(sender, notice, onlinePlayer);
 			}
 
-			onlinePlayer.teleport(playerTo.getLocation());
+
+			Util.teleportWithVehicle(onlinePlayer, playerTo.getLocation());
 		}
 		else
 		{

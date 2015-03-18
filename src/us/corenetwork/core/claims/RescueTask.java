@@ -270,19 +270,7 @@ public class RescueTask implements Runnable {
 		{
 			location.getChunk().load();
 		}
-		Entity vehicle = player.getVehicle();
-		
-		if (vehicle == null)
-		{
-			player.teleport(location);
-		}
-		else
-		{
-			vehicle.eject();
-			vehicle.teleport(location);
-			player.teleport(location);
-			vehicle.setPassenger(player);
-		}
+		Util.teleportWithVehicle(player, location);
 	}
 }
 

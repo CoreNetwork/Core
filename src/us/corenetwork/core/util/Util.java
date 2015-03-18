@@ -3,6 +3,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.RegisteredListener;
@@ -117,4 +119,22 @@ public class Util {
         }
         return found;
     }
+
+
+	public static void teleportWithVehicle(Player player, Location location)
+	{
+		Entity vehicle = player.getVehicle();
+
+		if (vehicle == null)
+		{
+			player.teleport(location);
+		}
+		else
+		{
+			vehicle.eject();
+			vehicle.teleport(location);
+			player.teleport(location);
+			vehicle.setPassenger(player);
+		}
+	}
 }
