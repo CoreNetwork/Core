@@ -91,9 +91,11 @@ public class ClaimFluids implements Listener {
     public void onPlayerUseBucket(PlayerBucketEmptyEvent event) {
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(event.getBlockClicked().getLocation(), false, null);
 
-        if (ClaimsModule.instance.untouchableClaims.contains(claim)) {
-            event.setCancelled(true);
-            return;
+        for (ClaimCache claimCache : ClaimsModule.instance.untouchableClaims) {
+            if (claimCache.isInside(event.getBlockClicked().getLocation())) {
+                event.setCancelled(true);
+                return;
+            }
         }
 
         Material mat = event.getBucket();
@@ -136,9 +138,11 @@ public class ClaimFluids implements Listener {
     public void onBlockFromTo(BlockFromToEvent event) {
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(event.getToBlock().getLocation(), false, null);
 
-        if (ClaimsModule.instance.untouchableClaims.contains(claim)) {
-            event.setCancelled(true);
-            return;
+        for (ClaimCache claimCache : ClaimsModule.instance.untouchableClaims) {
+            if (claimCache.isInside(event.getBlock().getLocation()) || claimCache.isInside(event.getToBlock().getLocation())) {
+                event.setCancelled(true);
+                return;
+            }
         }
 
         Material mat = getLiquidType(event.getBlock().getType());

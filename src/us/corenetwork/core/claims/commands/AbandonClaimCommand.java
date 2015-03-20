@@ -26,12 +26,13 @@ public class AbandonClaimCommand extends BaseClaimsCommand {
         Location location = player.getLocation();
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, true, null);
         if (claim != null && claim.parent == null && claim.allowEdit(player) == null) {
-            ClaimsModule.instance.pool.addWorker(new ClearFluidsInClaimWorker(claim, player, new Runnable() {
+            ClaimsModule.instance.pool.addWorker(new ClearFluidsInClaimWorker(claim, new Runnable() {
                 @Override
                 public void run() {
-                    Bukkit.dispatchCommand(player, "AbandonClaim");
                 }
             }));
+
+            Bukkit.dispatchCommand(player, "AbandonClaim");
             ClaimsModule.instance.claimPerks.onRemoveClaim(claim);
         }
     }

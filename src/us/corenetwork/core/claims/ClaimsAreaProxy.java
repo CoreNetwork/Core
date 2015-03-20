@@ -118,65 +118,7 @@ public class ClaimsAreaProxy implements Listener {
                     griefPreventionListener.callEvent(event);
                     if (claim != null && playerData.claimResizing == null) {
                         claim = griefPreventionDataStore.getClaimAt(clickedBlock.getLocation(), true, null);
-                        World world = claim.getLesserBoundaryCorner().getWorld();
-                        ClaimFluids.Range lava = ClaimsModule.instance.claimFluids.getRange(Material.LAVA, world.getName());
-                        ClaimFluids.Range water = ClaimsModule.instance.claimFluids.getRange(Material.WATER, world.getName());
-                        for (int x = bStart.getBlockX(); x <= bEnd.getBlockX(); x++) {
-                            for (int y = 0; y <= 255; y++) {
-                                for (int z = bStart.getBlockZ(); z <= bEnd.getBlockZ(); z++) {
-
-                                    Block block = world.getBlockAt(x, y, z);
-                                    if (claim.contains(block.getLocation(), false, false)) {
-                                        continue;
-                                    }
-                                    Material mat = ClaimFluids.getLiquidType(block.getType());
-                                    if (mat == Material.WATER && (water == null || (y < water.getMin() || y > water.getMax()))) {
-                                        block.setType(Material.AIR);
-                                    }
-                                    if (mat == Material.LAVA && (lava == null || (y < lava.getMin() || y > lava.getMax()))) {
-                                        block.setType(Material.AIR);
-                                    }
-
-                                    if(ClaimsModule.instance.claimPerks.isPerkBlock(block)) {
-                                        block.setType(Material.AIR);
-                                    }
-                                }
-                            }
-                        }
-
-
-                        //Removing perks armorstands
-                        Chunk startChunk = bStart.getChunk();
-                        Chunk endChunk = bEnd.getChunk();
-
-                        for (int x = startChunk.getX(); x <= endChunk.getX(); x++) {
-                            for (int z = startChunk.getZ(); z <= endChunk.getZ(); z++) {
-                                Chunk chunk = world.getChunkAt(x,z);
-                                for(Entity e : chunk.getEntities())
-                                {
-                                    if(e.getType() == EntityType.ARMOR_STAND)
-                                    {
-                                        int xLoc = e.getLocation().getBlockX();
-                                        int zLoc = e.getLocation().getBlockZ();
-
-                                        //is in original claim
-                                        if( xLoc >= bStart.getBlockX() && xLoc <= bEnd.getBlockX() && zLoc >= bStart.getBlockZ() && zLoc <= bEnd.getBlockZ())
-                                        {
-                                            Location current = e.getLocation();
-                                            //is in new claim
-                                            if (!claim.contains(current, true, false)) {
-                                                ArmorStand as = (ArmorStand) e;
-                                                if(as.hasArms())
-                                                {
-                                                    e.remove();
-                                                }
-                                            }
-
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        ClaimsModule.instance.pool.addWorker(new ResizeClaimWorker(claim, bStart, bEnd));
                     }
                 }
             }

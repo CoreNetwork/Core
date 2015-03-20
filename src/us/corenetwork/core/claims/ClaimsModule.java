@@ -34,7 +34,7 @@ public class ClaimsModule extends CoreModule {
 	public ClaimPerks claimPerks = new ClaimPerks();
     public ClaimEggs claimEggs = new ClaimEggs();
     public BlockWorkerPool pool = new BlockWorkerPool();
-    public Set<Claim> untouchableClaims = new HashSet<Claim>();
+    public Set<ClaimCache> untouchableClaims = new HashSet<ClaimCache>();
 
     public ClaimsModule()
 	{

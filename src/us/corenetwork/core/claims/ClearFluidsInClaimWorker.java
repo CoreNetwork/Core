@@ -16,18 +16,18 @@ public class ClearFluidsInClaimWorker extends BlockWorker {
     private int x;
     private int y;
     private int z;
-    private Player player;
     private Runnable finish;
+    private ClaimCache claimCache;
 
-    public ClearFluidsInClaimWorker(Claim toRemove, Player player, Runnable finish) {
+    public ClearFluidsInClaimWorker(Claim toRemove, Runnable finish) {
         this.toRemove = toRemove;
-        this.player = player;
         this.finish = finish;
+        this.claimCache = new ClaimCache(toRemove.getLesserBoundaryCorner(), toRemove.getGreaterBoundaryCorner());
     }
 
     @Override
     public void init() {
-        ClaimsModule.instance.untouchableClaims.add(toRemove);
+        ClaimsModule.instance.untouchableClaims.add(claimCache);
         start = toRemove.getLesserBoundaryCorner();
         end = toRemove.getGreaterBoundaryCorner();
 
@@ -41,13 +41,13 @@ public class ClearFluidsInClaimWorker extends BlockWorker {
 
     @Override
     public void onDone() {
-        ClaimsModule.instance.untouchableClaims.remove(toRemove);
+        ClaimsModule.instance.untouchableClaims.remove(claimCache);
         finish.run();
     }
 
     @Override
     public long getTaskSize() {
-        return Math.abs(end.getBlockX() - start.getBlockX()) * Math.abs(end.getBlockZ() - start.getBlockZ()) * 256;
+        return Math.abs(end.getBlockX() - start.getBlockX() + 1) * Math.abs(end.getBlockZ() - start.getBlockZ() + 1) * 256;
     }
 
     @Override

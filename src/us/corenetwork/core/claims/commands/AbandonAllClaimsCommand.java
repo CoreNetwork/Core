@@ -27,7 +27,7 @@ public class AbandonAllClaimsCommand extends BaseClaimsCommand {
         final Set<Claim> claimsDone = new HashSet<Claim>();
 
         for (final Claim claim : claims) {
-            ClaimsModule.instance.pool.addWorker(new ClearFluidsInClaimWorker(claim, player, new Runnable() {
+            ClaimsModule.instance.pool.addWorker(new ClearFluidsInClaimWorker(claim, new Runnable() {
                 @Override
                 public void run() {
                     claimsDone.add(claim);
