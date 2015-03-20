@@ -19,6 +19,8 @@ import us.corenetwork.core.claims.commands.BlocksCommand;
 import us.corenetwork.core.claims.commands.BlocksConfirmCommand;
 import us.corenetwork.core.claims.commands.ClaimsListCommand;
 import us.corenetwork.core.claims.commands.DeleteClaimCommand;
+import us.corenetwork.core.claims.commands.IgnoreClaimsCommand;
+import us.corenetwork.core.claims.commands.RespectClaimsCommand;
 import us.corenetwork.core.claims.commands.TrappedCommand;
 
 public class ClaimsModule extends CoreModule {
@@ -86,6 +88,9 @@ public class ClaimsModule extends CoreModule {
 
         CorePlugin.coreCommands.put("trapped", new TrappedCommand());
 		CorePlugin.coreCommands.put("claimslist", new ClaimsListCommand());
+
+		CorePlugin.coreCommands.put("ignoreclaims", new IgnoreClaimsCommand());
+		CorePlugin.coreCommands.put("respectclaims", new RespectClaimsCommand());
 
         claimsAreaProxy.init();
         claimsDamageProxy.init();
