@@ -32,8 +32,8 @@ public class AbandonClaimCommand extends BaseClaimsCommand {
                 }
             }));
 
-            Bukkit.dispatchCommand(player, "AbandonClaim");
             ClaimsModule.instance.claimPerks.onRemoveClaim(claim);
         }
+        Bukkit.dispatchCommand(player, "AbandonClaim");
     }
 }
