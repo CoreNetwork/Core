@@ -82,7 +82,7 @@ public class RespawnModule extends CoreModule {
 		}
 		else if (command.getName().equals("unprotect"))
 		{
-			return rspawnCommands.get("unprotect").execute(sender, args, true);
+			return rspawnCommands.get("unprotect").execute(sender, args, false);
 		}
 		else if (command.getName().equals("rspawnteam"))
 		{
