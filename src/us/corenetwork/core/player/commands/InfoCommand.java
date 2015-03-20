@@ -100,10 +100,14 @@ public class InfoCommand extends BasePlayerCommand {
             {
                 replacements.put(PH_VEHICLE, vehicle.getType().name());
             }
+            else
+            {
+                replacements.put(PH_VEHICLE, "");
+            }
 
             replacements.put(PH_HEALTH, player.getHealth()+"");
             replacements.put(PH_HUNGER, player.getFoodLevel()+"");
-            replacements.put(PH_SATURATION, player.getSaturation()+"");
+            replacements.put(PH_SATURATION, String.format("%.2f", player.getSaturation()));
             replacements.put(PH_AIR, player.getRemainingAir()+"");
             replacements.put(PH_LEVEL, player.getLevel()+"");
 
@@ -145,10 +149,14 @@ public class InfoCommand extends BasePlayerCommand {
             {
                 replacements.put(PH_VEHICLE, ridingCompound.getString("id"));
             }
+            else
+            {
+                replacements.put(PH_VEHICLE, "");
+            }
 
             replacements.put(PH_HEALTH, nbtTagCompound.getDouble("Health")+"");
             replacements.put(PH_HUNGER, nbtTagCompound.getInt("foodLevel")+"");
-            replacements.put(PH_SATURATION, nbtTagCompound.getInt("foodSaturationLevel")+"");
+            replacements.put(PH_SATURATION, String.format("%.2f", nbtTagCompound.getDouble("foodSaturationLevel")));
             replacements.put(PH_AIR, nbtTagCompound.getInt("Air")+"");
             replacements.put(PH_LEVEL, nbtTagCompound.getInt("XpLevel")+"");
 
