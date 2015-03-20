@@ -99,7 +99,6 @@ public class UnstuckCommand extends BasePlayerCommand {
 
 
         target.setVelocity(new Vector(0,0,0));
-        target.
         if(target.getWorld().getBlockAt(target.getLocation()).getType().isSolid())
         {
             target.teleport(target.getLocation().add(0,1,0));
