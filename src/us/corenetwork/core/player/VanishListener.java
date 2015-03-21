@@ -35,8 +35,10 @@ public class VanishListener implements Listener {
 		{
 			if(PlayerModule.vanishManager.isVanished(onlinePlayer)) 
 			{
-				player.hidePlayer(onlinePlayer);
-				
+				if (!PlayerModule.vanishManager.canSeeAll(onlinePlayer))
+				{
+					player.hidePlayer(onlinePlayer);
+				}
 				//((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(EnumPlayerInfoAction.ADD_PLAYER, ((CraftPlayer) onlinePlayer).getHandle()));
 			}
 		}

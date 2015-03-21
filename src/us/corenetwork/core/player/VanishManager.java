@@ -20,9 +20,10 @@ import us.corenetwork.core.scoreboard.CoreScoreboardManager;
 
 public class VanishManager {
 
-	private final String MOD_GROUP = "Overseer";
-	private final String MOD_SCOREBOARD_TEAM = "Guardian"; //Teams only change on login so guardians stay in guardian team even after duty mode switch.
-
+	private final String MOD_GROUP_DUTY = "Overseer";
+	private final String MOD_GROUP_OFF_DUTY = "Guardian";
+	private final String MOD_SCOREBOARD_TEAM = "rankTeamA"; //Teams only change on login so guardians stay in guardian team even after duty mode switch.
+															//This is hardcoded bfytw
 	private Set<Player> vanishedPlayers;
 	private Scoreboard scoreboard;
 	
@@ -39,7 +40,7 @@ public class VanishManager {
 
 	public boolean canSeeAll(Player player)
 	{
-		return CorePlugin.permission.playerInGroup(player, MOD_GROUP);
+		return CorePlugin.permission.playerInGroup(player, MOD_GROUP_DUTY) || CorePlugin.permission.playerInGroup(player, MOD_GROUP_OFF_DUTY);
 	}
 	
 	public boolean isVanished(Player player)
@@ -56,7 +57,7 @@ public class VanishManager {
 			if(onlinePlayer.equals(player))
 				continue;
 			
-			if (canSeeAll(onlinePlayer) == false)
+			if (!canSeeAll(onlinePlayer))
 			{
 				onlinePlayer.hidePlayer(player);
 				
@@ -76,7 +77,7 @@ public class VanishManager {
 			if(onlinePlayer.equals(player))
 				continue;
 			
-			if (canSeeAll(onlinePlayer) == false)
+			if (!canSeeAll(onlinePlayer))
 			{
 				onlinePlayer.showPlayer(player);
 				//((CraftPlayer) onlinePlayer).getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo());
