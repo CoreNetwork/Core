@@ -20,6 +20,7 @@ public class AbandonClaimCommand extends BaseClaimsCommand {
     public void run(CommandSender sender, String[] args) {
         Player player = (Player) sender;
         removeClaim(player);
+        Bukkit.dispatchCommand(player, "AbandonClaim");
     }
 
     public static void removeClaim(final Player player) {
@@ -34,6 +35,5 @@ public class AbandonClaimCommand extends BaseClaimsCommand {
 
             ClaimsModule.instance.claimPerks.onRemoveClaim(claim);
         }
-        Bukkit.dispatchCommand(player, "AbandonClaim");
     }
 }
