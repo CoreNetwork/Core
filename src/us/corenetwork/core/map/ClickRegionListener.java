@@ -90,6 +90,7 @@ public class ClickRegionListener implements Listener {
             for (ProtectedRegion region : set) {
                 ClickAlias alias = regionsToCommandMap.get(new ClickAliasIndex(event.getClickedBlock().getType(), region.getId()));
                 if (alias != null) {
+                    event.setCancelled(true);
                     alias.execute(event.getPlayer());
                     return;
                 }
