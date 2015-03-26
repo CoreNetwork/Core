@@ -105,7 +105,7 @@ public class InfoCommand extends BasePlayerCommand {
                 replacements.put(PH_VEHICLE, "");
             }
 
-            replacements.put(PH_HEALTH, player.getHealth()+"");
+            replacements.put(PH_HEALTH, String.format("%.2f", player.getHealth()));
             replacements.put(PH_HUNGER, player.getFoodLevel()+"");
             replacements.put(PH_SATURATION, String.format("%.2f", player.getSaturation()));
             replacements.put(PH_AIR, player.getRemainingAir()+"");
@@ -154,7 +154,7 @@ public class InfoCommand extends BasePlayerCommand {
                 replacements.put(PH_VEHICLE, "");
             }
 
-            replacements.put(PH_HEALTH, nbtTagCompound.getDouble("Health")+"");
+            replacements.put(PH_HEALTH, String.format("%.2f", nbtTagCompound.getDouble("Health")));
             replacements.put(PH_HUNGER, nbtTagCompound.getInt("foodLevel")+"");
             replacements.put(PH_SATURATION, String.format("%.2f", nbtTagCompound.getDouble("foodSaturationLevel")));
             replacements.put(PH_AIR, nbtTagCompound.getInt("Air")+"");
