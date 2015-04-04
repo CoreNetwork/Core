@@ -4,24 +4,26 @@ import com.google.common.base.Joiner;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Map;
-import net.minecraft.server.v1_8_R1.CommandAbstract;
-import net.minecraft.server.v1_8_R1.EntityMinecartCommandBlock;
-import net.minecraft.server.v1_8_R1.EntityPlayer;
-import net.minecraft.server.v1_8_R1.ICommandListener;
-import net.minecraft.server.v1_8_R1.MinecraftServer;
-import net.minecraft.server.v1_8_R1.TileEntityCommand;
-import net.minecraft.server.v1_8_R1.TileEntityCommandListener;
+import net.minecraft.server.v1_8_R2.CommandAbstract;
+import net.minecraft.server.v1_8_R2.CommandBlockListenerAbstract;
+import net.minecraft.server.v1_8_R2.EntityMinecartCommandBlock;
+import net.minecraft.server.v1_8_R2.EntityPlayer;
+import net.minecraft.server.v1_8_R2.ICommand;
+import net.minecraft.server.v1_8_R2.ICommandListener;
+import net.minecraft.server.v1_8_R2.MinecraftServer;
+import net.minecraft.server.v1_8_R2.TileEntityCommand;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.RemoteConsoleCommandSender;
 import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R1.command.CraftBlockCommandSender;
-import org.bukkit.craftbukkit.v1_8_R1.command.CraftRemoteConsoleCommandSender;
-import org.bukkit.craftbukkit.v1_8_R1.command.VanillaCommandWrapper;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftMinecartCommand;
+import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R2.command.CraftBlockCommandSender;
+import org.bukkit.craftbukkit.v1_8_R2.command.CraftRemoteConsoleCommandSender;
+import org.bukkit.craftbukkit.v1_8_R2.command.VanillaCommandWrapper;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftMinecartCommand;
 
 /**
  * Created by Matej on 28.12.2014.
@@ -71,7 +73,7 @@ public class RedirectedVanillaCommand extends CommandAbstract
     }
 
     @Override
-    public int compareTo(Object o)
+    public int compareTo(ICommand iCommand)
     {
         return 0;
     }
@@ -86,8 +88,8 @@ public class RedirectedVanillaCommand extends CommandAbstract
         if (listener instanceof EntityPlayer) {
             return ((EntityPlayer) listener).getBukkitEntity();
         }
-        if (listener instanceof TileEntityCommandListener) {
-            return new CraftBlockCommandSender((TileEntityCommandListener) listener);
+        if (listener instanceof CommandBlockListenerAbstract) {
+            return new CraftBlockCommandSender((CommandBlockListenerAbstract) listener);
         }
         if (listener instanceof EntityMinecartCommandBlock) {
             return new CraftMinecartCommand((CraftServer) Bukkit.getServer(), (EntityMinecartCommandBlock) listener);

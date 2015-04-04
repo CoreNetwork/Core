@@ -1,15 +1,15 @@
 package us.corenetwork.core.player.commands;
 
-import net.minecraft.server.v1_8_R1.NBTBase;
-import net.minecraft.server.v1_8_R1.NBTCompressedStreamTools;
-import net.minecraft.server.v1_8_R1.NBTTagCompound;
-import net.minecraft.server.v1_8_R1.NBTTagList;
-import net.minecraft.server.v1_8_R1.WorldNBTStorage;
+import net.minecraft.server.v1_8_R2.NBTBase;
+import net.minecraft.server.v1_8_R2.NBTCompressedStreamTools;
+import net.minecraft.server.v1_8_R2.NBTTagCompound;
+import net.minecraft.server.v1_8_R2.NBTTagList;
+import net.minecraft.server.v1_8_R2.WorldNBTStorage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R2.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;

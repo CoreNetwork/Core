@@ -1,7 +1,6 @@
 package us.corenetwork.core.util;
 
-import net.minecraft.server.v1_8_R1.EnumChatFormat;
-import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
+import net.minecraft.server.v1_8_R2.EnumChatFormat;
 import org.json.simple.JSONObject;
 
 public class MinecraftJson

@@ -1,11 +1,9 @@
 package us.corenetwork.core.util;
 
-import net.minecraft.server.v1_8_R1.ChatSerializer;
-import net.minecraft.server.v1_8_R1.EnumTitleAction;
-import net.minecraft.server.v1_8_R1.IChatBaseComponent;
-import net.minecraft.server.v1_8_R1.PacketPlayOutTitle;
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonParseException;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import net.minecraft.server.v1_8_R2.CommandTitle;
+import net.minecraft.server.v1_8_R2.IChatBaseComponent;
+import net.minecraft.server.v1_8_R2.PacketPlayOutTitle;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 
@@ -24,17 +22,10 @@ public class TitleSender {
      */
     public static void title(Player player, String title)
     {
-        try
-        {
-            IChatBaseComponent component = ChatSerializer.a(title);
+        IChatBaseComponent component = IChatBaseComponent.ChatSerializer.a(title);
 
-            PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(EnumTitleAction.TITLE, component);
-            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
-        }
-        catch (JsonParseException e)
-        {
-            e.printStackTrace();
-        }
+        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, component);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
     }
 
     /**
@@ -47,17 +38,10 @@ public class TitleSender {
      */
     public static void subtitle(Player player, String subtitle)
     {
-        try
-        {
-            IChatBaseComponent component = ChatSerializer.a(subtitle);
+        IChatBaseComponent component = IChatBaseComponent.ChatSerializer.a(subtitle);
 
-            PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, component);
-            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
-        }
-        catch (JsonParseException e)
-        {
-            e.printStackTrace();
-        }
+        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, component);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
     }
 
     /**
@@ -69,7 +53,7 @@ public class TitleSender {
      */
     public static void reset(Player player)
     {
-        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(EnumTitleAction.RESET, null);
+        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.RESET, null);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
     }
 
@@ -82,7 +66,7 @@ public class TitleSender {
      */
     public static void clear(Player player)
     {
-        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(EnumTitleAction.CLEAR, null);
+        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.CLEAR, null);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
     }
 

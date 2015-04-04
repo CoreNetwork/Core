@@ -1,9 +1,9 @@
 package us.corenetwork.core.scoreboard;
 
-import net.minecraft.server.v1_8_R1.EntityPlayer;
-import net.minecraft.server.v1_8_R1.PacketPlayOutScoreboardTeam;
-import net.minecraft.server.v1_8_R1.ScoreboardTeam;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import net.minecraft.server.v1_8_R2.EntityPlayer;
+import net.minecraft.server.v1_8_R2.PacketPlayOutScoreboardTeam;
+import net.minecraft.server.v1_8_R2.ScoreboardTeam;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
