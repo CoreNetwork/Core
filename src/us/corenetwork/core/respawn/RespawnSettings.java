@@ -76,7 +76,8 @@ public enum RespawnSettings {
 	MESSAGE_TIME_SYNTAX("Messages.TimeSyntax", "<Hours>h <Minutes>m"),
 	MESSAGE_SPAWN_LUCKY_WITH_BOOSTER("Messages.SpawnLuckyWithBooster","You had a lucky spawn thanks to <Player>! <Time> left."),
 	MESSAGE_SPAWN_LUCKY("Messages.SpawnLucky", "You had a lucky spawn!"),
-	;
+    MESSAGE_CHECK_LUCKY("Messages.CheckLucky.HasBoosters", "You have <Amount> booster<S> left."),
+    MESSAGE_CHECK_LUCKY_NO_BOOSTERS("Messages.CheckLucky.NoBoosters", "You don't have any boosters left.");
 	protected String string;
 	protected Object def;
 	

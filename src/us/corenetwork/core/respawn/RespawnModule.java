@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import us.corenetwork.core.CLog;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.respawn.rspawncommands.CheckLuckyCommand;
 import us.corenetwork.core.util.Util;
 import us.corenetwork.core.respawn.rspawncommands.BaseRSpawnCommand;
 import us.corenetwork.core.respawn.rspawncommands.BuyBoosterCommand;
@@ -59,7 +60,8 @@ public class RespawnModule extends CoreModule {
 		rspawnCommands.put("nodrop", new NoDropCommand());
 		rspawnCommands.put("rspawnteam", new RSpawnTeamCommand());
 
-		CorePlugin.coreCommands.put("buylucky", new BuyBoosterCommand());
+        CorePlugin.coreCommands.put("checklucky", new CheckLuckyCommand());
+        CorePlugin.coreCommands.put("buylucky", new BuyBoosterCommand());
 		CorePlugin.coreCommands.put("runlucky", new RunBoosterCommand());
 		CorePlugin.coreCommands.put("spawn", new SpawnCommand());
 		
