@@ -42,8 +42,9 @@ public class RespawnManager {
 		if (isLucky(player))
 		{
 			biggestClaim = GriefPreventionHandler.findBiggestClaimInWorld(player, RespawnSettings.RESPAWN_WORLD.string());
+			PlayerUtils.Message(getLuckySpawnMessage(biggestClaim != null), player);
 		}
-		
+
 		if(biggestClaim != null)
 		{
 			int halfLength = RespawnSettings.LUCKY_SQUARE_LENGTH.integer() / 2;
@@ -60,9 +61,7 @@ public class RespawnManager {
 			maxZ = RespawnSettings.RESPAWN_NO_BASE_MAX_Z.integer();
 		}
 
-		Location location = getRandomLocation(player, minX, maxX, minZ, maxZ);
-		
-		return location;
+		return getRandomLocation(player, minX, maxX, minZ, maxZ);
 	}
 	
 	
@@ -75,18 +74,20 @@ public class RespawnManager {
 		}
 		else
 		{
-			if(RespawnModule.luckyBoosterManager.isActive())
-			{
-				PlayerUtils.Message(RespawnModule.luckyBoosterManager.getLuckyActiveMessage(), player);
-				return true;
-			}
+			return RespawnModule.luckyBoosterManager.isActive() || throwDice(player);
 
-			boolean isLucky = throwDice(player);
+		}
+	}
 
-			if(isLucky)
-				PlayerUtils.Message(RespawnSettings.MESSAGE_SPAWN_LUCKY.string(), player);
-
-			return isLucky;
+	private String getLuckySpawnMessage(boolean hasClaim)
+	{
+		if(RespawnModule.luckyBoosterManager.isActive() && hasClaim)
+		{
+			return RespawnModule.luckyBoosterManager.getLuckyActiveMessage();
+		}
+		else
+		{
+			return RespawnSettings.MESSAGE_SPAWN_LUCKY.string();
 		}
 	}
 	
