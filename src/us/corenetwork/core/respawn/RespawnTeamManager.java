@@ -77,7 +77,7 @@ public class RespawnTeamManager {
 	
 	private void initializeLocation(Player player)
 	{
-		respawnLocation = RespawnModule.manager.getRespawnLocation(player);
+		respawnLocation = RespawnModule.manager.getRespawnLocation(player, false);
 		respawnLocationSource = player;
 	}
 	

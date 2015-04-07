@@ -29,12 +29,12 @@ public class RespawnManager {
 		}
 		else
 		{
-			location = getRespawnLocation(player);
+			location = getRespawnLocation(player, true);
 		}
 	    player.teleport(location);
 	}
 	
-	public Location getRespawnLocation(Player player)
+	public Location getRespawnLocation(Player player, boolean showMessage)
 	{
 		int minX, minZ, maxX, maxZ;
 		Location biggestClaim = null;
@@ -42,7 +42,8 @@ public class RespawnManager {
 		if (isLucky(player))
 		{
 			biggestClaim = GriefPreventionHandler.findBiggestClaimInWorld(player, RespawnSettings.RESPAWN_WORLD.string());
-			PlayerUtils.Message(getLuckySpawnMessage(biggestClaim != null), player);
+			if(showMessage)
+				PlayerUtils.Message(getLuckySpawnMessage(biggestClaim != null), player);
 		}
 
 		if(biggestClaim != null)
