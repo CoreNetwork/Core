@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -24,12 +25,11 @@ public class VanishManager {
 	private final String MOD_GROUP_OFF_DUTY = "Guardian";
 	private final String MOD_SCOREBOARD_TEAM = "rankTeamA"; //Teams only change on login so guardians stay in guardian team even after duty mode switch.
 															//This is hardcoded bfytw
-	private Set<Player> vanishedPlayers;
-	private Scoreboard scoreboard;
-	
+	private Set<UUID> vanishedPlayers;
+
 	public VanishManager()
 	{
-		vanishedPlayers = new HashSet<Player>();
+		vanishedPlayers = new HashSet<UUID>();
 		initializeScoreboard();
 	}
 	
@@ -45,12 +45,12 @@ public class VanishManager {
 	
 	public boolean isVanished(Player player)
 	{
-		return vanishedPlayers.contains(player);
+		return vanishedPlayers.contains(player.getUniqueId());
 	}
 	
 	public void vanish(Player player)
 	{
-		vanishedPlayers.add(player);
+		vanishedPlayers.add(player.getUniqueId());
         
 		for(Player onlinePlayer: Bukkit.getServer().getOnlinePlayers()) 
 		{
@@ -70,7 +70,7 @@ public class VanishManager {
 	
 	public void unvanish(Player player)
 	{
-		vanishedPlayers.remove(player);
+		vanishedPlayers.remove(player.getUniqueId());
 		
 		for(Player onlinePlayer: Bukkit.getServer().getOnlinePlayers()) 
 		{
