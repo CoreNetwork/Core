@@ -42,8 +42,9 @@ public class RespawnManager {
 		if (isLucky(player))
 		{
 			biggestClaim = GriefPreventionHandler.findBiggestClaimInWorld(player, RespawnSettings.RESPAWN_WORLD.string());
-			if(showMessage)
-				PlayerUtils.Message(getLuckySpawnMessage(biggestClaim != null), player);
+			boolean hasClaim = biggestClaim != null;
+			if(showMessage && hasClaim)
+				PlayerUtils.Message(getLuckySpawnMessage(), player);
 		}
 
 		if(biggestClaim != null)
@@ -80,9 +81,9 @@ public class RespawnManager {
 		}
 	}
 
-	private String getLuckySpawnMessage(boolean hasClaim)
+	private String getLuckySpawnMessage()
 	{
-		if(RespawnModule.luckyBoosterManager.isActive() && hasClaim)
+		if(RespawnModule.luckyBoosterManager.isActive())
 		{
 			return RespawnModule.luckyBoosterManager.getLuckyActiveMessage();
 		}
