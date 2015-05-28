@@ -2,28 +2,26 @@ package us.corenetwork.core;
 
 import com.google.common.base.Joiner;
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Map;
-import net.minecraft.server.v1_8_R2.CommandAbstract;
-import net.minecraft.server.v1_8_R2.CommandBlockListenerAbstract;
-import net.minecraft.server.v1_8_R2.EntityMinecartCommandBlock;
-import net.minecraft.server.v1_8_R2.EntityPlayer;
-import net.minecraft.server.v1_8_R2.ICommand;
-import net.minecraft.server.v1_8_R2.ICommandListener;
-import net.minecraft.server.v1_8_R2.MinecraftServer;
-import net.minecraft.server.v1_8_R2.TileEntityCommand;
 
+import net.minecraft.server.v1_8_R3.CommandAbstract;
+import net.minecraft.server.v1_8_R3.CommandBlockListenerAbstract;
+import net.minecraft.server.v1_8_R3.EntityMinecartCommandBlock;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.ICommand;
+import net.minecraft.server.v1_8_R3.ICommandListener;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.RemoteConsoleCommandSender;
 import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R2.command.CraftBlockCommandSender;
-import org.bukkit.craftbukkit.v1_8_R2.command.CraftRemoteConsoleCommandSender;
-import org.bukkit.craftbukkit.v1_8_R2.command.VanillaCommandWrapper;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftMinecartCommand;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.command.CraftBlockCommandSender;
+import org.bukkit.craftbukkit.v1_8_R3.command.CraftRemoteConsoleCommandSender;
+import org.bukkit.craftbukkit.v1_8_R3.command.VanillaCommandWrapper;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftMinecartCommand;
 
 /**
  * Created by Matej on 28.12.2014.

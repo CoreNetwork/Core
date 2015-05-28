@@ -4,12 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
-import net.minecraft.server.v1_8_R2.ScoreboardTeam;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_8_R2.scoreboard.CraftScoreboard;
+import org.bukkit.craftbukkit.v1_8_R3.scoreboard.CraftScoreboard;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
 
 public class CoreScoreboardManager {
 	protected static HashMap<String, PlayerData> scoreboards = new HashMap<String, PlayerData>();
@@ -20,7 +17,7 @@ public class CoreScoreboardManager {
 	{
 		try
 		{
-			Constructor craftScoreboardConstructor = CraftScoreboard.class.getDeclaredConstructor(net.minecraft.server.v1_8_R2.Scoreboard.class);
+			Constructor craftScoreboardConstructor = CraftScoreboard.class.getDeclaredConstructor(net.minecraft.server.v1_8_R3.Scoreboard.class);
 			craftScoreboardConstructor.setAccessible(true);
 
 			nmsTeamStorage = new TeamStorageScoreboard();

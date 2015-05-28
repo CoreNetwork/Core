@@ -1,22 +1,11 @@
 package us.corenetwork.core.player.commands;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.Setting;
-import us.corenetwork.core.Settings;
 import us.corenetwork.core.player.PlayerSettings;
-import us.corenetwork.core.util.MinecraftJson;
 import us.corenetwork.core.util.PlayerUtils;
-import us.corenetwork.core.util.TimeUtils;
-import us.corenetwork.core.util.TitleSender;
 import us.corenetwork.core.util.Util;
 
 public class XpCommand extends BasePlayerCommand {

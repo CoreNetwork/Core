@@ -3,16 +3,12 @@ package us.corenetwork.core.teleport;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 
-import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
 import us.corenetwork.core.AbstractCoreCommand;
 import us.corenetwork.core.CoreModule;
 import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.RedirectedVanillaCommand;
 import us.corenetwork.core.teleport.commands.tp.TpCommand;
 import us.corenetwork.core.teleport.commands.warp.DeleteCommand;
 import us.corenetwork.core.teleport.commands.warp.SetCommand;

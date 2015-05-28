@@ -1,6 +1,5 @@
 package us.corenetwork.core.util;
 
-import net.minecraft.server.v1_8_R2.EnumChatFormat;
 import org.json.simple.JSONObject;
 
 public class MinecraftJson

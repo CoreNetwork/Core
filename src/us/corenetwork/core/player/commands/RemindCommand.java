@@ -1,27 +1,22 @@
 package us.corenetwork.core.player.commands;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import us.corenetwork.core.CorePlugin;
+import us.corenetwork.core.Setting;
+import us.corenetwork.core.Settings;
+import us.corenetwork.core.player.PlayerSettings;
+import us.corenetwork.core.util.MinecraftJson;
+import us.corenetwork.core.util.PlayerUtils;
+import us.corenetwork.core.util.TimeUtils;
+import us.corenetwork.core.util.TitleSender;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
-import net.minecraft.server.v1_8_R2.EnumChatFormat;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Sound;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import us.corenetwork.core.CorePlugin;
-import us.corenetwork.core.Setting;
-import us.corenetwork.core.Settings;
-import us.corenetwork.core.player.PlayerModule;
-import us.corenetwork.core.respawn.ProtectTimer;
-import us.corenetwork.core.util.MinecraftJson;
-import us.corenetwork.core.util.PlayerUtils;
-import us.corenetwork.core.player.PlayerSettings;
-import us.corenetwork.core.util.TimeUtils;
-import us.corenetwork.core.util.TitleSender;
 
 public class RemindCommand extends BasePlayerCommand {
 
